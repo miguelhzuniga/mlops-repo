@@ -16,7 +16,7 @@ def construir_modelo(preprocessor):
 
 def entrenar_modelo(modelo, X_train, y_train):
     modelo.fit(X_train, y_train)
-    joblib.dump(modelo, r"../model.pkl")
+    joblib.dump(modelo['knn'], r"../model.pkl")
 
 def validar_modelo(modelo, X_test, y_test, X_train, y_train):
     y_pred_test = modelo.predict(X_test)
