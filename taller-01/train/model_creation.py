@@ -1,6 +1,7 @@
 from sklearn.pipeline import Pipeline
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
+import joblib
 
 def construir_modelo(preprocessor):
 
@@ -15,6 +16,7 @@ def construir_modelo(preprocessor):
 
 def entrenar_modelo(modelo, X_train, y_train):
     modelo.fit(X_train, y_train)
+    joblib.dump(modelo, r"../model.pkl")
 
 def validar_modelo(modelo, X_test, y_test, X_train, y_train):
     y_pred_test = modelo.predict(X_test)
