@@ -4,7 +4,7 @@ Este repositorio contiene un taller en el que se entrena un modelo de Machine Le
 
 ## 📂 Contenido del Taller
 
-### ocesamiento y Entrenamiento del Modelo  
+### Procesamiento y Entrenamiento del Modelo  
 Se implementa un script en Python que: 
 - Carga los datos del dataset. 
 - Realiza la carga, limpieza, transformación, validación, ingeniería de características y división preprocesamiento, limpieza y transformación de datos. 
