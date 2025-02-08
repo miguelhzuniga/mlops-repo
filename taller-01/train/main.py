@@ -1,5 +1,5 @@
 if __name__=="__main__":
-    
+
     from data_preparation import *
     from model_creation import *
 
@@ -13,5 +13,4 @@ if __name__=="__main__":
 
     train_accuracy, test_accuracy = validar_modelo(modelo, X_test, y_test, X_train, y_train)
 
-    print(f'Accuracy en entrenamiento: {train_accuracy:.2f}')
-    print(f'Accuracy en prueba: {test_accuracy:.2f}')
+    print(f'Model created successfully')
