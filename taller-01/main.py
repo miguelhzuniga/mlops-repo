@@ -1,7 +1,7 @@
 from data_preparation import cargar_datos, preparar_datos
 from model_creation import construir_modelo, entrenar_modelo, validar_modelo
 
-df = cargar_datos("penguins_lter.csv")
+df = cargar_datos("data/penguins_lter.csv")
 
 X_train, X_test, y_train, y_test, preprocessor = preparar_datos(df)
 
