@@ -9,14 +9,14 @@ def construir_modelo(preprocessor):
 
     modelo = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('knn', knn)
+        ('model', knn)
     ])
     
     return modelo
 
 def entrenar_modelo(modelo, X_train, y_train):
     modelo.fit(X_train, y_train)
-    joblib.dump(modelo['knn'], r"../model.pkl")
+    joblib.dump(modelo['model'], r"../model.pkl")
 
 def validar_modelo(modelo, X_test, y_test, X_train, y_train):
     y_pred_test = modelo.predict(X_test)
