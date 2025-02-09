@@ -88,9 +88,6 @@ La API retornará:
   "species": 'Adelie'
 }
 
-![Ejemplo de predicción](images/ejemplo_1.png)
-
-![Ejemplo de predicción](images/ejemplo_2.png)
 
 ![Ejemplo de predicción](images/ejemplo_3.png)
 ---
