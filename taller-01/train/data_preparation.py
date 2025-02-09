@@ -1,18 +1,19 @@
 import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OrdinalEncoder, MinMaxScaler
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 
 def cargar_datos(ruta):
     df = pd.read_csv(ruta, na_values=['NA', '.'])
+    print(df.dtypes)
     return df
 
 def preparar_datos(df):
-    X = df.drop(['Species'], axis=1)
-    y = df['Species']
+    X = df.drop(['species'], axis=1)
+    y = df['species']
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
@@ -23,7 +24,7 @@ def preparar_datos(df):
 
     categorical_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='most_frequent')),
-        ('ordinal', OrdinalEncoder())
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))  # One-Hot Encoding
     ])
 
     categorical_with_missing = [col for col in df.columns if df[col].isna().any() and df[col].dtypes == object]
