@@ -46,6 +46,6 @@ def validar_modelo(modelos, X_test, y_test, X_train, y_train,preprocessor):
 
     mejor_modelo = max(resultados.items(), key=lambda x: x[1]['test_accuracy'])
     
-    joblib.dump((modelos[mejor_modelo[0]]['model'],preprocessor), r"../model.pkl")
+    joblib.dump((modelos,preprocessor), r"../model.pkl")
     
     return resultados[mejor_modelo[0]]['train_accuracy'], resultados[mejor_modelo[0]]['test_accuracy']
