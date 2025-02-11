@@ -20,7 +20,22 @@ class Item(BaseModel):
 
 class Item2(BaseModel):
     modelo: str
- 
+
+@app.get("/")  # Definimos una ruta GET
+def home():  # Definimos una función llamada home
+    return {
+        "message": (
+            "¡Hola, para iniciar dirígete a http://127.0.0.1:8000/docs\n"
+            "Sigue los siguientes pasos:\n"
+            "1. Debes asignar un número de item para cada predicción.\n"
+            "2. Debes tabular los 6 campos requeridos para la predicción.\n"
+            "3. Debes seleccionar un modelo entre: 'KNN' y 'LogReg'.\n"
+            "Nota: El modelo debe ser escrito exactamente como en las opciones presentadas en el paso 3\n"
+            "para evitar errores al momento de predecir."
+        )
+    }  # Retornamos un diccionario con un mensaje
+
+
 @app.get("/get-item/{item_id}")
 def get_item(item_id: int):
     if item_id in items:
