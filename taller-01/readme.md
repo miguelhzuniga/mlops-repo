@@ -60,37 +60,52 @@ El servidor *FastAPI* permite que un usuario ingrese las siguientes variables de
 Tras recibir estos valores, la API devolverá la predicción de la especie del pingüino. 🐧🔍 
 
 Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
-
+ 
 1. Entrar en la ruta taller-01
 2. Ejecutar ./docker-init.sh
 3. Ingresar a http://localhost:8000/docs
-
-Ingresar los siguientes datos por ejempo:
+4. Registrar un número de item
+5. Ingresar los siguientes datos por ejemplo (es importante elegir el modelo entre "KNN" y "LogReg"):
 {
-  "island": "Torgersen",
-  "culmen_length_mm": 39.1,
-  "culmen_depth_mm": 18.7,
-  "flipper_length_mm": 181,
-  "body_mass_g": 3750,
-  "sex": "MALE",
-  "species": null
+  "item": {
+    "island": "Torgersen",
+    "culmen_length_mm": 20,
+    "culmen_depth_mm": 50,
+    "flipper_length_mm": 10,
+    "body_mass_g": 5000,
+    "sex": "FEMALE",
+    "species": null
+  },
+  "modelo": {
+    "modelo": "KNN"
+  }
 }
  
-La API retornará:
-
-{
-  "island": "Torgersen",
-  "culmen_length_mm": 39.1,
-  "culmen_depth_mm": 18.7,
-  "flipper_length_mm": 181,
-  "body_mass_g": 3750,
-  "sex": "MALE",
-  "species": 'Adelie'
-}
-
-
+ 
+La API retornará el campo de species actualizado:
+[
+  {
+    "island": "Torgersen",
+    "culmen_length_mm": 20,
+    "culmen_depth_mm": 50,
+    "flipper_length_mm": 10,
+    "body_mass_g": 5000,
+    "sex": "FEMALE",
+    "species": "Adelie"
+  },
+  {
+    "modelo": "KNN"
+  }
+]
+ 
+ 
+![Ejemplo de predicción](images/ejemplo_1.png)
+ 
+![Ejemplo de predicción](images/ejemplo_2.png)
+ 
 ![Ejemplo de predicción](images/ejemplo_3.png)
 ---
-
+ 
 📌 **Autor:** *Luis, Miguel, Camilo*  
 📌 **Tecnologías utilizadas:** Python, FastAPI, Docker, Uvicorn  
+ 
