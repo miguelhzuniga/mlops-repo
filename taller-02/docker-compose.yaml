@@ -1,0 +1,12 @@
+services:
+  tfx:
+    build: .
+    container_name: tfx
+    ports:
+      - "8888:8888"
+      - "6006:6006"
+    volumes:
+      - $PWD:/tfx/src
+    entrypoint: /run_jupyter.sh
+    command: start-notebook.sh --NotebookApp.token='my-token'
+
