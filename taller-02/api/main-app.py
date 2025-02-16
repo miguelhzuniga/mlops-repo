@@ -4,7 +4,7 @@ import pandas as pd
 from pydantic import BaseModel
 
 app = FastAPI()
-model, preprocessor = load("model.pkl")
+model, preprocessor = load("/train/model.pkl")
 
 items = {int: dict}
 
