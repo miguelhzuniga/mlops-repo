@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  jupyter-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    ports:
+      - "8888:8888"  
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks  
