@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3'
 services:
   api:
@@ -16,3 +17,16 @@ services:
       - ./train:/train
     ports:
       - "8888:8888"
+=======
+version: '3.8'
+
+services:
+  jupyter-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    ports:
+      - "8888:8888"  
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks  
+>>>>>>> 0f16ff7 (taller 2)
