@@ -59,13 +59,42 @@ El servidor *FastAPI* permite que un usuario ingrese las siguientes variables de
 
 Tras recibir estos valores, la API devolverá la predicción de la especie del pingüino. 🐧🔍 
 
-Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
- 
-1. Entrar en la ruta taller-01
-2. Ejecutar ./docker-init.sh
-3. Ingresar a http://localhost:8000/docs
-4. Registrar un número de item
-5. Ingresar los siguientes datos por ejemplo (es importante elegir el modelo entre "KNN" y "LogReg"):
+
+##  🐳 Configuración con Docker Compose
+Este proyecto utiliza docker-compose para gestionar los servicios de la API y JupyterLab de manera eficiente, integrando además el uso de Uvicorn para manejar las dependencias.
+
+- 📄 docker-compose.yml
+El archivo docker-compose.yml define dos servicios principales:
+
+API (Servidor FastAPI para inferencias)
+Construye la imagen desde el directorio ./api.
+Expone el puerto 8000 del host, mapeándolo al puerto 80 del contenedor.
+Monta los volúmenes ./api:/api y ./train:/train para compartir archivos entre el contenedor y el host.
+Ejecuta uvicorn para iniciar la API (main-app:app) en 0.0.0.0:80, permitiendo inferencias a través de la API.
+jupyterlab (Entorno interactivo para entrenamiento y pruebas)
+Construye la imagen desde el directorio ./train.
+Nombra el contenedor como jupyterlab.
+Usa /train como directorio de trabajo.
+Monta el volumen ./train:/train para compartir datos entre el contenedor y el host.
+Expone el servicio en el puerto 8888, accesible en http://localhost:8888.
+Ambos servicios compartirán los modelos entrenados porque en ambos se estableció volumen: ./train:/train, lo que permite que el modelo guardado en JupyterLab sea consumido por la API para realizar inferencias.
+
+
+Sigue estos pasos desde la línea de comandos BASH:
+
+1. Navega a la ruta taller-02.
+2. Ejecuta el comando docker-compose up --build
+3. Accede a http://127.0.0.1:8888/lab y ejecuta el notebook "main-train.py" 
+4. Si se desea entrenar un nuevo modelo, las modificaciones deben realizarse en el notebook "model_creation". Cada vez que se entrene un nuevo modelo, este estará disponible para ser utilizado en la API.
+5. Luego, ingresa a http://localhost:8000/docs.
+6. Registra un número de ítem.
+7. Completa los datos requeridos para realizar la predicción, seleccionando el modelo de entre las opciones proporcionadas por el cuerpo de respuesta del GET en /home donde podrás ver los modelos disponibles para hacer la predicción.
+
+![Ejemplo de predicción](images/ejemplo_4.png)
+
+
+Ejemplo de implementación de la predicción:
+
 {
   "item": {
     "island": "Torgersen",
@@ -77,15 +106,11 @@ Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
     "species": null
   },
   "modelo": {
-    "modelo": "KNN"
+    "modelo": "LogRegCV"
   }
-}
+}'
 
  
-<<<<<<< HEAD
- 
-=======
->>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
 La API retornará el campo de species actualizado:
 [
   {
@@ -98,27 +123,15 @@ La API retornará el campo de species actualizado:
     "species": "Adelie"
   },
   {
-    "modelo": "KNN"
+    "modelo": "LogRegCV"
   }
 ]
-<<<<<<< HEAD
- 
- 
-![Ejemplo de predicción](images/ejemplo_1.png)
- 
-![Ejemplo de predicción](images/ejemplo_2.png)
- 
-=======
-
 
 ![Ejemplo de predicción](images/ejemplo_1.png)
 
 ![Ejemplo de predicción](images/ejemplo_2.png)
 
->>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
 ![Ejemplo de predicción](images/ejemplo_3.png)
----
- 
+
 📌 **Autor:** *Luis, Miguel, Camilo*  
-📌 **Tecnologías utilizadas:** Python, FastAPI, Docker, Uvicorn  
- 
+📌 **Tecnologías utilizadas:** Python, FastAPI, Docker compose, Uvicorn  

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:80"
+    volumes:
+      - './api:/api'
+      - ./train:/train
+    command: ["uvicorn", "main-app:app", "--host", "0.0.0.0", "--port", "80"]
+  jupyterlab:
+    build: ./train
+    container_name: jupyterlab
+    working_dir: /train
+    volumes:
+      - ./train:/train
+    ports:
+      - "8888:8888"
