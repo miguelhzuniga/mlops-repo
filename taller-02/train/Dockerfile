@@ -1,7 +1,5 @@
 FROM python:3.12-slim-bookworm
 
-# Establece el directorio de trabajo
-WORKDIR /app
 
 # The installer requires curl (and certificates) to download the release archive
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates

@@ -11,7 +11,7 @@ services:
   jupyterlab:
     build: ./train
     container_name: jupyterlab
-    working_dir: /app
+    working_dir: /train
     volumes:
       - ./train:/train
     ports:
