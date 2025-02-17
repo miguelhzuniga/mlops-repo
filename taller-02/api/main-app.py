@@ -2,16 +2,12 @@ from joblib import load
 from fastapi import FastAPI, File, UploadFile
 import pandas as pd
 from pydantic import BaseModel
- 
+
 app = FastAPI()
 model, preprocessor = load("model.pkl")
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> 53364723d38940547937c499141372a8beadfc9b
 items = {int: dict}
- 
+
 # Definiendo un modelo de datos
 class Item(BaseModel):
     island: str
@@ -21,17 +17,10 @@ class Item(BaseModel):
     body_mass_g: float
     sex: str
     species: None
-<<<<<<< HEAD
- 
-class Item2(BaseModel):
-    modelo: str
- 
-=======
 
 class Item2(BaseModel):
     modelo: str
 
->>>>>>> 53364723d38940547937c499141372a8beadfc9b
 @app.get("/")  # Definimos una ruta GET
 def home():  # Definimos una función llamada home
     return {
@@ -45,19 +34,14 @@ def home():  # Definimos una función llamada home
             "para evitar errores al momento de predecir."
         )
     }  # Retornamos un diccionario con un mensaje
-<<<<<<< HEAD
- 
- 
-=======
 
 
->>>>>>> 53364723d38940547937c499141372a8beadfc9b
 @app.get("/get-item/{item_id}")
 def get_item(item_id: int):
     if item_id in items:
         return items[item_id]
     return {"message": "API de predicción de pingüinos activa"}
- 
+
 # Ruta POST
 @app.post("/items/{item_id}")
 def create_item(item_id: int, item: Item, modelo:Item2):
@@ -73,9 +57,5 @@ def create_item(item_id: int, item: Item, modelo:Item2):
     item_up = item.copy(update={"species": specie})
     item2_up = modelo.copy(update={"modelo": modelo_escogido})
     items[item_id] =  item_up
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> 53364723d38940547937c499141372a8beadfc9b
     return item_up,item2_up

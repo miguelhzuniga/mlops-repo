@@ -60,7 +60,7 @@ El servidor *FastAPI* permite que un usuario ingrese las siguientes variables de
 Tras recibir estos valores, la API devolverá la predicción de la especie del pingüino. 🐧🔍 
 
 Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
- 
+
 1. Entrar en la ruta taller-01
 2. Ejecutar ./docker-init.sh
 3. Ingresar a http://localhost:8000/docs
@@ -82,10 +82,6 @@ Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
 }
 
  
-<<<<<<< HEAD
- 
-=======
->>>>>>> 53364723d38940547937c499141372a8beadfc9b
 La API retornará el campo de species actualizado:
 [
   {
@@ -101,24 +97,14 @@ La API retornará el campo de species actualizado:
     "modelo": "KNN"
   }
 ]
-<<<<<<< HEAD
- 
- 
-![Ejemplo de predicción](images/ejemplo_1.png)
- 
-![Ejemplo de predicción](images/ejemplo_2.png)
- 
-=======
 
 
 ![Ejemplo de predicción](images/ejemplo_1.png)
 
 ![Ejemplo de predicción](images/ejemplo_2.png)
 
->>>>>>> 53364723d38940547937c499141372a8beadfc9b
 ![Ejemplo de predicción](images/ejemplo_3.png)
 ---
- 
+
 📌 **Autor:** *Luis, Miguel, Camilo*  
 📌 **Tecnologías utilizadas:** Python, FastAPI, Docker, Uvicorn  
- 
