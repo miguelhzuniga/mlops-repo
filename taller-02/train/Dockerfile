@@ -1,18 +1,24 @@
-#
-FROM tensorflow/tfx:1.12.0
+FROM python:3.12-slim-bookworm
 
-WORKDIR /tfx/src/jupyter-notebooks
 
-#Activar anaconda
-RUN /bin/bash -c "source activate base"
+# The installer requires curl (and certificates) to download the release archive
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
 
-RUN conda init bash && \
-    echo "source ~/.bashrc" >> ~/.bash_profile
+# Download the latest installer
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
 
-RUN conda run -n base python --version
+# Run the installer then remove it
+RUN sh /uv-installer.sh && rm /uv-installer.sh
 
-# Instalar dependencias usando anaconda
-RUN conda install conda-forge::jupyterlab
+# Ensure the installed binary is on the `PATH`
+ENV PATH="/root/.local/bin/:$PATH"
 
-# Asignar conda ambiente base en Jupyter 
-ENV PATH /opt/conda/bin:$PATH
+# Instala paquetes de ciencia de datos dentro del entorno virtual
+
+RUN uv pip install jupyterlab numpy pandas matplotlib scikit-learn --system
+
+# Expone el puerto de JupyterLab
+EXPOSE 8888
+
+# Comando por defecto para ejecutar JupyterLab sin token
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--NotebookApp.token=''"]

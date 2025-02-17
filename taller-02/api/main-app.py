@@ -4,9 +4,14 @@ import pandas as pd
 from pydantic import BaseModel
 
 app = FastAPI()
-model, preprocessor = load("model.pkl")
 
 items = {int: dict}
+
+RUTA_MODELOS = "/train/model.pkl"
+
+def leer_modelo(nombre_archivo):
+    models = load(nombre_archivo)
+    return models
 
 # Definiendo un modelo de datos
 class Item(BaseModel):
@@ -23,14 +28,18 @@ class Item2(BaseModel):
 
 @app.get("/")  # Definimos una ruta GET
 def home():  # Definimos una función llamada home
+    global RUTA_MODELOS
+    modelos = leer_modelo(RUTA_MODELOS)
+    string_modelos = ', '.join(map(str, modelos.keys()))
+
     return {
         "message": (
-            "¡Hola, para iniciar dirígete a http://127.0.0.1:8000/docs\n"
-            "Sigue los siguientes pasos:\n"
-            "1. Debes asignar un número de item para cada predicción.\n"
-            "2. Debes tabular los 6 campos requeridos para la predicción.\n"
-            "3. Debes seleccionar un modelo entre: 'KNN' y 'LogReg'.\n"
-            "Nota: El modelo debe ser escrito exactamente como en las opciones presentadas en el paso 3\n"
+            "¡Hola, para iniciar dirígete a http://127.0.0.1:8000/docs"
+            "Sigue los siguientes pasos:"
+            "1. Debes asignar un número de item para cada predicción."
+            "2. Debes tabular los 6 campos requeridos para la predicción."
+            f"3. Debes seleccionar un modelo entre: {string_modelos}."
+            "Nota: El modelo debe ser escrito exactamente como en las opciones presentadas en el paso 3"
             "para evitar errores al momento de predecir."
         )
     }  # Retornamos un diccionario con un mensaje
@@ -45,10 +54,11 @@ def get_item(item_id: int):
 # Ruta POST
 @app.post("/items/{item_id}")
 def create_item(item_id: int, item: Item, modelo:Item2):
+    global RUTA_MODELOS
+    model = leer_modelo(RUTA_MODELOS)
     if item_id in items:
         return {"Error": "Item exists"}
     data = pd.DataFrame([item.model_dump()])
-    #data = preprocessor.transform(data)
     modelo_escogido = modelo.modelo
     if modelo_escogido not in model:
         return {"Error": f"Modelo '{modelo_escogido}' no encontrado. Modelos disponibles: {list(model.keys())}"}

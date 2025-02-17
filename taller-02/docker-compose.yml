@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 version: '3.8'
 
 services:
@@ -18,30 +19,28 @@ services:     # Define los servicios que se ejecutarán en contenedores Docker.
   ml_service: # Nombre del servicio, en este caso es un servicio para ML (Machine Learning).
     build: .  # Indica que Docker debe construir la imagen usando el Dockerfile ubicado en el directorio actual (".").
     
+=======
+version: '3'
+services:
+  api:
+    build: ./api
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
     ports:
-      - "8000:80" 
-      # Mapea el puerto 80 del contenedor al puerto 8000 del host.
-      # Esto permite acceder a la aplicación en http://localhost:8000 mientras que internamente escucha en el puerto 80.
-
+      - "8000:80"
     volumes:
-      - '.:/app' 
-      # Monta el directorio local './app' en la ruta '/app' dentro del contenedor.
-      # Esto permite que los cambios realizados en el código fuente local se reflejen inmediatamente en el contenedor (ideal para desarrollo).
-
+      - './api:/api'
+      - ./train:/train
     command: ["uvicorn", "main-app:app", "--host", "0.0.0.0", "--port", "80"]
-    # Define el comando que se ejecutará al iniciar el contenedor.
-    # Aquí se usa `uvicorn` para iniciar una aplicación FastAPI (`main:app`).
-    # --host 0.0.0.0: Permite que la aplicación sea accesible desde cualquier IP dentro de la red del contenedor.
-    # --port 80: La aplicación se ejecutará en el puerto 80 dentro del contenedor.
-    # --reload: Activa el modo de recarga automática, útil para entornos de desarrollo ya que reinicia el servidor si hay cambios en el código.
   jupyterlab:
-    image: python:3.9
+    build: ./train
     container_name: jupyterlab
-    working_dir: /app
+    working_dir: /train
     volumes:
-      - ./workspace:/app
-      - ./models:/modelsx
+      - ./train:/train
     ports:
       - "8888:8888"
+<<<<<<< HEAD
     command: ["python","-m","jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
 >>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
