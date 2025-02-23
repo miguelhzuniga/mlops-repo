@@ -12,8 +12,8 @@ def cargar_datos(ruta):
     return df
 
 def preparar_datos(df):
-    X = df.drop(['species'], axis=1)
-    y = df['species']
+    X = df.drop(['Cover_Type'], axis=1)
+    y = df['Cover_Type']
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 

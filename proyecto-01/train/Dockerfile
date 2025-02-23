@@ -1,21 +1,25 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.11-slim-bookworm 
 
+# Instala dependencias necesarias para la instalación y compilación
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl ca-certificates g++ build-essential 
 
-# The installer requires curl (and certificates) to download the release archive
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
-
-# Download the latest installer
+# Descarga e instala UV
 ADD https://astral.sh/uv/install.sh /uv-installer.sh
-
-# Run the installer then remove it
 RUN sh /uv-installer.sh && rm /uv-installer.sh
 
-# Ensure the installed binary is on the `PATH`
-ENV PATH="/root/.local/bin/:$PATH"
+# Asegura que UV esté en el PATH
+ENV PATH="/root/.local/bin:$PATH"
 
-# Instala paquetes de ciencia de datos dentro del entorno virtual
+# Crea el entorno virtual en /opt/venv
+RUN uv venv /opt/venv
 
-RUN uv pip install jupyterlab numpy pandas matplotlib scikit-learn --system
+# Usa el entorno virtual automáticamente
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Instala paquetes dentro del entorno virtual
+RUN uv pip install jupyterlab numpy pandas matplotlib scikit-learn tensorflow tensorflow-data-validation
 
 # Expone el puerto de JupyterLab
 EXPOSE 8888
