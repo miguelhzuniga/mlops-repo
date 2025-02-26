@@ -18,8 +18,9 @@ RUN uv venv /opt/venv
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
+COPY requirements.txt .
 # Instala paquetes dentro del entorno virtual
-RUN uv pip install jupyterlab numpy pandas matplotlib scikit-learn tensorflow tensorflow-data-validation
+RUN uv pip install -r requirements.txt
 
 # Expone el puerto de JupyterLab
 EXPOSE 8888
