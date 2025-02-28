@@ -80,8 +80,12 @@ Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
     "modelo": "KNN"
   }
 }
+
  
+<<<<<<< HEAD
  
+=======
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
 La API retornará el campo de species actualizado:
 [
   {
@@ -97,12 +101,21 @@ La API retornará el campo de species actualizado:
     "modelo": "KNN"
   }
 ]
+<<<<<<< HEAD
  
  
 ![Ejemplo de predicción](images/ejemplo_1.png)
  
 ![Ejemplo de predicción](images/ejemplo_2.png)
  
+=======
+
+
+![Ejemplo de predicción](images/ejemplo_1.png)
+
+![Ejemplo de predicción](images/ejemplo_2.png)
+
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
 ![Ejemplo de predicción](images/ejemplo_3.png)
 ---
  
