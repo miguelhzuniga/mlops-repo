@@ -1,0 +1,15 @@
+FROM jupyter/base-notebook
+
+WORKDIR /home/jovyan/work
+
+USER root
+RUN apt-get update && apt-get install -y gcc g++ python3-dev
+
+USER jovyan
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8888
+
+CMD ["start-notebook.sh", "--NotebookApp.token=''", "--NotebookApp.password=''"]
