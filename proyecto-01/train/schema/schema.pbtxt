@@ -14,10 +14,18 @@ feature {
 feature {
   name: "Cover_Type"
   type: INT
+  int_domain {
+    is_categorical: true
+  }
   presence {
     min_fraction: 1.0
     min_count: 1
   }
+  annotation {
+    tag: "categorical"
+    tag: "categorical"
+  }
+  not_in_environment: "SERVING"
   not_in_environment: "SERVING"
   not_in_environment: "SERVING"
   not_in_environment: "SERVING"
@@ -144,6 +152,8 @@ feature {
     }
   }
 }
+default_environment: "TRAINING"
+default_environment: "SERVING"
 default_environment: "TRAINING"
 default_environment: "SERVING"
 default_environment: "TRAINING"

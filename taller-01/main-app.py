@@ -9,7 +9,11 @@ model, preprocessor = load("model.pkl")
  
 =======
 
+<<<<<<< HEAD
+>>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
 >>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
 items = {int: dict}
  
 # Definiendo un modelo de datos
@@ -31,7 +35,11 @@ class Item2(BaseModel):
 class Item2(BaseModel):
     modelo: str
 
+<<<<<<< HEAD
+>>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
 >>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
 @app.get("/")  # Definimos una ruta GET
 def home():  # Definimos una función llamada home
     return {
@@ -51,7 +59,11 @@ def home():  # Definimos una función llamada home
 =======
 
 
+<<<<<<< HEAD
+>>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
 >>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
 @app.get("/get-item/{item_id}")
 def get_item(item_id: int):
     if item_id in items:
@@ -77,5 +89,9 @@ def create_item(item_id: int, item: Item, modelo:Item2):
  
 =======
 
+<<<<<<< HEAD
+>>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
 >>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
     return item_up,item2_up

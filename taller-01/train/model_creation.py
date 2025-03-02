@@ -53,5 +53,9 @@ def validar_modelo(modelos, X_test, y_test, X_train, y_train,preprocessor):
     
     joblib.dump((modelos,preprocessor), r"../model.pkl")
     
+<<<<<<< HEAD
+>>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
 >>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
     return resultados[mejor_modelo[0]]['train_accuracy'], resultados[mejor_modelo[0]]['test_accuracy']

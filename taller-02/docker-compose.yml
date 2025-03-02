@@ -1,7 +1,30 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+version: '3.8'
+
+services:
+  jupyter-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    ports:
+      - "8888:8888"  
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks  
+      - ./data:/home/jovyan/work/data
+=======
+version: '3'  # Especifica la versión de Docker Compose que se está utilizando.
+
+services:     # Define los servicios que se ejecutarán en contenedores Docker.
+  ml_service: # Nombre del servicio, en este caso es un servicio para ML (Machine Learning).
+    build: .  # Indica que Docker debe construir la imagen usando el Dockerfile ubicado en el directorio actual (".").
+    
+=======
 version: '3'
 services:
   api:
     build: ./api
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
     ports:
       - "8000:80"
     volumes:
@@ -16,3 +39,8 @@ services:
       - ./train:/train
     ports:
       - "8888:8888"
+<<<<<<< HEAD
+    command: ["python","-m","jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
+>>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
