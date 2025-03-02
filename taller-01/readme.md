@@ -85,7 +85,11 @@ Se debe estar en una linea de comandos BASH y seguir los siguientes pasos:
 <<<<<<< HEAD
  
 =======
+<<<<<<< HEAD
 >>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
 La API retornará el campo de species actualizado:
 [
   {
@@ -115,7 +119,11 @@ La API retornará el campo de species actualizado:
 
 ![Ejemplo de predicción](images/ejemplo_2.png)
 
+<<<<<<< HEAD
 >>>>>>> 53364723d38940547937c499141372a8beadfc9b
+=======
+>>>>>>> 89aec48b56334c813e340b0f7c4271d5a76975ab
+>>>>>>> a89e3d252019f64809e0d0415f3bddf20629c45e
 ![Ejemplo de predicción](images/ejemplo_3.png)
 ---
  

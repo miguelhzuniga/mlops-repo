@@ -1,0 +1,11 @@
+jupyterlab 
+numpy 
+pandas 
+matplotlib 
+scikit-learn 
+tensorflow 
+tensorflow-data-validation
+tfx
+apache-beam
+tensorflow_transform
+pip
