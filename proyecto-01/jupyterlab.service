@@ -1,0 +1,14 @@
+[Unit]
+Description=Run JupyterLab as a Docker container at startup
+After=network.target
+ 
+[Service]
+ExecStart=jupyterlab.sh
+Restart=always
+User=root
+WorkingDirectory=/home/estudiante/Desktop/mlops-repo/proyecto-01
+StandardOutput=append:/var/log/jupyterlab.log
+StandardError=append:/var/log/jupyterlab_error.log
+ 
+[Install]
+WantedBy=multi-user.target
