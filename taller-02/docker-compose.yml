@@ -29,8 +29,13 @@ services:
       - "8888:8888"  
     volumes:
 <<<<<<< HEAD
+<<<<<<< HEAD
       - ./notebooks:/home/jovyan/work/notebooks  
 >>>>>>> 0f16ff7 (taller 2)
 =======
       - ./notebooks:/home/jovyan/work/notebooks  
 >>>>>>> b466687 (ajuste docker)
+=======
+      - ./notebooks:/home/jovyan/work/notebooks  
+      - ./data:/home/jovyan/work/data
+>>>>>>> 613d8d0 (ajuste de notebook)
