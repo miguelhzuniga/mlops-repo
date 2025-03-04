@@ -75,7 +75,129 @@ El entorno de desarrollo construido permitirá ejecutar un flujo de datos con la
 | Soil_Type (40 binary columns)                 | qualitative   | 0 (absence) or 1 (presence)          | Soil Type designation                          |
 | Cover-Type (7 types)                           | integer       | 1 to 7                               | Forest Cover Type designation                   |
 
-## 🚀 Instalación y Configuración  
+# Pipeline TFX para Tipo de Cobertura Forestal ![JupyterLab](https://jupyter.org/assets/homepage/main-logo.svg)
+
+## Descripción General
+Este proyecto implementa un pipeline de TensorFlow Extended (TFX) para predecir tipos de cobertura forestal utilizando el conjunto de datos UCI Covertype. El pipeline abarca procesos de ingesta de datos, validación, transformación, ingeniería de características y entrenamiento de modelos siguiendo las mejores prácticas de MLOps.
+
+## Requisitos Previos
+- Python 3.7+
+- TensorFlow 2.x
+- TensorFlow Extended (TFX)
+- TensorFlow Data Validation (TFDV)
+- Pandas
+- Scikit-learn
+- ML Metadata
+
+## Estructura del Proyecto
+```
+├── data/
+│   ├── covertype/         # Almacenamiento de datos sin procesar
+│   ├── data_new/          # Datos con selección de características
+│   └── data_service/      # Datos de prueba del entorno de servicio
+├── schema/                # Definiciones de esquema
+├── preprocessing.py       # Módulo de transformación de características
+├── data_preparation.py    # Funciones de carga y preprocesamiento de datos
+├── model_creation.py      # Funciones de definición de modelos
+├── README.md              # Este archivo
+```
+
+## Componentes del Pipeline
+
+1. **Ingesta de Datos**
+   - Descarga el conjunto de datos Covertype desde UCI
+   - Carga y prepara los datos para el procesamiento
+
+2. **Selección de Características**
+   - Utiliza SelectKBest con f_classif para seleccionar las 8 características más relevantes
+   - Guarda el conjunto de datos reducido para su uso posterior
+
+3. **Generación de Ejemplos**
+   - Utiliza CsvExampleGen para convertir los datos en formato TFRecord
+
+4. **Generación de Estadísticas**
+   - Calcula estadísticas descriptivas para todas las características
+   - Visualiza las distribuciones de datos
+
+5. **Generación e Inferencia de Esquema**
+   - Infiere automáticamente un esquema a partir de los datos
+   - Cura el esquema manualmente para definir dominios específicos para características críticas
+   - Define entornos de TRAINING y SERVING para gestionar diferencias entre ambos
+
+6. **Validación de Ejemplos**
+   - Detecta anomalías en los datos respecto al esquema definido
+
+7. **Transformación de Características**
+   - Implementa diferentes estrategias de escalado para las características numéricas:
+     - Escalado a rango [0, 1]
+     - Escalado Min-Max
+     - Normalización Z-score
+
+8. **Inspección de Datos Transformados**
+   - Obtiene ejemplos transformados y el gráfico de transformación
+   - Lee y muestra ejemplos de TFRecord para verificar el formato de los datos transformados
+
+9. **Metadatos de ML**
+   - Almacena y rastrea todos los artefactos generados durante el pipeline
+   - Permite la visualización del linaje de datos
+   - Incluye funciones auxiliares para:
+     - Mostrar tipos de artefactos disponibles
+     - Mostrar artefactos específicos como esquemas
+     - Mostrar propiedades de artefactos
+     - Obtener artefactos principales que alimentaron otros artefactos
+
+## Uso
+
+Para ejecutar el pipeline completo:
+
+```python
+# Iniciar el contexto interactivo
+context = InteractiveContext(pipeline_root=pipeline_root, 
+                             metadata_connection_config=metadata_config)
+
+# Ejecutar los componentes secuencialmente
+context.run(example_gen)
+context.run(statistics_gen)
+context.run(schema_gen)
+context.run(import_schema)
+context.run(example_validator)
+context.run(transform)
+
+# Obtener los datos transformados y el gráfico de transformación
+transformed_examples_channel = transform.outputs['transformed_examples']
+transform_graph_channel = transform.outputs['transform_graph']
+
+# Inspeccionar los datos transformados (ejemplos)
+train_uri = os.path.join(transform.outputs['transformed_examples'].get()[0].uri, 'Split-train')
+tfrecord_filenames = [os.path.join(train_uri, name) for name in os.listdir(train_uri)]
+dataset = tf.data.TFRecordDataset(tfrecord_filenames, compression_type="GZIP")
+
+# Verificar metadatos
+store = mlmd.MetadataStore(metadata_config)
+display_types(store.get_artifact_types())
+schema_artifacts = store.get_artifacts_by_type("Schema")
+display_artifacts(store, schema_artifacts)
+```
+
+## Funcionalidades de Metadatos
+
+El pipeline incluye varias funciones auxiliares para trabajar con metadatos:
+
+- `display_types()`: Muestra todos los tipos de artefactos disponibles en el almacén
+- `display_artifacts()`: Muestra información sobre artefactos específicos
+- `display_properties()`: Muestra propiedades detalladas de un artefacto
+- `get_one_hop_parent_artifacts()`: Obtiene los artefactos padre de un artefacto determinado
+
+Estas funciones facilitan el seguimiento del linaje de datos a lo largo del pipeline.
+
+## Notas Adicionales
+
+- El pipeline está diseñado para funcionar en modo interactivo para desarrollo y experimentación
+- Los esquemas definidos consideran diferentes entornos (entrenamiento vs. servicio)
+- Se implementan transformaciones de datos reutilizables a través del módulo `preprocessing.py`
+- Se utiliza ML Metadata para el seguimiento de artefactos y linaje de datos
+
+## 🚀 Instalación y Configuración  mediante maquina virtual
 
 ### Prerrequisitos de la VM
 Asegúrate de tener instalado en tu sistema:  
