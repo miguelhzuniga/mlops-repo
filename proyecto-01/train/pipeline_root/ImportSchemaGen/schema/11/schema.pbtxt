@@ -14,22 +14,6 @@ feature {
 feature {
   name: "Cover_Type"
   type: INT
-  int_domain {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    name: "Cover_Type"
-=======
-<<<<<<< HEAD
-=======
-    name: "Cover_Type"
->>>>>>> af15e5b (basura)
->>>>>>> c2614de (basura2)
-=======
->>>>>>> master
-    min: 0
-    max: 6
-    is_categorical: true
-  }
   presence {
     min_fraction: 1.0
     min_count: 1

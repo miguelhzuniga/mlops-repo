@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm 
+FROM python:3.9-slim-bookworm
 
 # Instala dependencias necesarias para la instalación y compilación
 RUN apt-get update && apt-get install -y --no-install-recommends \
