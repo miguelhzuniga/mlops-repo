@@ -1,0 +1,21 @@
+[2025-03-09T03:34:33.094+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2Cargar_data.load_penguins_data scheduled__2025-03-09T03:28:00+00:00 [queued]>
+[2025-03-09T03:34:33.103+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2Cargar_data.load_penguins_data scheduled__2025-03-09T03:28:00+00:00 [queued]>
+[2025-03-09T03:34:33.103+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T03:34:33.116+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): load_penguins_data> on 2025-03-09 03:28:00+00:00
+[2025-03-09T03:34:33.119+0000] {standard_task_runner.py:57} INFO - Started process 615 to run task
+[2025-03-09T03:34:33.122+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '2Cargar_data', 'load_penguins_data', 'scheduled__2025-03-09T03:28:00+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmpk1rp2216']
+[2025-03-09T03:34:33.124+0000] {standard_task_runner.py:85} INFO - Job 33: Subtask load_penguins_data
+[2025-03-09T03:34:33.163+0000] {task_command.py:410} INFO - Running <TaskInstance: 2Cargar_data.load_penguins_data scheduled__2025-03-09T03:28:00+00:00 [running]> on host d79f96be65f0
+[2025-03-09T03:34:33.236+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2Cargar_data' AIRFLOW_CTX_TASK_ID='load_penguins_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T03:28:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-09T03:28:00+00:00'
+[2025-03-09T03:34:33.237+0000] {logging_mixin.py:149} INFO - Cargando datos de penguins desde /opt/***/data/penguins_size.csv a la tabla penguins...
+[2025-03-09T03:34:33.244+0000] {logging_mixin.py:149} INFO - CSV cargado en dataframe, filas: 344
+[2025-03-09T03:34:33.245+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T03:34:33.245+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T03:34:33.289+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T03:34:33.295+0000] {sql.py:375} INFO - Running statement: SELECT COUNT(*) FROM ***_db.penguins, parameters: None
+[2025-03-09T03:34:33.296+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-03-09T03:34:33.297+0000] {logging_mixin.py:149} INFO - Carga completada. Total de registros en la tabla: 344
+[2025-03-09T03:34:33.297+0000] {python.py:183} INFO - Done. Returned value was: 344
+[2025-03-09T03:34:33.320+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=2Cargar_data, task_id=load_penguins_data, execution_date=20250309T032800, start_date=20250309T033433, end_date=20250309T033433
+[2025-03-09T03:34:33.373+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T03:34:33.389+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

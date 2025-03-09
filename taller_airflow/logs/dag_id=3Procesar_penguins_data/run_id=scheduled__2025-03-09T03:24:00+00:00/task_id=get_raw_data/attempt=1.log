@@ -1,0 +1,45 @@
+[2025-03-09T03:34:31.178+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 3Procesar_penguins_data.get_raw_data scheduled__2025-03-09T03:24:00+00:00 [queued]>
+[2025-03-09T03:34:31.187+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 3Procesar_penguins_data.get_raw_data scheduled__2025-03-09T03:24:00+00:00 [queued]>
+[2025-03-09T03:34:31.187+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T03:34:31.198+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_raw_data> on 2025-03-09 03:24:00+00:00
+[2025-03-09T03:34:31.203+0000] {standard_task_runner.py:57} INFO - Started process 609 to run task
+[2025-03-09T03:34:31.206+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '3Procesar_penguins_data', 'get_raw_data', 'scheduled__2025-03-09T03:24:00+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpn423ru3k']
+[2025-03-09T03:34:31.208+0000] {standard_task_runner.py:85} INFO - Job 31: Subtask get_raw_data
+[2025-03-09T03:34:31.255+0000] {task_command.py:410} INFO - Running <TaskInstance: 3Procesar_penguins_data.get_raw_data scheduled__2025-03-09T03:24:00+00:00 [running]> on host d79f96be65f0
+[2025-03-09T03:34:31.367+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='3Procesar_penguins_data' AIRFLOW_CTX_TASK_ID='get_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T03:24:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-09T03:24:00+00:00'
+[2025-03-09T03:34:31.368+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T03:34:31.369+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T03:34:31.381+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 2056, in execute
+    cur.execute(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/home/airflow/.local/lib/python3.7/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table '***_db.penguins' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Procesa_data.py", line 47, in get_data_from_db
+    df = mysql_hook.get_pandas_df(query)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 201, in get_pandas_df
+    return psql.read_sql(sql, con=conn, params=parameters, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 608, in read_sql
+    chunksize=chunksize,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 2116, in read_query
+    cursor = self.execute(*args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 2068, in execute
+    raise ex from exc
+pandas.io.sql.DatabaseError: Execution failed on sql 'SELECT * FROM ***_db.penguins': (1146, "Table '***_db.penguins' doesn't exist")
+[2025-03-09T03:34:31.390+0000] {taskinstance.py:1373} INFO - Marking task as UP_FOR_RETRY. dag_id=3Procesar_penguins_data, task_id=get_raw_data, execution_date=20250309T032400, start_date=20250309T033431, end_date=20250309T033431
+[2025-03-09T03:34:31.400+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 31 for task get_raw_data (Execution failed on sql 'SELECT * FROM ***_db.penguins': (1146, "Table '***_db.penguins' doesn't exist"); 609)
+[2025-03-09T03:34:31.418+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-09T03:34:31.439+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

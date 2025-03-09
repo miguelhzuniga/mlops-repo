@@ -1,0 +1,87 @@
+[2025-03-09T00:52:25.607+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: inspect_penguins_data.inspect_data manual__2025-03-09T00:52:24.762382+00:00 [queued]>
+[2025-03-09T00:52:25.615+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: inspect_penguins_data.inspect_data manual__2025-03-09T00:52:24.762382+00:00 [queued]>
+[2025-03-09T00:52:25.615+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T00:52:25.630+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): inspect_data> on 2025-03-09 00:52:24.762382+00:00
+[2025-03-09T00:52:25.634+0000] {standard_task_runner.py:57} INFO - Started process 1182 to run task
+[2025-03-09T00:52:25.638+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'inspect_penguins_data', 'inspect_data', 'manual__2025-03-09T00:52:24.762382+00:00', '--job-id', '63', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmptqf56iwa']
+[2025-03-09T00:52:25.639+0000] {standard_task_runner.py:85} INFO - Job 63: Subtask inspect_data
+[2025-03-09T00:52:25.678+0000] {task_command.py:410} INFO - Running <TaskInstance: inspect_penguins_data.inspect_data manual__2025-03-09T00:52:24.762382+00:00 [running]> on host de40e2ed39bc
+[2025-03-09T00:52:25.932+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='inspect_penguins_data' AIRFLOW_CTX_TASK_ID='inspect_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T00:52:24.762382+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T00:52:24.762382+00:00'
+[2025-03-09T00:52:25.933+0000] {logging_mixin.py:149} INFO - === ESTRUCTURA DE LA TABLA ===
+[2025-03-09T00:52:25.933+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T00:52:25.933+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T00:52:25.960+0000] {logging_mixin.py:149} INFO -                Field         Type  ...            Default              Extra
+0                 id          int  ...               None     auto_increment
+1            species  varchar(50)  ...               None                   
+2             island  varchar(50)  ...               None                   
+3   culmen_length_mm        float  ...               None                   
+4    culmen_depth_mm        float  ...               None                   
+5  flipper_length_mm          int  ...               None                   
+6        body_mass_g          int  ...               None                   
+7                sex  varchar(10)  ...               None                   
+8        fecha_carga    timestamp  ...  CURRENT_TIMESTAMP  DEFAULT_GENERATED
+
+[9 rows x 6 columns]
+[2025-03-09T00:52:25.960+0000] {logging_mixin.py:149} INFO - 
+=== PRIMERAS 10 FILAS DE DATOS ===
+[2025-03-09T00:52:25.960+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T00:52:25.967+0000] {logging_mixin.py:149} INFO - 
+=== INFORMACIÓN DEL DATAFRAME ===
+[2025-03-09T00:52:25.967+0000] {logging_mixin.py:149} INFO - Forma del DataFrame: (10, 9)
+[2025-03-09T00:52:25.967+0000] {logging_mixin.py:149} INFO - Columnas: ['id', 'species', 'island', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex', 'fecha_carga']
+[2025-03-09T00:52:25.967+0000] {logging_mixin.py:149} INFO - 
+Tipos de datos:
+[2025-03-09T00:52:25.968+0000] {logging_mixin.py:149} INFO - id                            int64
+species                      object
+island                       object
+culmen_length_mm            float64
+culmen_depth_mm             float64
+flipper_length_mm           float64
+body_mass_g                 float64
+sex                          object
+fecha_carga          datetime64[ns]
+dtype: object
+[2025-03-09T00:52:25.968+0000] {logging_mixin.py:149} INFO - 
+Estadísticas descriptivas:
+[2025-03-09T00:52:25.976+0000] {warnings.py:110} WARNING - /opt/***/dags/Procesa_data.py:59: FutureWarning: Treating datetime data as categorical rather than numeric in `.describe` is deprecated and will be removed in a future version of pandas. Specify `datetime_is_numeric=True` to silence this warning and adopt the future behavior now.
+  print(data_df.describe(include='all'))
+
+[2025-03-09T00:52:25.987+0000] {logging_mixin.py:149} INFO -               id species     island  ...  body_mass_g     sex          fecha_carga
+count   10.00000      10         10  ...     9.000000       7                   10
+unique       NaN       1          1  ...          NaN       2                    1
+top          NaN  Adelie  Torgersen  ...          NaN  FEMALE  2025-03-09 00:11:46
+freq         NaN      10         10  ...          NaN       4                   10
+first        NaN     NaN        NaN  ...          NaN     NaN  2025-03-09 00:11:46
+last         NaN     NaN        NaN  ...          NaN     NaN  2025-03-09 00:11:46
+mean     5.50000     NaN        NaN  ...  3769.444444     NaN                  NaN
+std      3.02765     NaN        NaN  ...   439.598144     NaN                  NaN
+min      1.00000     NaN        NaN  ...  3250.000000     NaN                  NaN
+25%      3.25000     NaN        NaN  ...  3475.000000     NaN                  NaN
+50%      5.50000     NaN        NaN  ...  3650.000000     NaN                  NaN
+75%      7.75000     NaN        NaN  ...  3800.000000     NaN                  NaN
+max     10.00000     NaN        NaN  ...  4675.000000     NaN                  NaN
+
+[13 rows x 9 columns]
+[2025-03-09T00:52:25.987+0000] {logging_mixin.py:149} INFO - 
+Valores nulos por columna:
+[2025-03-09T00:52:25.989+0000] {logging_mixin.py:149} INFO - id                   0
+species              0
+island               0
+culmen_length_mm     1
+culmen_depth_mm      1
+flipper_length_mm    1
+body_mass_g          1
+sex                  3
+fecha_carga          0
+dtype: int64
+[2025-03-09T00:52:25.989+0000] {logging_mixin.py:149} INFO - 
+=== VERIFICACIÓN DE LA COLUMNA 'species' ===
+[2025-03-09T00:52:25.989+0000] {logging_mixin.py:149} INFO - La columna 'species' EXISTE en el DataFrame
+[2025-03-09T00:52:25.989+0000] {logging_mixin.py:149} INFO - Valores únicos en 'species': ['Adelie']
+[2025-03-09T00:52:25.989+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T00:52:25.994+0000] {logging_mixin.py:149} INFO - 
+Total de registros en la tabla: 688
+[2025-03-09T00:52:25.995+0000] {python.py:183} INFO - Done. Returned value was: Inspección completada
+[2025-03-09T00:52:26.011+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=inspect_penguins_data, task_id=inspect_data, execution_date=20250309T005224, start_date=20250309T005225, end_date=20250309T005226
+[2025-03-09T00:52:26.049+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T00:52:26.067+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

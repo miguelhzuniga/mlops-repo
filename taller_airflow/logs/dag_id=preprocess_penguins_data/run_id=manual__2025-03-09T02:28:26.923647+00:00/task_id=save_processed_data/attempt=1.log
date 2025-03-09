@@ -1,0 +1,22 @@
+[2025-03-09T02:28:30.229+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: preprocess_penguins_data.save_processed_data manual__2025-03-09T02:28:26.923647+00:00 [queued]>
+[2025-03-09T02:28:30.234+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: preprocess_penguins_data.save_processed_data manual__2025-03-09T02:28:26.923647+00:00 [queued]>
+[2025-03-09T02:28:30.234+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T02:28:30.241+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): save_processed_data> on 2025-03-09 02:28:26.923647+00:00
+[2025-03-09T02:28:30.244+0000] {standard_task_runner.py:57} INFO - Started process 276 to run task
+[2025-03-09T02:28:30.247+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'preprocess_penguins_data', 'save_processed_data', 'manual__2025-03-09T02:28:26.923647+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpuz9cbkn7']
+[2025-03-09T02:28:30.248+0000] {standard_task_runner.py:85} INFO - Job 12: Subtask save_processed_data
+[2025-03-09T02:28:30.280+0000] {task_command.py:410} INFO - Running <TaskInstance: preprocess_penguins_data.save_processed_data manual__2025-03-09T02:28:26.923647+00:00 [running]> on host ff47eccb62dd
+[2025-03-09T02:28:30.325+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='preprocess_penguins_data' AIRFLOW_CTX_TASK_ID='save_processed_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T02:28:26.923647+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T02:28:26.923647+00:00'
+[2025-03-09T02:28:30.387+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Procesa_data.py", line 118, in save_processed_data
+    preprocess_data(df)
+TypeError: preprocess_data() takes 0 positional arguments but 1 was given
+[2025-03-09T02:28:30.392+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=preprocess_penguins_data, task_id=save_processed_data, execution_date=20250309T022826, start_date=20250309T022830, end_date=20250309T022830
+[2025-03-09T02:28:30.399+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 12 for task save_processed_data (preprocess_data() takes 0 positional arguments but 1 was given; 276)
+[2025-03-09T02:28:30.418+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-09T02:28:30.427+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

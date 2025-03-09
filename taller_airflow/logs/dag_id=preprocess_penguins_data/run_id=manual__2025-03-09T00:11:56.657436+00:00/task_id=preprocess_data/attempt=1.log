@@ -1,0 +1,110 @@
+[2025-03-09T00:11:59.964+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: preprocess_penguins_data.preprocess_data manual__2025-03-09T00:11:56.657436+00:00 [queued]>
+[2025-03-09T00:11:59.971+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: preprocess_penguins_data.preprocess_data manual__2025-03-09T00:11:56.657436+00:00 [queued]>
+[2025-03-09T00:11:59.971+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T00:11:59.981+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): preprocess_data> on 2025-03-09 00:11:56.657436+00:00
+[2025-03-09T00:11:59.985+0000] {standard_task_runner.py:57} INFO - Started process 176 to run task
+[2025-03-09T00:11:59.988+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'preprocess_penguins_data', 'preprocess_data', 'manual__2025-03-09T00:11:56.657436+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpvbk41o_k']
+[2025-03-09T00:11:59.990+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask preprocess_data
+[2025-03-09T00:12:00.033+0000] {task_command.py:410} INFO - Running <TaskInstance: preprocess_penguins_data.preprocess_data manual__2025-03-09T00:11:56.657436+00:00 [running]> on host de40e2ed39bc
+[2025-03-09T00:12:00.092+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='preprocess_penguins_data' AIRFLOW_CTX_TASK_ID='preprocess_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T00:11:56.657436+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T00:11:56.657436+00:00'
+[2025-03-09T00:12:00.203+0000] {python.py:183} INFO - Done. Returned value was: (      id     island  culmen_length_mm  ...  body_mass_g     sex         fecha_carga
+49    50      Dream              42.3  ...       4150.0    MALE 2025-03-09 00:11:46
+310  311     Biscoe              47.5  ...       4950.0  FEMALE 2025-03-09 00:11:46
+325  326     Biscoe              46.8  ...       5500.0    MALE 2025-03-09 00:11:46
+122  123  Torgersen              40.2  ...       3450.0  FEMALE 2025-03-09 00:11:46
+167  168      Dream              50.5  ...       4050.0    MALE 2025-03-09 00:11:46
+..   ...        ...               ...  ...          ...     ...                 ...
+323  324     Biscoe              49.1  ...       5500.0    MALE 2025-03-09 00:11:46
+192  193      Dream              49.0  ...       3950.0    MALE 2025-03-09 00:11:46
+117  118  Torgersen              37.3  ...       3775.0    MALE 2025-03-09 00:11:46
+47    48      Dream              37.5  ...       2975.0    None 2025-03-09 00:11:46
+172  173      Dream              42.4  ...       3600.0  FEMALE 2025-03-09 00:11:46
+
+[275 rows x 8 columns],       id     island  culmen_length_mm  ...  body_mass_g     sex         fecha_carga
+141  142      Dream              40.6  ...       3475.0    MALE 2025-03-09 00:11:46
+6      7  Torgersen              38.9  ...       3625.0  FEMALE 2025-03-09 00:11:46
+60    61     Biscoe              35.7  ...       3150.0  FEMALE 2025-03-09 00:11:46
+249  250     Biscoe              50.0  ...       5550.0    MALE 2025-03-09 00:11:46
+54    55     Biscoe              34.5  ...       2900.0  FEMALE 2025-03-09 00:11:46
+..   ...        ...               ...  ...          ...     ...                 ...
+229  230     Biscoe              46.8  ...       5150.0    MALE 2025-03-09 00:11:46
+298  299     Biscoe              45.2  ...       4750.0  FEMALE 2025-03-09 00:11:46
+21    22     Biscoe              37.7  ...       3600.0    MALE 2025-03-09 00:11:46
+246  247     Biscoe              44.5  ...       4100.0    None 2025-03-09 00:11:46
+291  292     Biscoe              46.4  ...       5000.0    MALE 2025-03-09 00:11:46
+
+[69 rows x 8 columns], 49        Adelie
+310       Gentoo
+325       Gentoo
+122       Adelie
+167    Chinstrap
+         ...    
+323       Gentoo
+192    Chinstrap
+117       Adelie
+47        Adelie
+172    Chinstrap
+Name: species, Length: 275, dtype: object, 141    Adelie
+6      Adelie
+60     Adelie
+249    Gentoo
+54     Adelie
+        ...  
+229    Gentoo
+298    Gentoo
+21     Adelie
+246    Gentoo
+291    Gentoo
+Name: species, Length: 69, dtype: object, ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('imputer', SimpleImputer()),
+                                                 ('normalization',
+                                                  MinMaxScaler())]),
+                                 ['culmen_length_mm', 'culmen_depth_mm',
+                                  'flipper_length_mm', 'body_mass_g']),
+                                ('cat',
+                                 Pipeline(steps=[('imputer',
+                                                  SimpleImputer(strategy='most_frequent')),
+                                                 ('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 ['sex'])]))
+[2025-03-09T00:12:00.240+0000] {xcom.py:640} ERROR - Object of type tuple is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2025-03-09T00:12:00.241+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/json.py", line 91, in default
+    return serialize(o)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 144, in serialize
+    return encode(classname, version, serialize(data, depth + 1))
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 123, in serialize
+    return [serialize(d, depth + 1) for d in o]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 123, in <listcomp>
+    return [serialize(d, depth + 1) for d in o]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 171, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'pandas.core.series.Series'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 73, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 2384, in xcom_push
+    session=session,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 73, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/xcom.py", line 243, in set
+    map_index=map_index,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/xcom.py", line 632, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+  File "/usr/local/lib/python3.7/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/json.py", line 102, in encode
+    o = self.default(o)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/json.py", line 93, in default
+    return super().default(o)
+  File "/usr/local/lib/python3.7/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type tuple is not JSON serializable
+[2025-03-09T00:12:00.248+0000] {taskinstance.py:1373} INFO - Marking task as UP_FOR_RETRY. dag_id=preprocess_penguins_data, task_id=preprocess_data, execution_date=20250309T001156, start_date=20250309T001159, end_date=20250309T001200
+[2025-03-09T00:12:00.258+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 9 for task preprocess_data (Object of type tuple is not JSON serializable; 176)
+[2025-03-09T00:12:00.280+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-09T00:12:00.298+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

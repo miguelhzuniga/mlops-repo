@@ -1,0 +1,14 @@
+[2025-03-09T03:36:00.867+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2Cargar_data.check_csv_exists scheduled__2025-03-09T03:32:00+00:00 [queued]>
+[2025-03-09T03:36:00.876+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2Cargar_data.check_csv_exists scheduled__2025-03-09T03:32:00+00:00 [queued]>
+[2025-03-09T03:36:00.877+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T03:36:00.889+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): check_csv_exists> on 2025-03-09 03:32:00+00:00
+[2025-03-09T03:36:00.894+0000] {standard_task_runner.py:57} INFO - Started process 737 to run task
+[2025-03-09T03:36:00.899+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '2Cargar_data', 'check_csv_exists', 'scheduled__2025-03-09T03:32:00+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmpbpmupup7']
+[2025-03-09T03:36:00.901+0000] {standard_task_runner.py:85} INFO - Job 43: Subtask check_csv_exists
+[2025-03-09T03:36:00.966+0000] {task_command.py:410} INFO - Running <TaskInstance: 2Cargar_data.check_csv_exists scheduled__2025-03-09T03:32:00+00:00 [running]> on host d79f96be65f0
+[2025-03-09T03:36:01.062+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2Cargar_data' AIRFLOW_CTX_TASK_ID='check_csv_exists' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T03:32:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-09T03:32:00+00:00'
+[2025-03-09T03:36:01.064+0000] {logging_mixin.py:149} INFO - Archivo CSV encontrado: /opt/***/data/penguins_size.csv
+[2025-03-09T03:36:01.064+0000] {python.py:183} INFO - Done. Returned value was: True
+[2025-03-09T03:36:01.091+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=2Cargar_data, task_id=check_csv_exists, execution_date=20250309T033200, start_date=20250309T033600, end_date=20250309T033601
+[2025-03-09T03:36:01.111+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T03:36:01.135+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check
