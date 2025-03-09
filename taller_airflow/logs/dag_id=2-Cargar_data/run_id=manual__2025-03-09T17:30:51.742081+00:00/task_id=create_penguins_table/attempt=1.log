@@ -1,0 +1,42 @@
+[2025-03-09T17:30:56.469+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2-Cargar_data.create_penguins_table manual__2025-03-09T17:30:51.742081+00:00 [queued]>
+[2025-03-09T17:30:56.474+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2-Cargar_data.create_penguins_table manual__2025-03-09T17:30:51.742081+00:00 [queued]>
+[2025-03-09T17:30:56.474+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T17:30:56.481+0000] {taskinstance.py:1350} INFO - Executing <Task(MySqlOperator): create_penguins_table> on 2025-03-09 17:30:51.742081+00:00
+[2025-03-09T17:30:56.483+0000] {standard_task_runner.py:57} INFO - Started process 167 to run task
+[2025-03-09T17:30:56.486+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '2-Cargar_data', 'create_penguins_table', 'manual__2025-03-09T17:30:51.742081+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmp9e_t0fam']
+[2025-03-09T17:30:56.487+0000] {standard_task_runner.py:85} INFO - Job 6: Subtask create_penguins_table
+[2025-03-09T17:30:56.514+0000] {task_command.py:410} INFO - Running <TaskInstance: 2-Cargar_data.create_penguins_table manual__2025-03-09T17:30:51.742081+00:00 [running]> on host 43c041f14515
+[2025-03-09T17:30:56.555+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2-Cargar_data' AIRFLOW_CTX_TASK_ID='create_penguins_table' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T17:30:51.742081+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T17:30:51.742081+00:00'
+[2025-03-09T17:30:56.556+0000] {sql.py:262} INFO - Executing: 
+USE ***_db;
+CREATE TABLE IF NOT EXISTS penguins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    species VARCHAR(50),
+    island VARCHAR(50),
+    culmen_length_mm FLOAT,
+    culmen_depth_mm FLOAT,
+    flipper_length_mm INT,
+    body_mass_g INT,
+    sex VARCHAR(10),
+    fecha_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+[2025-03-09T17:30:56.556+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T17:30:56.556+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T17:30:56.582+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T17:30:56.589+0000] {sql.py:375} INFO - Running statement: 
+USE ***_db;
+CREATE TABLE IF NOT EXISTS penguins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    species VARCHAR(50),
+    island VARCHAR(50),
+    culmen_length_mm FLOAT,
+    culmen_depth_mm FLOAT,
+    flipper_length_mm INT,
+    body_mass_g INT,
+    sex VARCHAR(10),
+    fecha_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);, parameters: None
+[2025-03-09T17:30:56.589+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-03-09T17:30:56.612+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=2-Cargar_data, task_id=create_penguins_table, execution_date=20250309T173051, start_date=20250309T173056, end_date=20250309T173056
+[2025-03-09T17:30:56.657+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T17:30:56.670+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

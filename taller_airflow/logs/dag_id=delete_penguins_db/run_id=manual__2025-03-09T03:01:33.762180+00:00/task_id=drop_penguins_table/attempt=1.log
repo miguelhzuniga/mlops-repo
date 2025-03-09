@@ -1,0 +1,22 @@
+[2025-03-09T03:01:34.921+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: delete_penguins_db.drop_penguins_table manual__2025-03-09T03:01:33.762180+00:00 [queued]>
+[2025-03-09T03:01:34.931+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: delete_penguins_db.drop_penguins_table manual__2025-03-09T03:01:33.762180+00:00 [queued]>
+[2025-03-09T03:01:34.931+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T03:01:34.943+0000] {taskinstance.py:1350} INFO - Executing <Task(MySqlOperator): drop_penguins_table> on 2025-03-09 03:01:33.762180+00:00
+[2025-03-09T03:01:34.946+0000] {standard_task_runner.py:57} INFO - Started process 122 to run task
+[2025-03-09T03:01:34.949+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'delete_penguins_db', 'drop_penguins_table', 'manual__2025-03-09T03:01:33.762180+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/Borrar_datos.py', '--cfg-path', '/tmp/tmps36o1yyg']
+[2025-03-09T03:01:34.949+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask drop_penguins_table
+[2025-03-09T03:01:34.997+0000] {task_command.py:410} INFO - Running <TaskInstance: delete_penguins_db.drop_penguins_table manual__2025-03-09T03:01:33.762180+00:00 [running]> on host f5e4b6cd6855
+[2025-03-09T03:01:35.062+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='delete_penguins_db' AIRFLOW_CTX_TASK_ID='drop_penguins_table' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T03:01:33.762180+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T03:01:33.762180+00:00'
+[2025-03-09T03:01:35.063+0000] {sql.py:262} INFO - Executing: 
+USE ***_db;
+DROP TABLE IF EXISTS penguins;
+[2025-03-09T03:01:35.064+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T03:01:35.064+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T03:01:35.129+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T03:01:35.151+0000] {sql.py:375} INFO - Running statement: 
+USE ***_db;
+DROP TABLE IF EXISTS penguins;, parameters: None
+[2025-03-09T03:01:35.151+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-03-09T03:01:35.164+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=delete_penguins_db, task_id=drop_penguins_table, execution_date=20250309T030133, start_date=20250309T030134, end_date=20250309T030135
+[2025-03-09T03:01:35.201+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T03:01:35.222+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

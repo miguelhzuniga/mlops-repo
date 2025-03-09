@@ -1,0 +1,40 @@
+[2025-03-09T06:47:23.171+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 3-Procesar_penguins_data.get_raw_data manual__2025-03-09T06:47:21.881168+00:00 [queued]>
+[2025-03-09T06:47:23.177+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 3-Procesar_penguins_data.get_raw_data manual__2025-03-09T06:47:21.881168+00:00 [queued]>
+[2025-03-09T06:47:23.177+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T06:47:23.186+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_raw_data> on 2025-03-09 06:47:21.881168+00:00
+[2025-03-09T06:47:23.191+0000] {standard_task_runner.py:57} INFO - Started process 1439 to run task
+[2025-03-09T06:47:23.196+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '3-Procesar_penguins_data', 'get_raw_data', 'manual__2025-03-09T06:47:21.881168+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpxfgtqss2']
+[2025-03-09T06:47:23.198+0000] {standard_task_runner.py:85} INFO - Job 29: Subtask get_raw_data
+[2025-03-09T06:47:23.233+0000] {task_command.py:410} INFO - Running <TaskInstance: 3-Procesar_penguins_data.get_raw_data manual__2025-03-09T06:47:21.881168+00:00 [running]> on host 2e759f21ee59
+[2025-03-09T06:47:23.292+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='3-Procesar_penguins_data' AIRFLOW_CTX_TASK_ID='get_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T06:47:21.881168+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T06:47:21.881168+00:00'
+[2025-03-09T06:47:23.293+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T06:47:23.293+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T06:47:23.309+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Procesa_data.py", line 68, in get_data_from_db
+    df['flipper_length_mm'] = df['flipper_length_mm'].astype(int)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 5815, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/internals/managers.py", line 418, in astype
+    return self.apply("astype", dtype=dtype, copy=copy, errors=errors)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/internals/managers.py", line 327, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/internals/blocks.py", line 591, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/dtypes/cast.py", line 1309, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/dtypes/cast.py", line 1257, in astype_array
+    values = astype_nansafe(values, dtype, copy=copy)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/dtypes/cast.py", line 1168, in astype_nansafe
+    return astype_float_to_int_nansafe(arr, dtype, copy)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/dtypes/cast.py", line 1214, in astype_float_to_int_nansafe
+    "Cannot convert non-finite values (NA or inf) to integer"
+pandas.errors.IntCastingNaNError: Cannot convert non-finite values (NA or inf) to integer
+[2025-03-09T06:47:23.318+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=3-Procesar_penguins_data, task_id=get_raw_data, execution_date=20250309T064721, start_date=20250309T064723, end_date=20250309T064723
+[2025-03-09T06:47:23.326+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 29 for task get_raw_data (Cannot convert non-finite values (NA or inf) to integer; 1439)
+[2025-03-09T06:47:23.367+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-09T06:47:23.393+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

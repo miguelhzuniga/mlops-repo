@@ -1,0 +1,110 @@
+[2025-03-09T03:15:04.692+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4Entrenamiento_model.cargar_datos_modelo manual__2025-03-09T03:15:03.063860+00:00 [queued]>
+[2025-03-09T03:15:04.711+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4Entrenamiento_model.cargar_datos_modelo manual__2025-03-09T03:15:03.063860+00:00 [queued]>
+[2025-03-09T03:15:04.711+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T03:15:04.723+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): cargar_datos_modelo> on 2025-03-09 03:15:03.063860+00:00
+[2025-03-09T03:15:04.728+0000] {standard_task_runner.py:57} INFO - Started process 202 to run task
+[2025-03-09T03:15:04.732+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '4Entrenamiento_model', 'cargar_datos_modelo', 'manual__2025-03-09T03:15:03.063860+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmp63lldz9k']
+[2025-03-09T03:15:04.734+0000] {standard_task_runner.py:85} INFO - Job 10: Subtask cargar_datos_modelo
+[2025-03-09T03:15:04.778+0000] {task_command.py:410} INFO - Running <TaskInstance: 4Entrenamiento_model.cargar_datos_modelo manual__2025-03-09T03:15:03.063860+00:00 [running]> on host d79f96be65f0
+[2025-03-09T03:15:04.840+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4Entrenamiento_model' AIRFLOW_CTX_TASK_ID='cargar_datos_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T03:15:03.063860+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T03:15:03.063860+00:00'
+[2025-03-09T03:15:04.854+0000] {python.py:183} INFO - Done. Returned value was: (            0         1         2         3         4  ...    7    8    9   10   11
+0   -1.241743 -0.344859  2.031836 -0.718091 -0.071763  ...  0.0  0.0  0.0  1.0  0.0
+1    1.366724  0.633287 -1.106016  1.201767  0.944312  ...  0.0  0.0  1.0  0.0  0.0
+2    1.516636  0.501613 -0.549300  0.988450  1.642863  ...  0.0  0.0  0.0  1.0  0.0
+3   -0.512172 -0.739880 -0.093806 -1.784679 -0.960828  ...  1.0  0.0  1.0  0.0  0.0
+4   -0.062436  1.197602  1.222068 -0.007032 -0.198772  ...  0.0  0.0  0.0  1.0  0.0
+..        ...       ...       ...       ...       ...  ...  ...  ...  ...  ...  ...
+270  1.496648  0.934255 -1.106016  1.912826  1.642863  ...  0.0  0.0  0.0  1.0  0.0
+271  0.187417  0.915444  1.171457  0.632920 -0.325781  ...  0.0  0.0  0.0  1.0  0.0
+272 -0.562142 -1.285384  1.677563 -0.149244 -0.548048  ...  1.0  0.0  0.0  1.0  0.0
+273 -1.261731 -1.247763  0.867794 -1.571362 -1.564122  ...  0.0  0.0  0.0  0.0  1.0
+274 -0.012465 -0.326049  0.058026 -1.429150 -0.770314  ...  0.0  0.0  1.0  0.0  0.0
+
+[275 rows x 12 columns],            0         1         2         3         4  ...    7    8    9   10   11
+0  -0.322283 -0.664638  0.007415 -1.002515 -0.929075  ...  0.0  0.0  0.0  1.0  0.0
+1  -1.671490 -0.984416  0.311079 -1.429150 -0.738561  ...  1.0  0.0  1.0  0.0  0.0
+2  -1.131808 -1.586352 -0.144416 -1.144726 -1.341856  ...  0.0  0.0  1.0  0.0  0.0
+3   0.757082  1.103549 -0.954184  1.343979  1.706368  ...  0.0  0.0  0.0  1.0  0.0
+4  -1.191772 -1.812078  0.462910 -1.002515 -1.659379  ...  0.0  0.0  1.0  0.0  0.0
+..       ...       ...       ...       ...       ...  ...  ...  ...  ...  ...  ...
+64  0.557200  0.501613 -0.903574  0.988450  1.198331  ...  0.0  0.0  0.0  1.0  0.0
+65  1.246795  0.200645 -1.713342  0.988450  0.690293  ...  0.0  0.0  1.0  0.0  0.0
+66 -1.521579 -1.210142  0.766573 -1.500256 -0.770314  ...  0.0  0.0  0.0  1.0  0.0
+67  0.727100  0.068972 -1.460290  1.059556 -0.135267  ...  0.0  0.0  0.0  0.0  1.0
+68  1.176836  0.426371 -0.802353  1.415085  1.007817  ...  0.0  0.0  0.0  1.0  0.0
+
+[69 rows x 12 columns], 0         Adelie
+1         Gentoo
+2         Gentoo
+3         Adelie
+4      Chinstrap
+         ...    
+270       Gentoo
+271    Chinstrap
+272       Adelie
+273       Adelie
+274    Chinstrap
+Name: species, Length: 275, dtype: object, 0     Adelie
+1     Adelie
+2     Adelie
+3     Gentoo
+4     Adelie
+       ...  
+64    Gentoo
+65    Gentoo
+66    Adelie
+67    Gentoo
+68    Gentoo
+Name: species, Length: 69, dtype: object, ColumnTransformer(transformers=[('num',
+                                 Pipeline(steps=[('imputer', SimpleImputer()),
+                                                 ('scaler', StandardScaler())]),
+                                 Index(['id', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm',
+       'body_mass_g'],
+      dtype='object')),
+                                ('cat',
+                                 Pipeline(steps=[('imputer',
+                                                  SimpleImputer(strategy='most_frequent')),
+                                                 ('onehot',
+                                                  OneHotEncoder(handle_unknown='ignore'))]),
+                                 Index(['island', 'sex'], dtype='object'))]))
+[2025-03-09T03:15:04.941+0000] {xcom.py:640} ERROR - Object of type tuple is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2025-03-09T03:15:04.943+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/json.py", line 91, in default
+    return serialize(o)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 144, in serialize
+    return encode(classname, version, serialize(data, depth + 1))
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 123, in serialize
+    return [serialize(d, depth + 1) for d in o]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 123, in <listcomp>
+    return [serialize(d, depth + 1) for d in o]
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/serialization/serde.py", line 171, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'pandas.core.series.Series'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 73, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 2384, in xcom_push
+    session=session,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 73, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/xcom.py", line 243, in set
+    map_index=map_index,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/xcom.py", line 632, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+  File "/usr/local/lib/python3.7/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/json.py", line 102, in encode
+    o = self.default(o)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/json.py", line 93, in default
+    return super().default(o)
+  File "/usr/local/lib/python3.7/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type tuple is not JSON serializable
+[2025-03-09T03:15:04.951+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=4Entrenamiento_model, task_id=cargar_datos_modelo, execution_date=20250309T031503, start_date=20250309T031504, end_date=20250309T031504
+[2025-03-09T03:15:04.981+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 10 for task cargar_datos_modelo (Object of type tuple is not JSON serializable; 202)
+[2025-03-09T03:15:05.030+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-09T03:15:05.088+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

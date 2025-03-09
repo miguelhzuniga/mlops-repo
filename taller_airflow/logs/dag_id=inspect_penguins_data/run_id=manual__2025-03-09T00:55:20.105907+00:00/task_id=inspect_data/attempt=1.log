@@ -1,0 +1,31 @@
+[2025-03-09T00:55:21.556+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: inspect_penguins_data.inspect_data manual__2025-03-09T00:55:20.105907+00:00 [queued]>
+[2025-03-09T00:55:21.562+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: inspect_penguins_data.inspect_data manual__2025-03-09T00:55:20.105907+00:00 [queued]>
+[2025-03-09T00:55:21.562+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T00:55:21.571+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): inspect_data> on 2025-03-09 00:55:20.105907+00:00
+[2025-03-09T00:55:21.575+0000] {standard_task_runner.py:57} INFO - Started process 1237 to run task
+[2025-03-09T00:55:21.578+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'inspect_penguins_data', 'inspect_data', 'manual__2025-03-09T00:55:20.105907+00:00', '--job-id', '64', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpzwx_zkba']
+[2025-03-09T00:55:21.579+0000] {standard_task_runner.py:85} INFO - Job 64: Subtask inspect_data
+[2025-03-09T00:55:21.622+0000] {task_command.py:410} INFO - Running <TaskInstance: inspect_penguins_data.inspect_data manual__2025-03-09T00:55:20.105907+00:00 [running]> on host de40e2ed39bc
+[2025-03-09T00:55:21.845+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='inspect_penguins_data' AIRFLOW_CTX_TASK_ID='inspect_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T00:55:20.105907+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T00:55:20.105907+00:00'
+[2025-03-09T00:55:21.846+0000] {logging_mixin.py:149} INFO - === ESTRUCTURA DE LA TABLA ===
+[2025-03-09T00:55:21.847+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T00:55:21.847+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T00:55:21.869+0000] {logging_mixin.py:149} INFO -                Field         Type  ...            Default              Extra
+0                 id          int  ...               None     auto_increment
+1            species  varchar(50)  ...               None                   
+2             island  varchar(50)  ...               None                   
+3   culmen_length_mm        float  ...               None                   
+4    culmen_depth_mm        float  ...               None                   
+5  flipper_length_mm          int  ...               None                   
+6        body_mass_g          int  ...               None                   
+7                sex  varchar(10)  ...               None                   
+8        fecha_carga    timestamp  ...  CURRENT_TIMESTAMP  DEFAULT_GENERATED
+
+[9 rows x 6 columns]
+[2025-03-09T00:55:21.869+0000] {logging_mixin.py:149} INFO - 
+=== PRIMERAS 10 FILAS DE DATOS ===
+[2025-03-09T00:55:21.869+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T00:55:21.875+0000] {python.py:183} INFO - Done. Returned value was: Inspección completada
+[2025-03-09T00:55:21.894+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=inspect_penguins_data, task_id=inspect_data, execution_date=20250309T005520, start_date=20250309T005521, end_date=20250309T005521
+[2025-03-09T00:55:21.910+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T00:55:21.923+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,29 @@
+[2025-03-09T02:29:53.652+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: preprocess_penguins_data.get_raw_data manual__2025-03-09T02:29:52.693436+00:00 [queued]>
+[2025-03-09T02:29:53.659+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: preprocess_penguins_data.get_raw_data manual__2025-03-09T02:29:52.693436+00:00 [queued]>
+[2025-03-09T02:29:53.659+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T02:29:53.668+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_raw_data> on 2025-03-09 02:29:52.693436+00:00
+[2025-03-09T02:29:53.671+0000] {standard_task_runner.py:57} INFO - Started process 328 to run task
+[2025-03-09T02:29:53.674+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'preprocess_penguins_data', 'get_raw_data', 'manual__2025-03-09T02:29:52.693436+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpr2xwjy3j']
+[2025-03-09T02:29:53.675+0000] {standard_task_runner.py:85} INFO - Job 13: Subtask get_raw_data
+[2025-03-09T02:29:53.713+0000] {task_command.py:410} INFO - Running <TaskInstance: preprocess_penguins_data.get_raw_data manual__2025-03-09T02:29:52.693436+00:00 [running]> on host ff47eccb62dd
+[2025-03-09T02:29:53.762+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='preprocess_penguins_data' AIRFLOW_CTX_TASK_ID='get_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T02:29:52.693436+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T02:29:52.693436+00:00'
+[2025-03-09T02:29:53.763+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T02:29:53.763+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T02:29:53.775+0000] {logging_mixin.py:149} INFO - Datos obtenidos de la base de datos. Filas: 344
+[2025-03-09T02:29:53.820+0000] {python.py:183} INFO - Done. Returned value was:       id species     island  ...  body_mass_g     sex         fecha_carga
+0      1  Adelie  Torgersen  ...       3750.0    MALE 2025-03-09 02:24:17
+1      2  Adelie  Torgersen  ...       3800.0  FEMALE 2025-03-09 02:24:17
+2      3  Adelie  Torgersen  ...       3250.0  FEMALE 2025-03-09 02:24:17
+3      4  Adelie  Torgersen  ...          NaN    None 2025-03-09 02:24:17
+4      5  Adelie  Torgersen  ...       3450.0  FEMALE 2025-03-09 02:24:17
+..   ...     ...        ...  ...          ...     ...                 ...
+339  340  Gentoo     Biscoe  ...          NaN    None 2025-03-09 02:24:17
+340  341  Gentoo     Biscoe  ...       4850.0  FEMALE 2025-03-09 02:24:17
+341  342  Gentoo     Biscoe  ...       5750.0    MALE 2025-03-09 02:24:17
+342  343  Gentoo     Biscoe  ...       5200.0  FEMALE 2025-03-09 02:24:17
+343  344  Gentoo     Biscoe  ...       5400.0    MALE 2025-03-09 02:24:17
+
+[344 rows x 9 columns]
+[2025-03-09T02:29:53.845+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=preprocess_penguins_data, task_id=get_raw_data, execution_date=20250309T022952, start_date=20250309T022953, end_date=20250309T022953
+[2025-03-09T02:29:53.886+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T02:29:53.901+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

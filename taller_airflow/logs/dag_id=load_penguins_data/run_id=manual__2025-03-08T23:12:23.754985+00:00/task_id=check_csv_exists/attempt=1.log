@@ -1,0 +1,22 @@
+[2025-03-08T23:12:24.710+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: load_penguins_data.check_csv_exists manual__2025-03-08T23:12:23.754985+00:00 [queued]>
+[2025-03-08T23:12:24.715+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: load_penguins_data.check_csv_exists manual__2025-03-08T23:12:23.754985+00:00 [queued]>
+[2025-03-08T23:12:24.716+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-08T23:12:24.723+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): check_csv_exists> on 2025-03-08 23:12:23.754985+00:00
+[2025-03-08T23:12:24.726+0000] {standard_task_runner.py:57} INFO - Started process 123 to run task
+[2025-03-08T23:12:24.729+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'load_penguins_data', 'check_csv_exists', 'manual__2025-03-08T23:12:23.754985+00:00', '--job-id', '36', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmp7u17foto']
+[2025-03-08T23:12:24.731+0000] {standard_task_runner.py:85} INFO - Job 36: Subtask check_csv_exists
+[2025-03-08T23:12:24.763+0000] {task_command.py:410} INFO - Running <TaskInstance: load_penguins_data.check_csv_exists manual__2025-03-08T23:12:23.754985+00:00 [running]> on host 6ba9932a3baf
+[2025-03-08T23:12:24.809+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='load_penguins_data' AIRFLOW_CTX_TASK_ID='check_csv_exists' AIRFLOW_CTX_EXECUTION_DATE='2025-03-08T23:12:23.754985+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-08T23:12:23.754985+00:00'
+[2025-03-08T23:12:24.810+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Cargar_datos.py", line 39, in check_file_exists
+    raise FileNotFoundError(f"El archivo CSV no existe en la ruta: {csv_file_path}")
+FileNotFoundError: El archivo CSV no existe en la ruta: ../data/penguins_size.csv
+[2025-03-08T23:12:24.815+0000] {taskinstance.py:1373} INFO - Marking task as UP_FOR_RETRY. dag_id=load_penguins_data, task_id=check_csv_exists, execution_date=20250308T231223, start_date=20250308T231224, end_date=20250308T231224
+[2025-03-08T23:12:24.821+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 36 for task check_csv_exists (El archivo CSV no existe en la ruta: ../data/penguins_size.csv; 123)
+[2025-03-08T23:12:24.861+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-08T23:12:24.875+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

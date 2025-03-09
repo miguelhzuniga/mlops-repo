@@ -1,0 +1,33 @@
+[2025-03-09T00:42:49.851+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: preprocess_penguins_data.get_raw_data manual__2025-03-09T00:42:45.866395+00:00 [queued]>
+[2025-03-09T00:42:49.856+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: preprocess_penguins_data.get_raw_data manual__2025-03-09T00:42:45.866395+00:00 [queued]>
+[2025-03-09T00:42:49.856+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-09T00:42:49.863+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_raw_data> on 2025-03-09 00:42:45.866395+00:00
+[2025-03-09T00:42:49.866+0000] {standard_task_runner.py:57} INFO - Started process 975 to run task
+[2025-03-09T00:42:49.868+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'preprocess_penguins_data', 'get_raw_data', 'manual__2025-03-09T00:42:45.866395+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmp18dtka5n']
+[2025-03-09T00:42:49.869+0000] {standard_task_runner.py:85} INFO - Job 47: Subtask get_raw_data
+[2025-03-09T00:42:49.897+0000] {task_command.py:410} INFO - Running <TaskInstance: preprocess_penguins_data.get_raw_data manual__2025-03-09T00:42:45.866395+00:00 [running]> on host de40e2ed39bc
+[2025-03-09T00:42:49.940+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='preprocess_penguins_data' AIRFLOW_CTX_TASK_ID='get_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T00:42:45.866395+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T00:42:45.866395+00:00'
+[2025-03-09T00:42:49.941+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T00:42:49.941+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T00:42:49.952+0000] {logging_mixin.py:149} INFO - Datos obtenidos de la base de datos. Filas: 344
+[2025-03-09T00:42:49.953+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Procesa_data.py", line 73, in get_data_from_db
+    df.to_csv(temp_csv_path, index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 3482, in to_csv
+    storage_options=storage_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/formats/format.py", line 1105, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/formats/csvs.py", line 243, in save
+    storage_options=self.storage_options,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 707, in get_handle
+    newline="",
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/models/temp_raw_data.csv'
+[2025-03-09T00:42:49.959+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=preprocess_penguins_data, task_id=get_raw_data, execution_date=20250309T004245, start_date=20250309T004249, end_date=20250309T004249
+[2025-03-09T00:42:49.966+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 47 for task get_raw_data ([Errno 13] Permission denied: '/opt/airflow/models/temp_raw_data.csv'; 975)
+[2025-03-09T00:42:49.999+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-03-09T00:42:50.014+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

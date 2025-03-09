@@ -1,0 +1,14 @@
+[2025-03-09T03:30:03.640+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4Entrenamiento_model.entrenar_modelo scheduled__2025-03-09T03:20:00+00:00 [queued]>
+[2025-03-09T03:30:03.647+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4Entrenamiento_model.entrenar_modelo scheduled__2025-03-09T03:20:00+00:00 [queued]>
+[2025-03-09T03:30:03.648+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T03:30:03.663+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-03-09 03:20:00+00:00
+[2025-03-09T03:30:03.668+0000] {standard_task_runner.py:57} INFO - Started process 524 to run task
+[2025-03-09T03:30:03.674+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '4Entrenamiento_model', 'entrenar_modelo', 'scheduled__2025-03-09T03:20:00+00:00', '--job-id', '26', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpoco758rn']
+[2025-03-09T03:30:03.677+0000] {standard_task_runner.py:85} INFO - Job 26: Subtask entrenar_modelo
+[2025-03-09T03:30:03.719+0000] {task_command.py:410} INFO - Running <TaskInstance: 4Entrenamiento_model.entrenar_modelo scheduled__2025-03-09T03:20:00+00:00 [running]> on host d79f96be65f0
+[2025-03-09T03:30:03.800+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T03:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-09T03:20:00+00:00'
+[2025-03-09T03:30:03.827+0000] {logging_mixin.py:149} INFO - Columnas disponibles en X_train: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+[2025-03-09T03:30:04.001+0000] {python.py:183} INFO - Done. Returned value was: {'trained_model_paths': {'KNN': '/opt/***/data/temp/trained_KNN_temp.pkl', 'LogReg': '/opt/***/data/temp/trained_LogReg_temp.pkl', 'LogRegCV': '/opt/***/data/temp/trained_LogRegCV_temp.pkl'}}
+[2025-03-09T03:30:04.032+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=4Entrenamiento_model, task_id=entrenar_modelo, execution_date=20250309T032000, start_date=20250309T033003, end_date=20250309T033004
+[2025-03-09T03:30:04.046+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T03:30:04.067+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

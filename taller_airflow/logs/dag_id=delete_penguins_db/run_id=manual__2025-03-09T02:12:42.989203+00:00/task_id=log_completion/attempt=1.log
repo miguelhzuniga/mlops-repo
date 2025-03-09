@@ -1,0 +1,18 @@
+[2025-03-09T02:12:45.925+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: delete_penguins_db.log_completion manual__2025-03-09T02:12:42.989203+00:00 [queued]>
+[2025-03-09T02:12:45.941+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: delete_penguins_db.log_completion manual__2025-03-09T02:12:42.989203+00:00 [queued]>
+[2025-03-09T02:12:45.941+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T02:12:45.956+0000] {taskinstance.py:1350} INFO - Executing <Task(MySqlOperator): log_completion> on 2025-03-09 02:12:42.989203+00:00
+[2025-03-09T02:12:45.960+0000] {standard_task_runner.py:57} INFO - Started process 133 to run task
+[2025-03-09T02:12:45.964+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'delete_penguins_db', 'log_completion', 'manual__2025-03-09T02:12:42.989203+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Borrar_datos.py', '--cfg-path', '/tmp/tmp3hrrt2jb']
+[2025-03-09T02:12:45.965+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask log_completion
+[2025-03-09T02:12:46.023+0000] {task_command.py:410} INFO - Running <TaskInstance: delete_penguins_db.log_completion manual__2025-03-09T02:12:42.989203+00:00 [running]> on host 13f4df1d56c9
+[2025-03-09T02:12:46.134+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='delete_penguins_db' AIRFLOW_CTX_TASK_ID='log_completion' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T02:12:42.989203+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T02:12:42.989203+00:00'
+[2025-03-09T02:12:46.134+0000] {sql.py:262} INFO - Executing: SELECT 'Base de datos de penguins borrada exitosamente' as log_message
+[2025-03-09T02:12:46.136+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-09T02:12:46.136+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T02:12:46.204+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-09T02:12:46.220+0000] {sql.py:375} INFO - Running statement: SELECT 'Base de datos de penguins borrada exitosamente' as log_message, parameters: None
+[2025-03-09T02:12:46.221+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-03-09T02:12:46.274+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=delete_penguins_db, task_id=log_completion, execution_date=20250309T021242, start_date=20250309T021245, end_date=20250309T021246
+[2025-03-09T02:12:46.298+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T02:12:46.323+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
