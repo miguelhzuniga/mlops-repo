@@ -25,13 +25,12 @@ dag = DAG(
 database_name = 'airflow_db'
 table_name = 'penguins'
 
-# SQL para verificar si la tabla existe y borrarla
 check_and_drop_table = f"""
 USE {database_name};
 DROP TABLE IF EXISTS {table_name};
 """
 
-# Tarea para verificar y borrar la tabla
+
 drop_table_task = MySqlOperator(
     task_id='drop_penguins_table',
     mysql_conn_id='mysql_default',

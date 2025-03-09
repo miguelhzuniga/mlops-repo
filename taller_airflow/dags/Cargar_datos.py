@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 import pandas as pd
 import os
 
-# Configuración por defecto para el DAG
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -16,7 +15,6 @@ default_args = {
     'retry_delay': timedelta(minutes=1)
 }
 
-# Definir el DAG
 dag = DAG(
     '2-Cargar_data',
     default_args=default_args,

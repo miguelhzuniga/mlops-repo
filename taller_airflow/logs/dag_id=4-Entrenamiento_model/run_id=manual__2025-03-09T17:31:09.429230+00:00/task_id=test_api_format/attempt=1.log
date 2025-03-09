@@ -1,0 +1,22 @@
+[2025-03-09T17:31:14.744+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.test_api_format manual__2025-03-09T17:31:09.429230+00:00 [queued]>
+[2025-03-09T17:31:14.748+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.test_api_format manual__2025-03-09T17:31:09.429230+00:00 [queued]>
+[2025-03-09T17:31:14.748+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-09T17:31:14.755+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): test_api_format> on 2025-03-09 17:31:09.429230+00:00
+[2025-03-09T17:31:14.758+0000] {standard_task_runner.py:57} INFO - Started process 354 to run task
+[2025-03-09T17:31:14.760+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'test_api_format', 'manual__2025-03-09T17:31:09.429230+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpjtxe9a4q']
+[2025-03-09T17:31:14.761+0000] {standard_task_runner.py:85} INFO - Job 14: Subtask test_api_format
+[2025-03-09T17:31:14.789+0000] {task_command.py:410} INFO - Running <TaskInstance: 4-Entrenamiento_model.test_api_format manual__2025-03-09T17:31:09.429230+00:00 [running]> on host 43c041f14515
+[2025-03-09T17:31:14.830+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='test_api_format' AIRFLOW_CTX_EXECUTION_DATE='2025-03-09T17:31:09.429230+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-09T17:31:09.429230+00:00'
+[2025-03-09T17:31:14.841+0000] {logging_mixin.py:149} INFO - Modelos cargados correctamente: ['KNN', 'LogReg', 'LogRegCV']
+[2025-03-09T17:31:14.849+0000] {logging_mixin.py:149} INFO - Entrada de prueba API: 
+      island  culmen_length_mm  ...  body_mass_g   sex
+0  Torgersen              39.1  ...       3750.0  Male
+
+[1 rows x 6 columns]
+[2025-03-09T17:31:14.853+0000] {logging_mixin.py:149} INFO - Modelo KNN predice: ['Adelie']
+[2025-03-09T17:31:14.855+0000] {logging_mixin.py:149} INFO - Modelo LogReg predice: ['Adelie']
+[2025-03-09T17:31:14.857+0000] {logging_mixin.py:149} INFO - Modelo LogRegCV predice: ['Adelie']
+[2025-03-09T17:31:14.857+0000] {python.py:183} INFO - Done. Returned value was: {'test_result': 'completed'}
+[2025-03-09T17:31:14.869+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=test_api_format, execution_date=20250309T173109, start_date=20250309T173114, end_date=20250309T173114
+[2025-03-09T17:31:14.892+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-09T17:31:14.901+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

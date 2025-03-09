@@ -9526,3 +9526,1516 @@ File Path                                PID    Runtime      # DAGs    # Errors 
 ================================================================================
 [2025-03-09T07:24:10.889+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
 [2025-03-09T07:24:11.326+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2025-03-09T16:48:07.820+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2025-03-09T16:48:07.820+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2025-03-09T16:48:07.820+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-03-09T16:48:07.820+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T16:48:07.825+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T16:48:21.293+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  1.17s           2025-03-09T16:48:09
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.18s           2025-03-09T16:48:08
+/opt/airflow/dags/Procesa_data.py                                 1           0  1.36s           2025-03-09T16:48:09
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.47s           2025-03-09T16:48:09
+================================================================================
+[2025-03-09T16:48:51.425+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.92s           2025-03-09T16:48:40
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T16:48:38
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.99s           2025-03-09T16:48:40
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.45s           2025-03-09T16:48:40
+================================================================================
+[2025-03-09T16:49:23.801+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.72s           2025-03-09T16:49:11
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:49:08
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.72s           2025-03-09T16:49:11
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T16:49:11
+================================================================================
+[2025-03-09T16:49:56.123+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.67s           2025-03-09T16:49:42
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:49:38
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.71s           2025-03-09T16:49:42
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T16:49:42
+================================================================================
+[2025-03-09T16:50:28.471+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.72s           2025-03-09T16:50:13
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.12s           2025-03-09T16:50:09
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.67s           2025-03-09T16:50:13
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.38s           2025-03-09T16:50:14
+================================================================================
+[2025-03-09T16:51:00.795+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.68s           2025-03-09T16:50:45
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.12s           2025-03-09T16:50:39
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.67s           2025-03-09T16:50:45
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.32s           2025-03-09T16:50:45
+================================================================================
+[2025-03-09T16:51:33.134+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.68s           2025-03-09T16:51:16
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T16:51:09
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.70s           2025-03-09T16:51:16
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T16:51:16
+================================================================================
+[2025-03-09T16:52:03.147+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.66s           2025-03-09T16:51:47
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:51:40
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T16:51:47
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T16:51:48
+================================================================================
+[2025-03-09T16:52:36.154+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T16:52:19
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T16:52:10
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T16:52:19
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T16:52:19
+================================================================================
+[2025-03-09T16:53:08.297+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T16:53:08.298+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T16:53:08.506+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.68s           2025-03-09T16:52:50
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T16:52:41
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.73s           2025-03-09T16:52:50
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T16:52:50
+================================================================================
+[2025-03-09T16:53:40.797+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.86s           2025-03-09T16:53:21
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T16:53:12
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.79s           2025-03-09T16:53:21
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T16:53:21
+================================================================================
+[2025-03-09T16:54:12.790+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T16:53:52
+/opt/airflow/dags/Borrar_datos.py         1359  0.00s             1           0  0.07s           2025-03-09T16:53:42
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T16:53:52
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T16:53:52
+================================================================================
+[2025-03-09T16:54:45.455+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T16:54:24
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:54:43
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T16:54:24
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T16:54:24
+================================================================================
+[2025-03-09T16:55:18.080+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T16:54:55
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T16:55:14
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T16:54:55
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T16:54:55
+================================================================================
+[2025-03-09T16:55:50.796+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.66s           2025-03-09T16:55:25
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:55:44
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T16:55:25
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T16:55:26
+================================================================================
+[2025-03-09T16:56:23.531+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.66s           2025-03-09T16:55:56
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:56:15
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T16:55:56
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T16:55:56
+================================================================================
+[2025-03-09T16:56:56.132+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.60s           2025-03-09T16:56:27
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T16:56:46
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.60s           2025-03-09T16:56:27
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T16:56:27
+================================================================================
+[2025-03-09T16:57:28.544+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py   2015  0.65s             1           0  0.68s           2025-03-09T16:56:57
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T16:57:16
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T16:57:28
+/opt/airflow/dags/Cargar_datos.py         2094  0.00s             1           0  0.29s           2025-03-09T16:56:58
+================================================================================
+[2025-03-09T16:58:00.591+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.68s           2025-03-09T16:57:59
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:57:48
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.69s           2025-03-09T16:57:59
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T16:57:59
+================================================================================
+[2025-03-09T16:58:08.327+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T16:58:08.328+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T16:58:33.080+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T16:58:30
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:58:18
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T16:58:20
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.38s           2025-03-09T16:58:30
+================================================================================
+[2025-03-09T16:59:05.054+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T16:59:01
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T16:58:49
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T16:58:51
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T16:59:00
+================================================================================
+[2025-03-09T16:59:37.027+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T16:59:32
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T16:59:19
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T16:59:23
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T16:59:31
+================================================================================
+[2025-03-09T17:00:09.003+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.54s           2025-03-09T17:00:03
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T16:59:50
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.53s           2025-03-09T16:59:53
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:00:02
+================================================================================
+[2025-03-09T17:00:40.693+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:00:34
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:00:20
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.53s           2025-03-09T17:00:25
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.30s           2025-03-09T17:00:32
+================================================================================
+[2025-03-09T17:01:10.940+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.58s           2025-03-09T17:01:04
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:00:50
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T17:00:56
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T17:01:03
+================================================================================
+[2025-03-09T17:01:44.306+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.60s           2025-03-09T17:01:35
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:01:20
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.56s           2025-03-09T17:01:27
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.35s           2025-03-09T17:01:34
+================================================================================
+[2025-03-09T17:02:16.611+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:02:06
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:01:51
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T17:01:58
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T17:02:05
+================================================================================
+[2025-03-09T17:02:48.732+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:02:37
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:02:23
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.60s           2025-03-09T17:02:29
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.30s           2025-03-09T17:02:35
+================================================================================
+[2025-03-09T17:03:08.343+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:03:08.344+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:03:20.959+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:03:07
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:02:54
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:03:00
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:03:06
+================================================================================
+[2025-03-09T17:03:24.229+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2025-03-09T17:04:47.074+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2025-03-09T17:04:47.075+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2025-03-09T17:04:47.075+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-03-09T17:04:47.075+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:04:47.077+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:04:47.347+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/Entrenamiento_mode.py     84  0.23s             0           0
+/opt/airflow/dags/Borrar_datos.py                                 0           0
+/opt/airflow/dags/Procesa_data.py          104  0.04s             0           0
+/opt/airflow/dags/Cargar_datos.py                                 0           0
+================================================================================
+[2025-03-09T17:05:19.890+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:05:19
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T17:05:19
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:05:19
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:05:19
+================================================================================
+[2025-03-09T17:05:52.967+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:05:51
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:05:51
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:05:51
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:05:52
+================================================================================
+[2025-03-09T17:06:23.012+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:06:22
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:06:22
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:06:22
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:06:23
+================================================================================
+[2025-03-09T17:06:55.711+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.55s           2025-03-09T17:06:53
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:06:53
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:06:53
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:06:53
+================================================================================
+[2025-03-09T17:07:28.435+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:07:24
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.10s           2025-03-09T17:07:23
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.56s           2025-03-09T17:07:24
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.32s           2025-03-09T17:07:24
+================================================================================
+[2025-03-09T17:08:01.459+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.57s           2025-03-09T17:07:54
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.09s           2025-03-09T17:07:54
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T17:07:55
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.30s           2025-03-09T17:07:55
+================================================================================
+[2025-03-09T17:08:35.005+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.53s           2025-03-09T17:08:25
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:08:25
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.56s           2025-03-09T17:08:26
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:08:25
+================================================================================
+[2025-03-09T17:09:07.995+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.67s           2025-03-09T17:08:56
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:08:56
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T17:08:56
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:08:56
+================================================================================
+[2025-03-09T17:09:41.002+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:09:27
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:09:26
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:09:27
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:09:27
+================================================================================
+[2025-03-09T17:09:47.786+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:09:47.789+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:10:13.872+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:09:58
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:09:56
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:09:58
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T17:09:58
+================================================================================
+[2025-03-09T17:10:47.081+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:10:32
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:10:26
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:10:32
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:10:32
+================================================================================
+[2025-03-09T17:11:20.884+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:11:02
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:10:57
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:11:02
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:11:03
+================================================================================
+[2025-03-09T17:11:53.871+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:11:33
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:11:27
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:11:33
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T17:11:33
+================================================================================
+[2025-03-09T17:12:27.428+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:12:04
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:11:58
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:12:04
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.25s           2025-03-09T17:12:04
+================================================================================
+[2025-03-09T17:13:01.208+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.58s           2025-03-09T17:12:35
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:13:00
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:12:35
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.25s           2025-03-09T17:12:35
+================================================================================
+[2025-03-09T17:13:34.811+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:13:05
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:13:30
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:13:05
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:13:06
+================================================================================
+[2025-03-09T17:14:07.274+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py   2040  0.01s             1           0  0.64s           2025-03-09T17:13:36
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:14:02
+/opt/airflow/dags/Procesa_data.py         2041  0.00s             1           0  0.64s           2025-03-09T17:13:36
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:13:36
+================================================================================
+[2025-03-09T17:14:40.333+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:14:39
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:14:33
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:14:39
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T17:14:39
+================================================================================
+[2025-03-09T17:14:48.357+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:14:48.358+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:15:12.977+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:15:12
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:15:03
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:15:12
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T17:15:12
+================================================================================
+[2025-03-09T17:15:43.569+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.73s           2025-03-09T17:15:43
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:15:33
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.73s           2025-03-09T17:15:43
+/opt/airflow/dags/Cargar_datos.py         2447  0.00s             1           0  0.29s           2025-03-09T17:15:12
+================================================================================
+[2025-03-09T17:16:16.290+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:16:14
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:16:04
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:16:14
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:16:14
+================================================================================
+[2025-03-09T17:16:49.064+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:16:45
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:16:35
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:16:45
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.32s           2025-03-09T17:16:46
+================================================================================
+[2025-03-09T17:17:22.200+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:17:17
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:17:05
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:17:17
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T17:17:17
+================================================================================
+[2025-03-09T17:17:54.971+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:17:48
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:17:35
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:17:48
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:17:48
+================================================================================
+[2025-03-09T17:18:27.738+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:18:19
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:18:06
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:18:19
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.31s           2025-03-09T17:18:19
+================================================================================
+[2025-03-09T17:19:00.526+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:18:50
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:18:36
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:18:50
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:18:50
+================================================================================
+[2025-03-09T17:19:33.599+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:19:21
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:19:07
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:19:21
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T17:19:21
+================================================================================
+[2025-03-09T17:19:51.207+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:19:51.208+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:20:06.276+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:19:52
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:19:37
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:19:52
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:19:53
+================================================================================
+[2025-03-09T17:20:39.215+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  2.86s           2025-03-09T17:20:25
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:20:38
+/opt/airflow/dags/Procesa_data.py                                 1           0  2.84s           2025-03-09T17:20:25
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T17:20:26
+================================================================================
+[2025-03-09T17:21:12.412+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:20:56
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:21:08
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:20:56
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:20:57
+================================================================================
+[2025-03-09T17:21:45.815+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:21:28
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:21:38
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:21:28
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T17:21:28
+================================================================================
+[2025-03-09T17:22:19.231+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:21:59
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:22:10
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:21:59
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T17:21:59
+================================================================================
+[2025-03-09T17:22:53.024+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.58s           2025-03-09T17:22:30
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:22:41
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:22:30
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:22:31
+================================================================================
+[2025-03-09T17:23:26.170+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.58s           2025-03-09T17:23:01
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:23:11
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:23:01
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T17:23:02
+================================================================================
+[2025-03-09T17:23:58.570+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:23:32
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:23:41
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.67s           2025-03-09T17:23:32
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T17:23:33
+================================================================================
+[2025-03-09T17:24:31.582+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.60s           2025-03-09T17:24:04
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:24:11
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:24:04
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T17:24:04
+================================================================================
+[2025-03-09T17:24:51.693+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:24:51.695+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:25:01.762+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:24:35
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:24:41
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:24:35
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:24:35
+================================================================================
+[2025-03-09T17:25:35.177+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:25:06
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:25:12
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:25:06
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:25:06
+================================================================================
+[2025-03-09T17:26:08.268+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py   4540  0.63s             1           0  0.63s           2025-03-09T17:25:36
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:25:42
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:26:08
+/opt/airflow/dags/Cargar_datos.py         4620  0.00s             1           0  0.34s           2025-03-09T17:25:37
+================================================================================
+[2025-03-09T17:26:41.048+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:26:39
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:26:15
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:26:39
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.35s           2025-03-09T17:26:39
+================================================================================
+[2025-03-09T17:27:13.837+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:27:09
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:26:45
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:27:09
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:27:10
+================================================================================
+[2025-03-09T17:27:33.255+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2025-03-09T17:28:23.713+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2025-03-09T17:28:23.714+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2025-03-09T17:28:23.714+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-03-09T17:28:23.714+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:28:23.716+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:28:23.907+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/Entrenamiento_mode.py     69  0.17s             0           0
+/opt/airflow/dags/Borrar_datos.py                                 0           0
+/opt/airflow/dags/Procesa_data.py           89  0.03s             0           0
+/opt/airflow/dags/Cargar_datos.py                                 0           0
+================================================================================
+[2025-03-09T17:28:56.976+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:28:55
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:28:55
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:28:55
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.25s           2025-03-09T17:28:55
+================================================================================
+[2025-03-09T17:29:30.580+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:29:26
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:29:26
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:29:26
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:29:26
+================================================================================
+[2025-03-09T17:30:03.595+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:29:57
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:29:57
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:29:57
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T17:29:57
+================================================================================
+[2025-03-09T17:30:37.242+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.70s           2025-03-09T17:30:28
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.09s           2025-03-09T17:30:28
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:30:28
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T17:30:28
+================================================================================
+[2025-03-09T17:31:09.862+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:30:59
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T17:30:59
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:30:59
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:30:59
+================================================================================
+[2025-03-09T17:31:43.007+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.69s           2025-03-09T17:31:32
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:31:32
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.69s           2025-03-09T17:31:32
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.31s           2025-03-09T17:31:32
+================================================================================
+[2025-03-09T17:32:15.802+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:32:03
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T17:32:03
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:32:03
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:32:03
+================================================================================
+[2025-03-09T17:32:48.951+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:32:34
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:32:34
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:32:34
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T17:32:34
+================================================================================
+[2025-03-09T17:33:22.617+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:33:03
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:33:04
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:33:04
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:33:05
+================================================================================
+[2025-03-09T17:33:23.825+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:33:23.826+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:33:55.904+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.57s           2025-03-09T17:33:34
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:33:34
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.54s           2025-03-09T17:33:35
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:33:36
+================================================================================
+[2025-03-09T17:34:29.080+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.55s           2025-03-09T17:34:05
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:34:05
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.53s           2025-03-09T17:34:06
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:34:07
+================================================================================
+[2025-03-09T17:35:02.866+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:34:36
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:34:35
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.60s           2025-03-09T17:34:36
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:34:37
+================================================================================
+[2025-03-09T17:35:32.867+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:35:07
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:35:05
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:35:07
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T17:35:08
+================================================================================
+[2025-03-09T17:36:06.506+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.68s           2025-03-09T17:35:38
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:35:38
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.68s           2025-03-09T17:35:38
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:35:39
+================================================================================
+[2025-03-09T17:36:39.635+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py   1815  0.24s             1           0  0.68s           2025-03-09T17:36:09
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:36:09
+/opt/airflow/dags/Procesa_data.py         1814  0.25s             1           0  0.70s           2025-03-09T17:36:09
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.30s           2025-03-09T17:36:13
+================================================================================
+[2025-03-09T17:37:12.824+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:37:10
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:37:10
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:37:10
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.30s           2025-03-09T17:36:44
+================================================================================
+[2025-03-09T17:37:45.979+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:37:41
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:37:41
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:37:41
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.26s           2025-03-09T17:37:45
+================================================================================
+[2025-03-09T17:38:19.502+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:38:12
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:38:12
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.60s           2025-03-09T17:38:12
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:38:16
+================================================================================
+[2025-03-09T17:38:24.518+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:38:24.519+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:38:52.392+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.64s           2025-03-09T17:38:43
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:38:43
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:38:43
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.28s           2025-03-09T17:38:47
+================================================================================
+[2025-03-09T17:39:25.842+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:39:13
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:39:13
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.64s           2025-03-09T17:39:13
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.27s           2025-03-09T17:39:18
+================================================================================
+[2025-03-09T17:39:58.745+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.69s           2025-03-09T17:39:44
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:39:44
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.69s           2025-03-09T17:39:44
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:39:48
+================================================================================
+[2025-03-09T17:40:31.772+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.67s           2025-03-09T17:40:15
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:40:15
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.66s           2025-03-09T17:40:15
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:40:19
+================================================================================
+[2025-03-09T17:41:00.955+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.72s           2025-03-09T17:40:46
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:40:46
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.70s           2025-03-09T17:40:46
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.43s           2025-03-09T17:40:50
+================================================================================
+[2025-03-09T17:41:32.040+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:41:17
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:41:17
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.63s           2025-03-09T17:41:17
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:41:21
+================================================================================
+[2025-03-09T17:42:03.964+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:41:48
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:41:48
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:41:48
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:41:52
+================================================================================
+[2025-03-09T17:42:35.478+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.66s           2025-03-09T17:42:19
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:42:19
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:42:19
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.41s           2025-03-09T17:42:23
+================================================================================
+[2025-03-09T17:43:07.584+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:42:50
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:42:50
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:42:50
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:42:54
+================================================================================
+[2025-03-09T17:43:24.919+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:43:24.920+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:43:39.773+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:43:20
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:43:20
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:43:20
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.31s           2025-03-09T17:43:25
+================================================================================
+[2025-03-09T17:44:10.330+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:43:51
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:43:51
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.56s           2025-03-09T17:43:55
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.35s           2025-03-09T17:43:55
+================================================================================
+[2025-03-09T17:44:42.940+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:44:22
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.09s           2025-03-09T17:44:22
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T17:44:25
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.34s           2025-03-09T17:44:26
+================================================================================
+[2025-03-09T17:45:15.685+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.57s           2025-03-09T17:44:52
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.10s           2025-03-09T17:44:52
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:44:56
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:44:56
+================================================================================
+[2025-03-09T17:45:48.365+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:45:23
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.08s           2025-03-09T17:45:23
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:45:27
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:45:27
+================================================================================
+[2025-03-09T17:46:21.155+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.57s           2025-03-09T17:45:54
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:45:53
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:45:58
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.44s           2025-03-09T17:45:58
+================================================================================
+[2025-03-09T17:46:54.098+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.68s           2025-03-09T17:46:25
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:46:24
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:46:28
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.45s           2025-03-09T17:46:28
+================================================================================
+[2025-03-09T17:47:27.525+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py   4138  0.00s             1           0  0.56s           2025-03-09T17:46:56
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:47:24
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:46:59
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.41s           2025-03-09T17:46:59
+================================================================================
+[2025-03-09T17:48:00.007+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.54s           2025-03-09T17:47:59
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.05s           2025-03-09T17:47:54
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.54s           2025-03-09T17:47:30
+/opt/airflow/dags/Cargar_datos.py         4287  0.00s             1           0  0.35s           2025-03-09T17:47:29
+================================================================================
+[2025-03-09T17:48:24.960+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:48:24.963+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:48:32.385+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.54s           2025-03-09T17:48:30
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:48:25
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.53s           2025-03-09T17:48:32
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.32s           2025-03-09T17:48:31
+================================================================================
+[2025-03-09T17:49:05.090+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.57s           2025-03-09T17:49:01
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:48:55
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:49:03
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:49:01
+================================================================================
+[2025-03-09T17:49:37.937+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:49:32
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:49:26
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:49:34
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.43s           2025-03-09T17:49:32
+================================================================================
+[2025-03-09T17:50:10.545+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.57s           2025-03-09T17:50:03
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:49:56
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.53s           2025-03-09T17:50:05
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:50:03
+================================================================================
+[2025-03-09T17:50:43.212+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.77s           2025-03-09T17:50:35
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:50:26
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.67s           2025-03-09T17:50:36
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.50s           2025-03-09T17:50:35
+================================================================================
+[2025-03-09T17:51:15.982+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py   5002  0.00s             1           0  0.66s           2025-03-09T17:51:06
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:50:56
+/opt/airflow/dags/Procesa_data.py                                 1           0  2.98s           2025-03-09T17:51:09
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.42s           2025-03-09T17:51:06
+================================================================================
+[2025-03-09T17:51:48.550+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.53s           2025-03-09T17:51:47
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:51:27
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:51:40
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T17:51:36
+================================================================================
+[2025-03-09T17:52:21.281+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:52:19
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:51:57
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.57s           2025-03-09T17:52:11
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:52:08
+================================================================================
+[2025-03-09T17:52:53.837+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.53s           2025-03-09T17:52:49
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:52:27
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:52:42
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:52:39
+================================================================================
+[2025-03-09T17:53:23.920+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:53:20
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:52:57
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.54s           2025-03-09T17:53:13
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.40s           2025-03-09T17:53:10
+================================================================================
+[2025-03-09T17:53:27.986+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:53:27.987+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:53:56.752+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:53:52
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:53:28
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:53:44
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T17:53:41
+================================================================================
+[2025-03-09T17:54:29.909+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.56s           2025-03-09T17:54:08
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:54:28
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:54:07
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.35s           2025-03-09T17:54:12
+================================================================================
+[2025-03-09T17:55:02.213+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.61s           2025-03-09T17:54:39
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:54:59
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.59s           2025-03-09T17:54:38
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:54:43
+================================================================================
+[2025-03-09T17:55:34.606+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.67s           2025-03-09T17:55:12
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:55:29
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.65s           2025-03-09T17:55:12
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.38s           2025-03-09T17:55:13
+================================================================================
+[2025-03-09T17:56:06.921+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T17:55:43
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:55:59
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T17:55:43
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.33s           2025-03-09T17:55:46
+================================================================================
+[2025-03-09T17:56:39.282+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.70s           2025-03-09T17:56:14
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:56:30
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.68s           2025-03-09T17:56:14
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.35s           2025-03-09T17:56:17
+================================================================================
+[2025-03-09T17:57:11.661+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.72s           2025-03-09T17:56:46
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:57:00
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.69s           2025-03-09T17:56:45
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.39s           2025-03-09T17:56:48
+================================================================================
+[2025-03-09T17:57:44.034+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.65s           2025-03-09T17:57:26
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.07s           2025-03-09T17:57:30
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.58s           2025-03-09T17:57:30
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.35s           2025-03-09T17:57:19
+================================================================================
+[2025-03-09T17:58:16.691+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.54s           2025-03-09T17:58:13
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:58:09
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.54s           2025-03-09T17:58:14
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.37s           2025-03-09T17:58:12
+================================================================================
+[2025-03-09T17:58:28.437+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T17:58:28.438+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T17:58:49.534+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.59s           2025-03-09T17:58:44
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:58:39
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.55s           2025-03-09T17:58:45
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.38s           2025-03-09T17:58:43
+================================================================================
+[2025-03-09T17:59:21.982+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.58s           2025-03-09T17:59:15
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:59:10
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.54s           2025-03-09T17:59:16
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:59:14
+================================================================================
+[2025-03-09T17:59:55.466+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.63s           2025-03-09T17:59:49
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.06s           2025-03-09T17:59:40
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.62s           2025-03-09T17:59:49
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.36s           2025-03-09T17:59:45
+================================================================================
+[2025-03-09T17:59:58.175+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2025-03-09T18:01:20.607+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2025-03-09T18:01:20.608+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2025-03-09T18:01:20.608+0000] {manager.py:490} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-03-09T18:01:20.608+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-03-09T18:01:20.609+0000] {manager.py:761} INFO - There are 4 files in /opt/airflow/dags
+[2025-03-09T18:01:20.762+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                  PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/Entrenamiento_mode.py     84  0.02s             0           0
+/opt/airflow/dags/Borrar_datos.py                                 0           0
+/opt/airflow/dags/Procesa_data.py           83  0.11s             0           0
+/opt/airflow/dags/Cargar_datos.py                                 0           0
+================================================================================
+[2025-03-09T18:01:53.874+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.70s           2025-03-09T18:01:52
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.09s           2025-03-09T18:01:52
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.69s           2025-03-09T18:01:52
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.31s           2025-03-09T18:01:53
+================================================================================
+[2025-03-09T18:02:26.035+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+---------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Entrenamiento_mode.py                           1           0  0.62s           2025-03-09T18:02:23
+/opt/airflow/dags/Borrar_datos.py                                 1           0  0.09s           2025-03-09T18:02:23
+/opt/airflow/dags/Procesa_data.py                                 1           0  0.61s           2025-03-09T18:02:23
+/opt/airflow/dags/Cargar_datos.py                                 1           0  0.29s           2025-03-09T18:02:24
+================================================================================
+[2025-03-09T18:02:49.487+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15

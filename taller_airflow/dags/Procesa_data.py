@@ -4,14 +4,14 @@ from airflow.providers.mysql.hooks.mysql import MySqlHook
 from datetime import datetime, timedelta
 import pandas as pd
 import os
-import pickle
+import joblib  # Use joblib consistently
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
-# Configuración por defecto para el DAG
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -21,19 +21,18 @@ default_args = {
     'retry_delay': timedelta(minutes=1)
 }
 
-# Definir el DAG
+
 dag = DAG(
     '3-Procesar_penguins_data',
     default_args=default_args,
     description='DAG para preprocesar datos de penguins para entrenamiento',
-    schedule_interval=None,  # Solo ejecución manual si es "None"
+    schedule_interval=None,  
     start_date=datetime(2025, 3, 8),
     catchup=False
 )
 
 database_name = 'airflow_db'
 raw_table = 'penguins'
-
 
 processed_dir = '/opt/airflow/data/processed_data'
 os.makedirs(processed_dir, exist_ok=True)
@@ -86,14 +85,20 @@ def preprocess_data(**kwargs):
     
     if df is None:
         raise ValueError("No se encontraron datos para procesar")
-    
 
     X = df.drop(['species'], axis=1)
     y = df['species']
 
+    column_order = X.columns.tolist()
+    joblib.dump(column_order, os.path.join(processed_dir, 'column_order.pkl'))
+    print(f"Orden de columnas guardado: {column_order}")
+
+
+    numerical_features = ['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g']
+    categorical_features = ['island', 'sex']
 
     numerical_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer()),
+        ('imputer', SimpleImputer(strategy='mean')),
         ('scaler', StandardScaler())
     ])
 
@@ -104,39 +109,37 @@ def preprocess_data(**kwargs):
 
     preprocessor = ColumnTransformer(
         transformers=[
-            ('num', numerical_transformer, X.select_dtypes(include=['float64', 'int64']).columns),
-            ('cat', categorical_transformer, X.select_dtypes(include=['object']).columns)
-        ]
+            ('num', numerical_transformer, numerical_features),
+            ('cat', categorical_transformer, categorical_features)
+        ],
+        remainder='passthrough'  
     )
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
 
-    X_train_processed = preprocessor.fit_transform(X_train)
-    X_test_processed = preprocessor.transform(X_test)
+    X_train.to_csv(os.path.join(processed_dir, 'X_train_original.csv'), index=False)
+    X_test.to_csv(os.path.join(processed_dir, 'X_test_original.csv'), index=False)
 
-    X_train_df = pd.DataFrame(X_train_processed)
-    X_test_df = pd.DataFrame(X_test_processed)
+    preprocessor.fit(X_train)
+
+    X_train_processed = preprocessor.transform(X_train)
+    X_test_processed = preprocessor.transform(X_test)
     
-    y_train_df = pd.DataFrame(y_train).reset_index(drop=True)
-    y_test_df = pd.DataFrame(y_test).reset_index(drop=True)
-    
-    X_train_df.to_csv(os.path.join(processed_dir, 'X_train.csv'), index=False)
-    X_test_df.to_csv(os.path.join(processed_dir, 'X_test.csv'), index=False)
-    y_train_df.to_csv(os.path.join(processed_dir, 'y_train.csv'), index=False)
-    y_test_df.to_csv(os.path.join(processed_dir, 'y_test.csv'), index=False)
+    pd.DataFrame(X_train_processed).to_csv(os.path.join(processed_dir, 'X_train.csv'), index=False)
+    pd.DataFrame(X_test_processed).to_csv(os.path.join(processed_dir, 'X_test.csv'), index=False)
+    y_train.to_csv(os.path.join(processed_dir, 'y_train.csv'), index=False)
+    y_test.to_csv(os.path.join(processed_dir, 'y_test.csv'), index=False)
     
     print("Archivos CSV de datos de entrenamiento y prueba guardados.")
 
     preprocessor_filename = os.path.join(processed_dir, 'preprocessor.pkl')
-    with open(preprocessor_filename, 'wb') as f:
-        pickle.dump(preprocessor, f)
-
+    joblib.dump(preprocessor, preprocessor_filename)
     print(f"Preprocesador guardado en {preprocessor_filename}")
 
     return preprocessor_filename
 
-# Definir las tareas
+
 get_data_task = PythonOperator(
     task_id='get_raw_data',
     python_callable=get_data_from_db,
