@@ -47,10 +47,34 @@ Se han definido los siguientes DAGs en Airflow:
 
 ## 📊 Uso de la API de Inferencia
 
-Una vez desplegados los servicios, la API estará disponible en `http://localhost:5000/predict`. Ejemplo de uso:
+Una vez desplegados los servicios, la API estará disponible en `http://localhost:8888/docs`. 
 
+Ejemplo de uso en bash:
+
+1. Crear id de item 1
 ```bash
-curl -X POST "http://localhost:5000/predict" -H "Content-Type: application/json" -d '{"feature1": 1.2, "feature2": 3.4, "feature3": 5.6}'
+curl "http://localhost:8888/get-item/1"
+```
+2. Enviar datos para predecir al item 1
+```bash
+curl -X POST "http://localhost:8888/items/1" -H "Content-Type: application/json" -d '{
+  "item": {
+    "island": "Torgersen",
+    "culmen_length_mm": 10,
+    "culmen_depth_mm": 10,
+    "flipper_length_mm": 10,
+    "body_mass_g": 10,
+    "sex": "MALE",
+    "species": "string"
+  },
+  "modelo": {
+    "modelo": "LogRegCV"
+  }
+}'
+```
+3. Retornará la especie en "species":
+```bash
+[{"island":"Torgersen","culmen_length_mm":10.0,"culmen_depth_mm":10.0,"flipper_length_mm":10.0,"body_mass_g":10.0,"sex":"MALE","species":"Adelie"},{"modelo":"LogRegCV"}]
 ```
 
 ## 🛑 Detener los Servicios
