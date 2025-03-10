@@ -1,0 +1,18 @@
+[2025-03-10T04:28:45.299+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=4-Entrenamiento_model/run_id=manual__2025-03-10T04:28:44.156164+00:00/task_id=cargar_datos_modelo permission to 509
+[2025-03-10T04:28:45.332+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=4-Entrenamiento_model/run_id=manual__2025-03-10T04:28:44.156164+00:00/task_id=cargar_datos_modelo permission to 509
+[2025-03-10T04:28:45.359+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.cargar_datos_modelo manual__2025-03-10T04:28:44.156164+00:00 [queued]>
+[2025-03-10T04:28:45.367+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.cargar_datos_modelo manual__2025-03-10T04:28:44.156164+00:00 [queued]>
+[2025-03-10T04:28:45.369+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-03-10T04:28:45.379+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): cargar_datos_modelo> on 2025-03-10 04:28:44.156164+00:00
+[2025-03-10T04:28:45.384+0000] {standard_task_runner.py:57} INFO - Started process 248 to run task
+[2025-03-10T04:28:45.387+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'cargar_datos_modelo', 'manual__2025-03-10T04:28:44.156164+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpg3u3lg_m']
+[2025-03-10T04:28:45.390+0000] {standard_task_runner.py:85} INFO - Job 12: Subtask cargar_datos_modelo
+[2025-03-10T04:28:45.428+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=4-Entrenamiento_model/run_id=manual__2025-03-10T04:28:44.156164+00:00/task_id=cargar_datos_modelo permission to 509
+[2025-03-10T04:28:45.441+0000] {task_command.py:410} INFO - Running <TaskInstance: 4-Entrenamiento_model.cargar_datos_modelo manual__2025-03-10T04:28:44.156164+00:00 [running]> on host 755ba3c50750
+[2025-03-10T04:28:45.489+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='cargar_datos_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T04:28:44.156164+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T04:28:44.156164+00:00'
+[2025-03-10T04:28:45.551+0000] {logging_mixin.py:149} INFO - Columnas en X_train: 10 columnas
+[2025-03-10T04:28:45.551+0000] {logging_mixin.py:149} INFO - Orden de columnas original: ['island', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']
+[2025-03-10T04:28:45.552+0000] {python.py:183} INFO - Done. Returned value was: {'X_train_shape': (275, 10), 'X_test_shape': (69, 10), 'column_order': ['island', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']}
+[2025-03-10T04:28:45.568+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=cargar_datos_modelo, execution_date=20250310T042844, start_date=20250310T042845, end_date=20250310T042845
+[2025-03-10T04:28:45.600+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-10T04:28:45.618+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

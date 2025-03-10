@@ -1,0 +1,19 @@
+[2025-03-10T04:28:41.219+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=3-Procesar_penguins_data/run_id=manual__2025-03-10T04:28:37.458114+00:00/task_id=preprocess_data permission to 509
+[2025-03-10T04:28:41.242+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=3-Procesar_penguins_data/run_id=manual__2025-03-10T04:28:37.458114+00:00/task_id=preprocess_data permission to 509
+[2025-03-10T04:28:41.260+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 3-Procesar_penguins_data.preprocess_data manual__2025-03-10T04:28:37.458114+00:00 [queued]>
+[2025-03-10T04:28:41.267+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 3-Procesar_penguins_data.preprocess_data manual__2025-03-10T04:28:37.458114+00:00 [queued]>
+[2025-03-10T04:28:41.268+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-10T04:28:41.278+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): preprocess_data> on 2025-03-10 04:28:37.458114+00:00
+[2025-03-10T04:28:41.284+0000] {standard_task_runner.py:57} INFO - Started process 206 to run task
+[2025-03-10T04:28:41.286+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '3-Procesar_penguins_data', 'preprocess_data', 'manual__2025-03-10T04:28:37.458114+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpc77rvxyt']
+[2025-03-10T04:28:41.290+0000] {standard_task_runner.py:85} INFO - Job 11: Subtask preprocess_data
+[2025-03-10T04:28:41.331+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=3-Procesar_penguins_data/run_id=manual__2025-03-10T04:28:37.458114+00:00/task_id=preprocess_data permission to 509
+[2025-03-10T04:28:41.333+0000] {task_command.py:410} INFO - Running <TaskInstance: 3-Procesar_penguins_data.preprocess_data manual__2025-03-10T04:28:37.458114+00:00 [running]> on host 755ba3c50750
+[2025-03-10T04:28:41.383+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='3-Procesar_penguins_data' AIRFLOW_CTX_TASK_ID='preprocess_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T04:28:37.458114+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T04:28:37.458114+00:00'
+[2025-03-10T04:28:41.496+0000] {logging_mixin.py:149} INFO - Orden de columnas guardado: ['island', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']
+[2025-03-10T04:28:41.564+0000] {logging_mixin.py:149} INFO - Archivos CSV de datos de entrenamiento y prueba guardados.
+[2025-03-10T04:28:41.578+0000] {logging_mixin.py:149} INFO - Preprocesador guardado en /opt/***/data/processed_data/preprocessor.pkl
+[2025-03-10T04:28:41.579+0000] {python.py:183} INFO - Done. Returned value was: /opt/***/data/processed_data/preprocessor.pkl
+[2025-03-10T04:28:41.596+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=3-Procesar_penguins_data, task_id=preprocess_data, execution_date=20250310T042837, start_date=20250310T042841, end_date=20250310T042841
+[2025-03-10T04:28:41.622+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-10T04:28:41.634+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -38,7 +38,7 @@ def home():
 
     return {
         "message": (
-            "¡Hola, para iniciar dirígete a http://127.0.0.1:8000/docs\n"
+            "¡Hola, para iniciar dirígete a http://127.0.0.1:8888/docs\n"
             "Sigue los siguientes pasos:\n"
             "1. Debes asignar un número de item para cada predicción.\n"
             "2. Debes tabular los 6 campos requeridos para la predicción.\n"

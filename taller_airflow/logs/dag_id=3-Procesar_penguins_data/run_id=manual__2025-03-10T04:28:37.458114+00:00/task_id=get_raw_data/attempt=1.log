@@ -1,0 +1,55 @@
+[2025-03-10T04:28:39.180+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=3-Procesar_penguins_data/run_id=manual__2025-03-10T04:28:37.458114+00:00/task_id=get_raw_data permission to 509
+[2025-03-10T04:28:39.212+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=3-Procesar_penguins_data/run_id=manual__2025-03-10T04:28:37.458114+00:00/task_id=get_raw_data permission to 509
+[2025-03-10T04:28:39.252+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 3-Procesar_penguins_data.get_raw_data manual__2025-03-10T04:28:37.458114+00:00 [queued]>
+[2025-03-10T04:28:39.260+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 3-Procesar_penguins_data.get_raw_data manual__2025-03-10T04:28:37.458114+00:00 [queued]>
+[2025-03-10T04:28:39.262+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-03-10T04:28:39.271+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_raw_data> on 2025-03-10 04:28:37.458114+00:00
+[2025-03-10T04:28:39.278+0000] {standard_task_runner.py:57} INFO - Started process 174 to run task
+[2025-03-10T04:28:39.280+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', '3-Procesar_penguins_data', 'get_raw_data', 'manual__2025-03-10T04:28:37.458114+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/Procesa_data.py', '--cfg-path', '/tmp/tmpnygaaeku']
+[2025-03-10T04:28:39.282+0000] {standard_task_runner.py:85} INFO - Job 10: Subtask get_raw_data
+[2025-03-10T04:28:39.320+0000] {logging_mixin.py:149} INFO - Changing /opt/***/logs/dag_id=3-Procesar_penguins_data/run_id=manual__2025-03-10T04:28:37.458114+00:00/task_id=get_raw_data permission to 509
+[2025-03-10T04:28:39.330+0000] {task_command.py:410} INFO - Running <TaskInstance: 3-Procesar_penguins_data.get_raw_data manual__2025-03-10T04:28:37.458114+00:00 [running]> on host 755ba3c50750
+[2025-03-10T04:28:39.377+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='3-Procesar_penguins_data' AIRFLOW_CTX_TASK_ID='get_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-10T04:28:37.458114+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-10T04:28:37.458114+00:00'
+[2025-03-10T04:28:39.380+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-03-10T04:28:39.382+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-03-10T04:28:39.402+0000] {logging_mixin.py:149} INFO - Datos obtenidos de la base de datos. Filas: 344
+[2025-03-10T04:28:39.403+0000] {logging_mixin.py:149} INFO - Tipos de datos: 
+species               object
+island                object
+culmen_length_mm     float64
+culmen_depth_mm      float64
+flipper_length_mm      int64
+body_mass_g            int64
+sex                   object
+dtype: object
+[2025-03-10T04:28:39.513+0000] {logging_mixin.py:149} INFO -     species     island  ...  body_mass_g     sex
+0    Adelie  Torgersen  ...         3750    MALE
+1    Adelie  Torgersen  ...         3800  FEMALE
+2    Adelie  Torgersen  ...         3250  FEMALE
+3    Adelie  Torgersen  ...            0    None
+4    Adelie  Torgersen  ...         3450  FEMALE
+..      ...        ...  ...          ...     ...
+339  Gentoo     Biscoe  ...            0    None
+340  Gentoo     Biscoe  ...         4850  FEMALE
+341  Gentoo     Biscoe  ...         5750    MALE
+342  Gentoo     Biscoe  ...         5200  FEMALE
+343  Gentoo     Biscoe  ...         5400    MALE
+
+[344 rows x 7 columns]
+[2025-03-10T04:28:39.514+0000] {python.py:183} INFO - Done. Returned value was:     species     island  ...  body_mass_g     sex
+0    Adelie  Torgersen  ...         3750    MALE
+1    Adelie  Torgersen  ...         3800  FEMALE
+2    Adelie  Torgersen  ...         3250  FEMALE
+3    Adelie  Torgersen  ...            0    None
+4    Adelie  Torgersen  ...         3450  FEMALE
+..      ...        ...  ...          ...     ...
+339  Gentoo     Biscoe  ...            0    None
+340  Gentoo     Biscoe  ...         4850  FEMALE
+341  Gentoo     Biscoe  ...         5750    MALE
+342  Gentoo     Biscoe  ...         5200  FEMALE
+343  Gentoo     Biscoe  ...         5400    MALE
+
+[344 rows x 7 columns]
+[2025-03-10T04:28:39.535+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=3-Procesar_penguins_data, task_id=get_raw_data, execution_date=20250310T042837, start_date=20250310T042839, end_date=20250310T042839
+[2025-03-10T04:28:39.575+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-03-10T04:28:39.594+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check
