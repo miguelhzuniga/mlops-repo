@@ -1,0 +1,14 @@
+[Unit]
+Description=PostgreSQL Database Server
+After=network.target
+
+[Service]
+Type=forking
+User=postgres
+ExecStart=/usr/lib/postgresql/14/bin/pg_ctl start -D /var/lib/postgresql/14/main -l /var/log/postgresql/postgresql.log
+ExecStop=/usr/lib/postgresql/14/bin/pg_ctl stop -D /var/lib/postgresql/14/main
+ExecReload=/usr/lib/postgresql/14/bin/pg_ctl reload -D /var/lib/postgresql/14/main
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
