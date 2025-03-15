@@ -1,32 +1,51 @@
 services:
   minio:
+    image: quay.io/minio/minio:latest
     container_name: Minio
-    command: server /data --console-address ":9001"
+    restart: unless-stopped
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=supersecret
-    image: quay.io/minio/minio:latest
     ports:
-      - '9000:9000'
-      - '9001:9001'
+      - "9000:9000"  # MinIO S3 en localhost
+      - "9001:9001"  # Consola web en localhost
+    command: server /data --console-address ":9001"
     volumes:
       - ./minio:/data
-    restart: unless-stopped
-    
+
   postgres:
     image: postgres:15
     container_name: postgres_db
+    restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: experiments
     ports:
       - "5432:5432"
-    networks:
-      - external_network
     command: ["postgres", "-c", "listen_addresses=*"]
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+
+  fastapi:
+    image: python:3.9
+    container_name: fastapi
+    environment:
+      DATABASE_URL: postgresql://user:password@localhost:5432/experiments
+      MLFLOW_TRACKING_URI: http://10.43.101.175:5000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+    command: >
+      bash -c "
+      apt-get update && apt-get install -y --no-install-recommends curl ca-certificates &&
+      curl -sSL https://astral.sh/uv/install.sh | sh &&
+      export PATH=\"/root/.local/bin/:$PATH\" &&
+      pip install fastapi uvicorn==0.27.0.post1 mlflow==2.0.1 pandas pydantic dill python-multipart &&
+      uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+
 
   pgadmin:
     image: dpage/pgadmin4
@@ -38,9 +57,3 @@ services:
       - "5050:80"
     depends_on:
       - postgres
-    networks:
-      - external_network
-
-networks:
-  external_network:
-    driver: bridge
