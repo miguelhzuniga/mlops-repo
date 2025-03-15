@@ -9,13 +9,11 @@ os.environ['MLFLOW_S3_ENDPOINT_URL'] = "http://10.43.101.175:9000"
 os.environ['AWS_ACCESS_KEY_ID'] = 'admin'
 os.environ['AWS_SECRET_ACCESS_KEY'] = 'supersecret'
 mlflow.set_tracking_uri("http://10.43.101.175:5000")
-
-# Cargar el modelo de MLFlow
 model_name = "modelo1"
 model_production_uri = f"models:/{model_name}/production"
 loaded_model = mlflow.pyfunc.load_model(model_uri=model_production_uri)
 
-# Definir el modelo de datos para FastAPI con validación de tipos
+
 class ModelInput(BaseModel):
     Elevation: int
     Aspect: int
@@ -48,21 +46,19 @@ class ModelInput(BaseModel):
             }
         }
 
-# Crear la aplicación FastAPI
+
 app = FastAPI()
 
-# Endpoint de bienvenida
 @app.get("/")
 def home():
     return {
         "message": "PRUEBA."
     }
 
-# Endpoint de predicción
 @app.post("/predict")
 async def predict(input_data: ModelInput):
     try:
-        # Convertir los datos de entrada a un DataFrame
+
         input_dict = {
             "Elevation": [input_data.Elevation],
             "Aspect": [input_data.Aspect],
@@ -78,13 +74,10 @@ async def predict(input_data: ModelInput):
             "Soil_Type": [input_data.Soil_Type]
         }
         
-        # Crear un DataFrame con una sola fila
         input_df = pd.DataFrame(input_dict)
 
-        # Realizar la predicción con el modelo cargado
         prediction = loaded_model.predict(input_df)
 
-        # Retornar la predicción
         return {"prediction": prediction.tolist()}
 
     except Exception as e:
