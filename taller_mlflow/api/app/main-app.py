@@ -49,11 +49,13 @@ class ModelInput(BaseModel):
 
 app = FastAPI()
 
+
 @app.get("/")
 def home():
     return {
         "message": "PRUEBA."
     }
+
 
 @app.post("/predict")
 async def predict(input_data: ModelInput):
@@ -82,3 +84,4 @@ async def predict(input_data: ModelInput):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
