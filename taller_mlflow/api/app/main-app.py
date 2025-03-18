@@ -36,7 +36,7 @@ app = FastAPI()
 @app.get("/")
 def home():
     return {
-        "message": "PRUEBA."
+        "message": "TALLER MLFLOW"
     }
 
 @app.post("/predict")
