@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./api
+    container_name: fastapi
+    ports:
+      - '80:80'
+    volumes:
+      - ./api/data:/data
+      - ./api/main.py:/main.py
+    restart: always
+    networks:
+      - my_network
+
+  # server:
+  #   build: ./app_server
+  #   container_name: server
+  #   networks:
+  #     - my_network
+
+  client:
+    build: ./app_client
+    container_name: client
+    depends_on:
+      - api
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: experiments
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-c", "listen_addresses=*"]
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: Minio
+    restart: unless-stopped
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=supersecret
+    ports:
+      - "9000:9000"  # MinIO S3 en localhost
+      - "9001:9001"  # Consola web en localhost
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./minio:/data
+
+  fastapi:
+    image: python:3.9
+    container_name: fastapi
+    environment:
+      DATABASE_URL: postgresql://user:password@localhost:5432/experiments
+      MLFLOW_TRACKING_URI: http://10.43.101.202:5000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app_server
+    working_dir: /app_server
+    command: >
+      bash -c "
+        apt-get update && apt-get install -y --no-install-recommends curl ca-certificates &&
+        pip install --no-cache-dir requirements.txt&&
+        uvicorn app.main-app:app --host 0.0.0.0 --port 8000"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
