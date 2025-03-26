@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  api:
+  api_server:
     build: ./api
-    container_name: fastapi
+    container_name: fastapi_server
     ports:
       - '80:80'
     volumes:
@@ -13,23 +13,13 @@ services:
     networks:
       - my_network
 
-  # server:
-  #   build: ./app_server
-  #   container_name: server
-  #   networks:
-  #     - my_network
-
   client:
     build: ./app_client
     container_name: client
     depends_on:
-      - api
+      - api_server
     networks:
       - my_network
-
-networks:
-  my_network:
-    driver: bridge
 
   postgres:
     image: postgres:15
@@ -68,13 +58,13 @@ networks:
     ports:
       - "8000:8000"
     volumes:
-      - ./api:/app_server
+      - ./app_server:/app_server
     working_dir: /app_server
-    command: >
-      bash -c "
-        apt-get update && apt-get install -y --no-install-recommends curl ca-certificates &&
-        pip install --no-cache-dir requirements.txt&&
-        uvicorn app.main-app:app --host 0.0.0.0 --port 8000"
+    # command: >
+    #   bash -c "
+    #     apt-get update && apt-get install -y --no-install-recommends curl ca-certificates &&
+    #     pip install --no-cache-dir fastapi uvicorn==0.27.0.post1 mlflow==2.3.0 numpy==1.24.4 psutil==7.0.0 scipy==1.11.4 pandas pydantic scikit-learn==1.2.2 dill python-multipart requests==2.28.2 boto3==1.26.121 &&
+    #     uvicorn app.main-app:app --host 0.0.0.0 --port 8000"
 
   pgadmin:
     image: dpage/pgadmin4
@@ -83,6 +73,10 @@ networks:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "5050:80"
+      - "5050:80" #FastAPI
     depends_on:
       - postgres
+
+networks:
+  my_network:
+    driver: bridge

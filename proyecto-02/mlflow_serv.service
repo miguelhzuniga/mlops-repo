@@ -1,0 +1,21 @@
+[Unit]
+Description=MLflow Tracking Server
+After=network.target postgresql.service minio.service
+ 
+[Service]
+User=estudiante
+Restart=on-failure
+RestartSec=3
+WorkingDirectory=/home/estudiante/Documents/mlops_taller_mlflow/MLOPS_PUJ/Niveles/2/mlflow/
+Environment=MLFLOW_S3_ENDPOINT_URL=http://10.43.101.202:9000
+Environment=AWS_ACCESS_KEY_ID=admin
+Environment=AWS_SECRET_ACCESS_KEY=supersecret
+ExecStart=/bin/bash -c "source /home/estudiante/miniconda3/etc/profile.d/conda.sh && conda activate base && mlflow server \
+    --backend-store-uri postgresql://user:password@localhost:5432/experiments \
+    --default-artifact-root s3://mlflows3/artifacts \
+    --host 0.0.0.0 \
+    --port 5000 \
+    --serve-artifacts"
+ 
+[Install]
+WantedBy=multi-user.target
