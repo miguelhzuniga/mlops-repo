@@ -1,0 +1,74 @@
+[2025-03-26T23:54:59.376+0000] {processor.py:156} INFO - Started process (PID=117) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:54:59.377+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:54:59.382+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:54:59.381+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:54:59.453+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:55:00.523+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:00.521+0000] {manager.py:504} INFO - Created Permission View: can edit on DAG:1-Borrar_penguins_db
+[2025-03-26T23:55:00.617+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:00.617+0000] {manager.py:504} INFO - Created Permission View: can read on DAG:1-Borrar_penguins_db
+[2025-03-26T23:55:00.662+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:00.660+0000] {manager.py:504} INFO - Created Permission View: can delete on DAG:1-Borrar_penguins_db
+[2025-03-26T23:55:00.662+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:00.662+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:55:00.760+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:00.760+0000] {dag.py:2747} INFO - Creating ORM DAG for 1-Borrar_penguins_db
+[2025-03-26T23:55:00.833+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:00.830+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:55:00.918+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 1.562 seconds
+[2025-03-26T23:55:31.865+0000] {processor.py:156} INFO - Started process (PID=142) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:55:31.869+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:55:31.870+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:31.870+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:55:31.891+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:55:31.963+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:31.963+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:55:32.004+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:55:32.004+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:55:32.038+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.181 seconds
+[2025-03-26T23:56:03.117+0000] {processor.py:156} INFO - Started process (PID=169) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:56:03.119+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:56:03.120+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:56:03.120+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:56:03.146+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:56:03.203+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:56:03.203+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:56:03.246+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:56:03.245+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:56:03.276+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.164 seconds
+[2025-03-26T23:56:35.647+0000] {processor.py:156} INFO - Started process (PID=197) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:56:35.650+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:56:35.654+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:56:35.654+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:56:35.705+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:56:35.915+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:56:35.914+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:56:36.108+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:56:36.108+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:56:36.276+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.649 seconds
+[2025-03-26T23:57:08.071+0000] {processor.py:156} INFO - Started process (PID=226) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:57:08.073+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:57:08.075+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:57:08.074+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:57:08.095+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:57:08.214+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:57:08.213+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:57:08.272+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:57:08.272+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:57:08.320+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.257 seconds
+[2025-03-26T23:57:40.129+0000] {processor.py:156} INFO - Started process (PID=262) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:57:40.131+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:57:40.133+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:57:40.132+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:57:40.153+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:57:40.234+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:57:40.234+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:57:40.292+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:57:40.292+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:57:40.325+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.206 seconds
+[2025-03-26T23:58:12.087+0000] {processor.py:156} INFO - Started process (PID=291) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:58:12.090+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:58:12.091+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:58:12.091+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:58:12.112+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:58:12.173+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:58:12.172+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:58:12.216+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:58:12.216+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:58:12.268+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.187 seconds
+[2025-03-26T23:58:43.797+0000] {processor.py:156} INFO - Started process (PID=320) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:58:43.799+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:58:43.800+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:58:43.800+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:58:43.825+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:58:43.889+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:58:43.889+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:58:43.940+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:58:43.940+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:58:43.971+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.181 seconds
+[2025-03-26T23:59:15.857+0000] {processor.py:156} INFO - Started process (PID=349) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:59:15.859+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:59:15.861+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:59:15.861+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:59:15.893+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:59:15.964+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:59:15.964+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:59:16.009+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:59:16.009+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:59:16.041+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.195 seconds
+[2025-03-26T23:59:47.775+0000] {processor.py:156} INFO - Started process (PID=378) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:59:47.777+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-03-26T23:59:47.778+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:59:47.778+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:59:47.803+0000] {processor.py:809} INFO - DAG(s) dict_keys(['1-Borrar_penguins_db']) retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-03-26T23:59:47.862+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:59:47.861+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-03-26T23:59:47.902+0000] {logging_mixin.py:149} INFO - [2025-03-26T23:59:47.902+0000] {dag.py:3490} INFO - Setting next_dagrun for 1-Borrar_penguins_db to None, run_after=None
+[2025-03-26T23:59:47.932+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.163 seconds
