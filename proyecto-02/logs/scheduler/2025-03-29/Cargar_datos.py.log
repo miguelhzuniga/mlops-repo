@@ -1,0 +1,1091 @@
+[2025-03-29T21:18:44.452+0000] {processor.py:186} INFO - Started process (PID=65) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:18:44.469+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:18:44.497+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:18:44.487+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:18:44.576+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:18:44.550+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:18:44.584+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:18:44.734+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.361 seconds
+[2025-03-29T21:19:34.569+0000] {processor.py:186} INFO - Started process (PID=137) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:19:34.572+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:19:34.580+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:19:34.579+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:19:34.597+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:19:34.592+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:19:34.598+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:19:34.674+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.132 seconds
+[2025-03-29T21:20:04.970+0000] {processor.py:186} INFO - Started process (PID=201) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:20:04.973+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:20:04.980+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:20:04.980+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:20:04.992+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:20:04.989+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:20:04.993+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:20:05.048+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.099 seconds
+[2025-03-29T21:20:35.452+0000] {processor.py:186} INFO - Started process (PID=265) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:20:35.454+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:20:35.461+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:20:35.460+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:20:35.474+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:20:35.472+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:20:35.475+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:20:35.519+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.086 seconds
+[2025-03-29T21:24:11.359+0000] {processor.py:186} INFO - Started process (PID=74) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:24:11.375+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:24:11.409+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:24:11.399+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:24:11.453+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:24:11.437+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:24:11.453+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:24:11.597+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.318 seconds
+[2025-03-29T21:24:47.779+0000] {processor.py:186} INFO - Started process (PID=140) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:24:47.789+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:24:47.814+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:24:47.813+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:24:47.869+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:24:47.849+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:24:47.880+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:24:47.982+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.228 seconds
+[2025-03-29T21:25:19.091+0000] {processor.py:186} INFO - Started process (PID=207) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:25:19.109+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:25:19.207+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:25:19.197+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:25:19.255+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:25:19.244+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:25:19.261+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:17.616+0000] {processor.py:186} INFO - Started process (PID=65) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:17.624+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:28:17.643+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:28:17.642+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:17.674+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:28:17.664+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:28:17.675+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:17.822+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.239 seconds
+[2025-03-29T21:28:54.665+0000] {processor.py:186} INFO - Started process (PID=132) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:54.670+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:28:54.675+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:28:54.674+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:54.684+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:28:54.682+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:28:54.685+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:28:54.731+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.084 seconds
+[2025-03-29T21:29:25.073+0000] {processor.py:186} INFO - Started process (PID=191) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:29:25.076+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:29:25.080+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:29:25.080+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:29:25.089+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:29:25.086+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:29:25.089+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:29:25.141+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.086 seconds
+[2025-03-29T21:29:55.589+0000] {processor.py:186} INFO - Started process (PID=258) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:29:55.591+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:29:55.595+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:29:55.595+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:29:55.603+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:29:55.601+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:29:55.603+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:29:55.648+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.071 seconds
+[2025-03-29T21:30:25.983+0000] {processor.py:186} INFO - Started process (PID=324) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:30:25.985+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:30:25.989+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:30:25.989+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:30:25.997+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:30:25.995+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:30:25.998+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:30:26.039+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.070 seconds
+[2025-03-29T21:30:56.705+0000] {processor.py:186} INFO - Started process (PID=391) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:30:56.707+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:30:56.712+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:30:56.711+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:30:56.720+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:30:56.718+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:30:56.720+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:30:56.756+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.065 seconds
+[2025-03-29T21:31:27.276+0000] {processor.py:186} INFO - Started process (PID=458) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:31:27.279+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:31:27.283+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:31:27.283+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:31:27.292+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:31:27.289+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:31:27.292+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:31:27.343+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.079 seconds
+[2025-03-29T21:31:58.044+0000] {processor.py:186} INFO - Started process (PID=525) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:31:58.049+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:31:58.055+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:31:58.054+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:31:58.063+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:31:58.061+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:31:58.064+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:31:58.107+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.078 seconds
+[2025-03-29T21:32:28.889+0000] {processor.py:186} INFO - Started process (PID=592) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:32:28.892+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:32:28.897+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:32:28.896+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:32:28.908+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:32:28.905+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:32:28.909+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:32:29.018+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.144 seconds
+[2025-03-29T21:32:59.139+0000] {processor.py:186} INFO - Started process (PID=656) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:32:59.141+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:32:59.146+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:32:59.145+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:32:59.154+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:32:59.151+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:32:59.155+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:32:59.208+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.083 seconds
+[2025-03-29T21:33:29.723+0000] {processor.py:186} INFO - Started process (PID=723) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:33:29.726+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:33:29.731+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:33:29.731+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:33:29.741+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:33:29.739+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:33:29.742+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:33:29.790+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.081 seconds
+[2025-03-29T21:34:00.309+0000] {processor.py:186} INFO - Started process (PID=790) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:34:00.316+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:34:00.322+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:34:00.321+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:34:00.331+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:34:00.328+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:34:00.332+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:34:00.375+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.079 seconds
+[2025-03-29T21:34:30.742+0000] {processor.py:186} INFO - Started process (PID=853) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:34:30.747+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:34:30.763+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:34:30.762+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:34:30.785+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:34:30.777+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:34:30.786+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:34:30.866+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.138 seconds
+[2025-03-29T21:35:02.632+0000] {processor.py:186} INFO - Started process (PID=916) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:35:02.640+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:35:02.658+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:35:02.657+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:35:02.674+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:35:02.668+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:35:02.675+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:35:02.892+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.306 seconds
+[2025-03-29T21:45:04.057+0000] {processor.py:186} INFO - Started process (PID=61) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:45:04.074+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:45:04.117+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:45:04.117+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:45:04.209+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:45:04.169+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:45:04.216+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:45:04.574+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.609 seconds
+[2025-03-29T21:49:16.268+0000] {processor.py:186} INFO - Started process (PID=68) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:49:16.283+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:49:16.311+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:49:16.307+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:49:16.376+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:49:16.354+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:49:16.377+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:49:16.621+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.400 seconds
+[2025-03-29T21:50:05.976+0000] {processor.py:186} INFO - Started process (PID=139) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:50:05.979+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:50:05.987+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:50:05.986+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:50:06.002+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:50:05.999+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:50:06.003+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:50:06.048+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.086 seconds
+[2025-03-29T21:50:36.499+0000] {processor.py:186} INFO - Started process (PID=203) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:50:36.502+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:50:36.509+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:50:36.508+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:50:36.521+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:50:36.519+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:50:36.522+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:50:36.575+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.098 seconds
+[2025-03-29T21:51:07.157+0000] {processor.py:186} INFO - Started process (PID=267) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:51:07.159+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:51:07.169+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:51:07.168+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:51:07.186+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:51:07.182+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:51:07.188+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:51:07.253+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.121 seconds
+[2025-03-29T21:51:37.625+0000] {processor.py:186} INFO - Started process (PID=333) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:51:37.628+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:51:37.632+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:51:37.632+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:51:37.641+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:51:37.638+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:51:37.642+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:51:37.684+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.072 seconds
+[2025-03-29T21:52:07.910+0000] {processor.py:186} INFO - Started process (PID=398) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:52:07.912+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:52:07.920+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:52:07.919+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:52:07.927+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:52:07.925+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:52:07.929+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:52:07.979+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.087 seconds
+[2025-03-29T21:52:38.140+0000] {processor.py:186} INFO - Started process (PID=464) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:52:38.142+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:52:38.148+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:52:38.147+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:52:38.157+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:52:38.154+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:52:38.158+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:52:38.206+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.081 seconds
+[2025-03-29T21:53:08.316+0000] {processor.py:186} INFO - Started process (PID=526) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:53:08.317+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:53:08.326+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:53:08.325+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:53:08.335+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:53:08.333+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:53:08.336+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:53:08.387+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.090 seconds
+[2025-03-29T21:53:39.249+0000] {processor.py:186} INFO - Started process (PID=593) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:53:39.252+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:53:39.259+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:53:39.258+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:53:39.270+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:53:39.268+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:53:39.271+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:53:39.373+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.139 seconds
+[2025-03-29T21:54:10.299+0000] {processor.py:186} INFO - Started process (PID=660) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:54:10.302+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:54:10.308+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:54:10.307+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:54:10.318+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:54:10.315+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:54:10.319+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:54:10.389+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.105 seconds
+[2025-03-29T21:54:40.923+0000] {processor.py:186} INFO - Started process (PID=727) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:54:40.928+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T21:54:40.937+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:54:40.937+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:54:40.959+0000] {logging_mixin.py:190} INFO - [2025-03-29T21:54:40.955+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T21:54:40.962+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T21:54:41.076+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.189 seconds
+[2025-03-29T23:13:22.585+0000] {processor.py:186} INFO - Started process (PID=70) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:13:22.590+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:13:22.601+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:13:22.600+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:13:22.631+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:13:22.620+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:13:22.633+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:13:22.806+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.263 seconds
+[2025-03-29T23:14:11.111+0000] {processor.py:186} INFO - Started process (PID=143) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:14:11.113+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:14:11.118+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:14:11.117+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:14:11.127+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:14:11.124+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:14:11.128+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:14:11.168+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.072 seconds
+[2025-03-29T23:14:42.321+0000] {processor.py:186} INFO - Started process (PID=209) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:14:42.324+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:14:42.329+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:14:42.328+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:14:42.337+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:14:42.335+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:14:42.338+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:14:42.402+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.099 seconds
+[2025-03-29T23:15:13.380+0000] {processor.py:186} INFO - Started process (PID=276) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:15:13.383+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:15:13.389+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:15:13.388+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:15:13.398+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:15:13.395+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:15:13.398+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:15:13.449+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.083 seconds
+[2025-03-29T23:15:43.641+0000] {processor.py:186} INFO - Started process (PID=343) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:15:43.644+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:15:43.649+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:15:43.648+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:15:43.657+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:15:43.655+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:15:43.658+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:15:43.711+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.084 seconds
+[2025-03-29T23:16:14.408+0000] {processor.py:186} INFO - Started process (PID=410) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:16:14.411+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:16:14.416+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:16:14.416+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:16:14.426+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:16:14.423+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:16:14.426+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:16:14.480+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.084 seconds
+[2025-03-29T23:16:45.916+0000] {processor.py:186} INFO - Started process (PID=464) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:16:45.932+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:16:45.950+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:16:45.949+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:16:45.970+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:16:45.962+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:16:45.976+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:16:46.097+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.218 seconds
+[2025-03-29T23:17:16.414+0000] {processor.py:186} INFO - Started process (PID=531) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:17:16.417+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:17:16.423+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:17:16.422+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:17:16.433+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:17:16.430+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:17:16.434+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:17:16.488+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.096 seconds
+[2025-03-29T23:33:59.598+0000] {processor.py:186} INFO - Started process (PID=68) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:33:59.609+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:33:59.634+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:33:59.633+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:33:59.703+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:33:59.690+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:33:59.720+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:33:59.902+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.355 seconds
+[2025-03-29T23:34:43.730+0000] {processor.py:186} INFO - Started process (PID=134) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:34:43.733+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:34:43.744+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:34:43.741+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:34:43.760+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:34:43.755+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:34:43.761+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:34:43.812+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.104 seconds
+[2025-03-29T23:35:14.073+0000] {processor.py:186} INFO - Started process (PID=201) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:35:14.075+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:35:14.080+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:35:14.080+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:35:14.089+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:35:14.087+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:35:14.090+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:35:14.142+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.087 seconds
+[2025-03-29T23:35:44.317+0000] {processor.py:186} INFO - Started process (PID=263) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:35:44.320+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:35:44.329+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:35:44.329+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:35:44.342+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:35:44.339+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:35:44.343+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:35:44.401+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.114 seconds
+[2025-03-29T23:36:14.538+0000] {processor.py:186} INFO - Started process (PID=323) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:36:14.541+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:36:14.546+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:36:14.545+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:36:14.556+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:36:14.553+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:36:14.557+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:36:14.609+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.091 seconds
+[2025-03-29T23:36:45.290+0000] {processor.py:186} INFO - Started process (PID=395) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:36:45.293+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:36:45.298+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:36:45.297+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:36:45.306+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:36:45.304+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:36:45.308+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:36:45.357+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.082 seconds
+[2025-03-29T23:37:15.447+0000] {processor.py:186} INFO - Started process (PID=460) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:37:15.450+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:37:15.455+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:37:15.454+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:37:15.463+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:37:15.461+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:37:15.464+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:37:15.512+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.079 seconds
+[2025-03-29T23:37:45.698+0000] {processor.py:186} INFO - Started process (PID=526) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:37:45.700+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:37:45.705+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:37:45.704+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:37:45.714+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:37:45.712+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:37:45.715+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:37:45.752+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.069 seconds
+[2025-03-29T23:38:16.125+0000] {processor.py:186} INFO - Started process (PID=593) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:38:16.128+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:38:16.140+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:38:16.136+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:38:16.159+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:38:16.153+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:38:16.160+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:38:16.256+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.160 seconds
+[2025-03-29T23:38:46.774+0000] {processor.py:186} INFO - Started process (PID=658) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:38:46.777+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:38:46.785+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:38:46.783+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:38:46.796+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:38:46.793+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:38:46.797+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:38:46.858+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.122 seconds
+[2025-03-29T23:39:17.377+0000] {processor.py:186} INFO - Started process (PID=724) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:39:17.380+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:39:17.385+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:39:17.384+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:39:17.393+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:39:17.391+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:39:17.394+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:39:17.442+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.079 seconds
+[2025-03-29T23:39:47.685+0000] {processor.py:186} INFO - Started process (PID=791) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:39:47.687+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:39:47.692+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:39:47.691+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:39:47.700+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:39:47.698+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:39:47.701+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:39:47.737+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.067 seconds
+[2025-03-29T23:40:18.126+0000] {processor.py:186} INFO - Started process (PID=858) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:40:18.128+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:40:18.134+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:40:18.133+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:40:18.144+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:40:18.141+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:40:18.145+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:40:18.198+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.087 seconds
+[2025-03-29T23:40:48.442+0000] {processor.py:186} INFO - Started process (PID=925) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:40:48.445+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:40:48.450+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:40:48.449+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:40:48.459+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:40:48.457+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:40:48.460+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:40:48.507+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.079 seconds
+[2025-03-29T23:41:19.341+0000] {processor.py:186} INFO - Started process (PID=989) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:41:19.343+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:41:19.350+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:41:19.349+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:41:19.364+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:41:19.360+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:41:19.365+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:41:19.425+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.106 seconds
+[2025-03-29T23:41:50.520+0000] {processor.py:186} INFO - Started process (PID=1055) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:41:50.526+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:41:50.535+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:41:50.532+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:41:50.553+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:41:50.550+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:41:50.554+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:41:50.617+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.113 seconds
+[2025-03-29T23:42:21.061+0000] {processor.py:186} INFO - Started process (PID=1119) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:42:21.063+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:42:21.068+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:42:21.067+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:42:21.076+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:42:21.074+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:42:21.077+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:42:21.131+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.085 seconds
+[2025-03-29T23:42:51.593+0000] {processor.py:186} INFO - Started process (PID=1186) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:42:51.596+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:42:51.601+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:42:51.600+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:42:51.609+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:42:51.607+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:42:51.610+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:42:51.650+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.072 seconds
+[2025-03-29T23:43:22.076+0000] {processor.py:186} INFO - Started process (PID=1240) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:43:22.078+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:43:22.083+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:43:22.083+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:43:22.098+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:43:22.093+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:43:22.098+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:43:22.147+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.088 seconds
+[2025-03-29T23:43:53.215+0000] {processor.py:186} INFO - Started process (PID=1303) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:43:53.217+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:43:53.222+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:43:53.222+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:43:53.231+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:43:53.228+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:43:53.231+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:43:53.275+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.074 seconds
+[2025-03-29T23:44:26.507+0000] {processor.py:186} INFO - Started process (PID=1369) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:44:26.509+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:44:26.515+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:44:26.514+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:44:26.524+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:44:26.521+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:44:26.526+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:44:26.572+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.078 seconds
+[2025-03-29T23:44:59.463+0000] {processor.py:186} INFO - Started process (PID=1436) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:44:59.466+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:44:59.474+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:44:59.474+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:44:59.483+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:44:59.480+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:44:59.483+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:44:59.544+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.117 seconds
+[2025-03-29T23:45:29.888+0000] {processor.py:186} INFO - Started process (PID=1501) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:45:29.890+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:45:29.896+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:45:29.895+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:45:29.905+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:45:29.902+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:45:29.906+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:45:29.952+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.079 seconds
+[2025-03-29T23:46:00.844+0000] {processor.py:186} INFO - Started process (PID=1568) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:46:00.846+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:46:00.851+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:46:00.850+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:46:00.859+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:46:00.857+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:46:00.859+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:46:00.896+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.066 seconds
+[2025-03-29T23:46:31.022+0000] {processor.py:186} INFO - Started process (PID=1635) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:46:31.024+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:46:31.030+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:46:31.029+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:46:31.040+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:46:31.037+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:46:31.041+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:46:31.104+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.098 seconds
+[2025-03-29T23:47:01.612+0000] {processor.py:186} INFO - Started process (PID=1702) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:47:01.614+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:47:01.621+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:47:01.620+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:47:01.630+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:47:01.628+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:47:01.631+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:47:01.681+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.083 seconds
+[2025-03-29T23:47:31.832+0000] {processor.py:186} INFO - Started process (PID=1769) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:47:31.838+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:47:31.847+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:47:31.846+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:47:31.864+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:47:31.859+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:47:31.866+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:47:31.959+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.165 seconds
+[2025-03-29T23:48:02.783+0000] {processor.py:186} INFO - Started process (PID=1836) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:48:02.785+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:48:02.791+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:48:02.789+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:48:02.799+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:48:02.797+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:48:02.800+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:48:02.869+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.098 seconds
+[2025-03-29T23:48:33.214+0000] {processor.py:186} INFO - Started process (PID=1902) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:48:33.218+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:48:33.223+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:48:33.223+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:48:33.232+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:48:33.230+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:48:33.232+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:48:33.273+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.072 seconds
+[2025-03-29T23:49:03.515+0000] {processor.py:186} INFO - Started process (PID=1968) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:49:03.517+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:49:03.522+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:49:03.521+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:49:03.530+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:49:03.528+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:49:03.531+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:49:03.587+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.085 seconds
+[2025-03-29T23:49:34.079+0000] {processor.py:186} INFO - Started process (PID=2034) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:49:34.081+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:49:34.086+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:49:34.085+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:49:34.095+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:49:34.092+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:49:34.096+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:49:34.153+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.087 seconds
+[2025-03-29T23:50:05.012+0000] {processor.py:186} INFO - Started process (PID=2101) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:50:05.015+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:50:05.023+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:50:05.022+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:50:05.036+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:50:05.031+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:50:05.037+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:50:05.089+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.095 seconds
+[2025-03-29T23:50:35.442+0000] {processor.py:186} INFO - Started process (PID=2167) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:50:35.445+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:50:35.450+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:50:35.450+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:50:35.462+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:50:35.457+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:50:35.462+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:50:35.514+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.096 seconds
+[2025-03-29T23:51:05.929+0000] {processor.py:186} INFO - Started process (PID=2234) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:51:05.932+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:51:05.937+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:51:05.937+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:51:05.947+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:51:05.944+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:51:05.948+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:51:05.990+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.081 seconds
+[2025-03-29T23:51:36.663+0000] {processor.py:186} INFO - Started process (PID=2301) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:51:36.665+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:51:36.670+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:51:36.669+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:51:36.681+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:51:36.679+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:51:36.682+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:51:36.721+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.076 seconds
+[2025-03-29T23:52:06.865+0000] {processor.py:186} INFO - Started process (PID=2368) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:52:06.868+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:52:06.875+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:52:06.874+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:52:06.887+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:52:06.884+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:52:06.888+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:52:06.950+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.103 seconds
+[2025-03-29T23:52:37.170+0000] {processor.py:186} INFO - Started process (PID=2435) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:52:37.171+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-29T23:52:37.178+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:52:37.177+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:52:37.198+0000] {logging_mixin.py:190} INFO - [2025-03-29T23:52:37.195+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 3, in <module>
+    from airflow.providers.mysql.operators.mysql import MySqlOperator
+ModuleNotFoundError: No module named 'airflow.providers.mysql.operators'
+[2025-03-29T23:52:37.200+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-29T23:52:37.250+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.098 seconds

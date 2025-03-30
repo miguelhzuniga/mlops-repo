@@ -1,0 +1,22 @@
+[Unit]
+Description=MLflow Tracking Server
+After=network.target
+
+[Service]
+User=estudiante
+Restart=on-failure
+RestartSec=3
+WorkingDirectory=/home/estudiante/MLOPS/mlops-repo/proyecto-02/
+Environment="MLFLOW_S3_ENDPOINT_URL=http://10.43.101.202:9000"
+Environment="AWS_ACCESS_KEY_ID=admin"
+Environment="AWS_SECRET_ACCESS_KEY=supersecret"
+
+ExecStart=/home/estudiante/MLOPS/mlops-repo/.venv/bin/python -m mlflow server\
+    --backend-store-uri postgresql://airflow:airflow@postgres:5432/airflow \
+    --default-artifact-root s3://mlflows3/artifacts \
+    --host 0.0.0.0 \
+    --port 5000 \
+    --serve-artifacts
+
+[Install]
+WantedBy=multi-user.target

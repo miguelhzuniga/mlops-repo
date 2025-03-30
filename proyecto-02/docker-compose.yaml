@@ -1,29 +1,81 @@
-version: '3.8'
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
 
+# Basic Airflow cluster configuration for CeleryExecutor with Redis and PostgreSQL.
+#
+# WARNING: This configuration is for local development. Do not use it in a production deployment.
+#
+# This configuration supports basic configuration using environment variables or an .env file
+# The following variables are supported:
+#
+# AIRFLOW_IMAGE_NAME           - Docker image name used to run Airflow.
+#                                Default: apache/airflow:2.10.5
+# AIRFLOW_UID                  - User ID in Airflow containers
+#                                Default: 50000
+# AIRFLOW_PROJ_DIR             - Base path to which all the files will be volumed.
+#                                Default: .
+# Those configurations are useful mostly in case of standalone testing/running Airflow in test/try-out mode
+#
+# _AIRFLOW_WWW_USER_USERNAME   - Username for the administrator account (if requested).
+#                                Default: airflow
+# _AIRFLOW_WWW_USER_PASSWORD   - Password for the administrator account (if requested).
+#                                Default: airflow
+# _PIP_ADDITIONAL_REQUIREMENTS - Additional PIP requirements to add when starting all containers.
+#                                Use this option ONLY for quick checks. Installing requirements at container
+#                                startup is done EVERY TIME the service is started.
+#                                A better way is to build a custom image or extend the official image
+#                                as described in https://airflow.apache.org/docs/docker-stack/build.html.
+#                                Default: ''
+#
+# Feel free to modify this file to suit your needs.
+---
 x-airflow-common:
   &airflow-common
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.6.0}
+  # In order to add custom dependencies or upgrade provider packages you can use your extended image.
+  # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
+  # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
+  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.10.5-python3.8}
+  # build: .
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres:5432/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+    # yamllint disable rule:line-length
+    # Use simple http server on scheduler for health checks
+    # See https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/logging-monitoring/check-health.html#scheduler-health-check-server
+    # yamllint enable rule:line-length
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
-    _PIP_ADDITIONAL_REQUIREMENTS: "${_PIP_ADDITIONAL_REQUIREMENTS:-joblib scikit-learn==1.0.2 numpy==1.21.0 apache-airflow-providers-mysql}"
-    AIRFLOW_CONN_MYSQL_DEFAULT: 'mysql://airflow:airflow@mysql:3306/airflow_db'
-
+    # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
+    # for other purpose (development, test and especially production usage) build/extend Airflow image.
+    _PIP_ADDITIONAL_REQUIREMENTS: "${_PIP_ADDITIONAL_REQUIREMENTS:- pip joblib scikit-learn==1.0.2 numpy==1.21.0 apache-airflow-providers-mysql}"
+    # The following line can be used to set a custom config file, stored in the local config folder
+    # If you want to use it, outcomment it and replace airflow.cfg with the name of your config file
+    # AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
-    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data
-    - ${AIRFLOW_PROJ_DIR:-.}/models:/opt/airflow/models
-    - ${AIRFLOW_PROJ_DIR:-.}/api:/opt/airflow/api
+    - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
@@ -32,41 +84,8 @@ x-airflow-common:
       condition: service_healthy
     postgres:
       condition: service_healthy
-    mysql:
-      condition: service_healthy
 
 services:
-  api_server:
-    build: ./api_server
-    container_name: fastapi_server
-    ports:
-      - '80:80'
-    volumes:
-      - ./api_server/data:/data
-      - ./api_server/main_server.py:/main_server.py
-    restart: always
-    networks:
-      - my_network
-
-  postgres:
-    image: postgres:13
-    container_name: postgres_db
-    restart: always
-    environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
-    ports:
-      - "5432:5432"
-    command: ["postgres", "-c", "listen_addresses=*"]
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "airflow"]
-      interval: 10s
-      retries: 5
-      start_period: 5s
-    
   minio:
     image: quay.io/minio/minio:latest
     container_name: Minio
@@ -80,25 +99,8 @@ services:
     command: server /data --console-address ":9001"
     volumes:
       - ./minio:/data
-
-  fastapi:
-    image: python:3.9
-    container_name: fastapi
-    environment:
-      DATABASE_URL: postgresql://user:password@localhost:5432/experiments
-      MLFLOW_TRACKING_URI: http://10.43.101.202:5000
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./api:/app
-    working_dir: /app
     networks:
-      - my_network
-    # command: >
-    #   bash -c "
-    #     apt-get update && apt-get install -y --no-install-recommends curl ca-certificates &&
-    #     pip install --no-cache-dir fastapi uvicorn==0.27.0.post1 mlflow==2.3.0 numpy==1.24.4 psutil==7.0.0 scipy==1.11.4 pandas pydantic scikit-learn==1.2.2 dill python-multipart requests==2.28.2 boto3==1.26.121 &&
-    #     uvicorn app.main-app:app --host 0.0.0.0 --port 8000"
+      - net_mlops
 
   pgadmin:
     image: dpage/pgadmin4
@@ -107,32 +109,110 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "5050:80" #FastAPI
+      - "5050:80"  
     depends_on:
       - postgres
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:80/"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 10s
+
 
   mysql:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: airflow_db
-      MYSQL_USER: airflow
-      MYSQL_PASSWORD: airflow
+      MYSQL_ROOT_PASSWORD: mysql_root_password
+      MYSQL_DATABASE: mlflow_db   # Database name for MLFlow
+      MYSQL_USER: mlflow
+      MYSQL_PASSWORD: mlflow
     ports:
-      - "3306:3306"  #Este es el puerto utilizado por mysql
+      - "3306:3306"
     volumes:
       - mysql-db-volume:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
       interval: 10s
-      timeout: 5s
       retries: 5
       start_period: 30s
     restart: always
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    networks:
+      - net_mlops
+
+  mlflow:
+    build: ./mlflow
+    container_name: mlflow
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_BACKEND_STORE_URI: mysql://mlflow:mlflow@mysql/mlflow_db  # Connect to MySQL
+      MLFLOW_DEFAULT_ARTIFACT_ROOT: s3://mlflows3/artifacts
+      AWS_ACCESS_KEY_ID: mlflow
+      AWS_SECRET_ACCESS_KEY: mlflow
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+    ports:
+      - "5000:5000"  # MLFlow UI
+    depends_on:
+      - mysql
+      - minio
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:5000/"]
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 10s
+    networks:
+      - net_mlops
+
+  api_server:
+    build: ./api_server
+    container_name: fastapi_server
+    ports:
+      - '80:80'
+    volumes:
+      - ./api_server/data:/data
+      - ./api_server/main_server.py:/main_server.py
+    restart: always
+    networks:
+      - net_mlops
+  
+  dev:
+    build: ./jupyterlab
+    container_name: jupyter_dev
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./mlflow:/home/jovyan/work
+    environment:
+      - JUPYTER_TOKEN=devtoken
+    restart: always
+    networks:
+      - net_mlops
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-c", "listen_addresses=*"]
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
 
   redis:
-    image: redis:latest
+    # Redis is limited to 7.2-bookworm due to licencing change
+    # https://redis.io/blog/redis-adopts-dual-source-available-licensing/
+    image: redis:7.2-bookworm
     expose:
       - 6379
     healthcheck:
@@ -142,6 +222,7 @@ services:
       retries: 50
       start_period: 30s
     restart: always
+
 
   airflow-webserver:
     <<: *airflow-common
@@ -175,19 +256,23 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+
   airflow-worker:
     <<: *airflow-common
     command: celery worker
     healthcheck:
+      # yamllint disable rule:line-length
       test:
         - "CMD-SHELL"
-        - 'celery --app airflow.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"'
+        - 'celery --app airflow.providers.celery.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}" || celery --app airflow.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"'
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 30s
     environment:
       <<: *airflow-common-env
+      # Required to handle warm shutdown of the celery workers properly
+      # See https://airflow.apache.org/docs/docker-stack/entrypoint.html#signal-propagation
       DUMB_INIT_SETSID: "0"
     restart: always
     depends_on:
@@ -195,6 +280,7 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+      
   airflow-triggerer:
     <<: *airflow-common
     command: triggerer
@@ -210,26 +296,14 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+      
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
+    # yamllint disable rule:line-length
     command:
       - -c
       - |
-        function ver() {
-          printf "%04d%04d%04d%04d" $${1//./ }
-        }
-        airflow_version=$$(AIRFLOW__LOGGING__LOGGING_LEVEL=INFO && gosu airflow airflow version)
-        airflow_version_comparable=$$(ver $${airflow_version})
-        min_airflow_version=2.2.0
-        min_airflow_version_comparable=$$(ver $${min_airflow_version})
-        if (( airflow_version_comparable < min_airflow_version_comparable )); then
-          echo
-          echo -e "\033[1;31mERROR!!!: Too old Airflow version $${airflow_version}!\e[0m"
-          echo "The minimum Airflow version supported: $${min_airflow_version}. Only use this or higher!"
-          echo
-          exit 1
-        fi
         if [[ -z "${AIRFLOW_UID}" ]]; then
           echo
           echo -e "\033[1;33mWARNING!!!: AIRFLOW_UID not set!\e[0m"
@@ -275,9 +349,10 @@ services:
         mkdir -p /sources/logs /sources/dags /sources/plugins
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
         exec /entrypoint airflow version
+    # yamllint enable rule:line-length
     environment:
       <<: *airflow-common-env
-      _AIRFLOW_DB_UPGRADE: 'true'
+      _AIRFLOW_DB_MIGRATE: 'true'
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
@@ -293,11 +368,15 @@ services:
     environment:
       <<: *airflow-common-env
       CONNECTION_CHECK_MAX_COUNT: "0"
+    # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
     command:
       - bash
       - -c
       - airflow
 
+  # You can enable flower by adding "--profile flower" option e.g. docker-compose --profile flower up
+  # or by explicitly targeted on the command line e.g. docker-compose up flower.
+  # See: https://docs.docker.com/compose/profiles/
   flower:
     <<: *airflow-common
     command: celery flower
@@ -317,13 +396,11 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+      
 volumes:
   postgres-db-volume:
   mysql-db-volume:
 
 networks:
-  my_network:
+  net_mlops:
     driver: bridge
-
-
-  
