@@ -1818,3 +1818,45 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'DAG'
 [2025-03-30T04:34:45.071+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
 [2025-03-30T04:34:45.134+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.121 seconds
+[2025-03-30T04:35:15.463+0000] {processor.py:186} INFO - Started process (PID=307) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:35:15.465+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-30T04:35:15.472+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:15.471+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:35:15.481+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:15.479+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 1, in <module>
+    import DAG
+ModuleNotFoundError: No module named 'DAG'
+[2025-03-30T04:35:15.481+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:35:15.522+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.075 seconds
+[2025-03-30T04:35:45.805+0000] {processor.py:186} INFO - Started process (PID=380) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:35:45.807+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-30T04:35:45.813+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:45.812+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:35:45.821+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:45.820+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 1, in <module>
+    import DAG
+ModuleNotFoundError: No module named 'DAG'
+[2025-03-30T04:35:45.822+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:35:45.859+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.069 seconds
+[2025-03-30T04:36:17.508+0000] {processor.py:186} INFO - Started process (PID=449) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:36:17.510+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-03-30T04:36:17.519+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:17.517+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:36:17.535+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:17.534+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/Cargar_datos.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/Cargar_datos.py", line 1, in <module>
+    import DAG
+ModuleNotFoundError: No module named 'DAG'
+[2025-03-30T04:36:17.536+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-03-30T04:36:17.586+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.094 seconds

@@ -1909,3 +1909,24 @@ ModuleNotFoundError: No module named 'joblib'
 [2025-03-30T04:34:51.522+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:34:51.519+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-03-30T04:34:51.562+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:34:51.562+0000] {dag.py:4180} INFO - Setting next_dagrun for 3-Procesar_penguins_data to None, run_after=None
 [2025-03-30T04:34:51.620+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 1.347 seconds
+[2025-03-30T04:35:21.823+0000] {processor.py:186} INFO - Started process (PID=309) to work on /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:35:21.825+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-03-30T04:35:21.829+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:21.829+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:35:23.038+0000] {processor.py:925} INFO - DAG(s) '3-Procesar_penguins_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:35:23.094+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:23.093+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:35:23.125+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:23.124+0000] {dag.py:4180} INFO - Setting next_dagrun for 3-Procesar_penguins_data to None, run_after=None
+[2025-03-30T04:35:23.175+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 1.366 seconds
+[2025-03-30T04:35:54.059+0000] {processor.py:186} INFO - Started process (PID=382) to work on /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:35:54.061+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-03-30T04:35:54.066+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:54.065+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:35:55.203+0000] {processor.py:925} INFO - DAG(s) '3-Procesar_penguins_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:35:55.271+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:55.271+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:35:55.306+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:35:55.305+0000] {dag.py:4180} INFO - Setting next_dagrun for 3-Procesar_penguins_data to None, run_after=None
+[2025-03-30T04:35:55.366+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 1.328 seconds
+[2025-03-30T04:36:25.627+0000] {processor.py:186} INFO - Started process (PID=455) to work on /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:36:25.629+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-03-30T04:36:25.635+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:25.634+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:36:26.453+0000] {processor.py:925} INFO - DAG(s) '3-Procesar_penguins_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-03-30T04:36:26.490+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:26.490+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:36:26.520+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:26.519+0000] {dag.py:4180} INFO - Setting next_dagrun for 3-Procesar_penguins_data to None, run_after=None
+[2025-03-30T04:36:26.561+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 0.953 seconds
