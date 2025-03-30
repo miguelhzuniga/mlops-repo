@@ -1791,3 +1791,199 @@ ModuleNotFoundError: No module named 'joblib'
 [2025-03-30T04:36:26.644+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:26.643+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-03-30T04:36:26.668+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:26.668+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
 [2025-03-30T04:36:26.696+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 0.942 seconds
+[2025-03-30T04:36:57.272+0000] {processor.py:186} INFO - Started process (PID=529) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:36:57.274+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:36:57.279+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:57.278+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:36:58.254+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:36:58.384+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:58.384+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:36:58.438+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:36:58.437+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:36:58.528+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.271 seconds
+[2025-03-30T04:37:29.609+0000] {processor.py:186} INFO - Started process (PID=602) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:37:29.624+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:37:29.665+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:37:29.650+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:37:31.796+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:37:31.880+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:37:31.879+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:37:31.927+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:37:31.926+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:37:31.991+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 2.554 seconds
+[2025-03-30T04:38:03.036+0000] {processor.py:186} INFO - Started process (PID=678) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:38:03.043+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:38:03.055+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:38:03.054+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:38:04.357+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:38:04.407+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:38:04.406+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:38:04.439+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:38:04.438+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:38:04.466+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.489 seconds
+[2025-03-30T04:38:35.350+0000] {processor.py:186} INFO - Started process (PID=753) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:38:35.354+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:38:35.361+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:38:35.360+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:38:36.310+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:38:36.350+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:38:36.350+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:38:36.375+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:38:36.375+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:38:36.403+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.073 seconds
+[2025-03-30T04:39:06.778+0000] {processor.py:186} INFO - Started process (PID=826) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:39:06.780+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:39:06.785+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:39:06.785+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:39:08.200+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:39:08.253+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:39:08.252+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:39:08.287+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:39:08.287+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:39:08.327+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.567 seconds
+[2025-03-30T04:39:39.512+0000] {processor.py:186} INFO - Started process (PID=896) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:39:39.517+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:39:39.523+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:39:39.522+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:39:40.374+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:39:40.421+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:39:40.421+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:39:40.447+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:39:40.446+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:39:40.481+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.011 seconds
+[2025-03-30T04:40:11.074+0000] {processor.py:186} INFO - Started process (PID=968) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:40:11.079+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:40:11.084+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:40:11.084+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:40:12.334+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:40:12.392+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:40:12.391+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:40:12.425+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:40:12.425+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:40:12.463+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.415 seconds
+[2025-03-30T04:40:43.839+0000] {processor.py:186} INFO - Started process (PID=1049) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:40:43.847+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:40:43.869+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:40:43.869+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:40:47.617+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:40:47.692+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:40:47.691+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:40:47.733+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:40:47.732+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:40:47.772+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 4.033 seconds
+[2025-03-30T04:41:18.934+0000] {processor.py:186} INFO - Started process (PID=1122) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:41:18.938+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:41:18.954+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:41:18.951+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:41:22.420+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:41:22.596+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:41:22.596+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:41:22.682+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:41:22.680+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:41:22.747+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 3.828 seconds
+[2025-03-30T04:41:53.799+0000] {processor.py:186} INFO - Started process (PID=1194) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:41:53.807+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:41:53.819+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:41:53.819+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:41:55.309+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:41:55.397+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:41:55.395+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:41:55.453+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:41:55.453+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:41:55.510+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.777 seconds
+[2025-03-30T04:42:25.984+0000] {processor.py:186} INFO - Started process (PID=1268) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:42:25.992+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:42:25.998+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:42:25.997+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:42:27.412+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:42:27.555+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:42:27.554+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:42:27.645+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:42:27.645+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:42:27.802+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.845 seconds
+[2025-03-30T04:42:58.271+0000] {processor.py:186} INFO - Started process (PID=1341) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:42:58.276+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:42:58.292+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:42:58.292+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:43:00.340+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:43:00.469+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:43:00.468+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:43:00.583+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:43:00.582+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:43:00.755+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 2.512 seconds
+[2025-03-30T04:43:31.178+0000] {processor.py:186} INFO - Started process (PID=1414) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:43:31.194+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:43:31.211+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:43:31.208+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:43:33.349+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:43:33.479+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:43:33.477+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:43:33.539+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:43:33.538+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:43:33.578+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 2.439 seconds
+[2025-03-30T04:44:04.273+0000] {processor.py:186} INFO - Started process (PID=1487) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:44:04.290+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:44:04.302+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:44:04.300+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:44:07.296+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:44:07.389+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:44:07.389+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:44:07.491+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:44:07.491+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:44:07.574+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 3.378 seconds
+[2025-03-30T04:44:39.032+0000] {processor.py:186} INFO - Started process (PID=1563) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:44:39.034+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:44:39.040+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:44:39.040+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:44:40.250+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:44:40.327+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:44:40.326+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:44:40.381+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:44:40.381+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:44:40.438+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.438 seconds
+[2025-03-30T04:45:10.848+0000] {processor.py:186} INFO - Started process (PID=1638) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:45:10.853+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:45:10.864+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:45:10.862+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:45:12.131+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:45:12.210+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:45:12.210+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:45:12.249+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:45:12.249+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:45:12.314+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.484 seconds
+[2025-03-30T04:45:42.616+0000] {processor.py:186} INFO - Started process (PID=1708) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:45:42.618+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:45:42.625+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:45:42.625+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:45:43.760+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:45:43.852+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:45:43.852+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:45:43.933+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:45:43.933+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:45:44.004+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.406 seconds
+[2025-03-30T04:46:14.851+0000] {processor.py:186} INFO - Started process (PID=1781) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:46:14.854+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:46:14.859+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:46:14.859+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:46:15.905+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:46:15.967+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:46:15.966+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:46:16.005+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:46:16.005+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:46:16.067+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.247 seconds
+[2025-03-30T04:46:46.921+0000] {processor.py:186} INFO - Started process (PID=1854) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:46:46.923+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:46:46.927+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:46:46.927+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:46:48.109+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:46:48.196+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:46:48.195+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:46:48.246+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:46:48.246+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:46:48.294+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.389 seconds
+[2025-03-30T04:47:18.873+0000] {processor.py:186} INFO - Started process (PID=1933) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:47:18.878+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:47:18.886+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:47:18.885+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:47:20.482+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:47:20.599+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:47:20.599+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:47:20.659+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:47:20.658+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:47:20.728+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.903 seconds
+[2025-03-30T04:47:51.193+0000] {processor.py:186} INFO - Started process (PID=2005) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:47:51.200+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:47:51.217+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:47:51.215+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:47:53.499+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:47:53.589+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:47:53.588+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:47:53.629+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:47:53.628+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:47:53.675+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 2.541 seconds
+[2025-03-30T04:48:23.858+0000] {processor.py:186} INFO - Started process (PID=2077) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:48:23.861+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:48:23.867+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:48:23.866+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:48:25.031+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:48:25.097+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:48:25.097+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:48:25.135+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:48:25.134+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:48:25.188+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.352 seconds
+[2025-03-30T04:48:55.962+0000] {processor.py:186} INFO - Started process (PID=2149) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:48:55.964+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:48:55.980+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:48:55.979+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:48:57.328+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:48:57.374+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:48:57.373+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:48:57.409+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:48:57.409+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:48:57.444+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.508 seconds
+[2025-03-30T04:49:28.246+0000] {processor.py:186} INFO - Started process (PID=2223) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:49:28.251+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:49:28.256+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:49:28.255+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:49:31.166+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:49:31.284+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:49:31.283+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:49:31.372+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:49:31.371+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:49:31.479+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 3.272 seconds
+[2025-03-30T04:50:02.902+0000] {processor.py:186} INFO - Started process (PID=2300) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:50:02.906+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:50:02.918+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:50:02.916+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:50:04.222+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:50:04.279+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:50:04.278+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:50:04.309+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:50:04.309+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:50:04.338+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.476 seconds
+[2025-03-30T04:50:34.903+0000] {processor.py:186} INFO - Started process (PID=2369) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:50:34.914+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:50:34.938+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:50:34.937+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:50:36.130+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:50:36.197+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:50:36.197+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:50:36.250+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:50:36.250+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:50:36.296+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.442 seconds
+[2025-03-30T04:51:06.497+0000] {processor.py:186} INFO - Started process (PID=2442) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:51:06.503+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:51:06.516+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:51:06.516+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:51:08.363+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:51:08.576+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:51:08.571+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:51:08.661+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:51:08.661+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:51:08.729+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 2.277 seconds
+[2025-03-30T04:51:39.047+0000] {processor.py:186} INFO - Started process (PID=2515) to work on /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:51:39.050+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Entrenamiento_mode.py for tasks to queue
+[2025-03-30T04:51:39.055+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:51:39.054+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:51:40.176+0000] {processor.py:925} INFO - DAG(s) '4-Entrenamiento_model' retrieved from /opt/airflow/dags/Entrenamiento_mode.py
+[2025-03-30T04:51:40.238+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:51:40.238+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-03-30T04:51:40.267+0000] {logging_mixin.py:190} INFO - [2025-03-30T04:51:40.266+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Entrenamiento_model to None, run_after=None
+[2025-03-30T04:51:40.307+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Entrenamiento_mode.py took 1.279 seconds

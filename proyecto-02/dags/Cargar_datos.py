@@ -1,7 +1,7 @@
-import DAG
-from airflow.operators.python_operator import PythonOperator
-from airflow.providers.mysql.operators.mysql import MySqlOperator
-from airflow.providers.mysql.hooks.mysql import MySqlHook
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.python import BranchPythonOperator
 from airflow.models import Variable
 from datetime import datetime, timedelta
@@ -21,20 +21,20 @@ default_args = {
 dag = DAG(
     '2-Cargar_data',
     default_args=default_args,
-    description='DAG para cargar datos desde el servidor a MySQL sin preprocesamiento',
-    schedule_interval= timedelta(seconds=60), # Solo ejecución manual si es "None"
-    start_date=datetime(2025, 3, 28,0,0,0),
+    description='DAG para cargar datos desde el servidor a PostgreSQL sin preprocesamiento',
+    schedule_interval=timedelta(seconds=60),  # Solo ejecución manual si es "None"
+    start_date=datetime(2025, 3, 28, 0, 0, 0),
     catchup=False,
-    max_active_runs = 1
+    max_active_runs=1
 )
 
-database_name = 'airflow_db'
+database_name = 'airflow'
 table_name = 'covertype'
 
+# PostgreSQL CREATE TABLE SQL (adjusted for PostgreSQL)
 create_table_sql = f"""
-USE {database_name};
 CREATE TABLE IF NOT EXISTS {table_name} (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     Elevation INT NOT NULL, 
     Aspect INT NOT NULL, 
     Slope INT NOT NULL, 
@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS {table_name} (
 """
 
 def server_response(group_number):
-
     server_url = 'http://10.43.101.202:80/data'
     server_url_restart = 'http://10.43.101.202:80/restart_data_generation'
     
@@ -91,21 +90,22 @@ def load_data(**kwargs):
     # Convertir columnas numéricas a enteros
     num_cols = df.columns.difference(["Wilderness_Area", "Soil_Type"])
     df[num_cols] = df[num_cols].astype(int)
-    mysql_hook = MySqlHook(mysql_conn_id='mysql_default')
+    postgres_hook = PostgresHook(postgres_conn_id='postgres_default')
     
-    engine = mysql_hook.get_sqlalchemy_engine()
+    engine = postgres_hook.get_sqlalchemy_engine()
     df.to_sql(
         name=table_name,
         con=engine,
         schema=database_name,
         if_exists='append',
         index=False,
-        chunksize=1000 #carga en lotes de 1000
+        chunksize=1000  # Carga en lotes de 1000
     )
     
     count_query = f"SELECT COUNT(*) FROM {database_name}.{table_name}"
-    records_count = mysql_hook.get_records(count_query)[0][0]
+    records_count = postgres_hook.get_records(count_query)[0][0]
     print(f"Filas cargadas: {records_count}")
+    
     # Actualizar contador de iteraciones
     Variable.set("dag_iter_count", iter_count + 1)
     return "continue"
@@ -132,10 +132,10 @@ stop_task = PythonOperator(
     dag=dag
 )
 
-
-create_table_task = MySqlOperator(
+# Replace MySQL Operator with PostgreSQL Operator
+create_table_task = PostgresOperator(
     task_id='create_table',
-    mysql_conn_id='mysql_default',
+    postgres_conn_id='postgres_default',  # PostgreSQL connection ID
     sql=create_table_sql,
     dag=dag
 )
