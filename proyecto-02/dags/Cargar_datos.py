@@ -1,66 +1,40 @@
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
-from airflow.providers.mysql.operators.mysql import MySqlOperator
-from airflow.providers.mysql.hooks.mysql import MySqlHook
+from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.operators.python import BranchPythonOperator
+from airflow.models import Variable
 from datetime import datetime, timedelta
 import pandas as pd
-import os
 import requests
-import time
 import json
+import time
 
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=1)
+    'retries': 0
 }
 
-def my_task(run_id):
-    print(f"Ejecutando iteración {run_id}")
-
 dag = DAG(
-    'Cargar_data',
+    '2-Cargar_data',
     default_args=default_args,
-    description='DAG para cargar datos desde el servidor a MySQL sin preprocesamiento',
-    schedule_interval=timedelta(seconds=5), # Solo ejecución manual si es "None"
-    start_date=datetime(2025, 3, 26,0,0,0),
-    catchup=False
+    description='DAG para cargar datos desde el servidor a PostgreSQL sin preprocesamiento',
+    schedule_interval=timedelta(seconds=60),  # Solo ejecución manual si es "None"
+    start_date=datetime(2025, 3, 28, 0, 0, 0),
+    catchup=False,
+    max_active_runs=1
 )
 
-
-
-# csv_file_path = '/opt/airflow/data/penguins_size.csv' 
-database_name = 'airflow_db'
+database_name = 'airflow'
 table_name = 'covertype'
 
-# def check_file_exists(**kwargs):
-#     if not os.path.isfile(csv_file_path):
-#         raise FileNotFoundError(f"El archivo CSV no existe en la ruta: {csv_file_path}")
-#     print(f"Archivo CSV encontrado: {csv_file_path}")
-#     return True
-
-# create_table_sql = f"""
-# USE {database_name};
-# CREATE TABLE IF NOT EXISTS {table_name} (
-#     id INT AUTO_INCREMENT PRIMARY KEY,
-#     species VARCHAR(50),
-#     island VARCHAR(50),
-#     culmen_length_mm FLOAT,
-#     culmen_depth_mm FLOAT,
-#     flipper_length_mm INT,
-#     body_mass_g INT,
-#     sex VARCHAR(10),
-#     fecha_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-# );
-# """
-
+# PostgreSQL CREATE TABLE SQL (adjusted for PostgreSQL)
 create_table_sql = f"""
-USE {database_name};
 CREATE TABLE IF NOT EXISTS {table_name} (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     Elevation INT NOT NULL, 
     Aspect INT NOT NULL, 
     Slope INT NOT NULL, 
@@ -77,58 +51,91 @@ CREATE TABLE IF NOT EXISTS {table_name} (
 );
 """
 
-server_url = "http://api_server:80/data"
-def server_response(server_url,group_number=1):
+def server_response(group_number):
+    server_url = 'http://10.43.101.202:80/data'
+    server_url_restart = 'http://10.43.101.202:80/restart_data_generation'
     
-    # time.sleep(5)  # Espera a que el servidor se inicie
+    params = {"group_number": group_number}
 
-    try:
-        #response = requests.get(server_url)
-        params = {"group_number": group_number}
+    if group_number == 1:
+        response = requests.get(server_url_restart, params=params)
 
-        response = requests.get(server_url, params=params)
-        
-        return response
-        #print("Respuesta del servidor:", response.json())
-    except Exception as e:
-        print("Error:", e)
+    response = requests.get(server_url, params=params)
+
+    return response
 
 
 def load_data(**kwargs):
-    print(f"Cargando datos desde servidor a la tabla {table_name}...")
+    iter_count = Variable.get("dag_iter_count", default_var=1)  # Obtener el contador
+    iter_count = int(iter_count)
+
+    if iter_count > 10:
+        print("Se alcanzaron las 10 iteraciones. Finalizando DAG.")
+        return "stop"
+
+    print(f"Ejecutando iteración {iter_count + 1}")
     
-    # df = pd.read_csv(csv_file_path)
-    # print(f"CSV cargado en dataframe, filas: {len(df)}")
-    data = json.loads(server_response)
-    df = pd.DataFrame.from_dict(data)
-    mysql_hook = MySqlHook(mysql_conn_id='mysql_default')
+    raw = server_response(iter_count)
+    print(raw.content.decode('utf-8'))
+
+    data = json.loads(raw.content.decode('utf-8'))
+    # Extraer solo los datos relevantes (lista de listas)
+    df = pd.DataFrame(data["data"], columns=[
+        "Elevation", "Aspect", "Slope", 
+        "Horizontal_Distance_To_Hydrology", "Vertical_Distance_To_Hydrology",
+        "Horizontal_Distance_To_Roadways", "Hillshade_9am", "Hillshade_Noon", "Hillshade_3pm",
+        "Horizontal_Distance_To_Fire_Points", "Wilderness_Area", "Soil_Type", "Cover_Type"
+    ])
+
+    # Convertir columnas numéricas a enteros
+    num_cols = df.columns.difference(["Wilderness_Area", "Soil_Type"])
+    df[num_cols] = df[num_cols].astype(int)
+    postgres_hook = PostgresHook(postgres_conn_id='postgres_default')
     
-    engine = mysql_hook.get_sqlalchemy_engine()
+    engine = postgres_hook.get_sqlalchemy_engine()
     df.to_sql(
         name=table_name,
         con=engine,
         schema=database_name,
         if_exists='append',
         index=False,
-        chunksize=1000 #carga en lotes de 1000
+        chunksize=1000  # Carga en lotes de 1000
     )
     
     count_query = f"SELECT COUNT(*) FROM {database_name}.{table_name}"
-    records_count = mysql_hook.get_records(count_query)[0][0]
+    records_count = postgres_hook.get_records(count_query)[0][0]
+    print(f"Filas cargadas: {records_count}")
     
-    print(f"Carga completada. Total de registros en la tabla: {records_count}")
-    return records_count
+    # Actualizar contador de iteraciones
+    Variable.set("dag_iter_count", iter_count + 1)
+    return "continue"
 
-# Definir las tareas en el DAG
-# check_csv_task = PythonOperator(
-#     task_id='check_csv_exists',
-#     python_callable=check_file_exists,
-#     dag=dag
-# )
+def decide_next_task(**kwargs):
+    iter_count = Variable.get("dag_iter_count", default_var=1)
+    iter_count = int(iter_count)
+    time.sleep(5)
+    if iter_count > 10:
+        return "stop_task"
+    else:
+        return "load_data"
 
-create_table_task = MySqlOperator(
+branch_task = BranchPythonOperator(
+    task_id="decide_next_task",
+    python_callable=decide_next_task,
+    provide_context=True,
+    dag=dag,
+)
+
+stop_task = PythonOperator(
+    task_id="stop_task",
+    python_callable=lambda: print("DAG detenido tras 10 iteraciones"),
+    dag=dag
+)
+
+# Replace MySQL Operator with PostgreSQL Operator
+create_table_task = PostgresOperator(
     task_id='create_table',
-    mysql_conn_id='mysql_default',
+    postgres_conn_id='postgres_default',  # PostgreSQL connection ID
     sql=create_table_sql,
     dag=dag
 )
@@ -139,4 +146,4 @@ load_data_task = PythonOperator(
     dag=dag
 )
 
-create_table_task >> load_data_task
+create_table_task >> branch_task >> [load_data_task, stop_task]
