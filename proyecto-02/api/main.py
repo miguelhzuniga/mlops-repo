@@ -4,15 +4,42 @@ import pandas as pd
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
+import time
+from mlflow.exceptions import MlflowException
 
 # Configuración de MLFlow
-os.environ['MLFLOW_S3_ENDPOINT_URL'] = "http://10.43.101.175:9000"
+os.environ['MLFLOW_S3_ENDPOINT_URL'] = "http://10.43.101.202:9000"
 os.environ['AWS_ACCESS_KEY_ID'] = 'admin'
 os.environ['AWS_SECRET_ACCESS_KEY'] = 'supersecret'
-mlflow.set_tracking_uri("http://10.43.101.175:5000")
+mlflow.set_tracking_uri("http://10.43.101.202:5000")
 model_name = "modelo1"
 model_production_uri = f"models:/{model_name}/production"
-loaded_model = mlflow.pyfunc.load_model(model_uri=model_production_uri)
+
+def load_model_until_available(model_uri, retries=30, delay=20):
+
+    attempt = 0
+    
+    while attempt < retries:
+        try:
+            # Try to load the model
+            print(f"Attempting to load model from {model_uri} (Attempt {attempt + 1}/{retries})")
+            loaded_model = mlflow.pyfunc.load_model(model_uri=model_uri)
+            print(f"Model loaded successfully from {model_uri}")
+            return loaded_model
+        except MlflowException as e:
+            # If model is not available, handle exception and retry
+            print(f"Model not found: {str(e)}. Retrying in {delay} seconds...")
+            attempt += 1
+            time.sleep(delay)  # Wait for some time before retrying
+    
+    # If the model isn't loaded after retries, raise an error
+    raise Exception(f"Model could not be loaded after {retries} attempts.")
+
+# Call the function to load the model
+try:
+    loaded_model = load_model_until_available(model_production_uri, retries=5, delay=10)
+except Exception as e:
+    print(f"Error: {e}")
 
 items = {int: dict}
 

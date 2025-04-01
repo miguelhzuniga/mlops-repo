@@ -1,0 +1,192 @@
+[2025-04-01T04:02:55.198+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-01T04:02:55.235+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo manual__2025-04-01T04:02:44.269313+00:00 [queued]>
+[2025-04-01T04:02:55.249+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo manual__2025-04-01T04:02:44.269313+00:00 [queued]>
+[2025-04-01T04:02:55.250+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-01T04:02:55.272+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-04-01 04:02:44.269313+00:00
+[2025-04-01T04:02:55.298+0000] {standard_task_runner.py:72} INFO - Started process 4130 to run task
+[2025-04-01T04:02:55.312+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'entrenar_modelo', 'manual__2025-04-01T04:02:44.269313+00:00', '--job-id', '142', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpojfwe4kw']
+[2025-04-01T04:02:55.319+0000] {standard_task_runner.py:105} INFO - Job 142: Subtask entrenar_modelo
+[2025-04-01T04:02:55.497+0000] {task_command.py:467} INFO - Running <TaskInstance: 4-Entrenamiento_model.entrenar_modelo manual__2025-04-01T04:02:44.269313+00:00 [running]> on host 7ed3aa8fcef8
+[2025-04-01T04:02:55.682+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T04:02:44.269313+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-01T04:02:44.269313+00:00'
+[2025-04-01T04:02:55.691+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-01T04:02:55.747+0000] {warnings.py:109} WARNING - /opt/***/dags/Entrenamiento_mode.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(query, conn)
+
+[2025-04-01T04:03:02.000+0000] {logging_mixin.py:190} WARNING - 2025/04/01 04:03:01 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2025-04-01T04:03:03.119+0000] {logging_mixin.py:190} WARNING - 2025/04/01 04:03:03 WARNING mlflow.utils: Truncated the value of the key `estimator`. Truncated value: `Pipeline(steps=[('column_trans',
+                 ColumnTransformer(remainder='passthrough',
+                                   transformers=[('onehotencoder',
+                                                  OneHotEncoder(handle_unknown='ignore'),
+                                                  ['Wilderness_Area',
+                                                   'Soil_Type'])])),
+                ('scaler', StandardScaler(with_mean=False)),
+                ('RandomForestClassifier', Rand...`
+[2025-04-01T04:03:03.190+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/joblib/parallel.py:1359: UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+  n_jobs = self._backend.configure(n_jobs=self.n_jobs, parallel=self,
+
+[2025-04-01T04:05:41.786+0000] {job.py:229} INFO - Heartbeat recovered after 123.08 seconds
+[2025-04-01T04:06:09.280+0000] {job.py:229} INFO - Heartbeat recovered after 13.85 seconds
+[2025-04-01T04:09:35.781+0000] {job.py:229} INFO - Heartbeat recovered after 208.15 seconds
+[2025-04-01T04:11:17.876+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/sklearn/metrics/_classification.py:1318: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+[2025-04-01T04:11:22.555+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-04-01T04:11:24.100+0000] {logging_mixin.py:190} WARNING - 2025/04/01 04:11:24 WARNING mlflow.utils.autologging_utils: Encountered unexpected error during sklearn autologging: Failed to upload /tmp/tmp55i3cjhs/training_confusion_matrix.png to mlflows3/artifacts/1/9392564aa805484fa7373172fc9bc0c5/artifacts/training_confusion_matrix.png: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
+[2025-04-01T04:11:44.773+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/boto3/s3/transfer.py", line 372, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/futures.py", line 264, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/tasks.py", line 135, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/tasks.py", line 158, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 1023, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.NoSuchBucket: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/dags/Entrenamiento_mode.py", line 107, in entrenar_modelo
+    mlflow.sklearn.log_model(search.best_estimator_, "modelo1")
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/sklearn/__init__.py", line 424, in log_model
+    return Model.log(
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/models/model.py", line 548, in log
+    mlflow.tracking.fluent.log_artifacts(local_path, mlflow_model.artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/fluent.py", line 817, in log_artifacts
+    MlflowClient().log_artifacts(run_id, local_dir, artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/client.py", line 1074, in log_artifacts
+    self._tracking_client.log_artifacts(run_id, local_dir, artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/_tracking_service/client.py", line 448, in log_artifacts
+    self._get_artifact_repo(run_id).log_artifacts(local_dir, artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/store/artifact/s3_artifact_repo.py", line 171, in log_artifacts
+    self._upload_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/store/artifact/s3_artifact_repo.py", line 147, in _upload_file
+    s3_client.upload_file(Filename=local_file, Bucket=bucket, Key=key, ExtraArgs=extra_args)
+  File "/home/airflow/.local/lib/python3.8/site-packages/boto3/s3/inject.py", line 145, in upload_file
+    return transfer.upload_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/boto3/s3/transfer.py", line 378, in upload_file
+    raise S3UploadFailedError(
+boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/tmpvr6f7a4h/model/requirements.txt to mlflows3/artifacts/1/9392564aa805484fa7373172fc9bc0c5/artifacts/modelo1/requirements.txt: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
+[2025-04-01T04:11:44.909+0000] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=4-Entrenamiento_model, task_id=entrenar_modelo, run_id=manual__2025-04-01T04:02:44.269313+00:00, execution_date=20250401T040244, start_date=20250401T040255, end_date=20250401T041144
+[2025-04-01T04:11:44.991+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-01T04:11:44.992+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 142 for task entrenar_modelo (Failed to upload /tmp/tmpvr6f7a4h/model/requirements.txt to mlflows3/artifacts/1/9392564aa805484fa7373172fc9bc0c5/artifacts/modelo1/requirements.txt: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist; 4130)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/boto3/s3/transfer.py", line 372, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/futures.py", line 264, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/tasks.py", line 135, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/tasks.py", line 158, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 1023, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.NoSuchBucket: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/dags/Entrenamiento_mode.py", line 107, in entrenar_modelo
+    mlflow.sklearn.log_model(search.best_estimator_, "modelo1")
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/sklearn/__init__.py", line 424, in log_model
+    return Model.log(
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/models/model.py", line 548, in log
+    mlflow.tracking.fluent.log_artifacts(local_path, mlflow_model.artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/fluent.py", line 817, in log_artifacts
+    MlflowClient().log_artifacts(run_id, local_dir, artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/client.py", line 1074, in log_artifacts
+    self._tracking_client.log_artifacts(run_id, local_dir, artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/_tracking_service/client.py", line 448, in log_artifacts
+    self._get_artifact_repo(run_id).log_artifacts(local_dir, artifact_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/store/artifact/s3_artifact_repo.py", line 171, in log_artifacts
+    self._upload_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/store/artifact/s3_artifact_repo.py", line 147, in _upload_file
+    s3_client.upload_file(Filename=local_file, Bucket=bucket, Key=key, ExtraArgs=extra_args)
+  File "/home/airflow/.local/lib/python3.8/site-packages/boto3/s3/inject.py", line 145, in upload_file
+    return transfer.upload_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/boto3/s3/transfer.py", line 378, in upload_file
+    raise S3UploadFailedError(
+boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/tmpvr6f7a4h/model/requirements.txt to mlflows3/artifacts/1/9392564aa805484fa7373172fc9bc0c5/artifacts/modelo1/requirements.txt: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
+[2025-04-01T04:11:45.116+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-04-01T04:11:45.176+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-01T04:11:45.182+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

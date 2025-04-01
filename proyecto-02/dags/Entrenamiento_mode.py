@@ -10,6 +10,16 @@ from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 from sklearn.compose import ColumnTransformer
 import os
 from datetime import datetime, timedelta
+import psycopg2
+from sklearn.model_selection import train_test_split
+import os
+import mlflow
+import requests
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import make_column_transformer
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 
 
 default_args = {
@@ -25,209 +35,78 @@ dag = DAG(
     '4-Entrenamiento_model',
     default_args=default_args,
     description='DAG para entrenar modelos de machine learning',
-    schedule_interval=None,
-    start_date=datetime(2025, 3, 8),
+    schedule_interval="@daily",
+    start_date=datetime(2025, 3, 30,0,2,0),
     catchup=False
 )
 
 processed_dir = '/opt/airflow/data/processed_data'
 models_dir = '/opt/airflow/models'
 
-def ensure_dirs():
-    os.makedirs(models_dir, exist_ok=True)
 
-def cargar_datos_modelo(**kwargs):
-    ensure_dirs()
+# Conexión a la base de datos PostgreSQL
+def get_postgres_connection():
+    conn = psycopg2.connect(
+        host='10.43.101.202',         # Nombre del servicio de PostgreSQL en Docker
+        port='5432',             # Puerto predeterminado de PostgreSQL
+        user='airflow',          # Usuario de PostgreSQL
+        password='airflow',      # Contraseña de PostgreSQL
+        database='airflow'    # Nombre de la base de datos
+    )
+    return conn
+
+# Query the covertype table and return a DataFrame
+def query_covertype():
+    query = "SELECT * FROM covertype limit 1000"
+    conn = get_postgres_connection()
     
-    X_train = pd.read_csv(os.path.join(processed_dir, 'X_train.csv'))
-    X_test = pd.read_csv(os.path.join(processed_dir, 'X_test.csv'))
-    y_train = pd.read_csv(os.path.join(processed_dir, 'y_train.csv')).squeeze()
-    y_test = pd.read_csv(os.path.join(processed_dir, 'y_test.csv')).squeeze()
-
-    preprocessor = joblib.load(os.path.join(processed_dir, 'preprocessor.pkl'))
-    column_order = joblib.load(os.path.join(processed_dir, 'column_order.pkl'))
+    # Use pandas to execute the query and store the result in a DataFrame
+    df = pd.read_sql(query, conn)
     
-    print(f"Columnas en X_train: {X_train.shape[1]} columnas")
-    print(f"Orden de columnas original: {column_order}")
-    return {
-        'X_train_shape': X_train.shape,
-        'X_test_shape': X_test.shape,
-        'column_order': column_order,
+    # Close the connection
+    conn.close()
 
-    }
-
-def construir_modelo(**kwargs):
-    ti = kwargs['ti']
-    _ = ti.xcom_pull(task_ids='cargar_datos_modelo')
-    preprocessor = joblib.load(os.path.join(processed_dir, 'preprocessor.pkl'))
-
-    knn = KNeighborsClassifier(n_neighbors=5)
-    logreg = LogisticRegression(random_state=42)
-    logregCV = LogisticRegressionCV(random_state=42)
-
-    knn_pipeline = Pipeline([
-        ('preprocess', preprocessor),
-        ('model', knn)
-    ])
-    
-    logreg_pipeline = Pipeline([
-        ('preprocess', preprocessor),
-        ('model', logreg)
-    ])
-    
-    logregCV_pipeline = Pipeline([
-        ('preprocess', preprocessor),
-        ('model', logregCV)
-    ])
-    
-    return {
-        'models': {
-            'KNN': 'KNeighborsClassifier(n_neighbors=5)',
-            'LogReg': 'LogisticRegression(random_state=42)',
-            'LogRegCV': 'LogisticRegressionCV(random_state=42)'
-        }
-    }
+    # Return the DataFrame
+    return df
 
 def entrenar_modelo(**kwargs):
-    ti = kwargs['ti']
-    _ = ti.xcom_pull(task_ids='construir_modelo')
-    
-    # Load original data directly from disk for training
-    X_train_original = pd.read_csv(os.path.join(processed_dir, 'X_train_original.csv'))
-    y_train = pd.read_csv(os.path.join(processed_dir, 'y_train.csv')).squeeze()
-    preprocessor = joblib.load(os.path.join(processed_dir, 'preprocessor.pkl'))
-    
-    print(f"Entrenando modelos con datos originales: {X_train_original.shape}")
-    
-    # Create and train models directly
-    models = {}
-    trained_info = {}
-    
-    # KNN
-    knn_pipeline = Pipeline([
-        ('preprocess', preprocessor),
-        ('model', KNeighborsClassifier(n_neighbors=5))
-    ])
-    knn_pipeline.fit(X_train_original, y_train)
-    models['KNN'] = knn_pipeline
-    trained_info['KNN'] = 'trained'
-    
-    # LogReg
-    logreg_pipeline = Pipeline([
-        ('preprocess', preprocessor),
-        ('model', LogisticRegression(random_state=42))
-    ])
-    logreg_pipeline.fit(X_train_original, y_train)
-    models['LogReg'] = logreg_pipeline
-    trained_info['LogReg'] = 'trained'
-    
-    # LogRegCV
-    logregCV_pipeline = Pipeline([
-        ('preprocess', preprocessor),
-        ('model', LogisticRegressionCV(random_state=42))
-    ])
-    logregCV_pipeline.fit(X_train_original, y_train)
-    models['LogRegCV'] = logregCV_pipeline
-    trained_info['LogRegCV'] = 'trained'
-    
-    # Store all models in a single file
-    modelo_final_path = os.path.join(models_dir, 'model.pkl')
-    joblib.dump(models, modelo_final_path)
-    
-    return {
-        'trained_models': trained_info,
-        'model_path': modelo_final_path
-    }
+    df_covertype = query_covertype()
 
-def validar_modelo(**kwargs):
-    ti = kwargs['ti']
-    trained_info = ti.xcom_pull(task_ids='entrenar_modelo')
-    model_path = trained_info['model_path']
-    
-    models = joblib.load(model_path)
-    
-    X_test_original = pd.read_csv(os.path.join(processed_dir, 'X_test_original.csv'))
-    y_test = pd.read_csv(os.path.join(processed_dir, 'y_test.csv')).squeeze()
-    
-
-    X_train_original = pd.read_csv(os.path.join(processed_dir, 'X_train_original.csv'))
-    y_train = pd.read_csv(os.path.join(processed_dir, 'y_train.csv')).squeeze()
-
-    resultados = {}
-    
-
-    for nombre, pipeline in models.items():
-        print(f"Validando modelo: {nombre}")
-        y_pred_test = pipeline.predict(X_test_original)
-        y_pred_train = pipeline.predict(X_train_original)
-        train_accuracy = accuracy_score(y_train, y_pred_train)
-        test_accuracy = accuracy_score(y_test, y_pred_test)
-
-        resultados[nombre] = {
-            'train_accuracy': float(train_accuracy),
-            'test_accuracy': float(test_accuracy)
-        }
-
-    mejor_modelo = max(resultados.items(), key=lambda x: x[1]['test_accuracy'])
-    mejor_nombre = mejor_modelo[0]
-    
-    print(f"Mejor modelo: {mejor_nombre}")
-    print(f"Precisión en prueba: {resultados[mejor_nombre]['test_accuracy']}")
-    
-
-    return {
-        'mejor_modelo': mejor_nombre,
-        'train_accuracy': resultados[mejor_nombre]['train_accuracy'],
-        'test_accuracy': resultados[mejor_nombre]['test_accuracy'],
-        'todos_resultados': resultados,
-        'model_path': model_path
-    }
-
-def test_api_format(**kwargs):
-    ti = kwargs['ti']
-    validation_info = ti.xcom_pull(task_ids='validar_modelo')
-    model_path = validation_info['model_path']
-    try:
-        models = joblib.load(model_path)
-        print(f"Modelos cargados correctamente: {list(models.keys())}")
-        sample_api_input = pd.DataFrame([{
-            'island': 'Torgersen',
-            'culmen_length_mm': 39.1,
-            'culmen_depth_mm': 18.7,
-            'flipper_length_mm': 181.0,
-            'body_mass_g': 3750.0,
-            'sex': 'Male'
-        }])
-        
-        print(f"Entrada de prueba API: \n{sample_api_input}")
-        
-        for nombre, model in models.items():
-            try:
-                prediction = model.predict(sample_api_input)
-                print(f"Modelo {nombre} predice: {prediction}")
-            except Exception as e:
-                print(f"Error con modelo {nombre}: {str(e)}")
-    except Exception as e:
-        print(f"Error al cargar los modelos: {str(e)}")
-    
-    return {
-        'test_result': 'completed'
-    }
+    # Assuming df_covertype is your DataFrame
 
 
-cargar_datos_task = PythonOperator(
-    task_id='cargar_datos_modelo',
-    python_callable=cargar_datos_modelo,
-    provide_context=True,
-    dag=dag
-)
+    # Split the dataframe into features (X) and target (y)
+    # Assuming the target variable is in a column called 'cover_type'
+    X = df_covertype.drop(columns=['Cover_Type'])  # Features
+    y = df_covertype['Cover_Type']  # Target variable
 
-construir_modelo_task = PythonOperator(
-    task_id='construir_modelo',
-    python_callable=construir_modelo,
-    provide_context=True,
-    dag=dag
-)
+    # Perform the train-test split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # X_train, X_test will now contain the feature data for training and testing
+    # y_train, y_test will contain the target labels for training and testing
+    column_trans = make_column_transformer((OneHotEncoder(handle_unknown='ignore'),
+                                        ["Wilderness_Area", "Soil_Type"]),
+                                      remainder='passthrough') # pass all the numeric values through the pipeline without any changes.
+    pipe = Pipeline(steps=[("column_trans", column_trans),("scaler", StandardScaler(with_mean=False)), ("RandomForestClassifier", RandomForestClassifier())])
+    param_grid =  {'RandomForestClassifier__max_depth': [1,2,3,10], 'RandomForestClassifier__n_estimators': [10,11]}
+
+    search = GridSearchCV(pipe, param_grid, n_jobs=2)
+    os.environ['MLFLOW_S3_ENDPOINT_URL'] = "http://10.43.101.202:9000"
+    os.environ['AWS_ACCESS_KEY_ID'] = 'admin'
+    os.environ['AWS_SECRET_ACCESS_KEY'] = 'supersecret'
+
+    # connect to mlflow
+    mlflow.set_tracking_uri("http://10.43.101.202:5000")
+    mlflow.set_experiment("mlflow_tracking_examples")
+
+    mlflow.sklearn.autolog(log_model_signatures=True, log_input_examples=True, registered_model_name="modelo1")
+
+    with mlflow.start_run(run_name="autolog_pipe_model_reg") as run:
+        search.fit(X_train, y_train)
+
+    return 0
+
 
 entrenar_modelo_task = PythonOperator(
     task_id='entrenar_modelo',
@@ -236,18 +115,4 @@ entrenar_modelo_task = PythonOperator(
     dag=dag
 )
 
-validar_modelo_task = PythonOperator(
-    task_id='validar_modelo',
-    python_callable=validar_modelo,
-    provide_context=True,
-    dag=dag
-)
-
-test_api_task = PythonOperator(
-    task_id='test_api_format',
-    python_callable=test_api_format,
-    provide_context=True,
-    dag=dag
-)
-
-cargar_datos_task >> construir_modelo_task >> entrenar_modelo_task >> validar_modelo_task >> test_api_task
+entrenar_modelo_task
