@@ -94,6 +94,9 @@ Esta API simula una URL de internet que provee un batch de datos cada 5 segundos
 
 Para ejecutar los contenedores y configurar el entorno, sigue estos pasos:
 
+IP MV: 10.43.101.202
+
+
 1. **Construir los contenedores**:
 
    En el directorio raíz del proyecto, ejecuta:
@@ -149,6 +152,10 @@ Para ejecutar los contenedores y configurar el entorno, sigue estos pasos:
     Esto generará como resultado:
 
     ![alt text](images/captura_api_prediccion.png)
+
+**Importante**
+  * Para poder almacenar los modelos y experimentos de MLFLOW se debe haber creado el bucket manualmente en MINIO con el nombre mlflows3, al no hacerlo no se registrara la informacion en MLFLOW. 
+  * Para poder hacer inferencia de la API por primera vez se debe realizar todo el proceso de ejecucion de los dags debido a que la api requiere del modelo que se genera en el dag 3. Si esto no se aplica entonces la API no se habilitara.
 
 Autores:
 
