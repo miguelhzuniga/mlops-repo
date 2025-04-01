@@ -15,29 +15,27 @@ mlflow.set_tracking_uri("http://10.43.101.202:5000")
 model_name = "modelo1"
 model_production_uri = f"models:/{model_name}/production"
 
-def load_model_until_available(model_uri, retries=30, delay=20):
+def load_model_until_available(model_uri, delay=20):
 
-    attempt = 0
+    attempt = True
     
-    while attempt < retries:
+    while attempt:
         try:
             # Try to load the model
-            print(f"Attempting to load model from {model_uri} (Attempt {attempt + 1}/{retries})")
+            print(f"Attempting to load model from {model_uri}")
             loaded_model = mlflow.pyfunc.load_model(model_uri=model_uri)
             print(f"Model loaded successfully from {model_uri}")
+            attempt = False
             return loaded_model
         except MlflowException as e:
             # If model is not available, handle exception and retry
             print(f"Model not found: {str(e)}. Retrying in {delay} seconds...")
-            attempt += 1
             time.sleep(delay)  # Wait for some time before retrying
-    
-    # If the model isn't loaded after retries, raise an error
-    raise Exception(f"Model could not be loaded after {retries} attempts.")
+
 
 # Call the function to load the model
 try:
-    loaded_model = load_model_until_available(model_production_uri, retries=5, delay=10)
+    loaded_model = load_model_until_available(model_production_uri, delay=10)
 except Exception as e:
     print(f"Error: {e}")
 

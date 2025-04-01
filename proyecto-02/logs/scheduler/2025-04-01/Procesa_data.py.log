@@ -3938,3 +3938,502 @@ LINE 1: SELECT * FROM covertype
 [2025-04-01T17:24:09.068+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:24:09.067+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-04-01T17:24:09.116+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:24:09.115+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
 [2025-04-01T17:24:09.156+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.456 seconds
+[2025-04-01T17:24:39.728+0000] {processor.py:186} INFO - Started process (PID=1266) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:24:39.731+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:24:39.738+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:24:39.738+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:24:42.351+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:24:42.422+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:24:42.421+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:24:42.469+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:24:42.469+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:24:42.507+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.795 seconds
+[2025-04-01T17:25:13.040+0000] {processor.py:186} INFO - Started process (PID=1284) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:25:13.042+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:25:13.048+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:25:13.047+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:25:15.426+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:25:15.476+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:25:15.475+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:25:15.522+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:25:15.521+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:25:15.551+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.527 seconds
+[2025-04-01T17:25:46.272+0000] {processor.py:186} INFO - Started process (PID=1302) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:25:46.276+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:25:46.284+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:25:46.282+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:25:50.524+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:25:50.573+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:25:50.572+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:25:50.703+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.459 seconds
+[2025-04-01T17:26:21.273+0000] {processor.py:186} INFO - Started process (PID=1322) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:26:21.277+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:26:21.283+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:26:21.282+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:26:26.046+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:26:26.113+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:26:26.112+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:26:26.165+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:26:26.164+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:26:26.214+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.969 seconds
+[2025-04-01T17:26:57.043+0000] {processor.py:186} INFO - Started process (PID=1347) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:26:57.046+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:26:57.053+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:26:57.053+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:27:00.142+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:27:00.257+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:27:00.256+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:27:00.380+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:27:00.380+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:27:00.466+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.441 seconds
+[2025-04-01T17:27:30.698+0000] {processor.py:186} INFO - Started process (PID=1366) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:27:30.701+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:27:30.705+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:27:30.705+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:27:32.941+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:27:32.988+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:27:32.987+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:27:33.031+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:27:33.030+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:27:33.061+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.380 seconds
+[2025-04-01T17:28:03.898+0000] {processor.py:186} INFO - Started process (PID=1385) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:03.901+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:28:03.906+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:03.905+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:06.213+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:06.260+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:06.259+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:28:06.300+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:06.300+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:28:06.342+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.462 seconds
+[2025-04-01T17:28:09.245+0000] {processor.py:186} INFO - Started process (PID=1390) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:09.247+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:28:09.254+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:09.253+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:11.322+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:11.374+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:11.373+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:28:11.414+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:11.414+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:28:11.452+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.226 seconds
+[2025-04-01T17:28:42.125+0000] {processor.py:186} INFO - Started process (PID=1409) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:42.128+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:28:42.137+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:42.135+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:44.775+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:28:44.814+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:44.814+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:28:44.856+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:28:44.856+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:28:44.897+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.796 seconds
+[2025-04-01T17:29:15.485+0000] {processor.py:186} INFO - Started process (PID=1428) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:29:15.487+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:29:15.497+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:29:15.496+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:29:17.662+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:29:17.701+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:29:17.700+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:29:17.739+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:29:17.738+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:29:17.799+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.332 seconds
+[2025-04-01T17:29:48.419+0000] {processor.py:186} INFO - Started process (PID=1447) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:29:48.425+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:29:48.430+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:29:48.430+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:29:50.583+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:29:50.636+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:29:50.635+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:29:50.703+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:29:50.702+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:29:50.750+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.347 seconds
+[2025-04-01T17:30:20.980+0000] {processor.py:186} INFO - Started process (PID=1466) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:30:20.983+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:30:20.988+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:30:20.987+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:30:23.156+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:30:23.223+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:30:23.222+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:30:23.272+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:30:23.271+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:30:23.315+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.353 seconds
+[2025-04-01T17:30:53.701+0000] {processor.py:186} INFO - Started process (PID=1485) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:30:53.704+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:30:53.714+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:30:53.713+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:30:56.075+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:30:56.119+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:30:56.119+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:30:56.169+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:30:56.168+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:30:56.200+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.526 seconds
+[2025-04-01T17:31:26.744+0000] {processor.py:186} INFO - Started process (PID=1505) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:31:26.750+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:31:26.759+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:31:26.758+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:31:30.360+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:31:30.466+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:31:30.466+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:31:30.530+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:31:30.530+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:31:30.569+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.860 seconds
+[2025-04-01T17:31:57.505+0000] {processor.py:186} INFO - Started process (PID=1524) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:31:57.518+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:31:57.531+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:31:57.527+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:32:01.735+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:32:01.836+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:32:01.835+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:32:01.894+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:32:01.893+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:32:01.973+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.501 seconds
+[2025-04-01T17:32:32.329+0000] {processor.py:186} INFO - Started process (PID=1549) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:32:32.334+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:32:32.341+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:32:32.341+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:32:37.987+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:32:38.130+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:32:38.128+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:32:38.342+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 6.060 seconds
+[2025-04-01T17:33:09.355+0000] {processor.py:186} INFO - Started process (PID=1567) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:33:09.364+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:33:09.371+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:33:09.370+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:33:14.352+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:33:14.460+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:33:14.459+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:33:14.610+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.292 seconds
+[2025-04-01T17:33:45.332+0000] {processor.py:186} INFO - Started process (PID=1588) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:33:45.337+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:33:45.347+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:33:45.346+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:33:47.330+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:33:47.376+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:33:47.375+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:33:47.413+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:33:47.413+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:33:47.444+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.133 seconds
+[2025-04-01T17:34:18.105+0000] {processor.py:186} INFO - Started process (PID=1607) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:34:18.108+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:34:18.113+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:34:18.112+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:34:20.117+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:34:20.156+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:34:20.155+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:34:20.193+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:34:20.193+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:34:20.218+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.128 seconds
+[2025-04-01T17:34:50.930+0000] {processor.py:186} INFO - Started process (PID=1626) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:34:50.937+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:34:50.942+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:34:50.942+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:34:52.992+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:34:53.038+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:34:53.037+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:34:53.075+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:34:53.075+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:34:53.104+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.191 seconds
+[2025-04-01T17:35:23.723+0000] {processor.py:186} INFO - Started process (PID=1645) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:35:23.726+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:35:23.732+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:35:23.731+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:35:25.722+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:35:25.760+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:35:25.760+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:35:25.798+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:35:25.797+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:35:25.824+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.117 seconds
+[2025-04-01T17:35:56.485+0000] {processor.py:186} INFO - Started process (PID=1665) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:35:56.488+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:35:56.494+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:35:56.494+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:35:58.745+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:35:58.856+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:35:58.855+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:35:58.944+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:35:58.943+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:35:59.032+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.565 seconds
+[2025-04-01T17:36:29.489+0000] {processor.py:186} INFO - Started process (PID=1684) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:36:29.492+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:36:29.506+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:36:29.504+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:36:36.403+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:36:36.464+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:36:36.463+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:36:36.544+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:36:36.543+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:36:36.596+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 7.158 seconds
+[2025-04-01T17:37:06.830+0000] {processor.py:186} INFO - Started process (PID=1708) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:37:06.832+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:37:06.839+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:37:06.838+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:37:12.832+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:37:12.995+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:37:12.994+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:37:13.251+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:37:13.251+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:37:13.518+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 6.706 seconds
+[2025-04-01T17:37:43.723+0000] {processor.py:186} INFO - Started process (PID=1728) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:37:43.729+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:37:43.738+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:37:43.737+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:37:51.936+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:37:52.112+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:37:52.111+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:37:52.316+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:37:52.316+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:37:52.515+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 8.829 seconds
+[2025-04-01T17:38:23.611+0000] {processor.py:186} INFO - Started process (PID=1747) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:38:23.615+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:38:23.620+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:38:23.620+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:38:26.635+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:38:26.787+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:38:26.786+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:38:26.943+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:38:26.940+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:38:27.102+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.520 seconds
+[2025-04-01T17:38:57.893+0000] {processor.py:186} INFO - Started process (PID=1766) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:38:57.896+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:38:57.901+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:38:57.901+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:39:00.039+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:39:00.082+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:39:00.081+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:39:00.120+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:39:00.119+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:39:00.145+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.268 seconds
+[2025-04-01T17:39:30.749+0000] {processor.py:186} INFO - Started process (PID=1785) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:39:30.752+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:39:30.757+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:39:30.756+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:39:33.197+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:39:33.248+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:39:33.247+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:39:33.324+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:39:33.324+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:39:33.366+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.633 seconds
+[2025-04-01T17:40:03.641+0000] {processor.py:186} INFO - Started process (PID=1809) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:40:03.644+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:40:03.648+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:40:03.648+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:40:05.913+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:40:05.961+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:40:05.960+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:40:06.003+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:40:06.002+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:40:06.041+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.415 seconds
+[2025-04-01T17:40:36.729+0000] {processor.py:186} INFO - Started process (PID=1830) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:40:36.732+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:40:36.737+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:40:36.736+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:40:39.672+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:40:39.721+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:40:39.719+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:40:39.765+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:40:39.764+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:40:39.796+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.089 seconds
+[2025-04-01T17:41:10.332+0000] {processor.py:186} INFO - Started process (PID=1849) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:41:10.335+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:41:10.340+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:41:10.339+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:41:12.903+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:41:12.960+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:41:12.959+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:41:13.018+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:41:13.018+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:41:13.054+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.738 seconds
+[2025-04-01T17:41:43.352+0000] {processor.py:186} INFO - Started process (PID=1868) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:41:43.357+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:41:43.369+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:41:43.367+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:41:48.662+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:41:48.755+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:41:48.754+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:41:48.910+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:41:48.910+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:41:49.005+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.685 seconds
+[2025-04-01T17:42:19.614+0000] {processor.py:186} INFO - Started process (PID=1887) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:42:19.626+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:42:19.636+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:42:19.635+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:42:26.213+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:42:26.409+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:42:26.407+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:42:26.720+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 7.148 seconds
+[2025-04-01T17:42:57.364+0000] {processor.py:186} INFO - Started process (PID=1907) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:42:57.366+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:42:57.378+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:42:57.376+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:43:03.503+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:43:03.644+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:43:03.643+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:43:03.800+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 6.474 seconds
+[2025-04-01T17:43:34.664+0000] {processor.py:186} INFO - Started process (PID=1925) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:43:34.671+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:43:34.685+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:43:34.685+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:43:39.701+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:43:39.750+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:43:39.749+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:43:39.821+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:43:39.820+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:43:39.945+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.311 seconds
+[2025-04-01T17:44:10.886+0000] {processor.py:186} INFO - Started process (PID=1951) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:44:10.890+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:44:10.895+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:44:10.895+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:44:13.825+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:44:13.937+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:44:13.936+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:44:14.028+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:44:14.028+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:44:14.110+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.262 seconds
+[2025-04-01T17:44:44.465+0000] {processor.py:186} INFO - Started process (PID=1969) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:44:44.468+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:44:44.473+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:44:44.472+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:44:47.167+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:44:47.217+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:44:47.216+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:44:47.256+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:44:47.255+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:44:47.287+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.853 seconds
+[2025-04-01T17:45:17.432+0000] {processor.py:186} INFO - Started process (PID=1987) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:45:17.435+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:45:17.442+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:45:17.441+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:45:19.507+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:45:19.546+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:45:19.545+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:45:19.581+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:45:19.581+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:45:19.611+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.195 seconds
+[2025-04-01T17:45:50.531+0000] {processor.py:186} INFO - Started process (PID=2006) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:45:50.534+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:45:50.538+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:45:50.538+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:45:52.759+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:45:52.839+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:45:52.839+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:45:52.881+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:45:52.880+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:45:52.911+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.396 seconds
+[2025-04-01T17:46:23.385+0000] {processor.py:186} INFO - Started process (PID=2025) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:46:23.388+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:46:23.393+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:46:23.392+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:46:25.536+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:46:25.596+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:46:25.595+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:46:25.650+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:46:25.650+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:46:25.681+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.314 seconds
+[2025-04-01T17:46:55.932+0000] {processor.py:186} INFO - Started process (PID=2044) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:46:55.936+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:46:55.943+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:46:55.943+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:46:59.142+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:46:59.226+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:46:59.225+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:46:59.304+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:46:59.304+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:46:59.338+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.447 seconds
+[2025-04-01T17:47:29.643+0000] {processor.py:186} INFO - Started process (PID=2063) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:47:29.646+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:47:29.652+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:47:29.651+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:47:32.621+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:47:32.692+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:47:32.691+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:47:32.745+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:47:32.744+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:47:32.808+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.182 seconds
+[2025-04-01T17:48:03.132+0000] {processor.py:186} INFO - Started process (PID=2084) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:48:03.135+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:48:03.141+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:48:03.140+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:48:06.130+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:48:06.218+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:48:06.217+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:48:06.271+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:48:06.271+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:48:06.325+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.211 seconds
+[2025-04-01T17:48:37.267+0000] {processor.py:186} INFO - Started process (PID=2106) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:48:37.270+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:48:37.276+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:48:37.275+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:48:39.696+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:48:39.752+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:48:39.751+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:48:39.801+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:48:39.801+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:48:39.837+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.590 seconds
+[2025-04-01T17:49:10.236+0000] {processor.py:186} INFO - Started process (PID=2132) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:49:10.239+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:49:10.244+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:49:10.244+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:49:12.624+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:49:12.679+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:49:12.679+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:49:12.734+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:49:12.733+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:49:12.774+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.555 seconds
+[2025-04-01T17:49:43.102+0000] {processor.py:186} INFO - Started process (PID=2151) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:49:43.105+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:49:43.111+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:49:43.110+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:49:45.784+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:49:45.840+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:49:45.840+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:49:45.884+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:49:45.884+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:49:45.920+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.837 seconds
+[2025-04-01T17:50:16.263+0000] {processor.py:186} INFO - Started process (PID=2170) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:50:16.266+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:50:16.271+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:50:16.271+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:50:18.331+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:50:18.387+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:50:18.386+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:50:18.448+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:50:18.448+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:50:18.477+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.234 seconds
+[2025-04-01T17:50:48.743+0000] {processor.py:186} INFO - Started process (PID=2189) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:50:48.745+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:50:48.750+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:50:48.750+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:50:50.850+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:50:50.895+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:50:50.894+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:50:50.952+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:50:50.952+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:50:51.052+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.330 seconds
+[2025-04-01T17:51:21.261+0000] {processor.py:186} INFO - Started process (PID=2208) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:51:21.265+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:51:21.272+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:51:21.271+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:51:26.199+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:51:26.274+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:51:26.273+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:51:26.333+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:51:26.333+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:51:26.395+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.157 seconds
+[2025-04-01T17:51:56.742+0000] {processor.py:186} INFO - Started process (PID=2228) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:51:56.745+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:51:56.750+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:51:56.749+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:51:59.490+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:51:59.538+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:51:59.537+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:51:59.587+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:51:59.586+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:51:59.615+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.889 seconds
+[2025-04-01T17:52:29.860+0000] {processor.py:186} INFO - Started process (PID=2247) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:52:29.864+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:52:29.871+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:52:29.870+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:52:33.245+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:52:33.331+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:52:33.329+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:52:33.438+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:52:33.438+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:52:33.498+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.664 seconds
+[2025-04-01T17:53:04.457+0000] {processor.py:186} INFO - Started process (PID=2266) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:53:04.460+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:53:04.467+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:53:04.466+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:53:07.527+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:53:07.586+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:53:07.585+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:53:07.624+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:53:07.623+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T17:53:07.649+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.213 seconds
+[2025-04-01T17:53:37.992+0000] {processor.py:186} INFO - Started process (PID=2284) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:53:37.994+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:53:38.000+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:53:38.000+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:12.946+0000] {processor.py:186} INFO - Started process (PID=80) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:12.957+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:57:12.984+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:12.980+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:21.137+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:22.556+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.555+0000] {override.py:1901} INFO - Created Permission View: can edit on DAG:4-Procesa_data
+[2025-04-01T17:57:22.583+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.582+0000] {override.py:1901} INFO - Created Permission View: can delete on DAG:4-Procesa_data
+[2025-04-01T17:57:22.607+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.607+0000] {override.py:1901} INFO - Created Permission View: can read on DAG:4-Procesa_data
+[2025-04-01T17:57:22.636+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.635+0000] {override.py:1901} INFO - Created Permission View: can create on DAG Run:4-Procesa_data
+[2025-04-01T17:57:22.656+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.655+0000] {override.py:1901} INFO - Created Permission View: menu access on DAG Run:4-Procesa_data
+[2025-04-01T17:57:22.672+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.672+0000] {override.py:1901} INFO - Created Permission View: can delete on DAG Run:4-Procesa_data
+[2025-04-01T17:57:22.691+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.691+0000] {override.py:1901} INFO - Created Permission View: can read on DAG Run:4-Procesa_data
+[2025-04-01T17:57:22.694+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.692+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:57:22.739+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.737+0000] {dag.py:3262} INFO - Creating ORM DAG for 4-Procesa_data
+[2025-04-01T17:57:22.773+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:22.773+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T17:57:22.808+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 9.935 seconds
+[2025-04-01T17:57:53.038+0000] {processor.py:186} INFO - Started process (PID=99) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:53.040+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:57:53.045+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:53.044+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:57.714+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:57:57.782+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:57.780+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:57:57.841+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:57:57.841+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T17:57:58.072+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.054 seconds
+[2025-04-01T17:58:28.823+0000] {processor.py:186} INFO - Started process (PID=118) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:58:28.827+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:58:28.833+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:58:28.833+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:58:33.272+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:58:33.382+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:58:33.379+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:58:33.483+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:58:33.482+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T17:58:33.543+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.799 seconds
+[2025-04-01T17:59:04.646+0000] {processor.py:186} INFO - Started process (PID=137) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:59:04.653+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:59:04.660+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:59:04.660+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:59:10.194+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:59:10.247+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:59:10.246+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:59:10.288+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:59:10.287+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T17:59:10.324+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.710 seconds
+[2025-04-01T17:59:40.594+0000] {processor.py:186} INFO - Started process (PID=163) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:59:40.596+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T17:59:40.601+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:59:40.601+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:59:43.281+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T17:59:43.334+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:59:43.333+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T17:59:43.379+0000] {logging_mixin.py:190} INFO - [2025-04-01T17:59:43.379+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T17:59:43.640+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.061 seconds
+[2025-04-01T18:00:13.763+0000] {processor.py:186} INFO - Started process (PID=182) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:00:13.766+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:00:13.771+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:00:13.771+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:00:16.576+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:00:16.624+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:00:16.624+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:00:16.860+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:00:16.859+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:00:16.891+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.143 seconds
+[2025-04-01T18:00:47.266+0000] {processor.py:186} INFO - Started process (PID=201) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:00:47.272+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:00:47.281+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:00:47.279+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:00:50.044+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:00:50.164+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:00:50.161+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:00:50.303+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:00:50.297+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:00:50.367+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.123 seconds
+[2025-04-01T18:01:20.981+0000] {processor.py:186} INFO - Started process (PID=220) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:01:20.983+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:01:20.988+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:01:20.988+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:01:23.440+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:01:23.494+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:01:23.493+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:01:23.542+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:01:23.541+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:01:23.573+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.621 seconds
+[2025-04-01T18:01:54.063+0000] {processor.py:186} INFO - Started process (PID=239) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:01:54.067+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:01:54.076+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:01:54.074+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:01:56.672+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:01:56.714+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:01:56.713+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:01:57.006+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:01:57.006+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:01:57.041+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.033 seconds
+[2025-04-01T18:02:27.589+0000] {processor.py:186} INFO - Started process (PID=257) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:02:27.592+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:02:27.599+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:02:27.598+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:02:30.839+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:02:30.907+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:02:30.906+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:02:30.963+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:02:30.962+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:02:30.999+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.426 seconds
+[2025-04-01T18:03:01.193+0000] {processor.py:186} INFO - Started process (PID=276) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:03:01.196+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:03:01.201+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:03:01.201+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:03:04.260+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:03:04.411+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:03:04.410+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:03:04.484+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:03:04.483+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:03:04.547+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 3.369 seconds
+[2025-04-01T18:03:35.670+0000] {processor.py:186} INFO - Started process (PID=296) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:03:35.696+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:03:35.716+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:03:35.714+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:03:40.906+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:03:40.971+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:03:40.970+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:03:41.425+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:03:41.424+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-03-31 00:00:00+00:00, run_after=2025-04-01 00:00:00+00:00
+[2025-04-01T18:03:41.472+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.915 seconds
+[2025-04-01T18:04:11.883+0000] {processor.py:186} INFO - Started process (PID=322) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:04:11.889+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:04:11.896+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:04:11.894+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:04:30.819+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:04:39.624+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:04:39.487+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:04:55.069+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 43.221 seconds
+[2025-04-01T18:05:25.854+0000] {processor.py:186} INFO - Started process (PID=341) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:05:25.860+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:05:25.865+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:05:25.864+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:05:32.594+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:05:32.704+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:05:32.702+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:05:33.147+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 7.337 seconds
+[2025-04-01T18:06:04.221+0000] {processor.py:186} INFO - Started process (PID=366) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:06:04.232+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:06:04.244+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:06:04.234+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:06:09.044+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:06:09.111+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:06:09.110+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:06:09.508+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 5.345 seconds
+[2025-04-01T18:06:39.730+0000] {processor.py:186} INFO - Started process (PID=386) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:06:39.733+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:06:39.736+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:06:39.735+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:06:43.972+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:06:44.020+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:06:44.019+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:06:44.253+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.539 seconds
+[2025-04-01T18:07:14.815+0000] {processor.py:186} INFO - Started process (PID=404) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:07:14.817+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:07:14.820+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:07:14.819+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:07:16.852+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:07:16.909+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:07:16.908+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:07:16.982+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:07:16.979+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T18:07:17.312+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.511 seconds
+[2025-04-01T18:07:48.037+0000] {processor.py:186} INFO - Started process (PID=423) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:07:48.040+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:07:48.042+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:07:48.042+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:07:50.225+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:07:50.325+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:07:50.324+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:07:50.836+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:07:50.835+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T18:07:50.882+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 2.861 seconds
+[2025-04-01T18:08:21.619+0000] {processor.py:186} INFO - Started process (PID=442) to work on /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:08:21.622+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Procesa_data.py for tasks to queue
+[2025-04-01T18:08:21.625+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:08:21.624+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:08:25.611+0000] {processor.py:925} INFO - DAG(s) '4-Procesa_data' retrieved from /opt/airflow/dags/Procesa_data.py
+[2025-04-01T18:08:26.069+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:08:26.066+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-01T18:08:26.156+0000] {logging_mixin.py:190} INFO - [2025-04-01T18:08:26.156+0000] {dag.py:4180} INFO - Setting next_dagrun for 4-Procesa_data to 2025-04-01 00:00:00+00:00, run_after=2025-04-02 00:00:00+00:00
+[2025-04-01T18:08:26.200+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Procesa_data.py took 4.599 seconds

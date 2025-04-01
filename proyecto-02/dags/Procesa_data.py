@@ -5,6 +5,10 @@ from sklearn.datasets import load_diabetes
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 import os
 import random
 import pandas as pd
@@ -89,7 +93,7 @@ def experimentar():
                                       remainder='passthrough') # pass all the numeric values through the pipeline without any changes.
     pipe = Pipeline(steps=[("column_trans", column_trans),("scaler", StandardScaler(with_mean=False)), ("RandomForestClassifier", RandomForestClassifier())])
     param_grid =  {'RandomForestClassifier__max_depth': [1,2,3,10], 'RandomForestClassifier__n_estimators': [10,11]}
-
+    search = GridSearchCV(pipe, param_grid, n_jobs=2)    
 
     mlflow.set_tracking_uri("http://10.43.101.202:5000")
     mlflow.set_experiment("mlflow_tracking_examples")
@@ -97,14 +101,14 @@ def experimentar():
     mlflow.sklearn.autolog(log_model_signatures=True, log_input_examples=True, registered_model_name="modelo1")
 
     # Cambiar los hiperparámetros cada vez que se ejecute
-    n_estimators = random.randint(50, 200)
-    max_depth = random.randint(3, 10)
-    max_features = random.choice([2, 3, 4, 'auto'])
+    # n_estimators = random.randint(50, 200)
+    # max_depth = random.randint(3, 10)
+    # max_features = random.choice([2, 3, 4, 'auto'])
 
     with mlflow.start_run(run_name="autolog_pipe_model_reg") as run:
-        rf = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, max_features=max_features)
-        rf.fit(X_train, y_train)
-        mlflow.log_metric("r2_score", rf.score(X_test, y_test))
+        # rf = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, max_features=max_features)
+        search.fit(X_train, y_train)
+        mlflow.log_metric("r2_score", search.score(X_test, y_test))
 
     print("Experimento registrado correctamente.")
 
