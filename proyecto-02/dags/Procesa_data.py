@@ -3,6 +3,8 @@ import mlflow.sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.compose import make_column_transformer
+from sklearn.preprocessing import OneHotEncoder
 import os
 import random
 import pandas as pd
@@ -79,6 +81,14 @@ def experimentar():
 
     # Perform the train-test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # X_train, X_test will now contain the feature data for training and testing
+    # y_train, y_test will contain the target labels for training and testing
+    column_trans = make_column_transformer((OneHotEncoder(handle_unknown='ignore'),
+                                        ["Wilderness_Area", "Soil_Type"]),
+                                      remainder='passthrough') # pass all the numeric values through the pipeline without any changes.
+    pipe = Pipeline(steps=[("column_trans", column_trans),("scaler", StandardScaler(with_mean=False)), ("RandomForestClassifier", RandomForestClassifier())])
+    param_grid =  {'RandomForestClassifier__max_depth': [1,2,3,10], 'RandomForestClassifier__n_estimators': [10,11]}
 
 
     mlflow.set_tracking_uri("http://10.43.101.202:5000")
