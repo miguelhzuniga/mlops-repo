@@ -1,48 +1,38 @@
 from airflow import DAG
-from airflow.providers.mysql.operators.mysql import MySqlOperator
-from datetime import datetime, timedelta
+from airflow.operators.python import PythonOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+from datetime import datetime
 
-
+# Definir los argumentos por defecto del DAG
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=1)
+    'retries': 0
 }
 
-
 dag = DAG(
-    '1-Borrar_penguins_db',
+    '1-clean_data_dag',
     default_args=default_args,
-    description='DAG para borrar contenido de la base de datos de penguins',
-    schedule_interval=None,  # Solo ejecución manual si es "None"
-    start_date=datetime(2025, 3, 8),
+    description='DAG para borrar todos los datos en la tabla covertype',
+    schedule_interval="@daily",
+    start_date=datetime(2025, 3, 30, 1, 0, 0),
     catchup=False
 )
 
-database_name = 'airflow_db'
-table_name = 'penguins'
+table_name = 'covertype'
 
-check_and_drop_table = f"""
-USE {database_name};
-DROP TABLE IF EXISTS {table_name};
-"""
+def delete_all_data():
+    postgres_hook = PostgresHook(postgres_conn_id='postgres_default')
+    query = f"DELETE FROM {table_name}"
+    postgres_hook.run(query)
+    print("Todas las filas han sido eliminadas de la tabla")
 
-
-drop_table_task = MySqlOperator(
-    task_id='drop_penguins_table',
-    mysql_conn_id='mysql_default',
-    sql=check_and_drop_table,
+delete_data_task = PythonOperator(
+    task_id='delete_data_task',
+    python_callable=delete_all_data,
     dag=dag
 )
 
-log_completion = MySqlOperator(
-    task_id='log_completion',
-    mysql_conn_id='mysql_default',
-    sql=f"SELECT 'Base de datos de penguins borrada exitosamente' as log_message",
-    dag=dag
-)
-
-drop_table_task >> log_completion
+delete_data_task
