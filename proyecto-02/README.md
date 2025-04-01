@@ -17,7 +17,7 @@ Airflow se ejecuta utilizando CeleryExecutor, y se conecta a Redis para la gesti
 - **Airflow Worker**: Ejecuta las tareas programadas por el scheduler.
 - **Airflow Triggerer**: Gestiona trabajos que activan tareas manualmente.
 
-  ![alt text](captura_airflow.png)
+  ![alt text](images/captura_airflow.png)
 
 ### 2. **Redis**: Broker de Celery
 
@@ -37,7 +37,7 @@ MinIO emula un almacenamiento tipo S3, utilizado para almacenar los artefactos d
 
 - Se debe crear el bucket para almacenar los artefactos de MLFLOW en la interfaz gráfica por medio del botón "Create bucket" y este debe llamarse mlflows3 para que mlflow pueda reconocerlo y se guarde la información.
 
-![alt text](captura_minio.png)
+![alt text](images/captura_minio.png)
 
 ### 5. **MLFlow**: Plataforma de Gestión de Experimentos
 
@@ -45,7 +45,7 @@ MLFlow se utiliza para el seguimiento de experimentos de Machine Learning. Se co
 
 - Accede a la interfaz web de MLFlow en `http://localhost:5000`.
 
-![alt text](captura_mlflow.png)
+![alt text](images/captura_mlflow.png)
 
 ### 6. **PgAdmin**: Interfaz de Administración de PostgreSQL
 
@@ -61,7 +61,7 @@ Se debe registrar la base de datos con:
 
 De este modo se puede comprobar que los datos que airflow genera con el dag Cargar_datos.py están cargados a la base de datos de Postgresql
 
-![alt text](captura_pgadmin.png)
+![alt text](images/captura_pgadmin.png)
 
 ### 7. **MySQL**: Base de Datos de MLFlow
 
@@ -71,7 +71,7 @@ MySQL se usa para almacenar los metadatos de MLFlow. Se conecta con el contenedo
 
 JupyterLab proporciona un entorno interactivo para desarrollo y pruebas. Puedes acceder a él en `http://localhost:8888` usando el token `devtoken`.
 
-![alt text](captura_jupyter.png)
+![alt text](images/captura_jupyter.png)
 
 ### 9. **FastAPI (API)**: API de Inferencia
 
@@ -81,7 +81,7 @@ Aqui se puede utilizar el mejor modelo generado tras los experimentos de MLFLOW 
 
 * Nota: el modelo debe estar en estado de producción en Mlflow y debe llamarse modelo1.
 
-![alt text](captura_api.png)
+![alt text](images/captura_api.png)
 
 ### 10. **FastAPI (API Server)**: Servidor de API
 
@@ -148,7 +148,7 @@ Para ejecutar los contenedores y configurar el entorno, sigue estos pasos:
 
     Esto generará como resultado:
 
-    ![alt text](captura_api_prediccion.png)
+    ![alt text](images/captura_api_prediccion.png)
 
 Autores:
 
