@@ -129,29 +129,29 @@ IP MV: 10.43.101.202
 
     * La ejecución recomendada para efectuar el proceso por completo es ejecutar los dags en el orden en el que están enumerados: primero se limpia la base de datos si existe, se cargan los datos, se entrena el modelo y se genera experimentos.
 
-3. **Inferencia en API**:
-    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/docs`, donde podrá hacer inferencia con el modelo utilizando un json como el siguiente ejemplo:
+3. **Inferencia en API - OPCIÓN 1**:
+    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/docs`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
 
-    ```python
-    {
-    "Elevation": 1,
-    "Aspect": 1,
-    "Slope": 1,
-    "Horizontal_Distance_To_Hydrology": 1,
-    "Vertical_Distance_To_Hydrology": 1,
-    "Horizontal_Distance_To_Roadways": 1,
-    "Hillshade_9am": 1,
-    "Hillshade_Noon": 1,
-    "Hillshade_3pm": 1,
-    "Horizontal_Distance_To_Fire_Points": 1,
-    "Wilderness_Area": "Rawah",
-    "Soil_Type": "C7745"
-    }
-    ```
+  1. Entrar a la API. Si se da click en botón "Mapear modelos" y no se ha cargado el modelo aparecerá el mensaje:
 
-    Esto generará como resultado:
+![alt text](images/captura_interfaz1.png)
 
-    ![alt text](images/captura_api_prediccion.png)
+  2. Se debe haber puesto el modelo en etapa de Producción antes:
+
+![alt text](images/captura_interfaz1.5.png)
+
+  3. Tras poner el modelo en etapa de Producción se da click en "Mapear modelos" y se da click sobre el modelo. Abarecerá la frase: "Modelo seleccionado correctamente"
+
+![alt text](images/captura_interfaz2.png)
+
+  4. Se ingresan los datos de las variables independientes:
+
+![alt text](images/captura_interfaz3.png)
+
+  5. Se da click en botón "Realizar predicción". Aquí se puede ver el resultado y la predicción dada por el modelo:
+
+![alt text](images/captura_interfaz4.png)
+
 
 **Importante**
   * Para poder almacenar los modelos y experimentos de MLFLOW se debe haber creado el bucket manualmente en MINIO con el nombre mlflows3, al no hacerlo no se registrara la informacion en MLFLOW. 

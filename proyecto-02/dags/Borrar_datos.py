@@ -16,7 +16,7 @@ dag = DAG(
     '1-clean_data_dag',
     default_args=default_args,
     description='DAG para borrar todos los datos en la tabla covertype',
-    schedule_interval="@daily",
+    schedule_interval='0 1 * * *',
     start_date=datetime(2025, 3, 30, 1, 0, 0),
     catchup=False
 )

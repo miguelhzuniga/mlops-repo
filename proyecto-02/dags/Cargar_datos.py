@@ -22,7 +22,7 @@ dag = DAG(
     '2-Cargar_data',
     default_args=default_args,
     description='DAG para cargar datos desde el servidor a PostgreSQL sin preprocesamiento',
-    schedule_interval="@daily",  # Solo ejecución manual si es "None"
+    schedule_interval='0 0 * * *',  # Solo ejecución manual si es "None"
     start_date=datetime(2025, 3, 30, 0, 0, 0),
     catchup=False,
     max_active_runs=1

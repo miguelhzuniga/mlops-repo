@@ -1,0 +1,590 @@
+[2025-04-02T00:00:09.433+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T00:00:09.512+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T00:00:09.560+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T00:00:09.561+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-02T00:00:09.608+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-04-01 00:00:00+00:00
+[2025-04-02T00:00:09.663+0000] {standard_task_runner.py:72} INFO - Started process 7054 to run task
+[2025-04-02T00:00:09.709+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'entrenar_modelo', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmp0zeb_kfz']
+[2025-04-02T00:00:09.735+0000] {standard_task_runner.py:105} INFO - Job 14: Subtask entrenar_modelo
+[2025-04-02T00:00:09.908+0000] {task_command.py:467} INFO - Running <TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [running]> on host 111d26a6d12f
+[2025-04-02T00:00:10.155+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T00:00:10.158+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T00:00:10.279+0000] {warnings.py:109} WARNING - /opt/***/dags/Entrenamiento_mode.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(query, conn)
+
+[2025-04-02T00:00:14.394+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:00:14 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2025-04-02T00:00:14.680+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:00:14 WARNING mlflow.utils: Truncated the value of the key `estimator`. Truncated value: `Pipeline(steps=[('column_trans',
+                 ColumnTransformer(remainder='passthrough',
+                                   transformers=[('onehotencoder',
+                                                  OneHotEncoder(handle_unknown='ignore'),
+                                                  ['Wilderness_Area',
+                                                   'Soil_Type'])])),
+                ('scaler', StandardScaler(with_mean=False)),
+                ('RandomForestClassifier', Rand...`
+[2025-04-02T00:00:14.712+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/joblib/parallel.py:1359: UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+  n_jobs = self._backend.configure(n_jobs=self.n_jobs, parallel=self,
+
+[2025-04-02T00:00:14.727+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/sklearn/model_selection/_split.py:676: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+  warnings.warn(
+
+[2025-04-02T00:00:22.040+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-04-02T00:00:24.452+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:00:24 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/home/***/.local/lib/python3.8/site-packages/mlflow/models/signature.py:137: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+[2025-04-02T00:05:51.809+0000] {job.py:229} INFO - Heartbeat recovered after 316.07 seconds
+[2025-04-02T00:06:40.218+0000] {job.py:229} INFO - Heartbeat recovered after 15.65 seconds
+[2025-04-02T00:07:06.312+0000] {job.py:229} INFO - Heartbeat recovered after 28.86 seconds
+[2025-04-02T00:07:19.210+0000] {job.py:229} INFO - Heartbeat recovered after 13.55 seconds
+[2025-04-02T00:07:38.544+0000] {job.py:229} INFO - Heartbeat recovered after 19.46 seconds
+[2025-04-02T00:07:41.303+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:07:41 WARNING mlflow.utils.environment: Encountered an unexpected error while inferring pip requirements (model URI: /tmp/tmpacjwjh2j/model/model.pkl, flavor: sklearn), fall back to return ['scikit-learn==1.0.2', 'cloudpickle==2.2.1']. Set logging level to DEBUG to see the full traceback.
+[2025-04-02T00:07:50.906+0000] {job.py:229} INFO - Heartbeat recovered after 12.54 seconds
+[2025-04-02T00:08:11.710+0000] {job.py:239} ERROR - Job heartbeat failed with error
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 233, in heartbeat
+    heartbeat_callback(session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/local_task_job_runner.py", line 284, in heartbeat_callback
+    self.task_instance.refresh_from_db()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2360, in refresh_from_db
+    _refresh_from_db(task_instance=self, session=session, lock_for_update=lock_for_update)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 873, in _refresh_from_db
+    ti = TaskInstance.get_task_instance(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2346, in get_task_instance
+    return query.one_or_none()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2850, in one_or_none
+    return self._iter().one_or_none()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-04-02T00:08:12.842+0000] {job.py:254} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state
+[2025-04-02T00:09:06.583+0000] {job.py:229} INFO - Heartbeat recovered after 76.88 seconds
+[2025-04-02T00:09:18.247+0000] {job.py:229} INFO - Heartbeat recovered after 11.78 seconds
+[2025-04-02T00:09:40.575+0000] {logging_mixin.py:190} WARNING - Registered model 'modelo1' already exists. Creating a new version of this model...
+[2025-04-02T00:09:41.153+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:09:41 INFO mlflow.tracking._model_registry.client: Waiting up to 300 seconds for model version to finish creation. Model name: modelo1, version 4
+[2025-04-02T00:09:41.159+0000] {logging_mixin.py:190} WARNING - Created version '4' of model 'modelo1'.
+[2025-04-02T00:10:12.352+0000] {job.py:229} INFO - Heartbeat recovered after 20.60 seconds
+[2025-04-02T00:10:41.078+0000] {job.py:229} INFO - Heartbeat recovered after 21.92 seconds
+[2025-04-02T00:11:52.107+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:11:51 WARNING mlflow.utils.environment: Encountered an unexpected error while inferring pip requirements (model URI: /tmp/tmpsjtik_i6/model/model.pkl, flavor: sklearn), fall back to return ['scikit-learn==1.0.2', 'cloudpickle==2.2.1']. Set logging level to DEBUG to see the full traceback.
+[2025-04-02T00:12:05.267+0000] {job.py:239} ERROR - Job heartbeat failed with error
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "postgres" (172.19.0.2), port 5432 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 233, in heartbeat
+    heartbeat_callback(session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/local_task_job_runner.py", line 284, in heartbeat_callback
+    self.task_instance.refresh_from_db()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2360, in refresh_from_db
+    _refresh_from_db(task_instance=self, session=session, lock_for_update=lock_for_update)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 873, in _refresh_from_db
+    ti = TaskInstance.get_task_instance(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2346, in get_task_instance
+    return query.one_or_none()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2850, in one_or_none
+    return self._iter().one_or_none()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "postgres" (172.19.0.2), port 5432 failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-04-02T00:12:15.013+0000] {job.py:254} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state
+[2025-04-02T00:12:30.002+0000] {job.py:229} INFO - Heartbeat recovered after 109.92 seconds
+[2025-04-02T00:12:34.533+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:12:34 INFO mlflow.sklearn.utils: Logging the 5 best runs, 3 runs will be omitted.
+[2025-04-02T00:13:11.449+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:13:11.451+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:13:12.017+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:13:12.538+0000] {job.py:229} INFO - Heartbeat recovered after 27.85 seconds
+[2025-04-02T00:13:47.255+0000] {job.py:229} INFO - Heartbeat recovered after 17.94 seconds
+[2025-04-02T00:14:39.673+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:14:39.790+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:14:43.221+0000] {job.py:229} INFO - Heartbeat recovered after 11.84 seconds
+[2025-04-02T00:14:56.316+0000] {job.py:229} INFO - Heartbeat recovered after 13.18 seconds
+[2025-04-02T00:15:15.637+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:15:15.658+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:15:16.179+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:16:16.797+0000] {job.py:229} INFO - Heartbeat recovered after 47.06 seconds
+[2025-04-02T00:16:28.666+0000] {job.py:229} INFO - Heartbeat recovered after 12.13 seconds
+[2025-04-02T00:16:44.467+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:16:44.528+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:17:12.215+0000] {job.py:229} INFO - Heartbeat recovered after 17.40 seconds
+[2025-04-02T00:17:23.240+0000] {job.py:229} INFO - Heartbeat recovered after 14.95 seconds
+[2025-04-02T00:17:24.067+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:17:24.050+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:17:24.428+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:18:59.404+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:19:00.822+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:19:01.742+0000] {job.py:229} INFO - Heartbeat recovered after 58.98 seconds
+[2025-04-02T00:19:28.355+0000] {job.py:229} INFO - Heartbeat recovered after 20.11 seconds
+[2025-04-02T00:19:40.412+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=1, connect=5, read=1, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:19:40.341+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=1, connect=5, read=1, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:19:40.593+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=1, connect=5, read=1, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:20:26.827+0000] {job.py:229} INFO - Heartbeat recovered after 46.46 seconds
+[2025-04-02T00:20:46.280+0000] {job.py:229} INFO - Heartbeat recovered after 11.53 seconds
+[2025-04-02T00:21:15.746+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=1, connect=5, read=1, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:21:17.049+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=1, connect=5, read=1, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:22:38.538+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=0, connect=5, read=0, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:22:20.275+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=0, connect=5, read=0, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:23:34.411+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=0, connect=5, read=0, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:24:28.906+0000] {job.py:229} INFO - Heartbeat recovered after 198.84 seconds
+[2025-04-02T00:24:52.861+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=0, connect=5, read=0, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:24:53.468+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=0, connect=5, read=0, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/log-batch
+[2025-04-02T00:24:55.560+0000] {job.py:229} INFO - Heartbeat recovered after 26.72 seconds
+[2025-04-02T00:26:35.981+0000] {job.py:239} ERROR - Job heartbeat failed with error
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 207, in heartbeat
+    self._merge_from(Job._fetch_from_db(self, session))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/retries.py", line 93, in wrapped_function
+    for attempt in run_with_db_retries(max_retries=retries, logger=logger, **retry_kwargs):
+  File "/home/airflow/.local/lib/python3.8/site-packages/tenacity/__init__.py", line 443, in __iter__
+    do = self.iter(retry_state=retry_state)
+  File "/home/airflow/.local/lib/python3.8/site-packages/tenacity/__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "/home/airflow/.local/lib/python3.8/site-packages/tenacity/__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+  File "/home/airflow/.local/lib/python3.8/site-packages/tenacity/__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+  File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 437, in result
+    return self.__get_result()
+  File "/usr/local/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/retries.py", line 102, in wrapped_function
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/jobs/job.py", line 335, in _fetch_from_db
+    session.merge(job)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3056, in merge
+    return self._merge(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3136, in _merge
+    merged = self.get(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2853, in get
+    return self._get_impl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2975, in _get_impl
+    return db_load_fn(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 691, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-04-02T00:26:43.335+0000] {job.py:254} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state
+[2025-04-02T00:28:34.172+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:28:32.022+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:28:32.216+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:28:54.591+0000] {job.py:229} INFO - Heartbeat recovered after 239.22 seconds
+[2025-04-02T00:29:08.334+0000] {job.py:229} INFO - Heartbeat recovered after 13.86 seconds
+[2025-04-02T00:29:09.902+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:29:12.827+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=4, connect=5, read=4, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:33:31.217+0000] {job.py:229} INFO - Heartbeat recovered after 262.96 seconds
+[2025-04-02T00:33:34.060+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:33:34.074+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:33:34.155+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:33:34.284+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:33:34.018+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=3, connect=5, read=3, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:42:35.724+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:42:35.681+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:42:35.768+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:42:35.716+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:42:35.605+0000] {connectionpool.py:827} WARNING - Retrying (Retry(total=2, connect=5, read=2, redirect=5, status=5)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='10.43.101.202', port=5000): Read timed out. (read timeout=120)")': /api/2.0/mlflow/runs/update
+[2025-04-02T00:42:36.179+0000] {job.py:229} INFO - Heartbeat recovered after 505.85 seconds
+[2025-04-02T00:43:37.821+0000] {logging_mixin.py:190} WARNING - 2025/04/02 00:43:37 WARNING mlflow.utils.autologging_utils: Encountered unexpected error during sklearn autologging: The following failures occurred while performing one or more logging operations: [MlflowException('Failed to perform one or more operations on the run with ID 8e0d8521c4aa43229e4cc9685cd232ef. Failed operations: [MlflowException(\'API request to http://10.43.101.202:5000/api/2.0/mlflow/runs/log-batch failed with exception HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Max retries exceeded with url: /api/2.0/mlflow/runs/log-batch (Caused by ReadTimeoutError("HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Read timed out. (read timeout=120)"))\')]'), MlflowException('Failed to perform one or more operations on the run with ID 2c80bdb84187417398fa07cd8f27752a. Failed operations: [MlflowException(\'API request to http://10.43.101.202:5000/api/2.0/mlflow/runs/log-batch failed with exception HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Max retries exceeded with url: /api/2.0/mlflow/runs/log-batch (Caused by ReadTimeoutError("HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Read timed out. (read timeout=120)"))\')]'), MlflowException('Failed to perform one or more operations on the run with ID a14f44392f4c404ab2f4d8d46f31cf10. Failed operations: [MlflowException(\'API request to http://10.43.101.202:5000/api/2.0/mlflow/runs/log-batch failed with exception HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Max retries exceeded with url: /api/2.0/mlflow/runs/log-batch (Caused by ReadTimeoutError("HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Read timed out. (read timeout=120)"))\')]'), MlflowException('Failed to perform one or more operations on the run with ID 7600cea7addc48b18b9b53b8d29b59a6. Failed operations: [MlflowException(\'API request to http://10.43.101.202:5000/api/2.0/mlflow/runs/log-batch failed with exception HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Max retries exceeded with url: /api/2.0/mlflow/runs/log-batch (Caused by ReadTimeoutError("HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Read timed out. (read timeout=120)"))\')]'), MlflowException('Failed to perform one or more operations on the run with ID 20e0f684596f40daa6f3e968ecb7d615. Failed operations: [MlflowException(\'API request to http://10.43.101.202:5000/api/2.0/mlflow/runs/log-batch failed with exception HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Max retries exceeded with url: /api/2.0/mlflow/runs/log-batch (Caused by ReadTimeoutError("HTTPConnectionPool(host=\\\'10.43.101.202\\\', port=5000): Read timed out. (read timeout=120)"))\')]')]
+[2025-04-02T00:43:37.960+0000] {python.py:240} INFO - Done. Returned value was: 0
+[2025-04-02T00:43:38.358+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T00:43:38.361+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=entrenar_modelo, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T000009, end_date=20250402T004338
+[2025-04-02T00:43:39.159+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T00:43:39.433+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T00:43:39.455+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T01:24:56.045+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T01:24:56.077+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T01:24:56.088+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T01:24:56.088+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-02T01:24:56.104+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-04-01 00:00:00+00:00
+[2025-04-02T01:24:56.125+0000] {standard_task_runner.py:72} INFO - Started process 165 to run task
+[2025-04-02T01:24:56.136+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'entrenar_modelo', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpc3ysaim3']
+[2025-04-02T01:24:56.142+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask entrenar_modelo
+[2025-04-02T01:24:56.247+0000] {task_command.py:467} INFO - Running <TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [running]> on host 6a700e345aa5
+[2025-04-02T01:24:56.388+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T01:24:56.390+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T01:24:56.468+0000] {warnings.py:109} WARNING - /opt/***/dags/Entrenamiento_mode.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(query, conn)
+
+[2025-04-02T01:24:56.722+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:24:56 INFO mlflow.tracking.fluent: Experiment with name 'mlflow_tracking_examples' does not exist. Creating a new experiment.
+[2025-04-02T01:24:58.473+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:24:58 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2025-04-02T01:24:58.546+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:24:58 WARNING mlflow.utils: Truncated the value of the key `estimator`. Truncated value: `Pipeline(steps=[('column_trans',
+                 ColumnTransformer(remainder='passthrough',
+                                   transformers=[('onehotencoder',
+                                                  OneHotEncoder(handle_unknown='ignore'),
+                                                  ['Wilderness_Area',
+                                                   'Soil_Type'])])),
+                ('scaler', StandardScaler(with_mean=False)),
+                ('RandomForestClassifier', Rand...`
+[2025-04-02T01:24:58.561+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/joblib/parallel.py:1359: UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+  n_jobs = self._backend.configure(n_jobs=self.n_jobs, parallel=self,
+
+[2025-04-02T01:24:58.573+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/sklearn/model_selection/_split.py:676: UserWarning: The least populated class in y has only 1 members, which is less than n_splits=5.
+  warnings.warn(
+
+[2025-04-02T01:25:00.317+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/sklearn/metrics/_classification.py:1318: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+[2025-04-02T01:25:01.740+0000] {font_manager.py:1547} INFO - generated new fontManager
+[2025-04-02T01:25:04.127+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-04-02T01:25:05.523+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:25:05 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/home/***/.local/lib/python3.8/site-packages/mlflow/models/signature.py:137: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+[2025-04-02T01:25:14.012+0000] {logging_mixin.py:190} WARNING - Successfully registered model 'modelo1'.
+[2025-04-02T01:25:14.085+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:25:14 INFO mlflow.tracking._model_registry.client: Waiting up to 300 seconds for model version to finish creation. Model name: modelo1, version 1
+[2025-04-02T01:25:14.086+0000] {logging_mixin.py:190} WARNING - Created version '1' of model 'modelo1'.
+[2025-04-02T01:25:19.151+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:25:19 INFO mlflow.sklearn.utils: Logging the 5 best runs, 3 runs will be omitted.
+[2025-04-02T01:25:20.044+0000] {python.py:240} INFO - Done. Returned value was: 0
+[2025-04-02T01:25:20.112+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T01:25:20.116+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=entrenar_modelo, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T012456, end_date=20250402T012520
+[2025-04-02T01:25:20.311+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T01:25:20.355+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T01:25:20.358+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T01:42:24.998+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T01:42:25.110+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T01:42:25.170+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T01:42:25.176+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-02T01:42:25.276+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-04-01 00:00:00+00:00
+[2025-04-02T01:42:25.355+0000] {standard_task_runner.py:72} INFO - Started process 164 to run task
+[2025-04-02T01:42:25.377+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'entrenar_modelo', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmp1m369q3c']
+[2025-04-02T01:42:25.385+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask entrenar_modelo
+[2025-04-02T01:42:25.543+0000] {task_command.py:467} INFO - Running <TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-01T00:00:00+00:00 [running]> on host 407915519a00
+[2025-04-02T01:42:25.878+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T01:42:25.882+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T01:42:25.944+0000] {warnings.py:109} WARNING - /opt/***/dags/Entrenamiento_mode.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(query, conn)
+
+[2025-04-02T01:42:28.214+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:42:28 INFO mlflow.tracking.fluent: Experiment with name 'mlflow_tracking_examples' does not exist. Creating a new experiment.
+[2025-04-02T01:42:31.595+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:42:31 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2025-04-02T01:42:31.780+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:42:31 WARNING mlflow.utils: Truncated the value of the key `estimator`. Truncated value: `Pipeline(steps=[('column_trans',
+                 ColumnTransformer(remainder='passthrough',
+                                   transformers=[('onehotencoder',
+                                                  OneHotEncoder(handle_unknown='ignore'),
+                                                  ['Wilderness_Area',
+                                                   'Soil_Type'])])),
+                ('scaler', StandardScaler(with_mean=False)),
+                ('RandomForestClassifier', Rand...`
+[2025-04-02T01:42:31.795+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/joblib/parallel.py:1359: UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+  n_jobs = self._backend.configure(n_jobs=self.n_jobs, parallel=self,
+
+[2025-04-02T01:42:36.232+0000] {font_manager.py:1547} INFO - generated new fontManager
+[2025-04-02T01:42:38.435+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-04-02T01:42:39.639+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:42:39 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/home/***/.local/lib/python3.8/site-packages/mlflow/models/signature.py:137: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+[2025-04-02T01:42:48.680+0000] {logging_mixin.py:190} WARNING - Successfully registered model 'modelo1'.
+[2025-04-02T01:42:48.755+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:42:48 INFO mlflow.tracking._model_registry.client: Waiting up to 300 seconds for model version to finish creation. Model name: modelo1, version 1
+[2025-04-02T01:42:48.756+0000] {logging_mixin.py:190} WARNING - Created version '1' of model 'modelo1'.
+[2025-04-02T01:42:52.905+0000] {logging_mixin.py:190} WARNING - 2025/04/02 01:42:52 INFO mlflow.sklearn.utils: Logging the 5 best runs, 3 runs will be omitted.
+[2025-04-02T01:42:53.453+0000] {python.py:240} INFO - Done. Returned value was: 0
+[2025-04-02T01:42:53.512+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T01:42:53.514+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=entrenar_modelo, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T014225, end_date=20250402T014253
+[2025-04-02T01:42:53.661+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T01:42:53.690+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T01:42:53.693+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
