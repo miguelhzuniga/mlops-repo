@@ -59,6 +59,8 @@ Se debe registrar la base de datos con:
 - user: airflow
 - password: airflow
 
+Para esto se da click en "Servers">"Register" y se ingresan los datos anteriores. Luego se da "Save". Aparecerá la base de datos a la cual si se despliega se podrá dar click derecho y poner "Query tools" y luego hacer consultas como por ejemplo "select * from covertype".
+
 De este modo se puede comprobar que los datos que airflow genera con el dag Cargar_datos.py están cargados a la base de datos de Postgresql
 
 ![alt text](images/captura_pgadmin.png)
@@ -85,7 +87,7 @@ Aqui se puede utilizar el mejor modelo generado tras los experimentos de MLFLOW 
 
 ### 10. **FastAPI (API Server)**: Servidor de API
 
-Esta API simula una URL de internet que provee un batch de datos cada 5 segundos, para un total de 10 batches, los cuales serán utilizados para entrenar posteriormente el modelo en airflow y registrar los experimentos y el mejor modelo en mlflow
+Esta API simula una URL de internet que provee un batch de datos cada 5 segundos, para un total de 10 batches, los cuales serán utilizados para entrenar posteriormente el modelo en airflow y registrar los experimentos y el mejor modelo en mlflow. Los datos se almacenan en la base de datos "airflow" dentro de la tabla "covertype".
 `http://localhost:80`.
 
 ---
@@ -129,35 +131,62 @@ IP MV: 10.43.101.202
 
     * La ejecución recomendada para efectuar el proceso por completo es ejecutar los dags en el orden en el que están enumerados: primero se limpia la base de datos si existe, se cargan los datos, se entrena el modelo y se genera experimentos.
 
-3. **Inferencia en API**:
-    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/docs`, donde podrá hacer inferencia con el modelo utilizando un json como el siguiente ejemplo:
+3. **Inferencia en API - OPCIÓN GRADIO**:
+    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8503/`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
 
-    ```python
-    {
-    "Elevation": 1,
-    "Aspect": 1,
-    "Slope": 1,
-    "Horizontal_Distance_To_Hydrology": 1,
-    "Vertical_Distance_To_Hydrology": 1,
-    "Horizontal_Distance_To_Roadways": 1,
-    "Hillshade_9am": 1,
-    "Hillshade_Noon": 1,
-    "Hillshade_3pm": 1,
-    "Horizontal_Distance_To_Fire_Points": 1,
-    "Wilderness_Area": "Rawah",
-    "Soil_Type": "C7745"
-    }
-    ```
+    1. Entrar a la API. Si se da click en botón "Mapear modelos" y no se ha cargado el modelo aparecerá el mensaje:
 
-    Esto generará como resultado:
+![alt text](images/gradio1.png)
 
-    ![alt text](images/captura_api_prediccion.png)
+    2. Se debe haber puesto el modelo en etapa de Producción antes
+![alt text](images/captura_interfaz1.5.png)
+
+    3. Luego se debe dar click al boton 'Mapear modelos' 
+![alt text](images/gradio2.png)
+
+    4. Posteriormente se selecciona del dropdown el modelo y se da click en el boton 'Cargar modelo' donde saldra tras unos segundos un aviso con la frase 'modelo seleccionado y cargado correctamente'
+
+![alt text](images/gradio3.png)
+
+    5. Se va a la pestaña 'Realizar predicción', se ingresan los datos de las variables independientes (si se requiere información se puede ir a la pestaña de 'Información'):
+
+![alt text](images/gradio4.png)
+
+![alt text](images/gradio4.5.png)
+
+    6. Se da click en botón "Realizar predicción". Aquí se puede ver el resultado y la predicción dada por el modelo:
+
+![alt text](images/gradio5.png)
+
+4. **Inferencia en API - OPCIÓN DESARROLLO WEB**:
+    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
+
+  1. Entrar a la API. Si se da click en botón "Mapear modelos" y no se ha cargado el modelo aparecerá el mensaje:
+
+![alt text](images/captura_interfaz1.png)
+
+  2. Se debe haber puesto el modelo en etapa de Producción antes:
+
+![alt text](images/captura_interfaz1.5.png)
+
+  3. Tras poner el modelo en etapa de Producción se da click en "Mapear modelos" y se da click sobre el modelo. Abarecerá la frase: "Modelo seleccionado correctamente"
+
+![alt text](images/captura_interfaz2.png)
+
+  4. Se ingresan los datos de las variables independientes:
+
+![alt text](images/captura_interfaz3.png)
+
+  5. Se da click en botón "Realizar predicción". Aquí se puede ver el resultado y la predicción dada por el modelo:
+
+![alt text](images/captura_interfaz4.png)
+
 
 **Importante**
   * Para poder almacenar los modelos y experimentos de MLFLOW se debe haber creado el bucket manualmente en MINIO con el nombre mlflows3, al no hacerlo no se registrara la informacion en MLFLOW. 
   * Para poder hacer inferencia de la API por primera vez se debe realizar todo el proceso de ejecucion de los dags debido a que la api requiere del modelo que se genera en el dag 3. Si esto no se aplica entonces la API no se habilitara.
 
-Autores:
+**Autores:**
 
 * Luis Frontuso
 * Miguel Zuñiga

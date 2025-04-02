@@ -35,7 +35,7 @@ dag = DAG(
     '4-Entrenamiento_model',
     default_args=default_args,
     description='DAG para entrenar modelos de machine learning',
-    schedule_interval="@daily",
+    schedule_interval='2 0 * * *',
     start_date=datetime(2025, 3, 30,0,2,0),
     catchup=False
 )

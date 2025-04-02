@@ -36,7 +36,7 @@ dag = DAG(
     '4-Procesa_data',
     default_args=default_args,
     description='DAG para experimentos en MLFLOW',
-    schedule_interval="@daily",  # Solo ejecución manual si es "None"
+    schedule_interval='10 0 * * *',  # Solo ejecución manual si es "None"
     start_date=datetime(2025, 3, 30, 0, 10, 0),
     catchup=False,
     max_active_runs=1
