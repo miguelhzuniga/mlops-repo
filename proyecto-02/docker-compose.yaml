@@ -117,13 +117,6 @@ services:
       - "5050:80"  
     depends_on:
       - postgres
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:80/"]
-      interval: 30s
-      retries: 3
-      start_period: 10s
-      timeout: 10s
-
 
   mysql:
     image: mysql:latest
@@ -205,6 +198,19 @@ services:
       volumes:
         - ./api:/app
       working_dir: /app
+      networks:
+        - net_mlops
+
+  fastapi_bono:
+      build: ./api_bono
+      container_name: fastapi_bono
+      depends_on:
+      - mlflow
+      ports:
+        - "8503:8503"
+      volumes:
+        - ./api_bono:/app_bono
+      working_dir: /app_bono
       networks:
         - net_mlops
 

@@ -82,3 +82,87 @@
 [2025-04-02T02:35:11.707+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
 [2025-04-02T02:35:11.801+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
 [2025-04-02T02:35:11.806+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T03:55:12.988+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T03:55:13.418+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T03:55:13.437+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T03:55:13.437+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-02T03:55:13.461+0000] {taskinstance.py:2890} INFO - Executing <Task(BranchPythonOperator): decide_next_task> on 2025-04-01 00:00:00+00:00
+[2025-04-02T03:55:13.487+0000] {standard_task_runner.py:72} INFO - Started process 130 to run task
+[2025-04-02T03:55:13.509+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '2-Cargar_data', 'decide_next_task', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmpfyotssfr']
+[2025-04-02T03:55:13.523+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask decide_next_task
+[2025-04-02T03:55:13.686+0000] {task_command.py:467} INFO - Running <TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [running]> on host 8e894eabd27d
+[2025-04-02T03:55:13.858+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2-Cargar_data' AIRFLOW_CTX_TASK_ID='decide_next_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T03:55:13.863+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T03:55:13.889+0000] {baseoperator.py:423} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-04-02T03:55:18.914+0000] {python.py:240} INFO - Done. Returned value was: load_data
+[2025-04-02T03:55:18.915+0000] {branch.py:38} INFO - Branch into load_data
+[2025-04-02T03:55:18.915+0000] {skipmixin.py:233} INFO - Following branch ('load_data',)
+[2025-04-02T03:55:18.940+0000] {skipmixin.py:281} INFO - Skipping tasks [('stop_task', -1)]
+[2025-04-02T03:55:19.010+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T03:55:19.012+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=2-Cargar_data, task_id=decide_next_task, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T035513, end_date=20250402T035519
+[2025-04-02T03:55:19.130+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T03:55:19.161+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T03:55:19.164+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T18:00:38.538+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T18:00:38.891+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T18:00:38.909+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T18:00:38.910+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-02T18:00:38.927+0000] {taskinstance.py:2890} INFO - Executing <Task(BranchPythonOperator): decide_next_task> on 2025-04-01 00:00:00+00:00
+[2025-04-02T18:00:38.943+0000] {standard_task_runner.py:72} INFO - Started process 129 to run task
+[2025-04-02T18:00:38.958+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '2-Cargar_data', 'decide_next_task', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmp2lewwp_s']
+[2025-04-02T18:00:38.964+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask decide_next_task
+[2025-04-02T18:00:39.204+0000] {task_command.py:467} INFO - Running <TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [running]> on host 0f069c6cac7c
+[2025-04-02T18:00:39.453+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2-Cargar_data' AIRFLOW_CTX_TASK_ID='decide_next_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T18:00:39.458+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T18:00:39.486+0000] {baseoperator.py:423} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-04-02T18:00:44.510+0000] {python.py:240} INFO - Done. Returned value was: load_data
+[2025-04-02T18:00:44.511+0000] {branch.py:38} INFO - Branch into load_data
+[2025-04-02T18:00:44.512+0000] {skipmixin.py:233} INFO - Following branch ('load_data',)
+[2025-04-02T18:00:44.537+0000] {skipmixin.py:281} INFO - Skipping tasks [('stop_task', -1)]
+[2025-04-02T18:00:44.614+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T18:00:44.615+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=2-Cargar_data, task_id=decide_next_task, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T180038, end_date=20250402T180044
+[2025-04-02T18:00:44.726+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T18:00:44.770+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T18:00:44.772+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T18:18:08.776+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T18:18:09.279+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T18:18:09.320+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T18:18:09.321+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-02T18:18:09.357+0000] {taskinstance.py:2890} INFO - Executing <Task(BranchPythonOperator): decide_next_task> on 2025-04-01 00:00:00+00:00
+[2025-04-02T18:18:09.392+0000] {standard_task_runner.py:72} INFO - Started process 119 to run task
+[2025-04-02T18:18:09.407+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '2-Cargar_data', 'decide_next_task', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmp__zx_dy7']
+[2025-04-02T18:18:09.416+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask decide_next_task
+[2025-04-02T18:18:09.567+0000] {task_command.py:467} INFO - Running <TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [running]> on host a53d15b8cf77
+[2025-04-02T18:18:09.779+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2-Cargar_data' AIRFLOW_CTX_TASK_ID='decide_next_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T18:18:09.782+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T18:18:09.816+0000] {baseoperator.py:423} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-04-02T18:18:14.847+0000] {python.py:240} INFO - Done. Returned value was: load_data
+[2025-04-02T18:18:14.848+0000] {branch.py:38} INFO - Branch into load_data
+[2025-04-02T18:18:14.848+0000] {skipmixin.py:233} INFO - Following branch ('load_data',)
+[2025-04-02T18:18:14.896+0000] {skipmixin.py:281} INFO - Skipping tasks [('stop_task', -1)]
+[2025-04-02T18:18:14.969+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T18:18:14.970+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=2-Cargar_data, task_id=decide_next_task, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T181809, end_date=20250402T181814
+[2025-04-02T18:18:15.074+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T18:18:15.154+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T18:18:15.157+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T23:20:04.697+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T23:20:05.020+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T23:20:05.035+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [queued]>
+[2025-04-02T23:20:05.036+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-02T23:20:05.058+0000] {taskinstance.py:2890} INFO - Executing <Task(BranchPythonOperator): decide_next_task> on 2025-04-01 00:00:00+00:00
+[2025-04-02T23:20:05.076+0000] {standard_task_runner.py:72} INFO - Started process 121 to run task
+[2025-04-02T23:20:05.085+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '2-Cargar_data', 'decide_next_task', 'scheduled__2025-04-01T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Cargar_datos.py', '--cfg-path', '/tmp/tmpn47_7j8h']
+[2025-04-02T23:20:05.091+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask decide_next_task
+[2025-04-02T23:20:05.210+0000] {task_command.py:467} INFO - Running <TaskInstance: 2-Cargar_data.decide_next_task scheduled__2025-04-01T00:00:00+00:00 [running]> on host 03efad00ee78
+[2025-04-02T23:20:05.448+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='2-Cargar_data' AIRFLOW_CTX_TASK_ID='decide_next_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T00:00:00+00:00'
+[2025-04-02T23:20:05.453+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T23:20:05.499+0000] {baseoperator.py:423} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2025-04-02T23:20:10.568+0000] {python.py:240} INFO - Done. Returned value was: load_data
+[2025-04-02T23:20:10.568+0000] {branch.py:38} INFO - Branch into load_data
+[2025-04-02T23:20:10.569+0000] {skipmixin.py:233} INFO - Following branch ('load_data',)
+[2025-04-02T23:20:10.595+0000] {skipmixin.py:281} INFO - Skipping tasks [('stop_task', -1)]
+[2025-04-02T23:20:10.659+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T23:20:10.659+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=2-Cargar_data, task_id=decide_next_task, run_id=scheduled__2025-04-01T00:00:00+00:00, execution_date=20250401T000000, start_date=20250402T232005, end_date=20250402T232010
+[2025-04-02T23:20:10.804+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T23:20:10.852+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T23:20:10.855+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

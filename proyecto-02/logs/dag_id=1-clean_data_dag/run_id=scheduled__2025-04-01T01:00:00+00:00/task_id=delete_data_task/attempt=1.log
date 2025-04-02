@@ -116,3 +116,25 @@ LINE 1: DELETE FROM covertype
 [2025-04-02T02:34:59.198+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
 [2025-04-02T02:34:59.266+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
 [2025-04-02T02:34:59.278+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-02T22:13:02.341+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-02T22:13:02.402+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 1-clean_data_dag.delete_data_task scheduled__2025-04-01T01:00:00+00:00 [queued]>
+[2025-04-02T22:13:02.426+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 1-clean_data_dag.delete_data_task scheduled__2025-04-01T01:00:00+00:00 [queued]>
+[2025-04-02T22:13:02.426+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-02T22:13:02.471+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): delete_data_task> on 2025-04-01 01:00:00+00:00
+[2025-04-02T22:13:02.502+0000] {standard_task_runner.py:72} INFO - Started process 536 to run task
+[2025-04-02T22:13:02.519+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '1-clean_data_dag', 'delete_data_task', 'scheduled__2025-04-01T01:00:00+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/Borrar_datos.py', '--cfg-path', '/tmp/tmp_g_73tm0']
+[2025-04-02T22:13:02.526+0000] {standard_task_runner.py:105} INFO - Job 19: Subtask delete_data_task
+[2025-04-02T22:13:02.727+0000] {task_command.py:467} INFO - Running <TaskInstance: 1-clean_data_dag.delete_data_task scheduled__2025-04-01T01:00:00+00:00 [running]> on host 007bc2195d27
+[2025-04-02T22:13:02.963+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='1-clean_data_dag' AIRFLOW_CTX_TASK_ID='delete_data_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-01T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-01T01:00:00+00:00'
+[2025-04-02T22:13:02.964+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-02T22:13:03.052+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-04-02T22:13:03.053+0000] {base.py:84} INFO - Retrieving connection 'postgres_default'
+[2025-04-02T22:13:03.064+0000] {sql.py:542} INFO - Running statement: DELETE FROM covertype, parameters: None
+[2025-04-02T22:13:03.211+0000] {sql.py:551} INFO - Rows affected: 52290
+[2025-04-02T22:13:03.237+0000] {logging_mixin.py:190} INFO - Todas las filas han sido eliminadas de la tabla
+[2025-04-02T22:13:03.237+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-04-02T22:13:03.264+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-02T22:13:03.265+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=1-clean_data_dag, task_id=delete_data_task, run_id=scheduled__2025-04-01T01:00:00+00:00, execution_date=20250401T010000, start_date=20250402T221302, end_date=20250402T221303
+[2025-04-02T22:13:03.345+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-02T22:13:03.384+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-02T22:13:03.387+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
