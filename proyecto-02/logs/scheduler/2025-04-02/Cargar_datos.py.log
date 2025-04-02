@@ -1639,3 +1639,101 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate
 [2025-04-02T02:46:34.985+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:46:34.984+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-04-02T02:46:35.021+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:46:35.021+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
 [2025-04-02T02:46:35.065+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.955 seconds
+[2025-04-02T02:47:05.709+0000] {processor.py:186} INFO - Started process (PID=580) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:47:05.716+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:47:05.730+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:47:05.729+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:47:06.745+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:47:06.809+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:47:06.808+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:47:06.877+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:47:06.877+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:47:06.922+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.252 seconds
+[2025-04-02T02:47:37.601+0000] {processor.py:186} INFO - Started process (PID=606) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:47:37.605+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:47:37.611+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:47:37.611+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:47:38.649+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:47:38.704+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:47:38.704+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:47:38.742+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:47:38.742+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:47:38.779+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.194 seconds
+[2025-04-02T02:48:09.281+0000] {processor.py:186} INFO - Started process (PID=625) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:48:09.285+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:48:09.295+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:48:09.294+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:48:10.706+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:48:10.832+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:48:10.831+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:48:10.977+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:48:10.977+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:48:11.085+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.865 seconds
+[2025-04-02T02:48:41.687+0000] {processor.py:186} INFO - Started process (PID=644) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:48:41.689+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:48:41.693+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:48:41.692+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:48:42.480+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:48:42.522+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:48:42.522+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:48:42.563+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:48:42.563+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:48:42.589+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.916 seconds
+[2025-04-02T02:49:12.826+0000] {processor.py:186} INFO - Started process (PID=663) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:49:12.834+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:49:12.847+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:49:12.846+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:49:14.011+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:49:14.071+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:49:14.070+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:49:14.111+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:49:14.111+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:49:14.142+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.345 seconds
+[2025-04-02T02:49:44.853+0000] {processor.py:186} INFO - Started process (PID=682) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:49:44.856+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:49:44.863+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:49:44.862+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:49:45.930+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:49:45.985+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:49:45.984+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:49:46.023+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:49:46.022+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:49:46.048+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.234 seconds
+[2025-04-02T02:50:16.612+0000] {processor.py:186} INFO - Started process (PID=701) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:50:16.615+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:50:16.620+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:50:16.619+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:50:17.486+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:50:17.532+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:50:17.532+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:50:17.573+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:50:17.573+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:50:17.606+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.010 seconds
+[2025-04-02T02:50:48.039+0000] {processor.py:186} INFO - Started process (PID=720) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:50:48.042+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:50:48.047+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:50:48.046+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:50:48.866+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:50:48.924+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:50:48.924+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:50:48.962+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:50:48.962+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:50:48.990+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.967 seconds
+[2025-04-02T02:51:19.587+0000] {processor.py:186} INFO - Started process (PID=739) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:51:19.589+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:51:19.595+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:51:19.594+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:51:20.386+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:51:20.439+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:51:20.439+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:51:20.475+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:51:20.475+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:51:20.501+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.931 seconds
+[2025-04-02T02:51:51.051+0000] {processor.py:186} INFO - Started process (PID=758) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:51:51.054+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:51:51.058+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:51:51.058+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:51:51.819+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:51:51.875+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:51:51.874+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:51:51.920+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:51:51.919+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:51:51.962+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.928 seconds
+[2025-04-02T02:52:22.394+0000] {processor.py:186} INFO - Started process (PID=777) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:52:22.397+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:52:22.403+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:52:22.402+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:52:23.236+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:52:23.319+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:52:23.318+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:52:23.366+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:52:23.365+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:52:23.394+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.019 seconds
+[2025-04-02T02:52:54.133+0000] {processor.py:186} INFO - Started process (PID=796) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:52:54.135+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:52:54.140+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:52:54.140+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:52:54.872+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:52:54.920+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:52:54.919+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:52:54.956+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:52:54.956+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:52:54.987+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 0.870 seconds
+[2025-04-02T02:53:25.101+0000] {processor.py:186} INFO - Started process (PID=815) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:53:25.107+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:53:25.112+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:53:25.112+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:53:26.053+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:53:26.110+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:53:26.109+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:53:26.147+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:53:26.147+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:53:26.175+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.089 seconds
+[2025-04-02T02:53:56.387+0000] {processor.py:186} INFO - Started process (PID=834) to work on /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:53:56.390+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Cargar_datos.py for tasks to queue
+[2025-04-02T02:53:56.396+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:53:56.395+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:53:57.497+0000] {processor.py:925} INFO - DAG(s) '2-Cargar_data' retrieved from /opt/airflow/dags/Cargar_datos.py
+[2025-04-02T02:53:57.546+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:53:57.545+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-02T02:53:57.595+0000] {logging_mixin.py:190} INFO - [2025-04-02T02:53:57.594+0000] {dag.py:4180} INFO - Setting next_dagrun for 2-Cargar_data to 2025-04-02 00:00:00+00:00, run_after=2025-04-03 00:00:00+00:00
+[2025-04-02T02:53:57.627+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Cargar_datos.py took 1.255 seconds

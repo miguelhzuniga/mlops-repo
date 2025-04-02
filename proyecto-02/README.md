@@ -59,6 +59,8 @@ Se debe registrar la base de datos con:
 - user: airflow
 - password: airflow
 
+Para esto se da click en "Servers">"Register" y se ingresan los datos anteriores. Luego se da "Save". Aparecerá la base de datos a la cual si se despliega se podrá dar click derecho y poner "Query tools" y luego hacer consultas como por ejemplo "select * from covertype".
+
 De este modo se puede comprobar que los datos que airflow genera con el dag Cargar_datos.py están cargados a la base de datos de Postgresql
 
 ![alt text](images/captura_pgadmin.png)
@@ -85,7 +87,7 @@ Aqui se puede utilizar el mejor modelo generado tras los experimentos de MLFLOW 
 
 ### 10. **FastAPI (API Server)**: Servidor de API
 
-Esta API simula una URL de internet que provee un batch de datos cada 5 segundos, para un total de 10 batches, los cuales serán utilizados para entrenar posteriormente el modelo en airflow y registrar los experimentos y el mejor modelo en mlflow
+Esta API simula una URL de internet que provee un batch de datos cada 5 segundos, para un total de 10 batches, los cuales serán utilizados para entrenar posteriormente el modelo en airflow y registrar los experimentos y el mejor modelo en mlflow. Los datos se almacenan en la base de datos "airflow" dentro de la tabla "covertype".
 `http://localhost:80`.
 
 ---
