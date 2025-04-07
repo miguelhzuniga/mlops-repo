@@ -1,0 +1,750 @@
+[2025-04-06T23:05:10.032+0000] {processor.py:186} INFO - Started process (PID=96) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:05:10.042+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:05:10.054+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.053+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:05:10.114+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:05:10.532+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.531+0000] {override.py:1901} INFO - Created Permission View: can read on DAG:1-clean_data_dag
+[2025-04-06T23:05:10.569+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.568+0000] {override.py:1901} INFO - Created Permission View: can edit on DAG:1-clean_data_dag
+[2025-04-06T23:05:10.580+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.580+0000] {override.py:1901} INFO - Created Permission View: can delete on DAG:1-clean_data_dag
+[2025-04-06T23:05:10.595+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.594+0000] {override.py:1901} INFO - Created Permission View: menu access on DAG Run:1-clean_data_dag
+[2025-04-06T23:05:10.623+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.623+0000] {override.py:1901} INFO - Created Permission View: can read on DAG Run:1-clean_data_dag
+[2025-04-06T23:05:10.660+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.660+0000] {override.py:1901} INFO - Created Permission View: can create on DAG Run:1-clean_data_dag
+[2025-04-06T23:05:10.690+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.689+0000] {override.py:1901} INFO - Created Permission View: can delete on DAG Run:1-clean_data_dag
+[2025-04-06T23:05:10.696+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.692+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:05:10.734+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.734+0000] {dag.py:3262} INFO - Creating ORM DAG for 1-clean_data_dag
+[2025-04-06T23:05:10.770+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:10.767+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:05:10.815+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.815 seconds
+[2025-04-06T23:05:42.822+0000] {processor.py:186} INFO - Started process (PID=114) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:05:42.828+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:05:42.834+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:42.833+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:05:42.860+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:05:42.912+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:42.912+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:05:42.950+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:05:42.950+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:05:42.983+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.180 seconds
+[2025-04-06T23:06:15.762+0000] {processor.py:186} INFO - Started process (PID=133) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:06:15.763+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:06:15.767+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:06:15.766+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:06:15.807+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:06:15.912+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:06:15.908+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:06:16.014+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:06:16.013+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:06:16.098+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.350 seconds
+[2025-04-06T23:06:49.243+0000] {processor.py:186} INFO - Started process (PID=152) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:06:49.246+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:06:49.250+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:06:49.249+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:06:49.324+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:06:49.432+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:06:49.431+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:06:49.502+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:06:49.501+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:06:49.551+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.323 seconds
+[2025-04-06T23:07:28.156+0000] {processor.py:186} INFO - Started process (PID=171) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:07:28.164+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:07:28.173+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:07:28.169+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:07:28.264+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:07:28.445+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:07:28.445+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:07:28.625+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:07:28.621+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:07:28.753+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.646 seconds
+[2025-04-06T23:08:05.833+0000] {processor.py:186} INFO - Started process (PID=189) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:08:05.836+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:08:05.844+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:08:05.843+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:08:05.887+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:08:05.995+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:08:05.994+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:08:06.076+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:08:06.075+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:08:06.121+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.313 seconds
+[2025-04-06T23:08:45.014+0000] {processor.py:186} INFO - Started process (PID=214) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:08:45.030+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:08:45.059+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:08:45.059+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:08:45.113+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:08:45.204+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:08:45.203+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:08:45.286+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:08:45.285+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:08:45.345+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.370 seconds
+[2025-04-06T23:09:25.976+0000] {processor.py:186} INFO - Started process (PID=233) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:09:25.983+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:09:25.995+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:09:25.994+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:09:26.085+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:09:26.247+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:09:26.247+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:09:26.335+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:09:26.334+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:09:26.399+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.482 seconds
+[2025-04-06T23:09:56.775+0000] {processor.py:186} INFO - Started process (PID=242) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:09:56.785+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:09:56.791+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:09:56.790+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:09:56.838+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:09:56.952+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:09:56.952+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:09:57.063+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:09:57.061+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:09:57.223+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.513 seconds
+[2025-04-06T23:10:28.325+0000] {processor.py:186} INFO - Started process (PID=260) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:10:28.326+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:10:28.331+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:10:28.330+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:10:28.356+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:10:28.421+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:10:28.420+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:10:28.493+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:10:28.493+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:10:28.546+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.233 seconds
+[2025-04-06T23:10:58.877+0000] {processor.py:186} INFO - Started process (PID=279) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:10:58.880+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:10:58.884+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:10:58.884+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:10:58.905+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:10:58.959+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:10:58.959+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:10:59.003+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:10:59.003+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:10:59.037+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.173 seconds
+[2025-04-06T23:11:29.362+0000] {processor.py:186} INFO - Started process (PID=297) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:11:29.364+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:11:29.369+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:11:29.368+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:11:29.391+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:11:29.439+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:11:29.438+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:11:29.478+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:11:29.477+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:11:29.506+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.156 seconds
+[2025-04-06T23:12:00.020+0000] {processor.py:186} INFO - Started process (PID=317) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:12:00.023+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:12:00.027+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:12:00.026+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:12:00.049+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:12:00.103+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:12:00.102+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:12:00.151+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:12:00.150+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:12:00.179+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.182 seconds
+[2025-04-06T23:12:30.602+0000] {processor.py:186} INFO - Started process (PID=336) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:12:30.606+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:12:30.612+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:12:30.612+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:12:30.631+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:12:30.675+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:12:30.674+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:12:30.718+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:12:30.717+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:12:30.743+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.154 seconds
+[2025-04-06T23:13:01.492+0000] {processor.py:186} INFO - Started process (PID=355) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:13:01.494+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:13:01.497+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:13:01.497+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:13:01.517+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:13:01.570+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:13:01.570+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:13:01.614+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:13:01.613+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:13:01.642+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.162 seconds
+[2025-04-06T23:13:31.991+0000] {processor.py:186} INFO - Started process (PID=374) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:13:31.994+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:13:31.997+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:13:31.997+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:13:32.019+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:13:32.067+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:13:32.066+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:13:32.108+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:13:32.108+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:13:32.136+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.157 seconds
+[2025-04-06T23:14:04.155+0000] {processor.py:186} INFO - Started process (PID=394) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:14:04.157+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:14:04.161+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:14:04.160+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:14:04.183+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:14:04.234+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:14:04.234+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:14:04.275+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:14:04.275+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:14:04.309+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.166 seconds
+[2025-04-06T23:14:36.480+0000] {processor.py:186} INFO - Started process (PID=413) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:14:36.483+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:14:36.488+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:14:36.488+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:14:36.513+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:14:36.558+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:14:36.558+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:14:36.597+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:14:36.597+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:14:36.628+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.163 seconds
+[2025-04-06T23:15:10.666+0000] {processor.py:186} INFO - Started process (PID=431) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:15:10.669+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:15:10.675+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:15:10.674+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:15:10.736+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:15:10.837+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:15:10.836+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:15:10.902+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:15:10.901+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:15:10.942+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.297 seconds
+[2025-04-06T23:15:48.758+0000] {processor.py:186} INFO - Started process (PID=456) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:15:48.761+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:15:48.767+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:15:48.765+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:15:48.792+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:15:48.853+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:15:48.852+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:15:48.934+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:15:48.934+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:15:48.966+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.230 seconds
+[2025-04-06T23:16:21.458+0000] {processor.py:186} INFO - Started process (PID=475) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:16:21.460+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:16:21.464+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:16:21.464+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:16:21.487+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:16:21.533+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:16:21.533+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:16:21.570+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:16:21.569+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:16:21.597+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.153 seconds
+[2025-04-06T23:16:54.407+0000] {processor.py:186} INFO - Started process (PID=492) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:16:54.409+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:16:54.414+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:16:54.413+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:16:54.435+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:16:54.483+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:16:54.483+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:16:54.523+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:16:54.523+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:16:54.551+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.157 seconds
+[2025-04-06T23:17:29.461+0000] {processor.py:186} INFO - Started process (PID=511) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:17:29.466+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:17:29.474+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:17:29.473+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:17:29.533+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:17:29.643+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:17:29.642+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:17:29.736+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:17:29.736+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:17:29.831+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.398 seconds
+[2025-04-06T23:18:02.802+0000] {processor.py:186} INFO - Started process (PID=530) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:18:02.813+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:18:02.834+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:18:02.833+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:18:02.959+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:18:03.326+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:18:03.325+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:18:03.409+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:18:03.409+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:18:03.470+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.688 seconds
+[2025-04-06T23:18:38.001+0000] {processor.py:186} INFO - Started process (PID=549) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:18:38.006+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:18:38.023+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:18:38.022+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:18:38.119+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:18:38.390+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:18:38.390+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:18:38.599+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:18:38.593+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:18:38.825+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.890 seconds
+[2025-04-06T23:19:09.481+0000] {processor.py:186} INFO - Started process (PID=562) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:19:09.485+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:19:09.492+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:19:09.492+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:19:09.544+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:19:09.601+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:19:09.600+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:19:09.653+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:19:09.653+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:19:09.689+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.224 seconds
+[2025-04-06T23:19:40.390+0000] {processor.py:186} INFO - Started process (PID=576) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:19:40.392+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:19:40.395+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:19:40.395+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:19:40.413+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:19:40.458+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:19:40.458+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:19:40.497+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:19:40.496+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:19:40.528+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.149 seconds
+[2025-04-06T23:20:10.824+0000] {processor.py:186} INFO - Started process (PID=595) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:20:10.826+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:20:10.838+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:20:10.838+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:20:10.901+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:20:10.993+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:20:10.992+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:20:11.053+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:20:11.052+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:20:11.099+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.299 seconds
+[2025-04-06T23:20:41.531+0000] {processor.py:186} INFO - Started process (PID=614) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:20:41.533+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:20:41.538+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:20:41.537+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:20:41.559+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:20:41.606+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:20:41.605+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:20:41.646+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:20:41.645+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:20:41.695+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.179 seconds
+[2025-04-06T23:21:12.238+0000] {processor.py:186} INFO - Started process (PID=633) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:21:12.240+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:21:12.245+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:21:12.245+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:21:12.267+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:21:12.314+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:21:12.313+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:21:12.369+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:21:12.368+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:21:12.398+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.174 seconds
+[2025-04-06T23:21:42.682+0000] {processor.py:186} INFO - Started process (PID=652) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:21:42.684+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:21:42.688+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:21:42.687+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:21:42.708+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:21:42.760+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:21:42.760+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:21:42.840+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:21:42.840+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:21:42.870+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.200 seconds
+[2025-04-06T23:22:12.934+0000] {processor.py:186} INFO - Started process (PID=670) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:22:12.936+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:22:12.941+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:22:12.940+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:22:12.963+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:22:13.008+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:22:13.008+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:22:13.048+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:22:13.048+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:22:13.078+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.158 seconds
+[2025-04-06T23:22:43.218+0000] {processor.py:186} INFO - Started process (PID=689) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:22:43.220+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:22:43.224+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:22:43.223+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:22:43.246+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:22:43.305+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:22:43.305+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:22:43.354+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:22:43.354+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:22:43.387+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.184 seconds
+[2025-04-06T23:23:13.700+0000] {processor.py:186} INFO - Started process (PID=708) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:23:13.702+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:23:13.705+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:23:13.705+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:23:13.725+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:23:13.776+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:23:13.775+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:23:13.813+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:23:13.812+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:23:13.838+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.153 seconds
+[2025-04-06T23:23:44.130+0000] {processor.py:186} INFO - Started process (PID=727) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:23:44.132+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:23:44.137+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:23:44.136+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:23:44.156+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:23:44.200+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:23:44.200+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:23:44.239+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:23:44.238+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:23:44.267+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.150 seconds
+[2025-04-06T23:24:14.654+0000] {processor.py:186} INFO - Started process (PID=746) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:24:14.656+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:24:14.660+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:24:14.660+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:24:14.680+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:24:14.734+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:24:14.733+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:24:14.772+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:24:14.772+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:24:14.799+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.157 seconds
+[2025-04-06T23:24:45.021+0000] {processor.py:186} INFO - Started process (PID=764) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:24:45.023+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:24:45.028+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:24:45.027+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:24:45.046+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:24:45.118+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:24:45.118+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:24:45.156+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:24:45.156+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:24:45.184+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.175 seconds
+[2025-04-06T23:25:15.612+0000] {processor.py:186} INFO - Started process (PID=783) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:25:15.614+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:25:15.620+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:25:15.619+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:25:15.655+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:25:15.712+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:25:15.712+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:25:15.752+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:25:15.752+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:25:15.779+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.185 seconds
+[2025-04-06T23:25:46.067+0000] {processor.py:186} INFO - Started process (PID=802) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:25:46.070+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:25:46.074+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:25:46.073+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:25:46.095+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:25:46.140+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:25:46.140+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:25:46.180+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:25:46.180+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:25:46.208+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.154 seconds
+[2025-04-06T23:26:16.325+0000] {processor.py:186} INFO - Started process (PID=821) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:26:16.326+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:26:16.331+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:26:16.330+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:26:16.353+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:26:16.398+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:26:16.398+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:26:16.440+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:26:16.439+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:26:16.465+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.155 seconds
+[2025-04-06T23:26:46.680+0000] {processor.py:186} INFO - Started process (PID=836) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:26:46.683+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:26:46.688+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:26:46.688+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:26:46.719+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:26:46.784+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:26:46.784+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:26:46.878+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:26:46.878+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:26:46.948+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.302 seconds
+[2025-04-06T23:27:17.323+0000] {processor.py:186} INFO - Started process (PID=851) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:27:17.325+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:27:17.328+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:27:17.328+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:27:17.349+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:27:17.400+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:27:17.399+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:27:17.450+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:27:17.449+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:27:17.479+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.174 seconds
+[2025-04-06T23:27:47.799+0000] {processor.py:186} INFO - Started process (PID=868) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:27:47.802+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:27:47.806+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:27:47.806+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:27:47.829+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:27:47.891+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:27:47.891+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:27:47.930+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:27:47.930+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:27:47.962+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.175 seconds
+[2025-04-06T23:28:18.050+0000] {processor.py:186} INFO - Started process (PID=887) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:28:18.052+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:28:18.057+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:28:18.057+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:28:18.076+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:28:18.132+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:28:18.132+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:28:18.169+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:28:18.169+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:28:18.199+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.160 seconds
+[2025-04-06T23:28:48.601+0000] {processor.py:186} INFO - Started process (PID=906) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:28:48.603+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:28:48.608+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:28:48.608+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:28:48.629+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:28:48.672+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:28:48.671+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:28:48.708+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:28:48.707+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:28:48.737+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.149 seconds
+[2025-04-06T23:29:19.156+0000] {processor.py:186} INFO - Started process (PID=925) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:29:19.158+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:29:19.162+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:29:19.162+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:29:19.183+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:29:19.236+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:29:19.235+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:29:19.279+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:29:19.279+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:29:19.305+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.163 seconds
+[2025-04-06T23:29:49.495+0000] {processor.py:186} INFO - Started process (PID=950) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:29:49.497+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:29:49.501+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:29:49.500+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:29:49.521+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:29:49.574+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:29:49.573+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:29:49.621+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:29:49.621+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:29:49.655+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.173 seconds
+[2025-04-06T23:30:19.870+0000] {processor.py:186} INFO - Started process (PID=969) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:30:19.873+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:30:19.877+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:30:19.877+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:30:19.898+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:30:19.953+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:30:19.952+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:30:20.006+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:30:20.005+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:30:20.034+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.181 seconds
+[2025-04-06T23:30:50.448+0000] {processor.py:186} INFO - Started process (PID=988) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:30:50.450+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:30:50.453+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:30:50.453+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:30:50.473+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:30:50.524+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:30:50.523+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:30:50.563+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:30:50.563+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:30:50.594+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.158 seconds
+[2025-04-06T23:31:20.652+0000] {processor.py:186} INFO - Started process (PID=1007) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:31:20.654+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:31:20.658+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:31:20.657+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:31:20.678+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:31:20.722+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:31:20.721+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:31:20.758+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:31:20.758+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:31:20.788+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.148 seconds
+[2025-04-06T23:31:50.947+0000] {processor.py:186} INFO - Started process (PID=1026) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:31:50.949+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:31:50.953+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:31:50.952+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:31:50.972+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:31:51.023+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:31:51.023+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:31:51.065+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:31:51.064+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:31:51.093+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.160 seconds
+[2025-04-06T23:32:21.504+0000] {processor.py:186} INFO - Started process (PID=1045) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:32:21.506+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:32:21.509+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:32:21.509+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:32:21.529+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:32:21.577+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:32:21.577+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:32:21.613+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:32:21.612+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:32:21.637+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.148 seconds
+[2025-04-06T23:32:51.841+0000] {processor.py:186} INFO - Started process (PID=1064) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:32:51.842+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:32:51.846+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:32:51.846+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:32:51.867+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:32:51.914+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:32:51.914+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:32:51.952+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:32:51.952+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:32:51.980+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.152 seconds
+[2025-04-06T23:33:22.428+0000] {processor.py:186} INFO - Started process (PID=1082) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:33:22.436+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:33:22.451+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:33:22.446+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:33:22.486+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:33:22.537+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:33:22.537+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:33:22.576+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:33:22.575+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:33:22.601+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.199 seconds
+[2025-04-06T23:33:52.812+0000] {processor.py:186} INFO - Started process (PID=1100) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:33:52.814+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:33:52.820+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:33:52.819+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:33:52.838+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:33:52.885+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:33:52.885+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:33:52.925+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:33:52.924+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:33:53.192+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.399 seconds
+[2025-04-06T23:34:23.471+0000] {processor.py:186} INFO - Started process (PID=1119) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:34:23.473+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:34:23.478+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:34:23.477+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:34:23.498+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:34:23.542+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:34:23.541+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:34:23.583+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:34:23.583+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:34:23.611+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.153 seconds
+[2025-04-06T23:34:53.935+0000] {processor.py:186} INFO - Started process (PID=1138) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:34:53.938+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:34:53.942+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:34:53.942+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:34:53.968+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:34:54.015+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:34:54.015+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:34:54.057+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:34:54.056+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:34:54.084+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.162 seconds
+[2025-04-06T23:35:24.221+0000] {processor.py:186} INFO - Started process (PID=1157) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:35:24.226+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:35:24.231+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:35:24.231+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:35:24.256+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:35:24.302+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:35:24.301+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:35:24.344+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:35:24.343+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:35:24.370+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.160 seconds
+[2025-04-06T23:35:54.777+0000] {processor.py:186} INFO - Started process (PID=1171) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:35:54.779+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:35:54.786+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:35:54.785+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:35:54.820+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:35:54.880+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:35:54.879+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:35:54.927+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:35:54.927+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:35:54.955+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.198 seconds
+[2025-04-06T23:36:25.143+0000] {processor.py:186} INFO - Started process (PID=1185) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:36:25.146+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:36:25.150+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:36:25.149+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:36:25.170+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:36:25.227+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:36:25.227+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:36:25.270+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:36:25.270+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:36:25.301+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.171 seconds
+[2025-04-06T23:36:55.759+0000] {processor.py:186} INFO - Started process (PID=1203) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:36:55.761+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:36:55.766+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:36:55.765+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:36:55.788+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:36:55.855+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:36:55.855+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:36:55.896+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:36:55.895+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:36:55.933+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.189 seconds
+[2025-04-06T23:37:26.177+0000] {processor.py:186} INFO - Started process (PID=1222) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:37:26.179+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:37:26.183+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:37:26.183+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:37:26.205+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:37:26.275+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:37:26.274+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:37:26.316+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:37:26.316+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:37:26.358+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.196 seconds
+[2025-04-06T23:37:56.598+0000] {processor.py:186} INFO - Started process (PID=1241) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:37:56.599+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:37:56.604+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:37:56.603+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:37:56.623+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:37:56.674+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:37:56.674+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:37:56.721+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:37:56.721+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:37:56.751+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.173 seconds
+[2025-04-06T23:38:26.974+0000] {processor.py:186} INFO - Started process (PID=1260) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:38:26.976+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:38:26.981+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:38:26.981+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:38:27.002+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:38:27.046+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:38:27.046+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:38:27.082+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:38:27.082+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:38:27.116+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.156 seconds
+[2025-04-06T23:38:57.233+0000] {processor.py:186} INFO - Started process (PID=1279) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:38:57.235+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:38:57.239+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:38:57.239+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:38:57.260+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:38:57.304+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:38:57.303+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:38:57.352+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:38:57.352+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:38:57.385+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.164 seconds
+[2025-04-06T23:39:27.605+0000] {processor.py:186} INFO - Started process (PID=1298) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:39:27.607+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:39:27.611+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:39:27.610+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:39:27.632+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:39:27.682+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:39:27.681+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:39:27.962+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:39:27.962+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:39:27.989+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.397 seconds
+[2025-04-06T23:39:58.934+0000] {processor.py:186} INFO - Started process (PID=1317) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:39:58.935+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:39:58.940+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:39:58.939+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:39:58.962+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:39:59.009+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:39:59.008+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:39:59.050+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:39:59.050+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:39:59.082+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.161 seconds
+[2025-04-06T23:40:29.173+0000] {processor.py:186} INFO - Started process (PID=1336) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:40:29.176+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:40:29.183+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:40:29.181+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:40:29.206+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:40:29.255+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:40:29.255+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:40:29.294+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:40:29.294+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:40:29.339+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.187 seconds
+[2025-04-06T23:40:59.514+0000] {processor.py:186} INFO - Started process (PID=1355) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:40:59.519+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:40:59.528+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:40:59.527+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:40:59.547+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:40:59.599+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:40:59.599+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:40:59.884+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:40:59.884+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:40:59.906+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.410 seconds
+[2025-04-06T23:41:30.294+0000] {processor.py:186} INFO - Started process (PID=1374) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:41:30.296+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:41:30.302+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:41:30.301+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:41:30.324+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:41:30.385+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:41:30.385+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:41:30.428+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:41:30.428+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:41:30.463+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.183 seconds
+[2025-04-06T23:42:00.843+0000] {processor.py:186} INFO - Started process (PID=1393) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:42:00.845+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:42:00.850+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:42:00.850+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:42:00.873+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:42:00.928+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:42:00.927+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:42:00.968+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:42:00.968+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:42:00.997+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.166 seconds
+[2025-04-06T23:42:31.338+0000] {processor.py:186} INFO - Started process (PID=1412) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:42:31.340+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:42:31.343+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:42:31.343+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:42:31.363+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:42:31.421+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:42:31.421+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:42:31.699+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:42:31.699+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:42:31.723+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.397 seconds
+[2025-04-06T23:43:01.879+0000] {processor.py:186} INFO - Started process (PID=1431) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:43:01.881+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:43:01.885+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:43:01.884+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:43:01.904+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:43:01.950+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:43:01.949+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:43:01.994+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:43:01.993+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:43:02.021+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.158 seconds
+[2025-04-06T23:43:32.214+0000] {processor.py:186} INFO - Started process (PID=1450) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:43:32.218+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:43:32.230+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:43:32.229+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:43:32.277+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:43:32.334+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:43:32.333+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:43:32.376+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:43:32.376+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:43:32.409+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.230 seconds
+[2025-04-06T23:44:02.792+0000] {processor.py:186} INFO - Started process (PID=1464) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:44:02.796+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:44:02.805+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:44:02.804+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:44:02.838+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:44:02.895+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:44:02.895+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:44:02.945+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:44:02.945+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:44:03.234+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.470 seconds
+[2025-04-06T23:44:33.433+0000] {processor.py:186} INFO - Started process (PID=1478) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:44:33.435+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:44:33.439+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:44:33.439+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:44:33.460+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:44:33.513+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:44:33.512+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:44:33.793+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:44:33.792+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:44:33.819+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.400 seconds
+[2025-04-06T23:45:04.208+0000] {processor.py:186} INFO - Started process (PID=1497) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:45:04.209+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:45:04.213+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:45:04.213+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:45:04.233+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:45:04.286+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:45:04.286+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:45:04.332+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:45:04.332+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:45:04.370+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.174 seconds
+[2025-04-06T23:45:34.572+0000] {processor.py:186} INFO - Started process (PID=1516) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:45:34.578+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:45:34.587+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:45:34.587+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:45:34.613+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:45:34.678+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:45:34.677+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:45:34.720+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:45:34.719+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:45:34.984+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.435 seconds
+[2025-04-06T23:46:05.074+0000] {processor.py:186} INFO - Started process (PID=1534) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:46:05.081+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:46:05.088+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:46:05.088+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:46:05.137+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:46:05.209+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:46:05.208+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:46:05.557+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:46:05.557+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:46:05.582+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.540 seconds
+[2025-04-06T23:46:35.990+0000] {processor.py:186} INFO - Started process (PID=1552) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:46:35.992+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:46:35.996+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:46:35.995+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:46:36.015+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:46:36.311+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:46:36.311+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:46:36.345+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:46:36.344+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:46:36.371+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.403 seconds
+[2025-04-06T23:47:06.762+0000] {processor.py:186} INFO - Started process (PID=1571) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:47:06.765+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:47:06.771+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:47:06.770+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:47:06.791+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:47:06.833+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:47:06.833+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:47:06.868+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:47:06.868+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:47:06.903+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.154 seconds
+[2025-04-06T23:47:37.372+0000] {processor.py:186} INFO - Started process (PID=1590) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:47:37.374+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:47:37.379+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:47:37.378+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:47:37.398+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:47:37.443+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:47:37.442+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:47:37.488+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:47:37.488+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:47:37.770+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.411 seconds
+[2025-04-06T23:48:08.198+0000] {processor.py:186} INFO - Started process (PID=1609) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:48:08.200+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:48:08.204+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:48:08.203+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:48:08.223+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:48:08.277+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:48:08.276+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:48:08.559+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:48:08.559+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:48:08.588+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.405 seconds
+[2025-04-06T23:48:38.772+0000] {processor.py:186} INFO - Started process (PID=1628) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:48:38.774+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:48:38.777+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:48:38.777+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:48:38.796+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:48:39.090+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:48:39.089+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:48:39.121+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:48:39.120+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:48:39.146+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.389 seconds
+[2025-04-06T23:49:09.973+0000] {processor.py:186} INFO - Started process (PID=1647) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:49:09.975+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:49:09.979+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:49:09.979+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:49:10.001+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:49:10.055+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:49:10.052+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:49:10.103+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:49:10.102+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:49:10.130+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.170 seconds
+[2025-04-06T23:49:41.033+0000] {processor.py:186} INFO - Started process (PID=1666) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:49:41.034+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:49:41.038+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:49:41.038+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:49:41.059+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:49:41.105+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:49:41.105+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:49:41.146+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:49:41.146+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:49:41.187+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.165 seconds
+[2025-04-06T23:50:12.069+0000] {processor.py:186} INFO - Started process (PID=1685) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:50:12.072+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:50:12.075+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:50:12.075+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:50:12.095+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:50:12.154+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:50:12.153+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:50:12.439+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:50:12.438+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:50:12.464+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.406 seconds
+[2025-04-06T23:50:43.136+0000] {processor.py:186} INFO - Started process (PID=1704) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:50:43.138+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:50:43.143+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:50:43.143+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:50:43.171+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:50:43.266+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:50:43.266+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:50:43.322+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:50:43.322+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:50:43.355+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.235 seconds
+[2025-04-06T23:51:14.292+0000] {processor.py:186} INFO - Started process (PID=1723) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:51:14.295+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:51:14.298+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:51:14.298+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:51:14.316+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:51:14.364+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:51:14.364+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:51:14.406+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:51:14.405+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:51:14.441+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.161 seconds
+[2025-04-06T23:51:44.634+0000] {processor.py:186} INFO - Started process (PID=1742) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:51:44.635+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:51:44.641+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:51:44.641+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:51:44.660+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:51:44.702+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:51:44.702+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:51:44.978+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:51:44.978+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:51:45.006+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.385 seconds
+[2025-04-06T23:52:15.683+0000] {processor.py:186} INFO - Started process (PID=1760) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:52:15.685+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:52:15.689+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:52:15.689+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:52:15.709+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:52:16.000+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:52:16.000+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:52:16.038+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:52:16.038+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:52:16.065+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.395 seconds
+[2025-04-06T23:52:46.855+0000] {processor.py:186} INFO - Started process (PID=1778) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:52:46.856+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:52:46.861+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:52:46.860+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:52:46.880+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:52:46.928+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:52:46.928+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:52:46.971+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:52:46.971+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:52:47.000+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.157 seconds
+[2025-04-06T23:53:17.402+0000] {processor.py:186} INFO - Started process (PID=1797) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:53:17.405+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:53:17.409+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:53:17.409+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:53:17.429+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:53:17.493+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:53:17.492+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:53:17.546+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:53:17.545+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:53:17.839+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.450 seconds
+[2025-04-06T23:53:48.005+0000] {processor.py:186} INFO - Started process (PID=1816) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:53:48.006+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:53:48.011+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:53:48.010+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:53:48.030+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:53:48.077+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:53:48.076+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:53:48.348+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:53:48.348+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:53:48.374+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.381 seconds
+[2025-04-06T23:54:18.634+0000] {processor.py:186} INFO - Started process (PID=1835) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:54:18.637+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:54:18.641+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:54:18.640+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:54:18.660+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:54:18.935+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:54:18.935+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:54:18.972+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:54:18.972+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:54:18.999+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.386 seconds
+[2025-04-06T23:54:49.848+0000] {processor.py:186} INFO - Started process (PID=1851) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:54:49.850+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:54:49.853+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:54:49.853+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:54:49.873+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:54:49.923+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:54:49.923+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:54:49.964+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:54:49.964+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:54:50.006+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.169 seconds
+[2025-04-06T23:55:20.175+0000] {processor.py:186} INFO - Started process (PID=1863) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:55:20.178+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:55:20.189+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:55:20.189+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:55:20.227+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:55:20.285+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:55:20.285+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:55:20.356+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:55:20.356+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:55:20.658+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.506 seconds
+[2025-04-06T23:55:50.823+0000] {processor.py:186} INFO - Started process (PID=1881) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:55:50.825+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:55:50.829+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:55:50.829+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:55:50.847+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:55:50.902+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:55:50.901+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:55:51.207+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:55:51.207+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:55:51.238+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.432 seconds
+[2025-04-06T23:56:21.293+0000] {processor.py:186} INFO - Started process (PID=1899) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:56:21.295+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:56:21.300+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:56:21.299+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:56:21.558+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:56:21.600+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:56:21.599+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:56:21.632+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:56:21.632+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:56:21.659+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.379 seconds
+[2025-04-06T23:56:51.730+0000] {processor.py:186} INFO - Started process (PID=1918) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:56:51.732+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:56:51.736+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:56:51.736+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:56:51.755+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:56:51.802+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:56:51.802+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:56:51.844+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:56:51.843+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:56:51.875+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.158 seconds
+[2025-04-06T23:57:22.296+0000] {processor.py:186} INFO - Started process (PID=1937) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:57:22.299+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:57:22.303+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:57:22.302+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:57:22.323+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:57:22.368+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:57:22.368+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:57:22.407+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:57:22.406+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:57:22.436+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.154 seconds
+[2025-04-06T23:57:52.498+0000] {processor.py:186} INFO - Started process (PID=1956) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:57:52.500+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:57:52.503+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:57:52.503+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:57:52.522+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:57:52.577+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:57:52.577+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:57:52.620+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:57:52.619+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:57:52.645+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.162 seconds
+[2025-04-06T23:58:23.269+0000] {processor.py:186} INFO - Started process (PID=1976) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:58:23.271+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:58:23.275+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:58:23.274+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:58:23.296+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:58:23.339+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:58:23.339+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:58:23.379+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:58:23.378+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:58:23.409+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.155 seconds
+[2025-04-06T23:58:53.552+0000] {processor.py:186} INFO - Started process (PID=1995) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:58:53.553+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:58:53.558+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:58:53.558+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:58:53.577+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:58:53.619+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:58:53.618+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:58:53.657+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:58:53.656+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:58:53.684+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.145 seconds
+[2025-04-06T23:59:23.866+0000] {processor.py:186} INFO - Started process (PID=2014) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:59:23.868+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:59:23.872+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:59:23.871+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:59:23.895+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:59:23.954+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:59:23.954+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:59:24.003+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:59:24.003+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:59:24.037+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.185 seconds
+[2025-04-06T23:59:54.567+0000] {processor.py:186} INFO - Started process (PID=2033) to work on /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:59:54.569+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/Borrar_datos.py for tasks to queue
+[2025-04-06T23:59:54.573+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:59:54.572+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:59:54.595+0000] {processor.py:925} INFO - DAG(s) '1-clean_data_dag' retrieved from /opt/airflow/dags/Borrar_datos.py
+[2025-04-06T23:59:54.645+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:59:54.645+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-06T23:59:54.684+0000] {logging_mixin.py:190} INFO - [2025-04-06T23:59:54.684+0000] {dag.py:4180} INFO - Setting next_dagrun for 1-clean_data_dag to 2025-04-05 01:00:00+00:00, run_after=2025-04-06 01:00:00+00:00
+[2025-04-06T23:59:54.713+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/Borrar_datos.py took 0.160 seconds
