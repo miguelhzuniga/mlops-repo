@@ -1,0 +1,13 @@
+fastapi==0.95.0               # Keep FastAPI at the version you're using
+uvicorn==0.27.0.post1         # Keep the correct version of Uvicorn
+mlflow==2.3.0                 # Your version of MLflow
+numpy==1.21.0                 # Required version by FastAPI
+psutil==6.1.1                 # Required version by FastAPI
+scipy==1.10.1                 # Required version by FastAPI
+pandas                        # Keep the latest compatible version of pandas
+pydantic                      # Keep the latest compatible version of Pydantic
+scikit-learn==1.0.2           # Required version by FastAPI
+dill                          # Keep the latest compatible version of Dill
+python-multipart              # Keep the latest compatible version
+requests==2.28.2              # Keep the requested version of requests
+boto3==1.26.121               # Keep the requested version of Boto3
