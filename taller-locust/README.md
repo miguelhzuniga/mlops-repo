@@ -131,56 +131,75 @@ IP MV: 10.43.101.202
 
     * La ejecución recomendada para efectuar el proceso por completo es ejecutar los dags en el orden en el que están enumerados: primero se limpia la base de datos si existe, se cargan los datos, se entrena el modelo y se genera experimentos.
 
-3. **Inferencia en API - OPCIÓN GRADIO**:
-    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8503/`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
+3. **Inferencia en API**:
+    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/docs/`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
 
-    1. Entrar a la API. Si se da click en botón "Mapear modelos" y no se ha cargado el modelo aparecerá el mensaje:
+    1. FastAPI proporciona un servidor para exponer endpoints que interactúan con otros servicios como Airflow y MLFlow. Accede al servidor en http://localhost:8000/docs.
 
-![alt text](images/gradio1.png)
+Aqui se puede utilizar el mejor modelo generado tras los experimentos de MLFLOW para realizar inferencia.
 
-    2. Se debe haber puesto el modelo en etapa de Producción antes
-![alt text](images/captura_interfaz1.5.png)
+Nota: el modelo debe estar en estado de producción en Mlflow y debe llamarse modelo1.
 
-    3. Luego se debe dar click al boton 'Mapear modelos' 
-![alt text](images/gradio2.png)
+4. **Prueba de carga con Locust**
 
-    4. Posteriormente se selecciona del dropdown el modelo y se da click en el boton 'Cargar modelo' donde saldra tras unos segundos un aviso con la frase 'modelo seleccionado y cargado correctamente'
+---
 
-![alt text](images/gradio3.png)
+## 🔌 Endpoints de la API
 
-    5. Se va a la pestaña 'Realizar predicción', se ingresan los datos de las variables independientes (si se requiere información se puede ir a la pestaña de 'Información'):
+### `POST /select-model`
+Selecciona el modelo que se usará para predicción.
 
-![alt text](images/gradio4.png)
+```json
+{
+  "model_name": "modelo1"
+}
 
-![alt text](images/gradio4.5.png)
+POST /predict
 
-    6. Se da click en botón "Realizar predicción". Aquí se puede ver el resultado y la predicción dada por el modelo:
+Realiza una inferencia con el modelo seleccionado.
 
-![alt text](images/gradio5.png)
+{
+  "Elevation": 1,
+  "Aspect": 1,
+  "Slope": 1,
+  "Horizontal_Distance_To_Hydrology": 1,
+  "Vertical_Distance_To_Hydrology": 1,
+  "Horizontal_Distance_To_Roadways": 1,
+  "Hillshade_9am": 1,
+  "Hillshade_Noon": 1,
+  "Hillshade_3pm": 1,
+  "Horizontal_Distance_To_Fire_Points": 1,
+  "Wilderness_Area": "Rawah",
+  "Soil_Type": "C7745"
+}
 
-4. **Inferencia en API - OPCIÓN DESARROLLO WEB**:
-    Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
+🧪 Pruebas de Carga con Locust
 
-  1. Entrar a la API. Si se da click en botón "Mapear modelos" y no se ha cargado el modelo aparecerá el mensaje:
+Locust permite simular múltiples usuarios haciendo peticiones concurrentes a la API.
+📜 Definición de prueba (locustfile.py)
 
-![alt text](images/captura_interfaz1.png)
+Cada usuario simulado:
 
-  2. Se debe haber puesto el modelo en etapa de Producción antes:
+    Consulta los modelos disponibles (GET /models)
 
-![alt text](images/captura_interfaz1.5.png)
+    Selecciona un modelo (POST /select-model)
 
-  3. Tras poner el modelo en etapa de Producción se da click en "Mapear modelos" y se da click sobre el modelo. Abarecerá la frase: "Modelo seleccionado correctamente"
+    Envía una solicitud de predicción (POST /predict)
 
-![alt text](images/captura_interfaz2.png)
+    Espera entre 1 y 2.5 segundos antes de repetir
 
-  4. Se ingresan los datos de las variables independientes:
+🐳 Uso con Docker Compose
+🔧 Levantar todos los servicios
 
-![alt text](images/captura_interfaz3.png)
+docker-compose up --build
 
-  5. Se da click en botón "Realizar predicción". Aquí se puede ver el resultado y la predicción dada por el modelo:
+🌐 Accesos rápidos
 
-![alt text](images/captura_interfaz4.png)
+    FastAPI Docs: http://localhost:8000/docs
 
+    JupyterLab: http://localhost:8888
+
+    Locust UI: http://localhost:8089
 
 **Importante**
   * Para poder almacenar los modelos y experimentos de MLFLOW se debe haber creado el bucket manualmente en MINIO con el nombre mlflows3, al no hacerlo no se registrara la informacion en MLFLOW. 

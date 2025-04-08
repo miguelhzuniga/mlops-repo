@@ -33,7 +33,7 @@ class UsuarioDeCarga(HttpUser):
 
         # Enviar una petición POST al endpoint /predict
         response = self.client.post("/predict", json=payload_predict)
-        # print(response)
-        # Opcional: validación de respuesta
+        print(response)
+        #Opcional: validación de respuesta
         if response.status_code != 200:
             print("❌ Error en la inferencia:", response.text)
