@@ -6,16 +6,14 @@ services:
       dockerfile: Dockerfile.locust
     #container_name: locust
     ports:
-      - "8089-8090:8089"
+      - "8089-8092:8089"
     environment:
       - LOCUST_HOST=http://10.43.101.175:8000
-    # networks:
-    #   - net_mlops  
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 4
       resources:
         limits:
-          memory: 10000M
-          cpus: 4
+          memory: 2500M
+          cpus: 0.125
     restart: "no"
