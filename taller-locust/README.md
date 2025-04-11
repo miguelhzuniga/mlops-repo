@@ -1,33 +1,33 @@
-# README para el Clúster de Airflow con CeleryExecutor, Redis y PostgreSQL
+# 🚀 README para el Clúster de Airflow con CeleryExecutor, Redis y PostgreSQL
 
 Este repositorio configura un entorno de desarrollo local para ejecutar Apache Airflow con CeleryExecutor, Redis como broker de tareas y PostgreSQL como backend de la base de datos. Además, el entorno incluye MinIO para almacenamiento de artefactos, MySQL para almacenar metadata de MLFlow, PgAdmin para monitorear la base de datos de airflow y JupyterLab como ambiente de desarrollo.
 
 ---
 
-## Servicios en Docker Compose
+## 🐳 Servicios en Docker Compose
 
 El entorno de desarrollo está compuesto por varios contenedores Docker que incluyen Airflow, bases de datos, almacenamiento de artefactos y más. A continuación, se describen los servicios principales:
 
-### 1. **Airflow**: Clúster con CeleryExecutor
+### 1. **🔄 Airflow**: Clúster con CeleryExecutor
 
 Airflow se ejecuta utilizando CeleryExecutor, y se conecta a Redis para la gestión de tareas y PostgreSQL para el almacenamiento de metadatos.
 
-- **Airflow Webserver**: Accede a la UI de Airflow en `http://localhost:8080`
-- **Airflow Scheduler**: Controla la ejecución de tareas programadas.
-- **Airflow Worker**: Ejecuta las tareas programadas por el scheduler.
-- **Airflow Triggerer**: Gestiona trabajos que activan tareas manualmente.
+- **🖥️ Airflow Webserver**: Accede a la UI de Airflow en `http://localhost:8080`
+- **⏰ Airflow Scheduler**: Controla la ejecución de tareas programadas.
+- **👷 Airflow Worker**: Ejecuta las tareas programadas por el scheduler.
+- **🔔 Airflow Triggerer**: Gestiona trabajos que activan tareas manualmente.
 
   ![alt text](images/captura_airflow.png)
 
-### 2. **Redis**: Broker de Celery
+### 2. **📮 Redis**: Broker de Celery
 
 Redis se usa como broker para las tareas de Celery. Es necesario para la comunicación entre el `Scheduler` y los `Workers` de Airflow.
 
-### 3. **PostgreSQL**: Backend de Airflow
+### 3. **🗃️ PostgreSQL**: Backend de Airflow
 
 PostgreSQL se usa como base de datos para almacenar los metadatos de Airflow. Se conecta con los `Scheduler` y `Workers`.
 
-### 4. **MinIO**: Almacenamiento S3
+### 4. **📦 MinIO**: Almacenamiento S3
 
 MinIO emula un almacenamiento tipo S3, utilizado para almacenar los artefactos de MLFlow.
 
@@ -39,7 +39,7 @@ MinIO emula un almacenamiento tipo S3, utilizado para almacenar los artefactos d
 
 ![alt text](images/captura_minio.png)
 
-### 5. **MLFlow**: Plataforma de Gestión de Experimentos
+### 5. **📊 MLFlow**: Plataforma de Gestión de Experimentos
 
 MLFlow se utiliza para el seguimiento de experimentos de Machine Learning. Se conecta a MySQL para almacenar metadatos.
 
@@ -47,7 +47,7 @@ MLFlow se utiliza para el seguimiento de experimentos de Machine Learning. Se co
 
 ![alt text](images/captura_mlflow.png)
 
-### 6. **PgAdmin**: Interfaz de Administración de PostgreSQL
+### 6. **🔍 PgAdmin**: Interfaz de Administración de PostgreSQL
 
 PgAdmin proporciona una interfaz gráfica para gestionar la base de datos de PostgreSQL.
 
@@ -65,17 +65,17 @@ De este modo se puede comprobar que los datos que airflow genera con el dag Carg
 
 ![alt text](images/captura_pgadmin.png)
 
-### 7. **MySQL**: Base de Datos de MLFlow
+### 7. **💾 MySQL**: Base de Datos de MLFlow
 
 MySQL se usa para almacenar los metadatos de MLFlow. Se conecta con el contenedor de MLFlow.
 
-### 8. **JupyterLab**: Entorno de Desarrollo
+### 8. **🧪 JupyterLab**: Entorno de Desarrollo
 
 JupyterLab proporciona un entorno interactivo para desarrollo y pruebas. Puedes acceder a él en `http://localhost:8888` usando el token `devtoken`.
 
 ![alt text](images/captura_jupyter.png)
 
-### 9. **FastAPI (API)**: API de Inferencia
+### 9. **🔌 FastAPI (API)**: API de Inferencia
 
 FastAPI proporciona un servidor para exponer endpoints que interactúan con otros servicios como Airflow y MLFlow. Accede al servidor en `http://localhost:8000/docs`.
 
@@ -85,21 +85,21 @@ Aqui se puede utilizar el mejor modelo generado tras los experimentos de MLFLOW 
 
 ![alt text](images/captura_api.png)
 
-### 10. **FastAPI (API Server)**: Servidor de API
+### 10. **🌐 FastAPI (API Server)**: Servidor de API
 
 Esta API simula una URL de internet que provee un batch de datos cada 5 segundos, para un total de 10 batches, los cuales serán utilizados para entrenar posteriormente el modelo en airflow y registrar los experimentos y el mejor modelo en mlflow. Los datos se almacenan en la base de datos "airflow" dentro de la tabla "covertype".
 `http://localhost:80`.
 
 ---
 
-## Uso
+## 📋 Uso
 
 Para ejecutar los contenedores y configurar el entorno, sigue estos pasos:
 
 IP MV: 10.43.101.202
 
 
-1. **Construir los contenedores**:
+1. **🛠️ Construir los contenedores**:
 
    En el directorio raíz del proyecto, ejecuta:
 
@@ -120,18 +120,18 @@ IP MV: 10.43.101.202
    docker-compose down --volumes --remove-orphans
    ```
 
-2. **Prender dags programados**:
+2. **▶️ Prender dags programados**:
 
     En airflow existen 4 dags que se ejecutan diariamente desde el 30 de marzo del 2025:
-    1. Borrar_datos: limpia la base de datos si existe. Se ejecuta posterior a la generación del modelo y está programado 1 hora después de el primer dag. 
-    2. Cargar_datos: trae los datos consolidados de la api server tarda aproximadamente 50 segundos y está programado a las 0 horas.
-    3. Entrenamiento_mode: entrena un RandomForest con los datos cargados, el cual está programado 2 minutos después de cargar los datos.
-    4. Procesa_data: genera experimentos para encontrar los mejores hiperparámetros y por ende el mejor modelo que será utilizado posteriormente por el usuario. Se ejecuta 10 minutos después de cargar los datos.
+    1. 🗑️ **Borrar_datos**: limpia la base de datos si existe. Se ejecuta posterior a la generación del modelo y está programado 1 hora después de el primer dag. 
+    2. 📥 **Cargar_datos**: trae los datos consolidados de la api server tarda aproximadamente 50 segundos y está programado a las 0 horas.
+    3. 🧠 **Entrenamiento_mode**: entrena un RandomForest con los datos cargados, el cual está programado 2 minutos después de cargar los datos.
+    4. ⚙️ **Procesa_data**: genera experimentos para encontrar los mejores hiperparámetros y por ende el mejor modelo que será utilizado posteriormente por el usuario. Se ejecuta 10 minutos después de cargar los datos.
 
 
-    * La ejecución recomendada para efectuar el proceso por completo es ejecutar los dags en el orden en el que están enumerados: primero se limpia la base de datos si existe, se cargan los datos, se entrena el modelo y se genera experimentos.
+    * ⚠️ La ejecución recomendada para efectuar el proceso por completo es ejecutar los dags en el orden en el que están enumerados: primero se limpia la base de datos si existe, se cargan los datos, se entrena el modelo y se genera experimentos.
 
-3. **Inferencia en API**:
+3. **🔮 Inferencia en API**:
     Tras la ejecución de los dags, el usuario ingresará a `http://localhost:8000/docs/`, donde podrá hacer inferencia con el modelo como el siguiente ejemplo:
 
     1. FastAPI proporciona un servidor para exponer endpoints que interactúan con otros servicios como Airflow y MLFlow. Accede al servidor en http://localhost:8000/docs.
@@ -140,7 +140,7 @@ Aqui se puede utilizar el mejor modelo generado tras los experimentos de MLFLOW 
 
 Nota: el modelo debe estar en estado de producción en Mlflow y debe llamarse modelo1.
 
-4. **Prueba de carga con Locust**
+4. **📈 Prueba de carga con Locust**
 
 ---
 
@@ -153,11 +153,13 @@ Selecciona el modelo que se usará para predicción.
 {
   "model_name": "modelo1"
 }
+```
 
-POST /predict
+### `POST /predict`
 
 Realiza una inferencia con el modelo seleccionado.
 
+```json
 {
   "Elevation": 1,
   "Aspect": 1,
@@ -172,41 +174,83 @@ Realiza una inferencia con el modelo seleccionado.
   "Wilderness_Area": "Rawah",
   "Soil_Type": "C7745"
 }
+```
 
-🧪 Pruebas de Carga con Locust
+## 🚦 Pruebas de Carga con Locust
 
 Locust permite simular múltiples usuarios haciendo peticiones concurrentes a la API.
-📜 Definición de prueba (locustfile.py)
+
+### 📜 Definición de prueba (locustfile.py)
 
 Cada usuario simulado:
 
-    Consulta los modelos disponibles (GET /models)
+- 🔍 Consulta los modelos disponibles (GET /models)
+- 🎯 Selecciona un modelo (POST /select-model)
+- 🧮 Envía una solicitud de predicción (POST /predict)
+- ⏱️ Espera entre 1 y 2.5 segundos antes de repetir
 
-    Selecciona un modelo (POST /select-model)
+### 🐳 Uso con Docker Compose
 
-    Envía una solicitud de predicción (POST /predict)
+#### 🔧 Levantar todos los servicios
 
-    Espera entre 1 y 2.5 segundos antes de repetir
-
-🐳 Uso con Docker Compose
-🔧 Levantar todos los servicios
-
+```bash
 docker-compose up --build
+```
 
-🌐 Accesos rápidos
+#### 🌐 Accesos rápidos
 
-    FastAPI Docs: http://localhost:8000/docs
+- 📝 FastAPI Docs: http://localhost:8000/docs
+- 🧪 JupyterLab: http://localhost:8888
+- 📊 Locust UI: http://localhost:8089
 
-    JupyterLab: http://localhost:8888
+## ⚖️ Escalamiento y Pruebas de Rendimiento
 
-    Locust UI: http://localhost:8089
+Se realizaron pruebas de rendimiento utilizando diferentes configuraciones de réplicas para evaluar el comportamiento del sistema bajo carga. Las pruebas mostraron resultados significativos sobre el impacto de la escalabilidad horizontal en el rendimiento del sistema.
 
-**Importante**
+### 🔬 Hallazgos principales:
+
+1. **🔴 Sin réplicas (1 instancia)**:
+   - Recursos: 10GB RAM, 0.5 CPU
+   - Rendimiento: Solo se logró completar con éxito las peticiones GET (mapeo de modelos)
+   - Las operaciones POST más intensivas fallaron bajo carga
+
+2. **🟠 Con 2 réplicas**:
+   - Recursos por instancia: 5GB RAM, 0.25 CPU (total: 10GB RAM, 0.5 CPU)
+   - Rendimiento: Se logró completar con éxito las peticiones GET y POST para seleccionar modelos
+   - Las peticiones de predicción (POST /predict) aún presentaban fallos
+   - **Capturas de pantalla**:
+     - Desempeño:
+     ![alt text](image.png)
+     - Estadísticas:
+     ![alt text](image-1.png)
+
+3. **🟢 Con 4 réplicas**:
+   - Recursos por instancia: 2.5GB RAM, 0.125 CPU (total: 10GB RAM, 0.5 CPU)
+   - Rendimiento: Se logró completar todo el flujo de trabajo con éxito, incluyendo las operaciones de predicción
+   - Mejor estabilidad general del sistema
+   - **Capturas de pantalla**:
+     - Desempeño:
+     ![alt text](image-4.png)
+     - Estadísticas: 
+     ![alt text](image-3.png)
+
+### 💡 Conclusiones:
+
+Las pruebas demostraron que aunque el total de recursos asignados se mantuvo constante (10GB RAM, 0.5 CPU), la distribución de estos recursos en múltiples instancias más pequeñas mejoró significativamente el rendimiento y la estabilidad del sistema. El escenario con 4 réplicas mostró el mejor comportamiento a pesar de utilizar exactamente los mismos recursos totales que las configuraciones con menos réplicas.
+
+Este hallazgo confirma que para aplicaciones como la API de inferencia de modelos ML, la escalabilidad horizontal (aumentar el número de instancias) puede ser más efectiva que la escalabilidad vertical (aumentar los recursos de una única instancia).
+
+Las evidencias completas de estas pruebas se encuentran disponibles en la carpeta `taller-locust/images/con replicas` y `taller-locust/images/sin replicas`.
+
+---
+
+## ⚠️ Importante
+
   * Para poder almacenar los modelos y experimentos de MLFLOW se debe haber creado el bucket manualmente en MINIO con el nombre mlflows3, al no hacerlo no se registrara la informacion en MLFLOW. 
   * Para poder hacer inferencia de la API por primera vez se debe realizar todo el proceso de ejecucion de los dags debido a que la api requiere del modelo que se genera en el dag 3. Si esto no se aplica entonces la API no se habilitara.
 
-**Autores:**
+## 👥 Autores
 
-* Luis Frontuso
-* Miguel Zuñiga
-* Camilo Serrano
+* 👨‍💻 Luis Frontuso
+* 👨‍💻 Miguel Zuñiga
+* 👨‍💻 Camilo Serrano
