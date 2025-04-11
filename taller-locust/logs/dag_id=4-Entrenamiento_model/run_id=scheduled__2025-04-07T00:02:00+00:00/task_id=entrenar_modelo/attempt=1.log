@@ -1,0 +1,112 @@
+[2025-04-08T16:56:46.837+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-08T16:56:46.943+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-07T00:02:00+00:00 [queued]>
+[2025-04-08T16:56:46.990+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-07T00:02:00+00:00 [queued]>
+[2025-04-08T16:56:46.991+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-08T16:56:47.081+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-04-07 00:02:00+00:00
+[2025-04-08T16:56:47.118+0000] {standard_task_runner.py:72} INFO - Started process 135 to run task
+[2025-04-08T16:56:47.144+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'entrenar_modelo', 'scheduled__2025-04-07T00:02:00+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpoht2kc22']
+[2025-04-08T16:56:47.152+0000] {standard_task_runner.py:105} INFO - Job 29: Subtask entrenar_modelo
+[2025-04-08T16:56:47.418+0000] {task_command.py:467} INFO - Running <TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-07T00:02:00+00:00 [running]> on host f44e17a0708c
+[2025-04-08T16:56:48.124+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-04-07T00:02:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-07T00:02:00+00:00'
+[2025-04-08T16:56:48.128+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-08T16:56:48.928+0000] {warnings.py:109} WARNING - /opt/***/dags/Entrenamiento_mode.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(query, conn)
+
+[2025-04-08T16:56:59.900+0000] {logging_mixin.py:190} WARNING - 2025/04/08 16:56:59 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2025-04-08T16:57:05.256+0000] {logging_mixin.py:190} WARNING - 2025/04/08 16:57:05 WARNING mlflow.utils: Truncated the value of the key `estimator`. Truncated value: `Pipeline(steps=[('column_trans',
+                 ColumnTransformer(remainder='passthrough',
+                                   transformers=[('onehotencoder',
+                                                  OneHotEncoder(handle_unknown='ignore'),
+                                                  ['Wilderness_Area',
+                                                   'Soil_Type'])])),
+                ('scaler', StandardScaler(with_mean=False)),
+                ('RandomForestClassifier', Rand...`
+[2025-04-08T16:57:05.297+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/joblib/parallel.py:1359: UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+  n_jobs = self._backend.configure(n_jobs=self.n_jobs, parallel=self,
+
+[2025-04-08T16:57:05.342+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/sklearn/model_selection/_split.py:676: UserWarning: The least populated class in y has only 3 members, which is less than n_splits=5.
+  warnings.warn(
+
+[2025-04-08T16:57:16.331+0000] {font_manager.py:1547} INFO - generated new fontManager
+[2025-04-08T16:57:23.507+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-04-08T16:57:28.868+0000] {logging_mixin.py:190} WARNING - 2025/04/08 16:57:28 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/home/***/.local/lib/python3.8/site-packages/mlflow/models/signature.py:137: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+[2025-04-08T16:57:52.809+0000] {logging_mixin.py:190} WARNING - Registered model 'modelo1' already exists. Creating a new version of this model...
+[2025-04-08T16:57:53.020+0000] {logging_mixin.py:190} WARNING - 2025/04/08 16:57:53 INFO mlflow.tracking._model_registry.client: Waiting up to 300 seconds for model version to finish creation. Model name: modelo1, version 2
+[2025-04-08T16:57:53.021+0000] {logging_mixin.py:190} WARNING - Created version '2' of model 'modelo1'.
+[2025-04-08T16:58:00.185+0000] {logging_mixin.py:190} WARNING - 2025/04/08 16:58:00 INFO mlflow.sklearn.utils: Logging the 5 best runs, 3 runs will be omitted.
+[2025-04-08T16:58:01.349+0000] {python.py:240} INFO - Done. Returned value was: 0
+[2025-04-08T16:58:01.578+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-08T16:58:01.579+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=entrenar_modelo, run_id=scheduled__2025-04-07T00:02:00+00:00, execution_date=20250407T000200, start_date=20250408T165646, end_date=20250408T165801
+[2025-04-08T16:58:01.862+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-08T16:58:01.967+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-08T16:58:01.975+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-08T22:59:45.182+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-08T22:59:45.238+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-07T00:02:00+00:00 [queued]>
+[2025-04-08T22:59:45.254+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-07T00:02:00+00:00 [queued]>
+[2025-04-08T22:59:45.254+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-08T22:59:45.285+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): entrenar_modelo> on 2025-04-07 00:02:00+00:00
+[2025-04-08T22:59:45.313+0000] {standard_task_runner.py:72} INFO - Started process 183 to run task
+[2025-04-08T22:59:45.329+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', '4-Entrenamiento_model', 'entrenar_modelo', 'scheduled__2025-04-07T00:02:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/Entrenamiento_mode.py', '--cfg-path', '/tmp/tmpwsaywo1p']
+[2025-04-08T22:59:45.336+0000] {standard_task_runner.py:105} INFO - Job 6: Subtask entrenar_modelo
+[2025-04-08T22:59:45.538+0000] {task_command.py:467} INFO - Running <TaskInstance: 4-Entrenamiento_model.entrenar_modelo scheduled__2025-04-07T00:02:00+00:00 [running]> on host fb4b9d079ce6
+[2025-04-08T22:59:45.799+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='4-Entrenamiento_model' AIRFLOW_CTX_TASK_ID='entrenar_modelo' AIRFLOW_CTX_EXECUTION_DATE='2025-04-07T00:02:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-07T00:02:00+00:00'
+[2025-04-08T22:59:45.803+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-08T22:59:45.854+0000] {warnings.py:109} WARNING - /opt/***/dags/Entrenamiento_mode.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(query, conn)
+
+[2025-04-08T22:59:49.977+0000] {logging_mixin.py:190} WARNING - 2025/04/08 22:59:49 INFO mlflow.tracking.fluent: Experiment with name 'mlflow_tracking_examples' does not exist. Creating a new experiment.
+[2025-04-08T22:59:57.121+0000] {logging_mixin.py:190} WARNING - 2025/04/08 22:59:57 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2025-04-08T22:59:57.243+0000] {logging_mixin.py:190} WARNING - 2025/04/08 22:59:57 WARNING mlflow.utils: Truncated the value of the key `estimator`. Truncated value: `Pipeline(steps=[('column_trans',
+                 ColumnTransformer(remainder='passthrough',
+                                   transformers=[('onehotencoder',
+                                                  OneHotEncoder(handle_unknown='ignore'),
+                                                  ['Wilderness_Area',
+                                                   'Soil_Type'])])),
+                ('scaler', StandardScaler(with_mean=False)),
+                ('RandomForestClassifier', Rand...`
+[2025-04-08T22:59:57.266+0000] {logging_and_warnings.py:72} WARNING - /home/***/.local/lib/python3.8/site-packages/joblib/parallel.py:1359: UserWarning: Loky-backed parallel loops cannot be called in a multiprocessing, setting n_jobs=1
+  n_jobs = self._backend.configure(n_jobs=self.n_jobs, parallel=self,
+
+[2025-04-08T23:00:01.107+0000] {font_manager.py:1547} INFO - generated new fontManager
+[2025-04-08T23:00:03.613+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-04-08T23:00:06.185+0000] {logging_mixin.py:190} WARNING - 2025/04/08 23:00:06 WARNING mlflow.utils.autologging_utils: MLflow autologging encountered a warning: "/home/***/.local/lib/python3.8/site-packages/mlflow/models/signature.py:137: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details."
+[2025-04-08T23:00:19.693+0000] {logging_mixin.py:190} WARNING - Successfully registered model 'modelo1'.
+[2025-04-08T23:00:19.801+0000] {logging_mixin.py:190} WARNING - 2025/04/08 23:00:19 INFO mlflow.tracking._model_registry.client: Waiting up to 300 seconds for model version to finish creation. Model name: modelo1, version 1
+[2025-04-08T23:00:19.801+0000] {logging_mixin.py:190} WARNING - Created version '1' of model 'modelo1'.
+[2025-04-08T23:00:24.427+0000] {logging_mixin.py:190} WARNING - 2025/04/08 23:00:24 INFO mlflow.sklearn.utils: Logging the 5 best runs, 3 runs will be omitted.
+[2025-04-08T23:00:25.341+0000] {python.py:240} INFO - Done. Returned value was: 0
+[2025-04-08T23:00:25.439+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-08T23:00:25.442+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=4-Entrenamiento_model, task_id=entrenar_modelo, run_id=scheduled__2025-04-07T00:02:00+00:00, execution_date=20250407T000200, start_date=20250408T225945, end_date=20250408T230025
+[2025-04-08T23:00:25.646+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-08T23:00:25.694+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-08T23:00:25.699+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

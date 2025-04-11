@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements-locust.txt
 
 EXPOSE 8089
 
-CMD ["locust", "-f", "locustfile.py"]
+CMD ["locust", "-f", "locustfile.py", "--users" ,"10000","--spawn-rate", "500"]
