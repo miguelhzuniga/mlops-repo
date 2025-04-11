@@ -233,6 +233,7 @@ Se realizaron pruebas de rendimiento utilizando diferentes configuraciones de r�
      ![alt text](image-4.png)
      - Estadísticas: 
      ![alt text](image-3.png)
+     
 
 ### 💡 Conclusiones:
 
