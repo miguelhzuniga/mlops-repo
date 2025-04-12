@@ -213,6 +213,10 @@ Se realizaron pruebas de rendimiento utilizando diferentes configuraciones de r�
    - Recursos: 10GB RAM, 0.5 CPU
    - Rendimiento: Solo se logró completar con éxito las peticiones GET (mapeo de modelos)
    - Las operaciones POST más intensivas fallaron bajo carga
+   - Desempeño:
+      ![alt text](image-5.png)
+   - Estadísticas:
+      ![alt text](image-6.png)
 
 2. **🟠 Con 2 réplicas**:
    - Recursos por instancia: 5GB RAM, 0.25 CPU (total: 10GB RAM, 0.5 CPU)
@@ -237,11 +241,13 @@ Se realizaron pruebas de rendimiento utilizando diferentes configuraciones de r�
 
 ### 💡 Conclusiones:
 
-Las pruebas demostraron que aunque el total de recursos asignados se mantuvo constante (10GB RAM, 0.5 CPU), la distribución de estos recursos en múltiples instancias más pequeñas mejoró significativamente el rendimiento y la estabilidad del sistema. El escenario con 4 réplicas mostró el mejor comportamiento a pesar de utilizar exactamente los mismos recursos totales que las configuraciones con menos réplicas.
+Las pruebas demostraron que aunque el total de recursos asignados se mantuvo constante (10GB RAM, 0.5 CPU), la distribución de estos recursos en múltiples instancias más pequeñas mejoró significativamente el rendimiento y la estabilidad del sistema. El escenario con 4 réplicas mostró el mejor comportamiento a pesar de utilizar exactamente los mismos recursos totales que las configuraciones con menos réplicas. Lo otro que me parece importante mencionar es que se nota una diferencia de comportamientos cuando hay 4 réplicas y se observan picos de carga.
+
+Una posible hipótesis para explicar este comportamiento es que, al lanzar múltiples contenedores de Locust simultáneamente, todos los workers comienzan a generar carga al mismo tiempo. Por ejemplo, si se definen 500 usuarios distribuidos en 5 contenedores, cada worker manejará 100 usuarios que empiezan su actividad sin pausas iniciales, lo que genera un gran pico de tráfico al comienzo de la prueba. Esta sincronización podría estar influyendo en los picos de carga observados en las pruebas con múltiples réplicas.
 
 Este hallazgo confirma que para aplicaciones como la API de inferencia de modelos ML, la escalabilidad horizontal (aumentar el número de instancias) puede ser más efectiva que la escalabilidad vertical (aumentar los recursos de una única instancia).
 
-Las evidencias completas de estas pruebas se encuentran disponibles en la carpeta `taller-locust/images/con replicas` y `taller-locust/images/sin replicas`.
+Las evidencias completas de estas pruebas se encuentran disponibles en la carpeta taller-locust/images/con replicas y taller-locust/images/sin replicas. `taller-locust/images/con replicas` y `taller-locust/images/sin replicas`.
 
 ---
 
