@@ -1,0 +1,134 @@
+[2025-04-29T01:11:02.324+0000] {processor.py:186} INFO - Started process (PID=78) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:11:02.325+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:11:02.339+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:02.338+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:11:14.076+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:11:14.789+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:14.788+0000] {override.py:1901} INFO - Created Permission View: can edit on DAG:diabetes_classification
+[2025-04-29T01:11:15.167+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.166+0000] {override.py:1901} INFO - Created Permission View: can read on DAG:diabetes_classification
+[2025-04-29T01:11:15.231+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.229+0000] {override.py:1901} INFO - Created Permission View: can delete on DAG:diabetes_classification
+[2025-04-29T01:11:15.302+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.302+0000] {override.py:1901} INFO - Created Permission View: can read on DAG Run:diabetes_classification
+[2025-04-29T01:11:15.360+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.359+0000] {override.py:1901} INFO - Created Permission View: can delete on DAG Run:diabetes_classification
+[2025-04-29T01:11:15.435+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.434+0000] {override.py:1901} INFO - Created Permission View: menu access on DAG Run:diabetes_classification
+[2025-04-29T01:11:15.468+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.467+0000] {override.py:1901} INFO - Created Permission View: can create on DAG Run:diabetes_classification
+[2025-04-29T01:11:15.470+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.470+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:11:15.549+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.548+0000] {dag.py:3262} INFO - Creating ORM DAG for diabetes_classification
+[2025-04-29T01:11:15.594+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:15.594+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:11:15.738+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 13.485 seconds
+[2025-04-29T01:11:46.326+0000] {processor.py:186} INFO - Started process (PID=94) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:11:46.328+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:11:46.332+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:46.332+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:11:48.036+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:11:48.079+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:48.078+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:11:48.116+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:11:48.115+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:11:48.140+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.828 seconds
+[2025-04-29T01:12:18.625+0000] {processor.py:186} INFO - Started process (PID=104) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:12:18.630+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:12:18.634+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:12:18.633+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:12:20.331+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:12:20.379+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:12:20.378+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:12:20.410+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:12:20.409+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:12:20.434+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.824 seconds
+[2025-04-29T01:12:50.856+0000] {processor.py:186} INFO - Started process (PID=115) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:12:50.858+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:12:50.862+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:12:50.861+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:12:52.440+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:12:52.477+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:12:52.476+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:12:52.515+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:12:52.514+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:12:52.538+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.693 seconds
+[2025-04-29T01:13:22.982+0000] {processor.py:186} INFO - Started process (PID=126) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:13:22.985+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:13:22.989+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:13:22.988+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:13:25.584+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:13:25.743+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:13:25.741+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:13:25.857+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:13:25.855+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:13:25.991+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 3.021 seconds
+[2025-04-29T01:13:56.470+0000] {processor.py:186} INFO - Started process (PID=137) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:13:56.472+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:13:56.476+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:13:56.475+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:13:58.312+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:13:58.372+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:13:58.371+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:13:58.407+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:13:58.406+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:13:58.440+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.986 seconds
+[2025-04-29T01:14:28.831+0000] {processor.py:186} INFO - Started process (PID=147) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:14:28.833+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:14:28.838+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:14:28.837+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:14:30.607+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:14:30.643+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:14:30.643+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:14:30.680+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:14:30.679+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:14:30.710+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.901 seconds
+[2025-04-29T01:15:01.152+0000] {processor.py:186} INFO - Started process (PID=158) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:15:01.159+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:15:01.167+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:15:01.167+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:15:03.660+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:15:03.727+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:15:03.726+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:15:03.769+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:15:03.769+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:15:03.821+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 2.700 seconds
+[2025-04-29T01:15:34.306+0000] {processor.py:186} INFO - Started process (PID=168) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:15:34.308+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:15:34.318+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:15:34.317+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:15:37.594+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:15:37.724+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:15:37.720+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:15:37.849+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:15:37.848+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:15:37.961+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 3.672 seconds
+[2025-04-29T01:16:08.460+0000] {processor.py:186} INFO - Started process (PID=179) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:16:08.463+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:16:08.467+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:16:08.466+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:16:11.335+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:16:11.393+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:16:11.392+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:16:11.459+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:16:11.458+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:16:11.514+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 3.069 seconds
+[2025-04-29T01:16:41.933+0000] {processor.py:186} INFO - Started process (PID=196) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:16:41.935+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:16:41.940+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:16:41.939+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:16:43.472+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:16:43.510+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:16:43.510+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:16:43.541+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:16:43.541+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:16:43.573+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.657 seconds
+[2025-04-29T01:17:14.002+0000] {processor.py:186} INFO - Started process (PID=207) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:17:14.006+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:17:14.012+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:17:14.011+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:17:15.650+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:17:15.696+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:17:15.695+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:17:15.728+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:17:15.727+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:17:15.760+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.770 seconds
+[2025-04-29T01:17:46.167+0000] {processor.py:186} INFO - Started process (PID=218) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:17:46.169+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:17:46.173+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:17:46.172+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:17:47.781+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:17:47.833+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:17:47.832+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:17:47.863+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:17:47.863+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:17:48.095+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.941 seconds
+[2025-04-29T01:18:18.510+0000] {processor.py:186} INFO - Started process (PID=229) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:18:18.512+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:18:18.517+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:18:18.516+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:18:20.122+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:18:20.166+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:18:20.165+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:18:20.200+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:18:20.200+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:18:20.230+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.736 seconds
+[2025-04-29T01:20:27.276+0000] {processor.py:186} INFO - Started process (PID=72) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:20:27.283+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:20:27.290+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:20:27.287+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:20:30.451+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:20:30.572+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:20:30.568+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:20:30.670+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:20:30.669+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:20:30.750+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 3.520 seconds
+[2025-04-29T01:23:26.311+0000] {processor.py:186} INFO - Started process (PID=80) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:23:26.315+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:23:26.323+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:23:26.320+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:23:29.780+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:23:29.902+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:23:29.901+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:23:29.948+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:23:29.948+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:23:29.984+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 3.692 seconds
+[2025-04-29T01:24:00.480+0000] {processor.py:186} INFO - Started process (PID=91) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:24:00.483+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:24:00.489+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:24:00.487+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:24:03.535+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:24:03.587+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:24:03.586+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:24:03.637+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:24:03.637+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:24:03.668+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 3.199 seconds
+[2025-04-29T01:24:33.901+0000] {processor.py:186} INFO - Started process (PID=108) to work on /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:24:33.903+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/sample-dag.py for tasks to queue
+[2025-04-29T01:24:33.906+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:24:33.906+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:24:35.466+0000] {processor.py:925} INFO - DAG(s) 'diabetes_classification' retrieved from /opt/airflow/dags/sample-dag.py
+[2025-04-29T01:24:35.512+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:24:35.512+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-29T01:24:35.542+0000] {logging_mixin.py:190} INFO - [2025-04-29T01:24:35.542+0000] {dag.py:4180} INFO - Setting next_dagrun for diabetes_classification to 2025-04-28 00:00:00+00:00, run_after=2025-04-29 00:00:00+00:00
+[2025-04-29T01:24:35.566+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/sample-dag.py took 1.677 seconds
