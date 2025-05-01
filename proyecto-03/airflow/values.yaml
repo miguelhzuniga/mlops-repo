@@ -1,0 +1,112 @@
+executor: "LocalExecutor"
+
+# Configuración del webserver
+webserver:
+  defaultUser:
+    enabled: true
+    role: Admin
+    username: airflow
+    password: airflow
+    email: admin@example.com
+    firstName: Admin
+    lastName: User
+  service:
+    type: NodePort
+    annotations:
+      metallb.universe.tf/nodeport: "30081"
+
+# Configuración general
+config:
+  core:
+    dags_are_paused_at_creation: true
+    load_examples: false
+    load_default_connections: false
+  webserver:
+    expose_config: true
+
+# Configuración de DAGs con GitSync
+dags:
+  gitSync:
+    enabled: true
+    repo: "https://github.com/miguelhzuniga/mlops-repo.git"
+    branch: "luis"
+    subPath: "proyecto-03/AIRFLOW/dags"
+    maxFailures: 0
+    depth: 1
+
+# Configuración de usuarios
+users:
+  - username: airflow
+    password: airflow
+    role: Admin
+    email: admin@example.com
+    firstName: Admin
+    lastName: User
+
+# Variables de entorno
+env:
+  - name: AIRFLOW_VAR__MLFLOW_TRACKING_URI
+    value: "http://mlflow-service:5000"
+  - name: AIRFLOW_VAR__POSTGRES_RAW_DATA_CONN
+    value: "postgresql+psycopg2://mlopsuser:mlops123@postgres-service:5432/rawdata"
+  - name: AIRFLOW_VAR__POSTGRES_CLEAN_DATA_CONN
+    value: "postgresql+psycopg2://mlopsuser:mlops123@postgres-service:5432/cleandata"
+  - name: AIRFLOW_VAR__MINIO_ENDPOINT
+    value: "http://minio-service:9000"
+  - name: AIRFLOW_VAR__MINIO_ACCESS_KEY
+    value: "minioadmin"
+  - name: AIRFLOW_VAR__MINIO_SECRET_KEY
+    value: "minioadmin"
+
+# Configuración de PostgreSQL
+postgresql:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClassName: manual
+    existingClaim: postgres-airflow-pv
+  auth:
+    username: mlopsuser
+    password: mlops123
+    database: airflow
+
+# Recursos del scheduler
+scheduler:
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+
+# Conexiones
+connections:
+  - id: postgres_rawdata
+    type: postgres
+    description: "Conexión a la base de datos de datos crudos"
+    host: postgres-service
+    port: 5432
+    schema: rawdata
+    login: mlopsuser
+    password: mlops123
+  - id: postgres_cleandata
+    type: postgres
+    description: "Conexión a la base de datos de datos limpios"
+    host: postgres-service
+    port: 5432
+    schema: cleandata
+    login: mlopsuser
+    password: mlops123
+
+# Variables
+variables:
+  - key: MLFLOW_TRACKING_URI
+    value: "http://mlflow-service:5000"
+  - key: MINIO_ENDPOINT
+    value: "http://minio-service:9000"
+  - key: MINIO_ACCESS_KEY
+    value: "minioadmin"
+  - key: MINIO_SECRET_KEY
+    value: "minioadmin"
