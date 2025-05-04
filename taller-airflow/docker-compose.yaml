@@ -35,6 +35,27 @@ x-airflow-common:
       condition: service_healthy
 
 services:
+  # API Service integrada directamente
+  fastapi:
+    image: python:3.9
+    ports:
+      - "8888:8888"
+    volumes:
+      - ${AIRFLOW_PROJ_DIR:-.}/api:/app
+      - ${AIRFLOW_PROJ_DIR:-.}/models:/opt/airflow/models
+    working_dir: /app
+    depends_on:
+      - mysql
+      - postgres
+    restart: always
+    command: >
+      bash -c "apt-get update && 
+              apt-get install -y --no-install-recommends curl ca-certificates &&
+              curl -sSL https://astral.sh/uv/install.sh | sh &&
+              export PATH=\"/root/.local/bin/:$PATH\" &&
+              uv pip install fastapi==0.109.1 uvicorn==0.27.0.post1 joblib scikit-learn==1.0.2 numpy==1.21.0 pandas dill python-multipart --system &&
+              uvicorn app.main-app:app --host 0.0.0.0 --port 8888"
+
   postgres:
     image: postgres:13
     environment:
@@ -59,7 +80,7 @@ services:
       MYSQL_USER: airflow
       MYSQL_PASSWORD: airflow
     ports:
-      - "3306:3306" 
+      - "3306:3306"  #Este es el puerto utilizado por mysql
     volumes:
       - mysql-db-volume:/var/lib/mysql
     healthcheck:
