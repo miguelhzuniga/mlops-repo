@@ -17,13 +17,13 @@ spec:
     spec:
       containers:
       - name: streamlit-diabetes
-        image: ${YOUR_REGISTRY}/streamlit-diabetes:latest
+        image: camilosvel/streamlit-diabetes:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
         env:
         - name: API_URL
-          value: "http://${FASTAPI_NODE_IP}:30501"
+          value: "http://10.43.101.206:30501"
         resources:
           requests:
             memory: "256Mi"
