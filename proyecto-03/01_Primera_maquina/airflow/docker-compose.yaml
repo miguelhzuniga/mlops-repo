@@ -15,7 +15,9 @@ x-airflow-common: &airflow-common
     # usa la IP y el puerto de NodePort
     MLFLOW_TRACKING_URI: http://10.43.101.175:30500
     # MinIO y credenciales
-    MLFLOW_S3_ENDPOINT_URL: http://10.43.101.175:30107 
+
+    MLFLOW_S3_ENDPOINT_URL: http://10.43.101.175:30382 
+
     AWS_ACCESS_KEY_ID: adminuser
     AWS_SECRET_ACCESS_KEY: securepassword123
     HOST_IP: 10.43.101.175
