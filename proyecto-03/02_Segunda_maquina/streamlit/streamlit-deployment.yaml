@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit-diabetes
+  namespace: mlops-project
+  labels:
+    app: streamlit-diabetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit-diabetes
+  template:
+    metadata:
+      labels:
+        app: streamlit-diabetes
+    spec:
+      containers:
+      - name: streamlit-diabetes
+        image: ${YOUR_REGISTRY}/streamlit-diabetes:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8501
+        env:
+        - name: API_URL
+          value: "http://${FASTAPI_NODE_IP}:30501"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "300m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamlit-service
+  namespace: mlops-project
+spec:
+  type: NodePort
+  ports:
+  - port: 8501
+    targetPort: 8501
+    nodePort: 30502
+  selector:
+    app: streamlit-diabetes
