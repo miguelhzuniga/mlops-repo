@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow
+  namespace: mlops-project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mlflow
+  template:
+    metadata:
+      labels:
+        app: mlflow
+    spec:
+      containers:
+      - name: mlflow
+        image: camilosvel/mlflow:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: http://minio:9000
+        - name: AWS_ACCESS_KEY_ID
+          value: adminuser
+        - name: AWS_SECRET_ACCESS_KEY
+          value: securepassword123
+        command:
+        - sh
+        - -c
+        - |
+          # Esperar a que los servicios estén disponibles
+          echo "Esperando 20 segundos para que los servicios estén listos..."
+          sleep 20
+          
+          # Iniciar MLflow
+          echo "Iniciando MLflow server..."
+          mlflow server \
+            --backend-store-uri postgresql://mlflow:mlflow123@postgres:5432/mlflow \
+            --default-artifact-root s3://mlflow-artifacts/ \
+            --host 0.0.0.0 \
+            --port 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow
+  namespace: mlops-project
+spec:
+  selector:
+    app: mlflow
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30500
+  type: NodePort

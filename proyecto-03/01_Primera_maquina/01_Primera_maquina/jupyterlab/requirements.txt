@@ -1,0 +1,9 @@
+mlflow
+requests
+numpy
+pandas
+scikit-learn
+psycopg2-binary
+boto3
+lightgbm
+joblib
