@@ -11,6 +11,89 @@ Maquina 03: Monitorización y observabilidad (Prometheus + Grafana)
 El sistema implementa un flujo de trabajo automatizado desde el procesamiento de datos hasta su división en lotes (batching), experimentación con múltiples modelos, registro y despliegue del mejor modelo en producción, todo sin necesidad de intervención manual durante las transiciones.
 La plataforma aprovecha tecnologías de contenedores y Kubernetes para garantizar escalabilidad, portabilidad y despliegue consistente en diferentes entornos.
 
+### Estructura de proyecto
+```
+├── 01_Primera_maquina
+│   ├── airflow
+│   │   ├── Dockerfile
+│   │   ├── dags
+│   │   │   ├── __pycache__
+│   │   │   │   ├── proceso_de_datos-dag.cpython-38.pyc
+│   │   │   │   └── proceso_mlflow-dag.cpython-38.pyc
+│   │   │   ├── proceso_de_datos-dag.py
+│   │   │   └── proceso_mlflow-dag.py
+│   │   ├── docker-compose.yaml
+│   │   ├── logs
+│   │   ├── plugins
+│   │   └── requirements.txt
+│   ├── jupyterlab
+│   │   ├── Dockerfile
+│   │   ├── experimentos.ipynb
+│   │   └── requirements.txt
+│   └── mlflow
+│       ├── docker
+│       │   ├── Dockerfile
+│       │   └── Dockerfile.mlflow
+│       ├── manifests
+│       │   ├── ingress.yaml
+│       │   ├── init-job.yaml
+│       │   ├── mlflow.yaml
+│       │   ├── namespace.yaml
+│       │   └── storage.yaml
+│       └── scripts
+│           ├── cleanup.sh
+│           ├── deploy.sh
+│           └── docker
+│               └── Dockerfile.mlflow
+├── 02_Segunda_maquina
+│   └── api
+│       ├── clean_api.sh
+│       ├── deploy.sh
+│       ├── fastapi
+│       │   ├── Dockerfile
+│       │   ├── fastapi-deployment.yaml
+│       │   ├── fastapi-service.yaml
+│       │   ├── main_server.py
+│       │   └── requirements.txt
+│       └── gradio
+│           ├── Dockerfile
+│           ├── gradio-deployment.yaml
+│           ├── gradio-service.yaml
+│           ├── gradio_app.py
+│           └── requirements.txt
+├── 03_Tercera_maquina
+│   ├── Dockerfile
+│   ├── cleanall.sh
+│   ├── deploy-monitoring.sh
+│   ├── locust
+│   │   └── locust.yaml
+│   ├── locustfile.py
+│   ├── manifests-local
+│   │   └── node-specific-deployment.yaml
+│   ├── monitoring
+│   │   ├── grafana.yaml
+│   │   └── prometheus.yaml
+│   ├── payload.json
+│   └── requirements.txt
+├── Imagenes_servicios
+│   ├── experimento_locust1.png
+│   ├── experimento_locust2.png
+│   ├── experimento_locust3.png
+│   ├── image-1.png
+│   ├── image-1_tercera_maquina.png
+│   ├── image-2.png
+│   ├── image-2_tercera_maquina.png
+│   ├── image-3.png
+│   ├── image-3_tercera_maquina.png
+│   ├── image-4.png
+│   ├── image-5.png
+│   ├── image-6.png
+│   ├── image-7.png
+│   ├── image.png
+│   └── image_tercera_maquina.png
+└── README.md
+
+```
 # **01_Primera_maquina**
 
 # Parte 1: Procesamiento de Datos con Airflow
