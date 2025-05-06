@@ -2,66 +2,59 @@ from locust import HttpUser, SequentialTaskSet, task, between
 
 class FlujoDeInferencia(SequentialTaskSet):
 
-    @task
-    def obtener_modelos(self):
-        headers = {"Connection": "close"}
-
-        try:
-            response = self.client.get("/models", headers=headers, name="📦 /models")
-            if response.status_code != 200:
-                print("❌ Error al obtener modelos:", response.text)
-        except Exception as e:
-            print(f"💥 Excepción en /models: {e}")
-    @task
-    def seleccionar_modelo(self):
-        payload_modelo = {"model_name": "modelo1"}
-        headers = {"Connection": "close"}
-
-        try:
-            response = self.client.post("/select-model", json=payload_modelo, headers=headers, name="🎯 /select-model")
-            if response.status_code != 200:
-                print("❌ Error al seleccionar modelo:", response.text)
-            else:
-                print("✅ Modelo seleccionado correctamente")
-        except Exception as e:
-            print(f"💥 Excepción en /select-model: {e}")
+    
     @task
     def hacer_prediccion(self):
         payload_predict = {
-                            "gender": "string",
-                            "age": "string",
-                            "time_in_hospital": 0,
-                            "num_lab_procedures": 0,
-                            "num_procedures": 0,
-                            "num_medications": 0,
-                            "number_outpatient": 0,
-                            "number_emergency": 0,
-                            "number_inpatient": 0,
-                            "number_diagnoses": 0,
-                            "max_glu_serum": "string",
-                            "A1Cresult": "string",
-                            "diabetesMed": "string",
-                            "diag_1": "",
-                            "diag_2": "",
-                            "diag_3": "",
-                            "metformin": "",
-                            "repaglinide": "",
-                            "nateglinide": "",
-                            "chlorpropamide": "",
-                            "glimepiride": "",
-                            "acetohexamide": "",
-                            "glipizide": "",
-                            "glyburide": "",
-                            "tolbutamide": "",
-                            "pioglitazone": "",
-                            "rosiglitazone": "",
-                            "acarbose": "",
-                            "miglitol": "",
-                            "troglitazone": "",
-                            "tolazamide": "",
-                            "examide": "",
-                            "citoglipton": "",
-                            "insulin": ""
+                            "race": "Caucasian",
+                            "gender": "Male",
+                            "age": "50-60",
+                            "admission_type_id": 1,
+                            "time_in_hospital": 7,
+                            "num_lab_procedures": 45,
+                            "num_procedures": 2,
+                            "num_medications": 18,
+                            "number_outpatient": 2,
+                            "number_emergency": 1,
+                            "number_inpatient": 3,
+                            "number_diagnoses": 8,
+                            "max_glu_serum": ">300",
+                            "A1Cresult": ">8",
+                            "insulin": "Up",
+                            "diabetesMed": "Yes",
+                            "encounter_id": 12345,
+                            "patient_nbr": 67890,
+                            "discharge_disposition_id": 1,
+                            "admission_source_id": 7,
+                            "weight": ">200",
+                            "payer_code": "MC",
+                            "medical_specialty": "Cardiology",
+                            "diag_1": "414.01",
+                            "diag_2": "250.00",
+                            "diag_3": "427.31",
+                            "metformin": "No",
+                            "repaglinide": "No",
+                            "nateglinide": "No",
+                            "chlorpropamide": "No",
+                            "glimepiride": "No",
+                            "acetohexamide": "No",
+                            "glipizide": "No",
+                            "glyburide": "No",
+                            "tolbutamide": "No",
+                            "pioglitazone": "No",
+                            "rosiglitazone": "No",
+                            "acarbose": "No",
+                            "miglitol": "No",
+                            "troglitazone": "No",
+                            "tolazamide": "No",
+                            "examide": "No",
+                            "citoglipton": "No",
+                            "glyburide_metformin": "No",
+                            "glipizide_metformin": "No",
+                            "glimepiride_pioglitazone": "No",
+                            "metformin_rosiglitazone": "No",
+                            "metformin_pioglitazone": "No",
+                            "change": "No"
                             }
         headers = {"Connection": "close"}
 

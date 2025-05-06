@@ -60,14 +60,14 @@ echo -e "${YELLOW}Creando namespace 'mlops-project' si no existe...${NC}"
 microk8s kubectl create namespace mlops-project --dry-run=client -o yaml | microk8s kubectl apply -f -
 
 # Verificar que el manifiesto esté presente
-if [ ! -f "./locust/locust-deployment.yaml" ]; then
-  echo -e "${RED}Manifiesto locust-deployment.yaml no encontrado en ./locust${NC}"
+if [ ! -f "./locust/locust.yaml" ]; then
+  echo -e "${RED}Manifiesto locust.yaml no encontrado en ./locust${NC}"
   exit 1
 fi
 
 # Aplicar manifiesto
 echo -e "${YELLOW}Desplegando Locust...${NC}"
-microk8s kubectl apply -f ./locust/locust-deployment.yaml
+microk8s kubectl apply -f ./locust/locust.yaml
 
 # Esperar a que esté listo
 echo -e "${YELLOW}Esperando a que Locust esté listo...${NC}"
