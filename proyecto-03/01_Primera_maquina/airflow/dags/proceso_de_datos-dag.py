@@ -102,7 +102,7 @@ def store_raw_data_in_postgres(ti):
         diag_3 VARCHAR(50),
         number_diagnoses INTEGER,
         max_glu_serum VARCHAR(50),
-        A1Cresult VARCHAR(50),
+        a1cresult VARCHAR(50),
         metformin VARCHAR(50),
         repaglinide VARCHAR(50),
         nateglinide VARCHAR(50),
@@ -127,7 +127,7 @@ def store_raw_data_in_postgres(ti):
         "metformin-rosiglitazone" VARCHAR(50),
         "metformin-pioglitazone" VARCHAR(50),
         change VARCHAR(50),
-        diabetesMed VARCHAR(20),
+        diabetesmed VARCHAR(20),
         readmitted VARCHAR(20),
         dataset VARCHAR(20) DEFAULT 'raw'
     );
@@ -150,12 +150,12 @@ def store_raw_data_in_postgres(ti):
                 time_in_hospital, payer_code, medical_specialty, num_lab_procedures, 
                 num_procedures, num_medications, number_outpatient, number_emergency, 
                 number_inpatient, diag_1, diag_2, diag_3, number_diagnoses, max_glu_serum, 
-                A1Cresult, metformin, repaglinide, nateglinide, chlorpropamide, 
+                a1cresult, metformin, repaglinide, nateglinide, chlorpropamide, 
                 glimepiride, acetohexamide, glipizide, glyburide, tolbutamide, 
                 pioglitazone, rosiglitazone, acarbose, miglitol, troglitazone, 
                 tolazamide, examide, citoglipton, insulin, "glyburide-metformin", 
                 "glipizide-metformin", "glimepiride-pioglitazone", "metformin-rosiglitazone", 
-                "metformin-pioglitazone", change, diabetesMed, readmitted) 
+                "metformin-pioglitazone", change, diabetesmed, readmitted) 
                 FROM STDIN WITH CSV""",
             file=f  
         )
@@ -184,11 +184,13 @@ def process_data(ti):
     Returns:
         La ruta del archivo temporal procesado
     """
-    raw_data_path = ti.xcom_pull(task_ids='download_data')
-    print(f"Procesando datos de {raw_data_path}")
+    # raw_data_path = ti.xcom_pull(task_ids='download_data')
+    # print(f"Procesando datos de {raw_data_path}")
     
-    df = pd.read_csv(raw_data_path)
-    
+    # df = pd.read_csv(raw_data_path)
+    pg_hook = PostgresHook(postgres_conn_id='postgres_default')
+    df = pg_hook.get_pandas_df("SELECT * FROM raw_data.diabetes WHERE dataset = 'raw'")
+    print("Columnas dataframe a procesar",df.columns)
     print(f"Dimensiones originales: {df.shape}")
     
     df = df.replace(['?', '', 'None', 'NULL'], np.nan)
@@ -254,24 +256,8 @@ def process_data(ti):
     
     print(f"Valores únicos en readmitted: {df['readmitted'].unique()}")
     df['readmitted'] = df['readmitted'].fillna('NO')
-    categorical_cols_to_encode = ['gender', 'age', 'max_glu_serum', 'A1Cresult', 'diabetesMed']
-    
-    dummy_columns = [] 
-    for col in categorical_cols_to_encode:
-        dummies = pd.get_dummies(df[col], prefix=col, drop_first=True)
-        for dummy_col in dummies.columns:
-            dummies[dummy_col] = dummies[dummy_col].astype(int)
-            dummy_columns.append(dummy_col)
-        df = pd.concat([df, dummies], axis=1)
-    
-    df['total_diabetes_meds'] = df[med_cols].apply(lambda x: sum(x != 'No'), axis=1)
-    
-    if 'change' in df.columns:
-        df['changed_med'] = df['change'].apply(lambda x: 1 if x == 'Ch' else 0)
-
-    cols_to_drop = ['patient_nbr', 'weight', 'payer_code', 'medical_specialty', 'change']
-    df = df.drop(columns=cols_to_drop, errors='ignore')
-    
+   
+   
     print(f"Dimensiones después de la limpieza: {df.shape}")
     print(f"Valores faltantes por columna:\n{df.isnull().sum()}")
 
@@ -281,9 +267,7 @@ def process_data(ti):
     
     if 'changed_med' in df.columns:
         int_columns.append('changed_med')
-    
-    int_columns.extend(dummy_columns)
-        
+            
     for col in int_columns:
         if col in df.columns:
             df[col] = df[col].round().astype(int)
@@ -324,28 +308,39 @@ def split_and_load_data(ti):
     DROP TABLE IF EXISTS clean_data.diabetes_test;
     """)
     
+    # ⚠️ Evitar incluir columnas que se declaran manualmente después
+    excluded_columns = {'id', 'batch_id', 'dataset'}  # ya se agregan abajo manualmente
+
     column_definitions = []
     for column in df.columns:
+        if column in excluded_columns:
+            continue
         if column in ['encounter_id', 'time_in_hospital', 'num_lab_procedures', 
-                      'num_procedures', 'num_medications', 'number_outpatient', 
-                      'number_emergency', 'number_inpatient', 'number_diagnoses', 
-                      'total_diabetes_meds', 'changed_med']:
+                    'num_procedures', 'num_medications', 'number_outpatient', 
+                    'number_emergency', 'number_inpatient', 'number_diagnoses', 
+                    'total_diabetes_meds', 'changed_med']:
             column_definitions.append(f'"{column}" INTEGER')
-        elif column.startswith(('gender_', 'age_', 'max_glu_serum_', 'A1Cresult_', 'diabetesMed_')):
+        elif column.startswith(('gender_', 'age_', 'max_glu_serum_', 'a1cresult_', 'diabetesmed_')):
             column_definitions.append(f'"{column}" INTEGER')
         else:
             column_definitions.append(f'"{column}" VARCHAR(100)')
+
     
     for dataset in ['train', 'validation', 'test']:
         pg_hook.run(f"""
         CREATE TABLE IF NOT EXISTS clean_data.diabetes_{dataset} (
-            id SERIAL PRIMARY KEY,
             {', '.join(column_definitions)},
             batch_id INTEGER,
             dataset VARCHAR(20) DEFAULT '{dataset}'
         );
         """)
-    
+
+    def drop_if_exists(df, columns):
+        return df.drop(columns=[col for col in columns if col in df.columns], errors='ignore')
+
+    val_df = drop_if_exists(val_df, ['id'])
+   
+       
     temp_val_path = os.path.join(TEMP_DIR, 'temp_validation.csv')
     val_df.to_csv(temp_val_path, index=False)
     
@@ -360,6 +355,8 @@ def split_and_load_data(ti):
         )
     conn.commit()
     
+    test_df = drop_if_exists(test_df, ['id'])
+
     temp_test_path = os.path.join(TEMP_DIR, 'temp_test.csv')
     test_df.to_csv(temp_test_path, index=False)
     
@@ -383,6 +380,8 @@ def split_and_load_data(ti):
         
         batch_df = train_df.iloc[start_idx:end_idx]
         
+        batch_df = drop_if_exists(batch_df, ['id'])
+
         temp_batch_path = os.path.join(TEMP_DIR, f'temp_train_batch_{batch_id}.csv')
         batch_df.to_csv(temp_batch_path, index=False)
         
@@ -413,7 +412,7 @@ def split_and_load_data(ti):
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """)
-    
+        
     for i in range(num_batches):
         batch_id = i + 1
         batch_size = min(BATCH_SIZE, len(train_df) - i * BATCH_SIZE)
@@ -487,6 +486,4 @@ cleanup_task = PythonOperator(
     dag=dag,
 )
 
-create_temp_dir_task >> download_task >> [process_task, store_raw_task]
-process_task >> split_and_load_task
-[store_raw_task, split_and_load_task] >> cleanup_task
+create_temp_dir_task >> download_task >> store_raw_task >> process_task >> split_and_load_task >> cleanup_task

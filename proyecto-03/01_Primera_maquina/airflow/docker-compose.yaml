@@ -1,5 +1,5 @@
 x-airflow-common: &airflow-common
-  build: .
+  image: camilosvel/airflow-diabetes:latest
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow

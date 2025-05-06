@@ -46,17 +46,17 @@ microk8s kubectl wait --for=condition=complete job/minio-init -n mlops-project -
 # Construir y publicar imagen personalizada de MLflow
 echo "Construyendo imagen personalizada de MLflow con dependencias necesarias..."
 mkdir -p docker
-cat > docker/Dockerfile.mlflow << 'EOF'
+sudo cat > docker/Dockerfile.mlflow << 'EOF'
 FROM ghcr.io/mlflow/mlflow:v2.10.0
  
 # Instalar dependencias adicionales
 RUN pip install psycopg2-binary boto3
 EOF
  
-cd docker
-docker build -t localhost:32000/mlflow-custom:latest -f Dockerfile.mlflow .
-docker push localhost:32000/mlflow-custom:latest
-cd ..
+# cd docker
+# sudo docker build -t localhost:32000/mlflow-custom:latest -f Dockerfile.mlflow .
+# sudo docker push localhost:32000/mlflow-custom:latest
+# cd ..
  
 # Desplegar MLflow
 echo "Desplegando MLflow..."

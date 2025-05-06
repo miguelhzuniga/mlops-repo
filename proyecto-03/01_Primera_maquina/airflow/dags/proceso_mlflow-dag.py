@@ -12,74 +12,90 @@ from airflow.operators.dummy import DummyOperator
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
+from lightgbm import LGBMClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+import joblib
+import boto3
 
 # Configuración de variables de entorno
-HOST_IP = os.getenv('HOST_IP')
-MINIO_ENDPOINT = os.getenv('MLFLOW_S3_ENDPOINT_URL')
-AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-MLFLOW_URI = os.getenv('MLFLOW_TRACKING_URI')
-ARTIFACT_ROOT = f's3://mlflow/'
+MLFLOW_TRACKING_URI = "http://10.43.101.175:30500"
+MLFLOW_S3_ENDPOINT_URL = "http://10.43.101.175:30382"
+AWS_ACCESS_KEY_ID = "adminuser"
+AWS_SECRET_ACCESS_KEY = "securepassword123"
+HOST_IP = "10.43.101.175"
+bucket_name = "mlflow-artifacts"
+object_key = "preprocessors/preprocessor.joblib"  # Path within the bucket
 
-# Función para configurar tracking de MLflow
+# Límites de recursos para evitar sobrecargar la máquina
+MAX_THREADS = 1  # Usar un solo hilo para LightGBM
+SAMPLE_SIZE = 0.1  # Usar solo 10% de la muestra para entrenar
+DATA_SAMPLE_SIZE = 0.1  # Extraer solo 10% de los datos
+
 def set_mlflow_tracking(**kwargs):
     """Configurar tracking de MLflow"""
-    mlflow.set_tracking_uri(MLFLOW_URI)
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
     mlflow.set_experiment('diabetes_experiment')
     
     # Configurar credenciales de almacenamiento
-    os.environ['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY
-    os.environ['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_KEY
-    
-    print("Tracking de MLflow configurado exitosamente")
+    os.environ['MLFLOW_TRACKING_URI'] = MLFLOW_TRACKING_URI
+    os.environ['MLFLOW_S3_ENDPOINT_URL'] = MLFLOW_S3_ENDPOINT_URL
+    os.environ['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY_ID
+    os.environ['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_ACCESS_KEY
 
-# Función para cargar datos desde PostgreSQL
+    print("✅ Tracking de MLflow configurado exitosamente")
+
+
 def load_data(**kwargs):
-    """Cargar datos desde PostgreSQL para entrenamiento de modelos"""
+    """Cargar datos desde PostgreSQL para entrenamiento de modelos con muestreo"""
     pg_hook = PostgresHook(postgres_conn_id='postgres_default')
-    query = """
+    
+    # Query extremadamente simplificada para minimizar datos
+    query = f"""
     SELECT * FROM clean_data.diabetes_train 
     WHERE batch_id = (
         SELECT MIN(batch_id) 
         FROM clean_data.batch_info
         WHERE batch_id IS NOT NULL
     )
+    LIMIT 500  -- Usar un valor fijo pequeño en lugar de un porcentaje
     """
-    
+        
     df = pg_hook.get_pandas_df(query)
     
     if df.empty:
         print("No hay más datos para procesar")
         return {'continue_processing': False}
     
+    # Hacer un muestreo adicional para reducir la carga
+    if len(df) > 1000:  # Si hay muchos registros
+        df = df.sample(frac=SAMPLE_SIZE, random_state=42)
+    
     columns_to_drop = ['id', 'batch_id', 'dataset']
     df = df.drop(columns=columns_to_drop, errors='ignore')
     
-    y = df['readmitted'].tolist()
-    X = df.drop('readmitted', axis=1)
+    # Guardar a un archivo temporal en lugar de usar XCom para grandes conjuntos de datos
+    tmp_file = '/tmp/diabetes_train_data.csv'
+    df.to_csv(tmp_file, index=False)
     
-    X_dict = X.to_dict('records')
-    
-    kwargs['ti'].xcom_push(key='X_train', value=X_dict)
-    kwargs['ti'].xcom_push(key='y_train', value=y)
+    # Solo almacenar la ruta del archivo en XCom, no los datos completos
+    kwargs['ti'].xcom_push(key='training_data_path', value=tmp_file)
     
     return {
-        'X_train': X_dict,
-        'y_train': y,
+        'training_data_path': tmp_file,
         'continue_processing': True
     }
 
 
 def preprocess_data(**kwargs):
-    """Preprocesar datos de entrenamiento"""
-    X_train_dict = kwargs['ti'].xcom_pull(key='X_train')
-    y_train = kwargs['ti'].xcom_pull(key='y_train')
+    """Preprocesar datos de entrenamiento con eficiencia de memoria mejorada"""
+    training_data_path = kwargs['ti'].xcom_pull(key='training_data_path')
     
-    X_train = pd.DataFrame(X_train_dict)
-    y_train = pd.Series(y_train)
+    # Cargar desde archivo temporal
+    df = pd.read_csv(training_data_path)
+    
+    y_train = df['readmitted'].tolist()
+    X_train = df.drop('readmitted', axis=1)
     
     numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns
     categorical_features = X_train.select_dtypes(include=['object']).columns
@@ -90,30 +106,81 @@ def preprocess_data(**kwargs):
             ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
         ])
     
+    # Realizar fit_transform una sola vez
     X_train_processed = preprocessor.fit_transform(X_train)
     
-    X_train_processed_list = X_train_processed.toarray().tolist()
+    # Guardar el preprocesador
+    local_path = '/tmp/preprocessor.joblib'
+    with open(local_path, 'wb') as f:
+        joblib.dump(preprocessor, f)
+
+    # Subir a MinIO
+    try:
+        s3_client = boto3.client(
+            's3',
+            endpoint_url=MLFLOW_S3_ENDPOINT_URL,
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+        )
+        print("✅ MinIO client initialized successfully.")
+
+        s3_client.upload_file(local_path, bucket_name, object_key)
+        print(f"✅ Preprocessor uploaded to MinIO at s3://{bucket_name}/{object_key}")
+
+    except Exception as e:
+        print(f"❌ Failed to upload preprocessor to MinIO: {e}")
     
-    kwargs['ti'].xcom_push(key='X_train_processed', value=X_train_processed_list)
-    kwargs['ti'].xcom_push(key='y_train', value=y_train.tolist())
+    # Guardar datos procesados a archivos temporales en lugar de XCom
+    processed_data_path = '/tmp/X_processed.npz'
+    np.savez_compressed(processed_data_path, X_train_processed=X_train_processed.toarray())
+    
+    y_train_path = '/tmp/y_train.npy'
+    np.save(y_train_path, y_train)
+    
+    # Solo guardar rutas en XCom
+    kwargs['ti'].xcom_push(key='processed_data_path', value=processed_data_path)
+    kwargs['ti'].xcom_push(key='y_train_path', value=y_train_path)
     
     return {
-        'X_train_processed': X_train_processed_list,
-        'y_train': y_train.tolist()
+        'processed_data_path': processed_data_path,
+        'y_train_path': y_train_path
     }
 
+
 def train_models(**kwargs):
-    """Entrenar múltiples modelos y registrar en MLflow"""
-    X_train_processed_list = kwargs['ti'].xcom_pull(key='X_train_processed')
-    y_train = kwargs['ti'].xcom_pull(key='y_train')
+    """Entrenar modelos con restricciones de recursos"""
+    processed_data_path = kwargs['ti'].xcom_pull(key='processed_data_path')
+    y_train_path = kwargs['ti'].xcom_pull(key='y_train_path')
     
-    X_train_processed = np.array(X_train_processed_list)
-    y_train = np.array(y_train)
+    # Cargar desde archivos temporales
+    X_train_processed = np.load(processed_data_path)['X_train_processed']
+    y_train = np.load(y_train_path)
     
+    # Configuración de múltiples modelos ligeros para comparación
     models = {
-        'Random Forest': RandomForestClassifier(random_state=42),
-        'Logistic Regression': LogisticRegression(max_iter=1000),
-        'Decision Tree': DecisionTreeClassifier(random_state=42),
+        'LightGBM': LGBMClassifier(
+            random_state=42, 
+            n_jobs=1,            # Usar un solo hilo
+            n_estimators=10,     # Muy pocos estimadores
+            verbose=-1,          # Desactivar salidas verbosas
+            max_depth=3,         # Profundidad mínima
+            subsample=0.5,       # Usar solo la mitad de las muestras en cada iteración
+            colsample_bytree=0.5 # Usar solo la mitad de las características en cada árbol
+        ),
+        'DecisionTreeClassifier': DecisionTreeClassifier(
+            random_state=42,
+            max_depth=3,         # Árbol poco profundo
+            min_samples_split=10, # Mínimo de muestras para dividir un nodo
+            class_weight='balanced' # Manejar desbalances en las clases
+        ),
+        'LogisticRegression': LogisticRegression(
+            random_state=42,
+            solver='liblinear',  # Solver rápido y eficiente
+            max_iter=100,        # Pocas iteraciones
+            C=1.0,               # Parámetro de regularización estándar
+            class_weight='balanced', # Manejar desbalances
+            n_jobs=1             # Un solo hilo
+        )
     }
 
     def evaluate_model(y_true, y_pred):
@@ -138,6 +205,9 @@ def train_models(**kwargs):
         for name, model in models.items():
             print(f"Entrenando modelo: {name}")
             with mlflow.start_run(nested=True):
+                # Monitoreo de recursos
+                print(f"Iniciando entrenamiento de {name} con {MAX_THREADS} hilos")
+                
                 model.fit(X_train_processed, y_train)
                 y_pred = model.predict(X_train_processed)
                 metrics = evaluate_model(y_train, y_pred)
@@ -193,18 +263,8 @@ def train_models(**kwargs):
                     
                     print(f"Modelo {best_model} versión {latest_version} marcado como Producción")
                     
-                    for model_name in models.keys():
-                        if model_name != best_model:
-                            other_versions = client.search_model_versions(f"name='{model_name}'")
-                            for v in other_versions:
-                                if v.current_stage == "Production":
-                                    client.transition_model_version_stage(
-                                        name=model_name,
-                                        version=v.version,
-                                        stage="Archived"
-                                    )
                 else:
-                    print(f"No se encontraron versiones para el modelo {best_model}. Es posible que el registro no se haya completado.")
+                    print(f"No se encontraron versiones para el modelo {best_model}.")
                     
                     try:
                         print(f"Intentando registrar {best_model} manualmente...")
@@ -220,11 +280,17 @@ def train_models(**kwargs):
                         print(f"Modelo {best_model} versión {registered_model.version} marcado como Producción")
                     except Exception as e:
                         print(f"Error al intentar registro manual: {e}")
-                        print("Continuando sin marcar un modelo como Producción")
                 
             except Exception as e:
                 print(f"Error al cambiar el estado del modelo: {e}")
-                print("Detalles del error:", str(e))
+    
+    # Limpieza de archivos temporales
+    for file_path in [processed_data_path, y_train_path]:
+        try:
+            os.remove(file_path)
+            print(f"Archivo temporal {file_path} eliminado")
+        except Exception as e:
+            print(f"Error al eliminar archivo temporal {file_path}: {e}")
     
     return {
         'best_model': best_model,
@@ -232,33 +298,8 @@ def train_models(**kwargs):
         'model_metrics': model_metrics
     }
 
-def update_batch_status(**kwargs):
-    """Actualizar estado del batch procesado"""
-    pg_hook = PostgresHook(postgres_conn_id='postgres_default')
-    query_current_batch = """
-    SELECT MIN(batch_id) as current_batch
-    FROM clean_data.batch_info
-    WHERE batch_id IS NOT NULL
-    """
-    current_batch = pg_hook.get_first(query_current_batch)[0]
-    
-    pg_hook.run(f"""
-    UPDATE clean_data.batch_info 
-    SET batch_id = NULL 
-    WHERE batch_id = {current_batch}
-    """)
-    
-    query_remaining_batches = """
-    SELECT COUNT(*) 
-    FROM clean_data.batch_info 
-    WHERE batch_id IS NOT NULL
-    """
-    remaining_batches = pg_hook.get_first(query_remaining_batches)[0]
-    
-    print(f"Batch procesado: {current_batch}, Lotes restantes: {remaining_batches}")
-    
-    return remaining_batches > 0
 
+# Configuración del DAG con intervalo menos frecuente
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -270,10 +311,10 @@ default_args = {
 }
 
 dag = DAG(
-    'diabetes_ml_pipeline',
+    'diabetes_ml_pipeline_optimized',
     default_args=default_args,
-    description='Pipeline de ML para predicción de readmisión hospitalaria',
-    schedule_interval=timedelta(days=1, hours=2),  # Un día y dos hora
+    description='Pipeline de ML optimizado para predicción de readmisión hospitalaria',
+    schedule_interval=timedelta(days=7),  # Ejecutar semanalmente en lugar de diariamente
     catchup=False,
     max_active_runs=1
 )
@@ -312,4 +353,3 @@ train_models_task = PythonOperator(
 
 start_pipeline >> set_mlflow_tracking_task >> load_data_task
 load_data_task >> preprocess_data_task >> train_models_task
-train_models_task 
