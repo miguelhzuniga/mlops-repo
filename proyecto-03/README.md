@@ -155,6 +155,8 @@ MLflow: Gestiona el registro, versionado y transición a producción de modelos
 - `diabetes_data_processing`
 - `diabetes_ml_pipeline_optimized`
 
+Las actividades se ejecutan diariamente con una única diferencia: el proceso "diabetes_ml_pipeline_optimized" se iniciará 2 horas después de "diabetes_data_processing", garantizando así que los modelos tengan todos los datos necesarios disponibles en las bases de datos para su ejecución.
+
 ![alt text](./Imagenes_servicios/image.png)
 
 ## Descripción del DAG de Procesamiento
