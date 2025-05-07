@@ -153,6 +153,8 @@ MLflow: Gestiona el registro, versionado y transición a producción de modelos
 
 El DAG `diabetes_data_processing` realiza las siguientes tareas:
 
+![alt text](./Imagenes_servicios/diabetes_data_processing.png)
+
 1. **Preparación**: Crea un directorio temporal para los archivos intermedios.
 2. **Descarga de datos**: Obtiene el conjunto de datos de diabetes desde la fuente.
 3. **Procesamiento**: Limpia y transforma los datos realizando:
@@ -334,6 +336,9 @@ Etiquetas de transición: (Production, Staging, Archived) facilitan el despliegu
    - Análisis de métricas (precisión, recall, F1)
 
 3. El DAG `diabetes_ml_pipeline_optimized` ejecuta automáticamente:
+
+![alt text](./Imagenes_servicios/diabetes_ml_pipeline_optimized.png)
+
    - Carga incremental de lotes de datos
    - Preprocesamiento consistente
    - Entrenamiento de múltiples modelos (LightGBM, DecisionTree, LogisticRegression)
