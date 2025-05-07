@@ -578,8 +578,6 @@ Este componente de monitorización completa el ciclo MLOps proporcionando observ
 ![alt text](./Imagenes_servicios/image-1_tercera_maquina.png)
 ---
 ![alt text](./Imagenes_servicios/image-2_tercera_maquina.png)
----
-![alt text](./Imagenes_servicios/metricas_locust.png)
 
 ## Experimentos Locust UI
 # Exp1
@@ -588,7 +586,9 @@ Este componente de monitorización completa el ciclo MLOps proporcionando observ
 ![alt text](./Imagenes_servicios/experimento_locust2.png)
 # Exp3
 ![alt text](./Imagenes_servicios/experimento_locust3.png)
-
+---
+![alt text](./Imagenes_servicios/metricas_locust.png)
+---
 # Grafana
 ![alt text](./Imagenes_servicios/image-3_tercera_maquina.png)
 
