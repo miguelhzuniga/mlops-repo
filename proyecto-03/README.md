@@ -149,11 +149,14 @@ MLflow: Gestiona el registro, versionado y transición a producción de modelos
 
 ```
 
+## Dags de Aiflow
+- `diabetes_data_processing`
+- 
+![alt text](./Imagenes_servicios/image.png)
+
 ## Descripción del DAG de Procesamiento
 
 El DAG `diabetes_data_processing` realiza las siguientes tareas:
-
-![alt text](./Imagenes_servicios/diabetes_data_processing.png)
 
 1. **Preparación**: Crea un directorio temporal para los archivos intermedios.
 2. **Descarga de datos**: Obtiene el conjunto de datos de diabetes desde la fuente.
@@ -165,8 +168,6 @@ El DAG `diabetes_data_processing` realiza las siguientes tareas:
 4. **Almacenamiento de datos crudos**: Guarda los datos originales en PostgreSQL.
 5. **División y carga de datos**: Separa los datos en conjuntos de entrenamiento (70%), validación (15%) y prueba (15%), y los almacena en PostgreSQL. El conjunto de entrenamiento se divide en lotes de 15,000 registros.
 6. **Limpieza**: Elimina los archivos temporales utilizados durante el proceso.
-
-![alt text](./Imagenes_servicios/image.png)
 
 ## Estructura de la Base de Datos
 
@@ -323,6 +324,10 @@ Etiquetas de transición: (Production, Staging, Archived) facilitan el despliegu
 ## **Flujo de Trabajo**
 
 1. El DAG `diabetes_data_processing` ejecuta ETL del conjunto de datos:
+
+
+![alt text](./Imagenes_servicios/diabetes_data_processing.png)
+
    - Descarga datos de pacientes diabéticos
    - Procesa y limpia los datos
    - Divide en conjuntos de entrenamiento, validación y test
