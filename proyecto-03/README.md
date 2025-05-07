@@ -617,6 +617,15 @@ La arquitectura está estratégicamente distribuida en tres máquinas virtuales,
 
 - Máquina 3 (Monitorización): Despliega Prometheus, Grafana y Locust para recolectar métricas, visualizar rendimiento y realizar pruebas de carga, cerrando el ciclo de retroalimentación para la mejora continua.
 
+Para finalizar Kubernetes se destaca como una plataforma que proporciona una notable agilidad en la interconexión de servicios y optimiza el aprovechamiento de recursos computacionales distribuidos en múltiples máquinas. Sin embargo, es fundamental establecer límites de recursos específicos para cada servicio, ya que en ausencia de estas restricciones, podemos enfrentar escenarios de "competencia por recursos" cuando la demanda de los servicios se intensifica.
+
+## **"Competencias por recursos"**  
+Al implementar nuestros servicios en Kubernetes, hemos constatado que, sin la configuración de límites apropiados, los distintos componentes compiten activamente por los recursos disponibles durante periodos de alta demanda. En nuestro proyecto específico, identificamos que MLFLOW, las APIs y su monitoreo representan los servicios con mayor consumo de recursos.
+Es importante destacar que Airflow, aunque no está integrado en nuestro clúster de Kubernetes, también presenta un consumo significativo de recursos, variando en función del volumen de datos en la base original y de la complejidad computacional de los modelos durante sus fases de entrenamiento.
+
+
+
+
 # Fortalezas Técnicas
 El proyecto demuestra varias fortalezas técnicas significativas:
 
