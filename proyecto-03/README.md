@@ -485,7 +485,13 @@ La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de in
 
 - **Almacenamiento en caché**: Implementación de patrón Singleton para modelos y preprocesadores, minimizando latencia y consumo de recursos.
 
-**Nota:**  La funcionalidad de recolección de datos de inferencia se encuentra temporalmente deshabilitada en el código (comentada). Esto se debe a que la arquitectura actual, con Airflow operando como servicio en Docker Compose, introduce una latencia significativa en las conexiones a la base de datos que compromete la experiencia del usuario final. Dado que esta recolección no es crítica en la fase actual del proyecto, se ha preservado la implementación del flujo de trabajo pero desactivado su ejecución. Para resolver esta limitación técnica, se recomienda migrar el despliegue de Airflow a Kubernetes, lo que permitiría una comunicación más eficiente entre la API de inferencia y el esquema raw.data en PostgreSQL.
+**Nota:** La funcionalidad de recolección de datos de inferencia se encuentra temporalmente deshabilitada en el código (comentada). Esta decisión se tomó debido a que la arquitectura actual, con Airflow operando como servicio dentro de Docker Compose, introduce una latencia considerable en las conexiones a la base de datos, afectando negativamente la experiencia del usuario final. Si bien la implementación del flujo de trabajo se ha conservado, su ejecución ha sido desactivada por no ser crítica en la fase actual del proyecto.
+
+**Posibles causas**
+--
+Es posible que esta latencia esté relacionada con diferencias en la configuración de los protocolos HTTPS y HTTP entre las máquinas involucradas, donde algunas permiten únicamente conexiones seguras (HTTPS) y otras solo conexiones inseguras (HTTP), generando incompatibilidades en la comunicación.
+
+Para mitigar esta limitación técnica, en un futuro proyecto se tomará la desición de migrar el despliegue de Airflow a un entorno Kubernetes, lo que permitiría una comunicación más eficiente y estable entre la API de inferencia y el esquema raw.data en PostgreSQL.
 
 # **03_Tercera_maquina**
 
@@ -595,6 +601,8 @@ Este componente de monitorización completa el ciclo MLOps proporcionando observ
 # Conclusión del monitoreo
 Locust UI: Nos permitió identificar que la arquitectura actual soporta un máximo de 50 usuarios simultáneos, incrementando 5 usuarios por segundo. Este límite se determina porque el tiempo máximo de respuesta para las predicciones alcanza los 4.9 segundos, lo cual consideramos aceptable dentro de un umbral de hasta 5 segundos. Superar este número de usuarios generaría tiempos de respuesta mayores al límite establecido.
 
+**Importante:** Es importante tener en cuenta las limitaciones de este servicio. Si se requiere un uso de recursos superior a la capacidad de la máquina asignada, no se deben solicitar recursos adicionales de otras máquinas, ya que esto podría provocar la inestabilidad o caída del clúster de Kubernetes.
+
 Prometheus & Grafana: Estas herramientas nos permitieron recolectar métricas específicas de nuestras APIs, como la cantidad de predicciones realizadas y el tiempo de ejecución de cada una. Esta información resulta muy útil y puede visualizarse de manera clara y atractiva a través de los dashboards de Grafana.
 
 # Conclusión General del Proyecto MLOps en Kubernetes
@@ -635,8 +643,8 @@ La integración entre las tres máquinas crea un ciclo completo de MLOps que aba
 Para entornos con mayores exigencias, sería recomendable:
 
 - Migrar Airflow de Docker Compose a Kubernetes para mejorar la comunicación con la API de inferencia
-Implementar autoescalado basado en métricas para adaptarse a picos de demanda
-Habilitar la recolección de datos de inferencia para monitorizar el desempeño del modelo a largo plazo
+- Implementar autoescalado basado en métricas para adaptarse a picos de demanda
+- Habilitar la recolección de datos de inferencia para monitorizar el desempeño del modelo a largo plazo
 
 Esta implementación demuestra efectivamente cómo Kubernetes puede proporcionar la infraestructura necesaria para desplegar flujos de trabajo de machine learning completos, desde el desarrollo hasta la producción, con observabilidad y escalabilidad incorporadas.
 
