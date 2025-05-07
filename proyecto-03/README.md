@@ -11,6 +11,8 @@ Maquina 03: Monitorización y observabilidad (Prometheus + Grafana)
 El sistema implementa un flujo de trabajo automatizado desde el procesamiento de datos hasta su división en lotes (batching), experimentación con múltiples modelos, registro y despliegue del mejor modelo en producción, todo sin necesidad de intervención manual durante las transiciones.
 La plataforma aprovecha tecnologías de contenedores y Kubernetes para garantizar escalabilidad, portabilidad y despliegue consistente en diferentes entornos.
 
+Video explicativo: https://youtu.be/83MP_AD714k
+
 ### Estructura de proyecto
 ```
 ├── 01_Primera_maquina
