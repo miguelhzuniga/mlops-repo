@@ -151,7 +151,8 @@ MLflow: Gestiona el registro, versionado y transición a producción de modelos
 
 ## Dags de Aiflow
 - `diabetes_data_processing`
-- 
+- `diabetes_ml_pipeline_optimized`
+
 ![alt text](./Imagenes_servicios/image.png)
 
 ## Descripción del DAG de Procesamiento
