@@ -597,7 +597,7 @@ Locust UI: Nos permitió identificar que la arquitectura actual soporta un máxi
 
 Prometheus & Grafana: Estas herramientas nos permitieron recolectar métricas específicas de nuestras APIs, como la cantidad de predicciones realizadas y el tiempo de ejecución de cada una. Esta información resulta muy útil y puede visualizarse de manera clara y atractiva a través de los dashboards de Grafana.
 
-## Conclusión General del Proyecto MLOps en Kubernetes
+# Conclusión General del Proyecto MLOps en Kubernetes
 Este proyecto implementa una plataforma MLOps completa y robusta utilizando Kubernetes como base de orquestación para gestionar el ciclo de vida de modelos predictivos enfocados en la readmisión hospitalaria de pacientes diabéticos.
 
 Arquitectura Distribuida y Componentes Clave
@@ -609,7 +609,7 @@ La arquitectura está estratégicamente distribuida en tres máquinas virtuales,
 
 - Máquina 3 (Monitorización): Despliega Prometheus, Grafana y Locust para recolectar métricas, visualizar rendimiento y realizar pruebas de carga, cerrando el ciclo de retroalimentación para la mejora continua.
 
-## Fortalezas Técnicas
+# Fortalezas Técnicas
 El proyecto demuestra varias fortalezas técnicas significativas:
 
 - Automatización completa: Desde el procesamiento de datos hasta el despliegue en producción, minimizando la intervención manual y reduciendo errores.
@@ -627,9 +627,9 @@ Las pruebas de carga con Locust revelaron que la arquitectura actual soporta efi
 La integración entre las tres máquinas crea un ciclo completo de MLOps que abarca desde el procesamiento de datos hasta la monitorización en producción, permitiendo:
 
 # Detección de data drift
-Optimización de recursos computacionales
-Visualización consolidada de métricas operativas
-Evaluación de modelos bajo condiciones de carga real
+- Optimización de recursos computacionales
+- Visualización consolidada de métricas operativas
+- Evaluación de modelos bajo condiciones de carga real
 
 # Consideraciones Futuras
 Para entornos con mayores exigencias, sería recomendable:
@@ -637,8 +637,6 @@ Para entornos con mayores exigencias, sería recomendable:
 - Migrar Airflow de Docker Compose a Kubernetes para mejorar la comunicación con la API de inferencia
 Implementar autoescalado basado en métricas para adaptarse a picos de demanda
 Habilitar la recolección de datos de inferencia para monitorizar el desempeño del modelo a largo plazo
-
-- Generar 
 
 Esta implementación demuestra efectivamente cómo Kubernetes puede proporcionar la infraestructura necesaria para desplegar flujos de trabajo de machine learning completos, desde el desarrollo hasta la producción, con observabilidad y escalabilidad incorporadas.
 
