@@ -94,6 +94,8 @@ La plataforma aprovecha tecnologías de contenedores y Kubernetes para garantiza
 └── README.md
 
 ```
+![alt text](./Imagenes_servicios/maquinas.png)
+
 # **01_Primera_maquina**
 
 # Parte 1: Procesamiento de Datos con Airflow
@@ -107,6 +109,8 @@ Apache Airflow: Orquesta el procesamiento de datos y entrenamiento automatizado
 JupyterLab: Proporciona un entorno interactivo para exploración de datos y experimentación
 
 MLflow: Gestiona el registro, versionado y transición a producción de modelos
+
+![alt text](./Imagenes_servicios/maquina1.png)
 
 ### Estructura de Directorios
 ```
@@ -408,6 +412,8 @@ cd 01_Primera_maquina/mlflow/scripts
 
 La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de inferencia y la API de predicción para el modelo de diabetes. Esta sección del proyecto implementa el servicio de inferencia que consume los modelos entrenados en MLflow.
 
+![alt text](./Imagenes_servicios/maquina2.png)
+
 ### Estructura de archivos
 ```
 └── api/
@@ -439,6 +445,8 @@ La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de in
 - **Exposición de métricas para Prometheus**: Ambos servicios exponen endpoints `/metrics` para recolección de métricas como número de solicitudes, errores, tiempos de respuesta, etc.
 
 - **Contenedorización completa**: Todos los componentes están containerizados y configurados para despliegue en Kubernetes, facilitando la escalabilidad y gestión.
+
+- **Uso de Docker Hub:** Para el proceso de levantamiento de las imágenes de FastAPI, se opta por utilizar Docker Hub como repositorio centralizado. Esta elección permite almacenar y compartir las imágenes de forma eficiente, facilitando su despliegue en diferentes entornos y asegurando la consistencia en las versiones utilizadas. Además, al aprovechar Docker Hub, se simplifica la integración con herramientas de automatización y se mejora la colaboración entre equipos de desarrollo.
 
 ### Flujo de trabajo
 
@@ -482,6 +490,9 @@ La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de in
 # **03_Tercera_maquina**
 
 Esta máquina implementa la capa de monitorización y observabilidad para la plataforma MLOps, proporcionando capacidades de pruebas de carga, recolección de métricas en tiempo real y visualización de telemetría operacional.
+
+![alt text](./Imagenes_servicios/maquina3.png)
+
 
 ## Estructura de directorios
 ```
@@ -565,7 +576,11 @@ Este componente de monitorización completa el ciclo MLOps proporcionando observ
 ![alt text](./Imagenes_servicios/image_tercera_maquina.png)
 # Locust UI
 ![alt text](./Imagenes_servicios/image-1_tercera_maquina.png)
+---
 ![alt text](./Imagenes_servicios/image-2_tercera_maquina.png)
+---
+![alt text](./Imagenes_servicios/metricas_locust.png)
+
 ## Experimentos Locust UI
 # Exp1
 ![alt text](./Imagenes_servicios/experimento_locust1.png)
@@ -619,9 +634,11 @@ Evaluación de modelos bajo condiciones de carga real
 # Consideraciones Futuras
 Para entornos con mayores exigencias, sería recomendable:
 
-Migrar Airflow de Docker Compose a Kubernetes para mejorar la comunicación con la API de inferencia
+- Migrar Airflow de Docker Compose a Kubernetes para mejorar la comunicación con la API de inferencia
 Implementar autoescalado basado en métricas para adaptarse a picos de demanda
 Habilitar la recolección de datos de inferencia para monitorizar el desempeño del modelo a largo plazo
+
+- Generar 
 
 Esta implementación demuestra efectivamente cómo Kubernetes puede proporcionar la infraestructura necesaria para desplegar flujos de trabajo de machine learning completos, desde el desarrollo hasta la producción, con observabilidad y escalabilidad incorporadas.
 
