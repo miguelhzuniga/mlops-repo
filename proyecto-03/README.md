@@ -459,13 +459,35 @@ La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de in
 
 ### Endpoints y conectividad
 
-- **FastAPI (Backend)**: `http://10.43.101.206:30601`
+# **FastAPI (Backend)**: 
+`http://10.43.101.206:30601/docs`
   - `/predict`: POST - Endpoint principal para inferencia
   - `/health`: GET - Verificación de salud del servicio
   - `/metrics`: GET - Exposición de métricas para 
 
-![alt text](./Imagenes_servicios/image-5.png)
-![alt text](./Imagenes_servicios/image-6.png)
+![alt text](./Imagenes_servicios/fastapi.png)
+
+# **GRADIO (front-end)**: 
+`http://10.43.101.206:30602`
+
+## información general gradio
+Información general.
+
+![alt text](./Imagenes_servicios/gradio_model.png)
+
+## Selección de modelos en producción
+Selección del modelo en estado de producción.
+
+![alt text](./Imagenes_servicios/select_model.png)
+## Panel de inferencia
+
+Consta de 3 pestañas (Información basica, medica y medicamentos) las cuales debe diligenciar el usuario para posterior dar al botón de "Realizar predicción"
+
+![alt text](./Imagenes_servicios/panel_de_inferencia.png)
+
+## Inferencia
+Muestra el resultado de la predicción por parte del modelo.
+
 ![alt text](./Imagenes_servicios/image-7.png)
 
 - **Dependencias externas**:
@@ -473,7 +495,7 @@ La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de in
   - MinIO S3: `http://10.43.101.206:30382`
   - Credenciales S3: adminuser/securepassword123
 
-### Características técnicas
+### Características técnicas de la API
 
 - **Orquestación K8s**: Ambos servicios utilizan Kubernetes para gestión de contenedores, definiendo límites de recursos (CPU: 500m, Memoria: 1Gi) y solicitudes (CPU: 200m, Memoria: 512Mi).
 
