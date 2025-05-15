@@ -10,9 +10,9 @@ resources:
 namespace: mlops-puj
 
 images:
-  - name: ${DOCKER_USERNAME}/ml-api
-    newName: ${DOCKER_USERNAME}/ml-api
-    newTag: ${IMAGE_TAG}
-  - name: ${DOCKER_USERNAME}/load-tester
-    newName: ${DOCKER_USERNAME}/load-tester
-    newTag: ${IMAGE_TAG}
+  - name: luisfrontuso10/ml-api
+    newName: luisfrontuso10/ml-api
+    newTag: latest
+  - name: luisfrontuso10/load-tester
+    newName: luisfrontuso10/load-tester
+    newTag: latest

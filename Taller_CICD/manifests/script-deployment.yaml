@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: load-tester
-        image: ${DOCKER_USERNAME}/load-tester:${IMAGE_TAG}
+        image: luisfrontuso10/load-tester:latest
         env:
         - name: API_HOST
           value: "ml-api-service"
