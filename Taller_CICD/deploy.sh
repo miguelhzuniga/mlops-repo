@@ -1,27 +1,21 @@
 #!/bin/bash
 set -e
-
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' 
-
 echo_success() {
     echo -e "${GREEN}✓ $1${NC}"
 }
-
 echo_warning() {
     echo -e "${YELLOW}⚠ $1${NC}"
 }
-
 echo_error() {
     echo -e "${RED}✗ $1${NC}"
 }
-
 echo_step() {
     echo -e "\n${GREEN}==== $1 ====${NC}"
 }
-
 check_dependencies() {
     echo_step "Verificando dependencias"
     
@@ -41,25 +35,23 @@ check_dependencies() {
     else
         echo_success "Docker está instalado"
     fi
-
+    
+    if ! command -v microk8s &> /dev/null; then
+        echo_warning "MicroK8s no está instalado. Instalando..."
+        sudo snap install microk8s --classic
+        sudo usermod -a -G microk8s $USER
+        echo_warning "Para que los cambios en el grupo microk8s surtan efecto, es posible que debas cerrar sesión y volver a iniciarla."
+    else
+        echo_success "MicroK8s está instalado"
+    fi
+    
     if ! command -v kubectl &> /dev/null; then
         echo_warning "kubectl no está instalado. Instalando..."
-        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-        rm kubectl
+        sudo snap install kubectl --classic
     else
         echo_success "kubectl está instalado"
     fi
-
-    if ! command -v minikube &> /dev/null; then
-        echo_warning "minikube no está instalado. Instalando..."
-        curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-        sudo install minikube-linux-amd64 /usr/local/bin/minikube
-        rm minikube-linux-amd64
-    else
-        echo_success "minikube está instalado"
-    fi
-
+    
     if ! command -v python3 &> /dev/null; then
         echo_warning "Python no está instalado. Instalando..."
         sudo apt-get update
@@ -67,7 +59,7 @@ check_dependencies() {
     else
         echo_success "Python está instalado"
     fi
-
+    
     if ! command -v pip3 &> /dev/null; then
         echo_warning "pip no está instalado. Instalando..."
         sudo apt-get update
@@ -84,21 +76,28 @@ train_model() {
     
     mkdir -p data
     
+    # Verificar si el archivo de datos existe
     if [ ! -f "data/iris.csv" ]; then
         echo "Generando datos de muestra..."
-        python3 -c "
+        # Crear un archivo Python temporal
+        cat > generate_data.py << EOF
 from sklearn.datasets import load_iris
 import pandas as pd
 import os
+
 iris = load_iris()
 df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
 df['species'] = pd.Series(iris.target).map({0: 'setosa', 1: 'versicolor', 2: 'virginica'})
 os.makedirs('data', exist_ok=True)
 df.to_csv('data/iris.csv', index=False)
 print('Datos de ejemplo generados en data/iris.csv')
-"
+EOF
+        # Ejecutar el script Python
+        python3 generate_data.py
+        # Eliminar el archivo temporal
+        rm generate_data.py
     fi
-
+    
     echo "Instalando dependencias Python..."
     pip3 install -r requirements.txt
     
@@ -138,20 +137,24 @@ build_docker_images() {
     export DOCKER_USERNAME
 }
 
-start_minikube() {
-    echo_step "Iniciando minikube"
+start_microk8s() {
+    echo_step "Verificando MicroK8s"
     
-    if minikube status | grep -q "Running"; then
-        echo_warning "minikube ya está en ejecución, reiniciando..."
-        minikube stop
+    # Verificar si MicroK8s está en ejecución
+    if ! microk8s status | grep -q "microk8s is running"; then
+        echo_warning "MicroK8s no está en ejecución, iniciándolo..."
+        sudo microk8s start
     fi
     
-    minikube start
+    # Habilitar addons necesarios
+    echo "Habilitando addons necesarios..."
+    microk8s enable dns storage
     
-    echo "Configurando el entorno para usar el registro Docker de minikube..."
-    eval $(minikube docker-env)
+    # Esperar a que los addons estén listos
+    echo "Esperando a que los addons estén listos..."
+    sleep 10
     
-    echo_success "minikube iniciado correctamente"
+    echo_success "MicroK8s configurado correctamente"
 }
 
 deploy_to_kubernetes() {
@@ -160,7 +163,7 @@ deploy_to_kubernetes() {
     DOCKER_USERNAME="${DOCKER_USERNAME:-mlops-puj}"  
     
     echo "Creando namespace mlops-puj..."
-    kubectl create namespace mlops-puj 2>/dev/null || echo "El namespace ya existe"
+    microk8s kubectl create namespace mlops-puj 2>/dev/null || echo "El namespace ya existe"
     
     echo "Actualizando variables en los manifiestos..."
     cd manifests || { echo_error "La carpeta manifests no existe"; exit 1; }
@@ -168,31 +171,69 @@ deploy_to_kubernetes() {
     find . -type f -name "*.yaml" -exec sed -i "s|\${IMAGE_TAG}|latest|g" {} \;
     
     echo "Aplicando manifiestos..."
-    kubectl apply -k .
+    microk8s kubectl apply -k .
     
     cd ..
     
     echo_success "Aplicación desplegada correctamente"
 }
 
+setup_argocd() {
+    echo_step "Instalando y configurando Argo CD"
+    
+    echo "Creando namespace para Argo CD..."
+    microk8s kubectl create namespace argocd 2>/dev/null || echo "El namespace ya existe"
+    
+    echo "Instalando Argo CD..."
+    microk8s kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    
+    echo "Esperando a que los pods de Argo CD estén listos..."
+    microk8s kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -n argocd --timeout=300s || echo "Tiempo de espera agotado, continuando..."
+    
+    echo "Configurando la aplicación en Argo CD..."
+    
+    # Pregunta por el repositorio Git
+    read -p "Ingresa la URL de tu repositorio Git (ej. https://github.com/tu-usuario/tu-repo.git): " GIT_REPO
+    
+    # Actualizar la URL del repositorio en el archivo de Argo CD
+    if [ -f "argo-cd/app.yaml" ]; then
+        sed -i "s|https://github.com/YOUR_USERNAME/MLOPS_PUJ.git|${GIT_REPO}|g" argo-cd/app.yaml
+        microk8s kubectl apply -f argo-cd/app.yaml
+        echo_success "Aplicación configurada en Argo CD"
+    else
+        echo_warning "El archivo argo-cd/app.yaml no existe. No se pudo configurar la aplicación en Argo CD automáticamente."
+    fi
+    
+    # Obtener la contraseña inicial de Argo CD
+    echo -n "Contraseña inicial de Argo CD: "
+    ARGOCD_PASSWORD=$(microk8s kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+    echo "${ARGOCD_PASSWORD}"
+    
+    echo_success "Argo CD instalado y configurado correctamente"
+}
+
 setup_port_forwarding() {
     echo_step "Configurando port-forwarding para acceso a los servicios"
     
     echo "Esperando a que los pods estén listos..."
-    kubectl wait --for=condition=ready pod -l app=ml-api -n mlops-puj --timeout=300s
-    kubectl wait --for=condition=ready pod -l app=prometheus -n mlops-puj --timeout=300s
-    kubectl wait --for=condition=ready pod -l app=grafana -n mlops-puj --timeout=300s
+    microk8s kubectl wait --for=condition=ready pod -l app=ml-api -n mlops-puj --timeout=300s
+    microk8s kubectl wait --for=condition=ready pod -l app=prometheus -n mlops-puj --timeout=300s
+    microk8s kubectl wait --for=condition=ready pod -l app=grafana -n mlops-puj --timeout=300s
     
     echo "Exponiendo servicios en puertos locales..."
     echo_warning "Abre nuevas terminales para ejecutar estos comandos:"
-    echo_warning "kubectl port-forward svc/ml-api-service 8000:8000 -n mlops-puj"
-    echo_warning "kubectl port-forward svc/prometheus-service 9090:9090 -n mlops-puj"
-    echo_warning "kubectl port-forward svc/grafana-service 3000:3000 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/ml-api-service 8000:8000 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/prometheus-service 9090:9090 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/grafana-service 3000:3000 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/argocd-server -n argocd 8080:443"
     
     echo_success "Ahora puedes acceder a:"
-    echo_success "- API: http://$(minikube ip):30080"
-    echo_success "- Prometheus: http://$(minikube ip):30090"
-    echo_success "- Grafana: http://$(minikube ip):30300 (usuario: admin, contraseña: admin)"
+    echo_success "- API: http://localhost:8000 (ejecuta el comando port-forward para la API)"
+    echo_success "- Prometheus: http://localhost:9090 (ejecuta el comando port-forward para Prometheus)"
+    echo_success "- Grafana: http://localhost:3000 (ejecuta el comando port-forward para Grafana)"
+    echo_success "  Usuario: admin, contraseña: admin"
+    echo_success "- Argo CD: https://localhost:8080 (ejecuta el comando port-forward para Argo CD)"
+    echo_success "  Usuario: admin, contraseña: la mostrada anteriormente"
 }
 
 main() {
@@ -201,14 +242,15 @@ main() {
     check_dependencies
     train_model
     build_docker_images
-    start_minikube
-    build_docker_images  
+    start_microk8s
     deploy_to_kubernetes
+    setup_argocd
     setup_port_forwarding
     
     echo_step "Proceso completado con éxito"
-    echo_success "La aplicación ha sido desplegada correctamente en minikube."
-    echo_success "Para verificar el estado de los pods, ejecuta: kubectl get pods -n mlops-puj"
+    echo_success "La aplicación ha sido desplegada correctamente en MicroK8s."
+    echo_success "Para verificar el estado de los pods, ejecuta: microk8s kubectl get pods -n mlops-puj"
+    echo_success "Para verificar el estado de Argo CD, ejecuta: microk8s kubectl get pods -n argocd"
 }
 
 main
