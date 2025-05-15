@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USERNAME/MLOPS_PUJ.git
+    repoURL: https://github.com/miguelhzuniga/mlops-repo.git
     targetRevision: HEAD
-    path: manifests
+    path: Taller_CICD/manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: mlops-puj

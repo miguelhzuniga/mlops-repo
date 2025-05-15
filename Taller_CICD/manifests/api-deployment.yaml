@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ml-api
-        image: ${DOCKER_USERNAME}/ml-api:${IMAGE_TAG}
+        image: luisfrontuso10/ml-api:latest
         ports:
         - containerPort: 8000
         resources:
