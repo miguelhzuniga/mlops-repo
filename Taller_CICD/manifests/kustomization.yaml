@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - api-deployment.yaml
+  - script-deployment.yaml
+  - prometheus-deployment.yaml
+  - grafana-deployment.yaml
+
+namespace: mlops-puj
+
+images:
+  - name: ${DOCKER_USERNAME}/ml-api
+    newName: ${DOCKER_USERNAME}/ml-api
+    newTag: ${IMAGE_TAG}
+  - name: ${DOCKER_USERNAME}/load-tester
+    newName: ${DOCKER_USERNAME}/load-tester
+    newTag: ${IMAGE_TAG}
