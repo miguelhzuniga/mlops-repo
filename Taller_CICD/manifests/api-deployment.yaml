@@ -51,6 +51,6 @@ spec:
   ports:
   - port: 8000
     targetPort: 8000
-    nodePort: 32675
+    nodePort: 32677
     name: http
   type: NodePort
