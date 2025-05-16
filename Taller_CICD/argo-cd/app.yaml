@@ -7,15 +7,13 @@ spec:
   project: default
   source:
     repoURL: https://github.com/miguelhzuniga/mlops-repo.git
-    targetRevision: HEAD
+    targetRevision: master
     path: Taller_CICD/manifests
   destination:
     server: https://kubernetes.default.svc
-    namespace: mlops-puj
+    namespace: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
       allowEmpty: false
-    syncOptions:
-    - CreateNamespace=true
