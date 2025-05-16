@@ -13,6 +13,6 @@ images:
   - name: luisfrontuso10/ml-api
     newName: luisfrontuso10/ml-api
     newTag: latest
-  - name: luisfrontuso10/load-tester
-    newName: luisfrontuso10/load-tester
+  - name: luisfrontuso10/locust
+    newName: luisfrontuso10/locust
     newTag: latest

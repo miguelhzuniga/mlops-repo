@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: locust
-        image: YOUR_DOCKER_USERNAME/locust:latest
+        image: luisfrontuso10/locust:latest
         ports:
         - containerPort: 8089
         env:
