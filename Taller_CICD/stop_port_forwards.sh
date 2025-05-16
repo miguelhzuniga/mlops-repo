@@ -22,17 +22,16 @@ echo_step() {
     echo -e "\n${GREEN}==== $1 ====${NC}"
 }
 
-delete_k8s_resources() {
-    echo_step "Eliminando recursos de Kubernetes"
+delete_namespace_if_exists() {
+    local ns="$1"
+    echo_step "Eliminando recursos del namespace '$ns'"
 
-    NAMESPACE="mlops-puj"
-
-    if sudo kubectl get namespace "$NAMESPACE" &>/dev/null; then
-        sudo kubectl delete all --all -n "$NAMESPACE"
-        sudo kubectl delete namespace "$NAMESPACE"
-        echo_success "Recursos eliminados del namespace $NAMESPACE"
+    if sudo kubectl get namespace "$ns" &>/dev/null; then
+        sudo kubectl delete all --all -n "$ns"
+        sudo kubectl delete namespace "$ns"
+        echo_success "Namespace '$ns' eliminado"
     else
-        echo_warning "El namespace $NAMESPACE no existe"
+        echo_warning "El namespace '$ns' no existe"
     fi
 }
 
@@ -60,7 +59,8 @@ remove_local_docker_images() {
 main() {
     echo_step "Iniciando desmontaje del entorno de MLOps"
 
-    delete_k8s_resources
+    delete_namespace_if_exists "mlops-puj"
+    delete_namespace_if_exists "argocd"
     stop_minikube
     remove_local_docker_images
 
