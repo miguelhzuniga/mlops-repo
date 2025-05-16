@@ -99,7 +99,7 @@ if [ -d "port_forward_logs" ]; then
     done
     echo "Todos los port-forwards detenidos"
 else
-    echo "No se encontró información de port-forwarding"
+    echo "No se encontró información de port-forwarding, por favor validar"
 fi
 EOF
         chmod +x stop_port_forwards.sh

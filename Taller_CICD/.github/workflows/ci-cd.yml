@@ -1,15 +1,15 @@
-name: CI/CD Pipeline
+name: ML API CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'api/**'
       - 'loadtester/**'
       - 'manifests/**'
       - '.github/workflows/ci-cd.yml'
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'api/**'
       - 'loadtester/**'
@@ -22,7 +22,7 @@ env:
   KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 
 jobs:
-  train-and-build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -38,31 +38,116 @@ jobs:
           cd api
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest scikit-learn pandas numpy
+          pip install pytest pytest-cov
 
-      - name: Create data directory
-        run: |
-          mkdir -p api/data
-      
-      - name: Download sample data if needed
+      - name: Run tests
         run: |
           cd api
-          python -c "
-          from sklearn.datasets import load_iris
-          import pandas as pd
-          import os
-          iris = load_iris()
-          df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-          df['species'] = pd.Series(iris.target).map({0: 'setosa', 1: 'versicolor', 2: 'virginica'})
-          os.makedirs('data', exist_ok=True)
-          df.to_csv('data/iris.csv', index=False)
-          print('Datos de ejemplo generados en data/iris.csv')
-          "
+          pytest --cov=. --cov-report=xml
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./api/coverage.xml
+          fail_ci_if_error: false
+
+  train-and-build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          cd api
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify data exists
+        run: |
+          if [ ! -f "api/data/iris.csv" ]; then
+            echo "ERROR: Dataset not found at api/data/iris.csv"
+            echo "Please provide the dataset before running the pipeline"
+            exit 1
+          else
+            echo "Dataset found at api/data/iris.csv"
+          fi
+
+      - name: Download previous model
+        uses: actions/download-artifact@v2
+        continue-on-error: true
+        with:
+          name: model-artifact
+          path: api/previous_model
 
       - name: Train model
         run: |
           cd api
           python train_model.py
+
+      - name: Compare with previous model
+        run: |
+          cd api
+          python -c "
+          import joblib
+          import os
+          
+          # Cargar información del modelo nuevo
+          new_model_info = joblib.load('app/model_info.pkl')
+          new_test_accuracy = new_model_info['test_accuracy']
+          print(f'Nuevo modelo - Precisión en prueba: {new_test_accuracy:.4f}')
+          
+          # Comprobar si existe modelo anterior
+          if os.path.exists('previous_model/model.pkl'):
+              # Cargar modelo anterior y su información
+              previous_model = joblib.load('previous_model/model.pkl')
+              
+              # Si el modelo anterior tiene info de precisión integrada
+              if hasattr(previous_model, 'score') or os.path.exists('previous_model/model_info.pkl'):
+                  if os.path.exists('previous_model/model_info.pkl'):
+                      prev_model_info = joblib.load('previous_model/model_info.pkl')
+                      prev_test_accuracy = prev_model_info['test_accuracy']
+                  else:
+                      # Asumir que el modelo tiene un método score
+                      # Nota: Esto requeriría cargar datos de prueba
+                      prev_test_accuracy = 0  # Placeholder
+                      
+                  print(f'Modelo anterior - Precisión en prueba: {prev_test_accuracy:.4f}')
+                  
+                  # Comparar modelos
+                  improvement = new_test_accuracy - prev_test_accuracy
+                  print(f'Mejora: {improvement:.4f}')
+                  
+                  # Establecer un umbral mínimo de mejora
+                  min_improvement = 0.005  # 0.5%
+                  
+                  if improvement < min_improvement:
+                      print(f' El nuevo modelo no es significativamente mejor: +{improvement:.4f} < {min_improvement}')
+                      if improvement < 0:
+                          # Si el modelo es peor, fallamos el pipeline
+                          print(' El nuevo modelo es peor que el anterior. Abortando.')
+                          exit(1)
+                  else:
+                      print(f' El nuevo modelo muestra una mejora significativa: +{improvement:.4f}')
+              else:
+                  print('No se puede determinar la precisión del modelo anterior.')
+          else:
+              print('No se encontró un modelo anterior para comparar.')
+              
+          # Verificar umbral mínimo absoluto
+          min_accuracy = 0.85
+          if new_test_accuracy < min_accuracy:
+              print(f' Precisión del modelo por debajo del umbral: {new_test_accuracy:.4f} < {min_accuracy}')
+              exit(1)
+          else:
+              print(f' El modelo cumple con los requisitos de rendimiento: {new_test_accuracy:.4f} >= {min_accuracy}')
+          "
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -88,7 +173,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: model-artifact
-          path: api/app/model.pkl
+          path: |
+            api/app/model.pkl
+            api/app/model_info.pkl
 
   update-manifests:
     needs: train-and-build
@@ -110,3 +197,29 @@ jobs:
           git add manifests
           git commit -m "Update image tags to ${{ env.IMAGE_TAG }}" || echo "No changes to commit"
           git push
+
+  deploy:
+    needs: update-manifests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        
+      - name: Configure Kubernetes credentials
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ env.KUBE_CONFIG }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f manifests/
+          
+      - name: Verify deployment
+        run: |
+          kubectl rollout status deployment/ml-api -n default
+          echo "Deployment successful."
