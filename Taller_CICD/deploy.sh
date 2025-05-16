@@ -57,14 +57,18 @@ check_dependencies() {
     fi
  
    
-    if ! command -v minikube &> /dev/null; then
-        echo_warning "minikube no está instalado. Instalando..."
+    if ! command -v microk8s &> /dev/null; then
+        echo_warning "microk8s no está instalado. Instalando..."
        
-        curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-        sudo install minikube-linux-amd64 /usr/local/bin/minikube
-        rm minikube-linux-amd64
+        sudo snap install microk8s --classic
+        sudo usermod -aG microk8s $USER
+        echo_warning "Para que los cambios en el grupo microk8s surtan efecto, es posible que debas cerrar sesión y volver a iniciarla."
+        echo_warning "O ejecuta: newgrp microk8s"
+        mkdir -p ~/.kube
+        sudo microk8s.kubectl config view --raw > ~/.kube/config
+        sudo chown -R $USER ~/.kube
     else
-        echo_success "minikube está instalado"
+        echo_success "microk8s está instalado"
     fi
  
    
@@ -161,23 +165,24 @@ build_docker_images() {
 }
  
  
-start_minikube() {
-    echo_step "Iniciando minikube"
+start_microk8s() {
+    echo_step "Iniciando microk8s"
    
    
-    if minikube status | grep -q "Running"; then
-        echo_warning "minikube ya está en ejecución, reiniciando..."
-        minikube stop
+    if microk8s status | grep -q "running"; then
+        echo_warning "microk8s ya está en ejecución"
+    else
+        echo "Iniciando microk8s..."
+        sudo microk8s start
     fi
    
+    echo "Habilitando addons necesarios..."
+    microk8s enable dns storage registry dashboard
    
-    minikube start
+    echo "Configurando acceso al registro de Docker de microk8s..."
+    export DOCKER_REGISTRY="localhost:32000"
    
-   
-    echo "Configurando el entorno para usar el registro Docker de minikube..."
-    eval $(minikube docker-env)
-   
-    echo_success "minikube iniciado correctamente"
+    echo_success "microk8s iniciado correctamente"
 }
  
  
@@ -189,7 +194,7 @@ deploy_to_kubernetes() {
    
    
     echo "Creando namespace mlops-puj..."
-    sudo kubectl create namespace mlops-puj 2>/dev/null || echo "El namespace ya existe"
+    microk8s kubectl create namespace mlops-puj 2>/dev/null || echo "El namespace ya existe"
    
    
     echo "Actualizando variables en los manifiestos..."
@@ -199,7 +204,7 @@ deploy_to_kubernetes() {
    
    
     echo "Aplicando manifiestos..."
-    sudo kubectl apply -k .
+    microk8s kubectl apply -k .
    
    
     cd ..
@@ -212,16 +217,16 @@ setup_port_forwarding() {
    
    
     echo "Esperando a que los pods estén listos..."
-    sudo kubectl wait --for=condition=ready pod -l app=ml-api -n mlops-puj --timeout=300s
-    sudo kubectl wait --for=condition=ready pod -l app=prometheus -n mlops-puj --timeout=300s
-    sudo kubectl wait --for=condition=ready pod -l app=grafana -n mlops-puj --timeout=300s
+    microk8s kubectl wait --for=condition=ready pod -l app=ml-api -n mlops-puj --timeout=300s
+    microk8s kubectl wait --for=condition=ready pod -l app=prometheus -n mlops-puj --timeout=300s
+    microk8s kubectl wait --for=condition=ready pod -l app=grafana -n mlops-puj --timeout=300s
    
    
     echo "Exponiendo servicios en puertos locales..."
     echo_warning "Abre nuevas terminales para ejecutar estos comandos:"
-    echo_warning "kubectl port-forward svc/ml-api-service 8000:8000 -n mlops-puj"
-    echo_warning "kubectl port-forward svc/prometheus-service 9090:9090 -n mlops-puj"
-    echo_warning "kubectl port-forward svc/grafana-service 3000:3000 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/ml-api-service 8000:8000 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/prometheus-service 9090:9090 -n mlops-puj"
+    echo_warning "microk8s kubectl port-forward svc/grafana-service 3000:3000 -n mlops-puj"
    
 
     echo_success "Ahora puedes acceder a:"
@@ -237,14 +242,14 @@ main() {
     check_dependencies
     train_model
     build_docker_images
-    start_minikube
+    start_microk8s
     build_docker_images  
     deploy_to_kubernetes
     setup_port_forwarding
    
     echo_step "Proceso completado con éxito"
-    echo_success "La aplicación ha sido desplegada correctamente en minikube."
-    echo_success "Para verificar el estado de los pods, ejecuta: kubectl get pods -n mlops-puj"
+    echo_success "La aplicación ha sido desplegada correctamente en microk8s."
+    echo_success "Para verificar el estado de los pods, ejecuta: microk8s kubectl get pods -n mlops-puj"
 }
  
 main

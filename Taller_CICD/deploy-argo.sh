@@ -77,7 +77,7 @@ deploy_argocd() {
     mkdir -p port_forward_logs
     sudo microk8s kubectl port-forward svc/argocd-server -n argocd 8080:443 > port_forward_logs/argocd.log 2>&1 &
     ARGOCD_PF_PID=$!
-    echo "$ARGOCD_PF_PID" > port_forward_logs/argocd.pid
+    sudo bash -c "echo $ARGOCD_PF_PID > port_forward_logs/argocd.pid"
     echo_success "Port-forwarding para Argo CD iniciado"
     echo_success "Puedes acceder a Argo CD en: https://localhost:8080"
     echo_success "Usuario: admin, Contraseña: $password"
