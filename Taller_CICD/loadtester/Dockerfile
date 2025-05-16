@@ -1,10 +1,11 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY locustfile.py .
 
-COPY main.py .
+RUN pip install --no-cache-dir locust
 
-CMD ["python", "main.py"]
+EXPOSE 8089
+
+CMD ["locust", "-f", "locustfile.py", "--host", "http://ml-api-service:8000"]
