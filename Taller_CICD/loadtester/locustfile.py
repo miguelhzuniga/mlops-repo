@@ -15,7 +15,7 @@ def generate_random_iris():
     }
 
 class LoadTester(HttpUser):
-    wait_time = between(1, 3)  # Tiempo aleatorio entre solicitudes
+    wait_time = between(20, 60)  # Tiempo aleatorio entre solicitudes
 
     @task
     def predict(self):
