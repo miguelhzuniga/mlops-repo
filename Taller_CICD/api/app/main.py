@@ -6,7 +6,6 @@ import os
 import pandas as pd
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
 import time
-from typing import List, Dict, Any
 
 # Crear la aplicación FastAPI
 app = FastAPI(title="Iris Species Predictor API", description="API para predecir especies de iris")
