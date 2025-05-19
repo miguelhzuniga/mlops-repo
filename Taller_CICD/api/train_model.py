@@ -36,6 +36,7 @@ print(f"Usando archivo de datos: {data_file}")
 df = cargar_datos(data_file)
 X_train, X_test, y_train, y_test, preprocessor = preparar_datos(df)
 
+
 # Crear modelo KNN
 print("Creando modelo KNN...")
 knn = KNeighborsClassifier(n_neighbors=5)
@@ -48,6 +49,8 @@ modelo_knn = Pipeline(steps=[
 
 # Entrenar modelo
 print("Entrenando modelo...")
+print(y_train)
+
 modelo_knn.fit(X_train, y_train)
 
 # Evaluar modelo

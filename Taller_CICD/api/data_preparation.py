@@ -15,26 +15,30 @@ def preparar_datos(df):
     X = df.drop(['species'], axis=1)
     y = df['species']
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    # Separar columnas numéricas y categóricas
+    categorical_cols = [col for col in X.columns if X[col].dtype == "object"]
+    numerical_cols = [col for col in X.columns if X[col].dtype in ['int64', 'float64']]
 
+    # Pipelines de transformación
     numerical_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer()),
-        ('normalization', MinMaxScaler())
+        ('imputer', SimpleImputer(strategy='mean')),
+        ('scaler', MinMaxScaler())
     ])
 
     categorical_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='most_frequent')),
-        ('onehot', OneHotEncoder(handle_unknown='ignore'))  # One-Hot Encoding
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))
     ])
 
-    categorical_with_missing = [col for col in df.columns if df[col].isna().any() and df[col].dtypes == object]
-    numerical_with_missing = [col for col in df.columns if df[col].isna().any() and df[col].dtypes == np.float64]
-
+    # Crear el preprocesador combinando ambos
     preprocessor = ColumnTransformer(
         transformers=[
-            ('num', numerical_transformer, numerical_with_missing),
-            ('cat', categorical_transformer, categorical_with_missing)
+            ('num', numerical_transformer, numerical_cols),
+            ('cat', categorical_transformer, categorical_cols)
         ]
     )
+
+    # Dividir los datos
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
     return X_train, X_test, y_train, y_test, preprocessor
