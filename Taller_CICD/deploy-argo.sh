@@ -107,6 +107,30 @@ EOF
     echo_step "Argo CD desplegado correctamente"
     echo_success "Para detener el port-forwarding, ejecuta: ./stop_port_forwards.sh"
     return 0
+
+    sudo kubectl patch svc argocd-server -n argocd -p '{
+      "spec": {
+        "type": "NodePort",
+        "ports": [
+          {
+            "name": "http",
+            "nodePort": 30080,
+            "port": 80,
+            "protocol": "TCP",
+            "targetPort": 8080
+          },
+          {
+            "name": "https",
+            "nodePort": 30443,
+            "port": 443,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ]
+      }
+    }'
+
+    
 }
  
 deploy_argocd

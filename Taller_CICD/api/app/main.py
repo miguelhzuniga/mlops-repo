@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 import joblib
 import numpy as np
@@ -113,9 +113,8 @@ def predict(request: IrisRequest):
         raise HTTPException(status_code=500, detail=f"Error en la predicción: {str(e)}")
 
 @app.get("/metrics")
-async def metrics():
-    """Endpoint para proporcionar métricas a Prometheus"""
-    return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
+def metrics():
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 if __name__ == "__main__":
     import uvicorn
