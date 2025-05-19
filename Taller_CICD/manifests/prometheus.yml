@@ -1,7 +1,0 @@
-global:
-  scrape_interval: 15s
-
-scrape_configs:
-  - job_name: 'ml-api'
-    static_configs:
-      - targets: ['10.43.101.175:30675']
