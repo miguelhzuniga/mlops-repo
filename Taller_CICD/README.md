@@ -227,6 +227,35 @@ Si encuentras problemas de conexión con MicroK8s:
    - Usa la opción `--validate=false` con kubectl
    - Asegúrate de que el addon DNS esté habilitado: `microk8s enable dns`
 
+4. **Si se cierra la terminal, ArgoCD se detuvo.** 
+
+    Ejecuta este comando para modificar el tipo de servicio de Argo CD para exponerlo como un NodePort. Es decir, se podrá acceder desde fuera del clúster a través del nodo y un puerto específico:
+   ```bash
+    kubectl patch svc argocd-server -n argocd -p '{
+      "spec": {
+        "type": "NodePort",
+        "ports": [
+          {
+            "name": "http",
+            "nodePort": 30080,
+            "port": 80,
+            "protocol": "TCP",
+            "targetPort": 8080
+          },
+          {
+            "name": "https",
+            "nodePort": 30443,
+            "port": 443,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ]
+      }
+    }'
+
+   ```
+   Ahora podrás acceder a ArgoCD desde https://10.43.101.175:30080/
+
 ### Verificar los Logs
 
 Para verificar los logs de los servicios:
