@@ -43,7 +43,6 @@ El proyecto implementa un pipeline completo que incluye:
 │   ├── grafana-deployment.yaml # Deployment y ConfigMap de Grafana
 │   ├── grafana-config/         # Configuración de Grafana
 │   │   └── datasources.yaml    # Fuentes de datos de Grafana
-│   ├── prometheus.yml          # Configuración de Prometheus
 │   └── kustomization.yaml      # Configuración de Kustomize
 ├── argo-cd/
 │   └── app.yaml                # Configuración de Argo CD
@@ -56,7 +55,7 @@ El proyecto implementa un pipeline completo que incluye:
 
 - Docker
 - Kubernetes (MicroK8s o Minikube)
-- Python 3.10+ (recomendado 3.10 o 3.11)
+- Python 3.10+ 
 - Git
 - Cuenta en Docker Hub (para publicar imágenes)
 - Cuenta en GitHub (para CI/CD y GitOps)
@@ -99,6 +98,7 @@ Este script complementario:
 - Instala Argo CD en el clúster Kubernetes
 - Configura la aplicación en Argo CD
 - Establece port-forwarding para acceder a la interfaz de Argo CD
+- Al final del deployment se indicará el usuario y la contraseña para ingresar a la interfaz de este.
 
 ### 4. Configurar Secretos en GitHub
 
@@ -116,27 +116,27 @@ Para habilitar el pipeline de CI/CD, necesitas configurar estos secretos en tu r
 
 Después de ejecutar los scripts de despliegue, podrás acceder a:
 
-- **API**: http://localhost:8000
+- **API**: http://localhost:32675
   - Endpoint de predicción: `POST /predict`
   - Ejemplo: 
     ```bash
-    curl -X POST http://localhost:8000/predict \
+    curl -X POST http://localhost:32675/predict \
       -H "Content-Type: application/json" \
       -d '{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}'
     ```
   - Endpoint de métricas: `GET /metrics`
 
-- **Prometheus**: http://localhost:9090
+- **Prometheus**: http://localhost:30623
   - Métricas disponibles:
     - `api_predictions_total`: Contador de predicciones por especie
     - `api_prediction_latency_seconds`: Histograma de latencia de predicción
 
-- **Grafana**: http://localhost:3000
+- **Grafana**: http://localhost:32618
   - Usuario: `admin`
   - Contraseña: `admin`
   - Prometheus ya está configurado como fuente de datos
 
-- **Argo CD**: https://localhost:8080
+- **Argo CD**: https://localhost:8080 / https://localhost:30080
   - Usuario: `admin`
   - Contraseña: Se muestra durante la ejecución del script `deploy-argocd.sh`
   - También puedes obtenerla con: 
@@ -160,6 +160,17 @@ Para detener todos los port-forwards:
    - Entrena el modelo
    - Construye y publica las imágenes Docker con un tag único basado en el SHA del commit
    - Actualiza los manifiestos con el nuevo tag de imagen
+   
+
+```mermaid
+graph TD
+    A[push/pull_request en master] --> B[test]
+    B --> C[train-and-build]
+    C --> D[update-manifests]
+    D --> E{¿push a master?}
+    E -- sí --> F[deploy]
+```
+
 4. **Argo CD**: Detecta los cambios en los manifiestos y sincroniza el estado del clúster
 
 ## Detalles del Sistema
@@ -227,7 +238,7 @@ Si encuentras problemas de conexión con MicroK8s:
    - Usa la opción `--validate=false` con kubectl
    - Asegúrate de que el addon DNS esté habilitado: `microk8s enable dns`
 
-4. **Si se cierra la terminal, ArgoCD se detuvo.** 
+4. **Si se cierra la terminal y la interfaz de ArgoCD se detiene.** 
 
     Ejecuta este comando para modificar el tipo de servicio de Argo CD para exponerlo como un NodePort. Es decir, se podrá acceder desde fuera del clúster a través del nodo y un puerto específico:
    ```bash
