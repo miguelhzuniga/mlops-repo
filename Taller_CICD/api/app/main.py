@@ -114,8 +114,9 @@ def predict(request: IrisRequest):
         raise HTTPException(status_code=500, detail=f"Error en la predicción: {str(e)}")
 
 @app.get("/metrics")
-def metrics():
-    return generate_latest()
+async def metrics():
+    """Endpoint para proporcionar métricas a Prometheus"""
+    return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
 
 if __name__ == "__main__":
     import uvicorn
