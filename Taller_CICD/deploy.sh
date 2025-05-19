@@ -140,22 +140,22 @@ build_docker_images() {
     read -p "¿Quieres subir las imágenes a Docker Hub? (s/n): " PUSH_IMAGES
     if [[ "$PUSH_IMAGES" == "s" || "$PUSH_IMAGES" == "S" ]]; then
         read -p "Ingresa tu usuario de Docker Hub: " DOCKER_USERNAME
-        docker login
+        sudo docker login
     fi
    
    
     echo "Construyendo imagen de la API..."
-    docker build -t ${DOCKER_USERNAME}/ml-api:latest ./api
+    sudo docker build -t ${DOCKER_USERNAME}/ml-api:latest ./api
    
    
     echo "Construyendo imagen del LoadTester..."
-    docker build -t ${DOCKER_USERNAME}/load-tester:latest ./loadtester
+    sudo docker build -t ${DOCKER_USERNAME}/load-tester:latest ./loadtester
    
    
     if [[ "$PUSH_IMAGES" == "s" || "$PUSH_IMAGES" == "S" ]]; then
         echo "Subiendo imágenes a Docker Hub..."
-        docker push ${DOCKER_USERNAME}/ml-api:latest
-        docker push ${DOCKER_USERNAME}/load-tester:latest
+        sudo docker push ${DOCKER_USERNAME}/ml-api:latest
+        sudo docker push ${DOCKER_USERNAME}/load-tester:latest
     fi
    
     echo_success "Imágenes Docker construidas correctamente"
@@ -177,7 +177,8 @@ start_microk8s() {
     fi
    
     echo "Habilitando addons necesarios..."
-    microk8s enable dns storage registry dashboard
+    sudo microk8s start
+    sudo microk8s enable dns storage registry dashboard
    
     echo "Configurando acceso al registro de Docker de microk8s..."
     export DOCKER_REGISTRY="localhost:32000"
@@ -194,7 +195,7 @@ deploy_to_kubernetes() {
    
    
     echo "Creando namespace mlops-puj..."
-    microk8s kubectl create namespace mlops-puj 2>/dev/null || echo "El namespace ya existe"
+    sudo microk8s kubectl create namespace mlops-puj 2>/dev/null || echo "El namespace ya existe"
    
    
     echo "Actualizando variables en los manifiestos..."
@@ -204,7 +205,7 @@ deploy_to_kubernetes() {
    
    
     echo "Aplicando manifiestos..."
-    microk8s kubectl apply -k .
+    sudo microk8s kubectl apply -k .
    
    
     cd ..
@@ -217,9 +218,9 @@ setup_port_forwarding() {
    
    
     echo "Esperando a que los pods estén listos..."
-    microk8s kubectl wait --for=condition=ready pod -l app=ml-api -n mlops-puj --timeout=300s
-    microk8s kubectl wait --for=condition=ready pod -l app=prometheus -n mlops-puj --timeout=300s
-    microk8s kubectl wait --for=condition=ready pod -l app=grafana -n mlops-puj --timeout=300s
+    sudo microk8s kubectl wait --for=condition=ready pod -l app=ml-api -n mlops-puj --timeout=300s
+    sudo microk8s kubectl wait --for=condition=ready pod -l app=prometheus -n mlops-puj --timeout=300s
+    sudo microk8s kubectl wait --for=condition=ready pod -l app=grafana -n mlops-puj --timeout=300s
    
    
     echo "Exponiendo servicios en puertos locales..."
