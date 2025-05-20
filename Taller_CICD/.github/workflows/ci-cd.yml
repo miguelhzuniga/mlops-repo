@@ -2,14 +2,15 @@ name: ML API CI/CD Pipeline
 
 on:
   push:
-    branches: [ luis ]
+    branches: [ "*" ]  # o ["**"] para incluir subdirectorios
     paths:
       - 'api/**'
       - 'loadtester/**'
       - 'manifests/**'
       - '.github/workflows/ci-cd.yml'
+
   pull_request:
-    branches: [ luis ]
+    branches: [ "*" ]
     paths:
       - 'api/**'
       - 'loadtester/**'
@@ -143,7 +144,7 @@ jobs:
 
   deploy:
     needs: update-manifests
-    if: github.event_name == 'push' && github.ref == 'refs/heads/luis'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
