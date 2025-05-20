@@ -39,7 +39,7 @@ X_train, X_test, y_train, y_test, preprocessor = preparar_datos(df)
 
 # Crear modelo KNN
 print("Creando modelo KNN...")
-knn = KNeighborsClassifier(n_neighbors=6)
+knn = KNeighborsClassifier(n_neighbors=5)
 
 # Crear pipeline con el preprocesador y el modelo
 modelo_knn = Pipeline(steps=[
