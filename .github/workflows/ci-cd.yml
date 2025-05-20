@@ -2,19 +2,19 @@ name: ML API CI/CD Pipeline
 
 on:
   push:
-    branches: [ "*" ]  # o ["**"] para incluir subdirectorios
+    branches: [ "*" ]  # Ejecutar en cualquier rama
     paths:
-      - 'api/**'
-      - 'loadtester/**'
-      - 'manifests/**'
-      - '.github/workflows/ci-cd.yml'
+      - 'Taller_CICD/api/**'
+      - 'Taller_CICD/loadtester/**'
+      - 'Taller_CICD/manifests/**'
+      - 'Taller_CICD/.github/workflows/ci-cd.yml'
 
   pull_request:
-    branches: [ "*" ]
+    branches: [ master ]  # Solo ejecutar PRs hacia master
     paths:
-      - 'api/**'
-      - 'loadtester/**'
-      - 'manifests/**'
+      - 'Taller_CICD/api/**'
+      - 'Taller_CICD/loadtester/**'
+      - 'Taller_CICD/manifests/**'
 
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -37,20 +37,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd api
+          cd Taller_CICD/api
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest pytest-cov
 
       - name: Run tests
         run: |
-          cd api
+          cd Taller_CICD/api
           pytest --cov=. --cov-report=xml
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v4
         with:
-          file: ./api/coverage.xml
+          file: ./Taller_CICD/api/coverage.xml
           fail_ci_if_error: false
           # token: ${{ secrets.CODECOV_TOKEN }} # Descomenta si el repo es privado
 
@@ -69,20 +69,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd api
+          cd Taller_CICD/api
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Verify data exists
         run: |
-          if [ ! -f "api/data/iris.csv" ]; then
-            echo "ERROR: Dataset not found at api/data/iris.csv"
+          if [ ! -f "Taller_CICD/api/data/iris.csv" ]; then
+            echo "ERROR: Dataset not found at Taller_CICD/api/data/iris.csv"
             exit 1
           fi
 
       - name: Evaluate and compare model
         run: |
-          cd api
+          cd Taller_CICD/api
           python evaluate_and_compare.py
 
       - name: Login to Docker Hub
@@ -94,7 +94,7 @@ jobs:
       - name: Build and push API Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./api
+          context: ./Taller_CICD/api
           push: true
           tags: |
             ${{ env.DOCKER_USERNAME }}/ml-api:${{ env.IMAGE_TAG }}
@@ -103,7 +103,7 @@ jobs:
       - name: Build and push LoadTester Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./loadtester
+          context: ./Taller_CICD/loadtester
           push: true
           tags: |
             ${{ env.DOCKER_USERNAME }}/load-tester:${{ env.IMAGE_TAG }}
@@ -114,8 +114,8 @@ jobs:
         with:
           name: model-artifact
           path: |
-            api/app/model.pkl
-            api/app/model_info.pkl
+            Taller_CICD/api/app/model.pkl
+            Taller_CICD/api/app/model_info.pkl
 
   update-manifests:
     needs: train-and-build
@@ -127,7 +127,7 @@ jobs:
 
       - name: Update image tags
         run: |
-          cd manifests
+          cd Taller_CICD/manifests
           find . -type f -name "*.yaml" -exec sed -i "s|\${DOCKER_USERNAME}|${DOCKER_USERNAME}|g" {} \;
           find . -type f -name "*.yaml" -exec sed -i "s|\${IMAGE_TAG}|${IMAGE_TAG}|g" {} \;
 
@@ -138,7 +138,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git pull --rebase
-          git add manifests
+          git add Taller_CICD/manifests
           git commit -m "Update image tags to ${{ env.IMAGE_TAG }}" || echo "No changes to commit"
           git push
 
@@ -162,7 +162,7 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f manifests/
+          kubectl apply -f Taller_CICD/manifests/
 
       - name: Verify deployment
         run: |
