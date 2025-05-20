@@ -176,7 +176,7 @@ Para detener todos los port-forwards:
 2. **Commit y Push**: Envías los cambios a GitHub
 3. **GitHub Actions**: Se activa automáticamente y:
    - Entrena el modelo
-   - Evalua y compara modelo anterior con el nuevo con **PyTest**
+   - Evalua y compara el modelo actual con el nuevo modelo entrenado, utilizando **PyTest**
    - Construye y publica las imágenes Docker con un tag único basado en el SHA del commit
    - Actualiza los manifiestos con el nuevo tag de imagen
   
