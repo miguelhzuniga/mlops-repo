@@ -9,7 +9,7 @@ on:
       - 'manifests/**'
       - '.github/workflows/ci-cd.yml'
   pull_request:
-    branches: [ master ]
+    branches: [ luis ]
     paths:
       - 'api/**'
       - 'loadtester/**'
