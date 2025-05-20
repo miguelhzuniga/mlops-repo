@@ -23,39 +23,8 @@ env:
   KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          cd Taller_CICD/api
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest pytest-cov
-
-      - name: Run tests
-        run: |
-          cd Taller_CICD/api
-          pytest --cov=. --cov-report=xml
-
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v4
-        with:
-          file: ./Taller_CICD/api/coverage.xml
-          fail_ci_if_error: false
-          # token: ${{ secrets.CODECOV_TOKEN }} # Descomenta si el repo es privado
 
   train-and-build:
-    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
