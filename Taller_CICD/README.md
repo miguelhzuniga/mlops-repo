@@ -30,6 +30,7 @@ El proyecto implementa un pipeline completo que incluye:
 │   ├── model_creation.py       # Creación del modelo KNN
 │   ├── main-train.py           # Funciones de entrenamiento
 │   ├── train_model.py          # Script principal de entrenamiento
+│   ├── evaluate_and_compare.py          # Script para pruebas con PyTest
 │   ├── Dockerfile              # Dockerfile de la API
 │   └── requirements.txt        # Dependencias Python
 ├── loadtester/
@@ -175,6 +176,7 @@ Para detener todos los port-forwards:
 2. **Commit y Push**: Envías los cambios a GitHub
 3. **GitHub Actions**: Se activa automáticamente y:
    - Entrena el modelo
+   - Evalua y compara modelo anterior con el nuevo con **PyTest**
    - Construye y publica las imágenes Docker con un tag único basado en el SHA del commit
    - Actualiza los manifiestos con el nuevo tag de imagen
   
