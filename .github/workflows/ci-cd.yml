@@ -16,6 +16,10 @@ on:
       - 'Taller_CICD/loadtester/**'
       - 'Taller_CICD/manifests/**'
 
+permissions:
+  contents: write  # 👈 Habilita push desde GitHub Actions
+
+
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

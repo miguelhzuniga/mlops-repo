@@ -126,15 +126,21 @@ Después de ejecutar los scripts de despliegue, podrás acceder a:
     ```
   - Endpoint de métricas: `GET /metrics`
 
+![alt text](./images/api.png)
+
 - **Prometheus**: http://localhost:30623
   - Métricas disponibles:
     - `api_predictions_total`: Contador de predicciones por especie
     - `api_prediction_latency_seconds`: Histograma de latencia de predicción
 
+![alt text](./images/prometheus.png)
+
 - **Grafana**: http://localhost:32618
   - Usuario: `admin`
   - Contraseña: `admin`
   - Prometheus ya está configurado como fuente de datos
+
+![alt text](./images/grafana.png)
 
 - **Argo CD**: https://localhost:8080 / https://localhost:30080
   - Usuario: `admin`
@@ -143,6 +149,7 @@ Después de ejecutar los scripts de despliegue, podrás acceder a:
     ```bash
     sudo microk8s kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
     ```
+![alt text](./images/argo.png)
 
 ### Detener los Port-Forwards
 
@@ -160,7 +167,7 @@ Para detener todos los port-forwards:
    - Entrena el modelo
    - Construye y publica las imágenes Docker con un tag único basado en el SHA del commit
    - Actualiza los manifiestos con el nuevo tag de imagen
-   
+  
 
 ```mermaid
 flowchart TD
@@ -186,6 +193,8 @@ flowchart TD
     M -- No --> O[✅ Precisión aceptable]
 
 ```
+
+![alt text](./images/githubactions.png)
 
 4. **Argo CD**: Detecta los cambios en los manifiestos y sincroniza el estado del clúster
 
