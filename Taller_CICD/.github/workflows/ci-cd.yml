@@ -2,14 +2,15 @@ name: ML API CI/CD Pipeline
 
 on:
   push:
-    branches: [ master ]
+    branches: [ "*" ]  # o ["**"] para incluir subdirectorios
     paths:
       - 'api/**'
       - 'loadtester/**'
       - 'manifests/**'
       - '.github/workflows/ci-cd.yml'
+
   pull_request:
-    branches: [ master ]
+    branches: [ "*" ]
     paths:
       - 'api/**'
       - 'loadtester/**'
