@@ -329,3 +329,8 @@ Las principales ventajas de esta implementación incluyen:
 Esta solución proporciona una base sólida para equipos de MLOps que buscan implementar prácticas DevOps en proyectos de machine learning, permitiendo entregas continuas, monitoreo efectivo y una experiencia de desarrollo fluida.
 
 La documentación detallada, los scripts de automatización y la estructura organizada del proyecto facilitan su adopción y adaptación para casos de uso específicos, demostrando un enfoque profesional para el ciclo de vida completo de aplicaciones basadas en IA.
+
+# Autores:
+- Luis Frontuso
+- Miguel Zuñiga
+- Camilo Serrano
