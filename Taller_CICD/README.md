@@ -163,12 +163,28 @@ Para detener todos los port-forwards:
    
 
 ```mermaid
-graph TD
-    A[push/pull_request en master] --> B[test]
-    B --> C[train-and-build]
-    C --> D[update-manifests]
-    D --> E{¿push a master?}
-    E -- sí --> F[deploy]
+flowchart TD
+    A[Renombrar modelo actual como anterior] --> B[Entrenar nuevo modelo]
+    B --> C[Cargar precisión del nuevo modelo]
+    C --> D{¿Existe modelo anterior?}
+    D -- Sí --> E[Comparar precisión nueva vs anterior]
+    D -- No --> F[Continuar sin comparación]
+
+    E --> G{¿Mejora < 0?}
+    G -- Sí --> H[❌ Nuevo modelo es peor → exit]
+    G -- No --> I{¿Mejora < 0.005?}
+    I -- Sí --> J[⚠ Mejora no significativa]
+    I -- No --> K[✅ Mejora aceptable]
+
+    F --> L[Verificar precisión mínima]
+    H --> L
+    J --> L
+    K --> L
+
+    L --> M{¿Precisión < 0.85?}
+    M -- Sí --> N[❌ Precisión insuficiente → exit]
+    M -- No --> O[✅ Precisión aceptable]
+
 ```
 
 4. **Argo CD**: Detecta los cambios en los manifiestos y sincroniza el estado del clúster
@@ -190,6 +206,7 @@ La API implementa:
   
 - **Grafana**: Visualiza las métricas
   - Dashboard predefinido para monitoreo
+
 
 ### GitOps con Argo CD
 
