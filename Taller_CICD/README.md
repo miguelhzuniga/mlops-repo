@@ -33,12 +33,12 @@ El proyecto implementa un pipeline completo que incluye:
 │   ├── Dockerfile              # Dockerfile de la API
 │   └── requirements.txt        # Dependencias Python
 ├── loadtester/
-│   ├── main.py                 # Script de prueba de carga
+│   ├── locustfile.py           # Script de prueba de carga con Locust
 │   ├── Dockerfile              # Dockerfile del LoadTester
 │   └── requirements.txt        # Dependencias Python
 ├── manifests/
 │   ├── api-deployment.yaml     # Deployment y Service de la API
-│   ├── script-deployment.yaml  # Deployment del LoadTester
+│   ├── locust-deployment.yaml  # Deployment del LoadTester
 │   ├── prometheus-deployment.yaml  # Deployment y ConfigMap de Prometheus
 │   ├── grafana-deployment.yaml # Deployment y ConfigMap de Grafana
 │   ├── grafana-config/         # Configuración de Grafana
@@ -144,6 +144,14 @@ Después de ejecutar los scripts de despliegue, podrás acceder a:
 
 ![alt text](./images/grafana.png)
 
+- **Locust**: http://localhost:30089
+
+  - Host: http://ml-api-service:8000
+  - Ramp up: 1/segundo
+  - Max users: 1
+
+![alt text](./images/locust.png)
+
 - **Argo CD**: https://localhost:8080 / https://localhost:30080
   - Usuario: `admin`
   - Contraseña: Se muestra durante la ejecución del script `deploy-argocd.sh`
@@ -193,7 +201,7 @@ flowchart TD
     L --> M{¿Precisión < 0.85?}
     M -- Sí --> N[❌ Precisión insuficiente → exit]
     M -- No --> O[✅ Precisión aceptable]
-
+    O --> P[Actualizar rama]
 ```
 
 ![alt text](./images/githubactions.png)
