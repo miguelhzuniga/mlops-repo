@@ -8,7 +8,10 @@ on:
       - 'Taller_CICD/loadtester/**'
       - 'Taller_CICD/manifests/**'
       - 'Taller_CICD/.github/workflows/ci-cd.yml'
-
+  
+permissions:
+  contents: write  # 👈 Habilita push desde GitHub Actions
+  
   pull_request:
     branches: [ master ]  # Solo ejecutar PRs hacia master
     paths:
