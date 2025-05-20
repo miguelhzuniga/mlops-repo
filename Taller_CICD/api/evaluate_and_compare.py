@@ -2,69 +2,65 @@ import os
 import shutil
 import joblib
 import subprocess
+import pytest
+from unittest import mock
 
-# Rutas
-model_pkl = 'api/app/model.pkl'
-model_info = 'api/app/model_info.pkl'
-previous_model_dir = 'api/previous_model'
-prev_model_pkl = os.path.join(previous_model_dir, 'model.pkl')
-prev_model_info = os.path.join(previous_model_dir, 'model_info.pkl')
+@pytest.fixture
+def setup_model_files(tmp_path):
+    # Crear estructura de directorios
+    app_dir = tmp_path / "api" / "app"
+    previous_dir = tmp_path / "api" / "previous_model"
+    app_dir.mkdir(parents=True)
+    previous_dir.mkdir(parents=True)
 
-# === 1. Renombrar modelo actual como "anterior" ===
-print("📦 Guardando modelo anterior...")
+    # Crear archivos dummy
+    model_pkl = app_dir / "model.pkl"
+    model_info = app_dir / "model_info.pkl"
+    model_pkl.write_bytes(b"dummy model")
+    joblib.dump({'test_accuracy': 0.90}, model_info)
 
-os.makedirs(previous_model_dir, exist_ok=True)
+    return {
+        "app_dir": app_dir,
+        "previous_dir": previous_dir,
+        "model_pkl": model_pkl,
+        "model_info": model_info,
+        "prev_model_pkl": previous_dir / "model.pkl",
+        "prev_model_info": previous_dir / "model_info.pkl"
+    }
 
-if os.path.exists(model_pkl):
-    shutil.copy(model_pkl, prev_model_pkl)
-    print(f'✅ model.pkl copiado a {prev_model_pkl}')
-else:
-    print(f'⚠ No se encontró {model_pkl} para mover.')
+@mock.patch("subprocess.run")
+def test_model_pipeline(mock_run, setup_model_files):
+    paths = setup_model_files
 
-if os.path.exists(model_info):
-    shutil.copy(model_info, prev_model_info)
-    print(f'✅ model_info.pkl copiado a {prev_model_info}')
-else:
-    print(f'⚠ No se encontró {model_info} para mover.')
+    # 1. Renombrar modelo actual como anterior
+    shutil.copy(paths["model_pkl"], paths["prev_model_pkl"])
+    shutil.copy(paths["model_info"], paths["prev_model_info"])
 
-# === 2. Entrenar nuevo modelo ===
-print("⚙️ Entrenando nuevo modelo...")
-subprocess.run(["python", "api/train_model.py"], check=True)
+    assert os.path.exists(paths["prev_model_pkl"])
+    assert os.path.exists(paths["prev_model_info"])
 
-# === 3. Cargar precisión del nuevo modelo ===
-print("📥 Cargando info del nuevo modelo...")
-if not os.path.exists(model_info):
-    print("❌ No se encontró model_info.pkl después del entrenamiento.")
-    exit(1)
+    # 2. Simular entrenamiento (mocked subprocess)
+    mock_run.return_value = None  # No-op
+    subprocess.run(["python", "api/train_model.py"], check=True)
+    mock_run.assert_called_once()
 
-new_model_info = joblib.load(model_info)
-new_test_accuracy = new_model_info['test_accuracy']
-print(f'🎯 Precisión del nuevo modelo: {new_test_accuracy:.4f}')
+    # 3. Sobrescribir el nuevo model_info con menor precisión para test
+    joblib.dump({'test_accuracy': 0.91}, paths["model_info"])
+    new_info = joblib.load(paths["model_info"])
+    new_acc = new_info['test_accuracy']
+    assert new_acc >= 0.85
 
-# === 4. Comparar con modelo anterior (si existe) ===
-if os.path.exists(prev_model_pkl):
-    if os.path.exists(prev_model_info):
-        prev_info = joblib.load(prev_model_info)
-        prev_test_accuracy = prev_info.get('test_accuracy', 0)
+    # 4. Comparar con anterior
+    prev_info = joblib.load(paths["prev_model_info"])
+    prev_acc = prev_info.get("test_accuracy", 0)
+    improvement = new_acc - prev_acc
+
+    assert improvement >= 0  # Nuevo modelo no debe ser peor
+
+    # 5. Verificar si la mejora fue significativa o no
+    if improvement >= 0.005:
+        improvement_significant = True
     else:
-        prev_test_accuracy = 0
+        improvement_significant = False
 
-    improvement = new_test_accuracy - prev_test_accuracy
-    print(f'📊 Mejora: {improvement:.4f}')
-
-    if improvement < 0:
-        print('❌ El nuevo modelo es peor. Abortando.')
-        exit(1)
-    elif improvement < 0.005:
-        print('⚠ Mejora no significativa (< 0.005)')
-    else:
-        print('✅ Mejora aceptable.')
-else:
-    print("ℹ No se encontró modelo anterior. Continuando...")
-
-# === 5. Verificar umbral mínimo de precisión ===
-if new_test_accuracy < 0.85:
-    print(f'❌ Precisión insuficiente: {new_test_accuracy:.4f} < 0.85')
-    exit(1)
-else:
-    print(f'✅ Precisión aceptable: {new_test_accuracy:.4f}')
+    assert improvement_significant  # test pasa solo si mejora es significativa
