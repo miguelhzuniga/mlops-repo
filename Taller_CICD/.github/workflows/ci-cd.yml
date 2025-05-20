@@ -51,7 +51,7 @@ jobs:
         with:
           file: ./api/coverage.xml
           fail_ci_if_error: false
-          # token: ${{ secrets.CODECOV_TOKEN }} # Descomenta si repo es privado
+          # token: ${{ secrets.CODECOV_TOKEN }} # Descomenta si el repo es privado
 
   train-and-build:
     needs: test
@@ -79,18 +79,10 @@ jobs:
             exit 1
           fi
 
-      - name: Download previous model
-        uses: actions/download-artifact@v4
-        continue-on-error: true
-        with:
-          name: model-artifact
-          path: api/previous_model
-
-      - name: Train and compare model
+      - name: Evaluate and compare model
         run: |
           cd api
-          python train_model.py
-          python compare_model.py
+          python evaluate_and_compare.py
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
