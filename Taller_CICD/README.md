@@ -19,37 +19,37 @@ El proyecto implementa un pipeline completo que incluye:
 ```
 ./
 ├── .github/workflows/
-│   └── ci-cd.yml               # Workflow de GitHub Actions
-├── api/
-│   ├── app/
-│   │   ├── main.py             # API FastAPI
-│   │   └── model.pkl           # Modelo entrenado
-│   ├── data/                   # Carpeta para datos de entrenamiento
-│   │   └── iris.csv            # Dataset para entrenar el modelo
-│   ├── data_preparation.py     # Preprocesamiento de datos
-│   ├── model_creation.py       # Creación del modelo KNN
-│   ├── main-train.py           # Funciones de entrenamiento
-│   ├── train_model.py          # Script principal de entrenamiento
-│   ├── evaluate_and_compare.py          # Script para pruebas con PyTest
-│   ├── Dockerfile              # Dockerfile de la API
-│   └── requirements.txt        # Dependencias Python
-├── loadtester/
-│   ├── locustfile.py           # Script de prueba de carga con Locust
-│   ├── Dockerfile              # Dockerfile del LoadTester
-│   └── requirements.txt        # Dependencias Python
-├── manifests/
-│   ├── api-deployment.yaml     # Deployment y Service de la API
-│   ├── locust-deployment.yaml  # Deployment del LoadTester
-│   ├── prometheus-deployment.yaml  # Deployment y ConfigMap de Prometheus
-│   ├── grafana-deployment.yaml # Deployment y ConfigMap de Grafana
-│   ├── grafana-config/         # Configuración de Grafana
-│   │   └── datasources.yaml    # Fuentes de datos de Grafana
-│   └── kustomization.yaml      # Configuración de Kustomize
-├── argo-cd/
-│   └── app.yaml                # Configuración de Argo CD
-├── deploy.sh                   # Script de despliegue automatizado
-├── deploy-argocd.sh            # Script para desplegar Argo CD
-└── README.md                   # Este archivo
+│   └── ci-cd.yml               # Workflow de GitHub Actions **que está en la raíz del repositorio**
+  ├── api/
+  │   ├── app/
+  │   │   ├── main.py             # API FastAPI
+  │   │   └── model.pkl           # Modelo entrenado
+  │   ├── data/                   # Carpeta para datos de entrenamiento
+  │   │   └── iris.csv            # Dataset para entrenar el modelo
+  │   ├── data_preparation.py     # Preprocesamiento de datos
+  │   ├── model_creation.py       # Creación del modelo KNN
+  │   ├── main-train.py           # Funciones de entrenamiento
+  │   ├── train_model.py          # Script principal de entrenamiento
+  │   ├── evaluate_and_compare.py          # Script para pruebas con PyTest
+  │   ├── Dockerfile              # Dockerfile de la API
+  │   └── requirements.txt        # Dependencias Python
+  ├── loadtester/
+  │   ├── locustfile.py           # Script de prueba de carga con Locust
+  │   ├── Dockerfile              # Dockerfile del LoadTester
+  │   └── requirements.txt        # Dependencias Python
+  ├── manifests/
+  │   ├── api-deployment.yaml     # Deployment y Service de la API
+  │   ├── locust-deployment.yaml  # Deployment del LoadTester
+  │   ├── prometheus-deployment.yaml  # Deployment y ConfigMap de Prometheus
+  │   ├── grafana-deployment.yaml # Deployment y ConfigMap de Grafana
+  │   ├── grafana-config/         # Configuración de Grafana
+  │   │   └── datasources.yaml    # Fuentes de datos de Grafana
+  │   └── kustomization.yaml      # Configuración de Kustomize
+  ├── argo-cd/
+  │   └── app.yaml                # Configuración de Argo CD
+  ├── deploy.sh                   # Script de despliegue automatizado
+  ├── deploy-argocd.sh            # Script para desplegar Argo CD
+  └── README.md                   # Este archivo
 ```
 
 ## Requisitos Previos
