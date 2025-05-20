@@ -110,6 +110,8 @@ Para habilitar el pipeline de CI/CD, necesitas configurar estos secretos en tu r
    - `DOCKER_PASSWORD`: Tu contraseña de Docker Hub
    - `KUBE_CONFIG`: El contenido codificado en base64 de tu archivo kubeconfig (obtenerlo con `cat ~/.kube/config | base64 -w 0`)
 
+![alt text](./images/secretos_github.jpg)
+
 ## Uso del Sistema
 
 ### Acceso a los Servicios
