@@ -1,0 +1,22 @@
+FROM jupyter/datascience-notebook:latest
+
+USER root
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+USER jovyan
+
+COPY jupyterlab/requirements-jupyter.txt /tmp/
+RUN pip install --no-cache-dir -r /tmp/requirements-jupyter.txt
+
+ENV JUPYTER_ENABLE_LAB=yes
+ENV JUPYTER_TOKEN=mlops123
+
+RUN mkdir -p /home/jovyan/mlops-notebooks
+
+WORKDIR /home/jovyan
+
+CMD ["start-notebook.sh", "--NotebookApp.token=mlops123", "--NotebookApp.password=", "--NotebookApp.allow_root=True"]
