@@ -1,0 +1,116 @@
+# ===============================
+# General
+# ===============================
+*.pyc
+__pycache__/
+*.log
+*.pid
+*.swp
+.DS_Store
+.env
+.env.*
+*.db
+*.sqlite3
+*.bak
+*.tmp
+*.lock
+
+# ===============================
+# Virtualenv / Python
+# ===============================
+.venv/
+venv/
+env/
+ENV/
+pip-log.txt
+
+# ===============================
+# Airflow
+# ===============================
+airflow.cfg
+unittests.cfg
+logs/
+dags/__pycache__/
+airflow.db
+airflow-webserver.pid
+.fernet_key
+airflow_home/
+# Custom mounts in docker
+./dags/*
+!dags/*.py
+
+# ===============================
+# Docker
+# ===============================
+docker-compose.override.yml
+*.tar
+*.img
+*.bak
+docker-compose-generated.yml
+.docker/
+.dockerignore
+
+# Docker volumes (if mapped to local dirs)
+volumes/
+data/
+tmp/
+cache/
+
+# ===============================
+# Kubernetes
+# ===============================
+*.yaml~
+.kube/
+*.kubeconfig
+*.minikube
+.kubeconfig
+
+# Helm
+helm-chart/.helmignore
+helm-chart/charts/
+helm-chart/tmpcharts/
+helm-chart/.helm/
+
+# ===============================
+# MLflow
+# ===============================
+mlruns/
+mlartifacts/
+mlflow.db
+
+# ===============================
+# MinIO / Object Storage (local)
+# ===============================
+minio/
+minio_data/
+minio-bucket/
+minio_config/
+mc/
+
+# ===============================
+# Jupyter / Notebook
+# ===============================
+.ipynb_checkpoints
+*.ipynb~
+
+# ===============================
+# VSCode / IDEs
+# ===============================
+.vscode/
+.idea/
+*.code-workspace
+
+# ===============================
+# Misc
+# ===============================
+logs/
+output/
+outputs/
+results/
+run/
+build/
+dist/
+node_modules/
+coverage/
+htmlcov/
+test-results/
