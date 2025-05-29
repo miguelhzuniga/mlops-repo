@@ -1,4 +1,4 @@
-FROM apache/airflow:2.6.0-python3.9
+FROM apache/airflow:2.6.0-python3.8
 
 USER root
 
@@ -17,6 +17,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir \
     apache-airflow-providers-postgres \
     mlflow==2.10.0 \
+    evidently \
     scikit-learn==1.0.2 \
     pandas \
     numpy==1.21.0 \
@@ -30,5 +31,6 @@ RUN pip install --no-cache-dir \
     plotly \
     httpx \
     aiohttp \
-    python-dateutil \
-    pydantic
+    python-dateutil \ 
+    pydantic==1.10.12 \
+    pyarrow==10.0.1

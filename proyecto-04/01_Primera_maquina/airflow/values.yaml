@@ -27,7 +27,7 @@ dags:
     depth: 1
     maxFailures: 0
     subPath: "dags"
-    wait: 60
+    wait: 600 # cada 10 minutos valida el git
     containerName: git-sync
     uid: 65533
 
@@ -52,12 +52,12 @@ webserver:
     username: airflow
     password: airflow
   livenessProbe:
-    initialDelaySeconds: 120
+    initialDelaySeconds: 360
     timeoutSeconds: 30
     periodSeconds: 60
     failureThreshold: 10
   readinessProbe:
-    initialDelaySeconds: 60
+    initialDelaySeconds: 360
     timeoutSeconds: 30
     periodSeconds: 30
     failureThreshold: 10
