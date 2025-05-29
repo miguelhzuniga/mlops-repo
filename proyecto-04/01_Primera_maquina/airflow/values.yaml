@@ -3,6 +3,15 @@ executor: "CeleryExecutor"
 migrateDatabaseJob:
   enabled: false
 
+connections:
+  - id: postgres_default
+    type: postgres
+    host: airflow-postgresql.mlops-project
+    login: airflow
+    password: airflow123
+    port: 5432
+    schema: airflow
+
 images:
   airflow:
     repository: luisfrontuso10/airflow-custom
@@ -42,7 +51,6 @@ webserver:
     enabled: true
     username: airflow
     password: airflow
-
   livenessProbe:
     initialDelaySeconds: 120
     timeoutSeconds: 30
@@ -69,6 +77,11 @@ postgresql:
 
 redis:
   enabled: true
+
+logs:
+  persistence:
+    enabled: true
+    size: 8Gi
 
 env:
   - name: MLFLOW_TRACKING_URI
