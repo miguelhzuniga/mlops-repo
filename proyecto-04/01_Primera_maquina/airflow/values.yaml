@@ -1,10 +1,13 @@
 executor: "CeleryExecutor"
 
+migrateDatabaseJob:
+  enabled: false
+
 images:
   airflow:
-    repository: airflow-custom
+    repository: luisfrontuso10/airflow-custom
     tag: latest
-    pullPolicy: Never
+    pullPolicy: Always
 
 dags:
   gitSync:
@@ -39,6 +42,17 @@ webserver:
     enabled: true
     username: airflow
     password: airflow
+
+  livenessProbe:
+    initialDelaySeconds: 120
+    timeoutSeconds: 30
+    periodSeconds: 60
+    failureThreshold: 10
+  readinessProbe:
+    initialDelaySeconds: 60
+    timeoutSeconds: 30
+    periodSeconds: 30
+    failureThreshold: 10
 
 postgresql:
   enabled: true
