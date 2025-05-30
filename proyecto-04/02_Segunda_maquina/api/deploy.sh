@@ -14,7 +14,7 @@ NAMESPACE="mlops-project"
 FASTAPI_DIR="./fastapi"
 GRADIO_DIR="./gradio"
 HOST_IP=$(hostname -I | awk '{print $1}')
-DOCKERHUB_USER="luisfrontuso10"
+DOCKERHUB_USER="camilosvel"
 
 # Construir y subir la imagen FastAPI
 echo -e "${YELLOW}Construyendo imagen FastAPI...${NC}"
