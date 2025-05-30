@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mlflow
-        image: camilosvel/mlflow:latest
+        image: camilosvel/mlflow-houses:latest
         ports:
         - containerPort: 5000
         env:

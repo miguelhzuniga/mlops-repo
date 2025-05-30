@@ -23,11 +23,7 @@ kubectl delete configmaps --all -n mlops-project
 # Borrar los secretos si hay alguno (usar con cuidado en entornos productivos)
 kubectl delete secrets --all -n mlops-project
 
-# Borrar el namespace si ya no lo necesitas
-kubectl delete namespace mlops-project
-
 # Esperar a que todos los recursos sean eliminados
 echo "Esperando a que los recursos se eliminen..."
-sleep 10
 
 echo "Despliegue eliminado completamente."
