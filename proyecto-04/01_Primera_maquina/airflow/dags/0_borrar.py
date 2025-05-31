@@ -24,6 +24,7 @@ dag = DAG(
 drop_schemas_sql = """
 DROP SCHEMA IF EXISTS rawdata CASCADE;  
 DROP SCHEMA IF EXISTS cleandata CASCADE;
+DROP SCHEMA IF EXISTS trainlogs CASCADE;
 """
 def check_schemas(**kwargs):
     hook = PostgresHook(postgres_conn_id='postgres_default')

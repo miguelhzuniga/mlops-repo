@@ -12,11 +12,38 @@ import joblib
 import os
 import mlflow
 import mlflow.lightgbm
+from mlflow.tracking import MlflowClient
+import boto3
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
 
 # Evidently API nueva
 from evidently import ColumnMapping
 from evidently.report import Report
 from evidently.metric_preset import DataDriftPreset, TargetDriftPreset
+
+# Configuración de variables de entorno
+MLFLOW_TRACKING_URI = "http://10.43.101.175:30500"
+MLFLOW_S3_ENDPOINT_URL = "http://10.43.101.175:30382"
+AWS_ACCESS_KEY_ID = "adminuser"
+AWS_SECRET_ACCESS_KEY = "securepassword123"
+HOST_IP = "10.43.101.175"
+bucket_name = "mlflow-artifacts"
+object_key = "preprocessors/preprocessor.joblib"  # Path within the bucket
+
+def set_mlflow_tracking(**kwargs):
+    """Configurar tracking de MLflow"""
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+    mlflow.set_experiment("lightgbm_housing")
+    
+    # Configurar credenciales de almacenamiento
+    os.environ['MLFLOW_TRACKING_URI'] = MLFLOW_TRACKING_URI
+    os.environ['MLFLOW_S3_ENDPOINT_URL'] = MLFLOW_S3_ENDPOINT_URL
+    os.environ['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY_ID
+    os.environ['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_ACCESS_KEY
+
+    print("✅ Tracking de MLflow configurado exitosamente")
+
 
 default_args = {
     'owner': 'airflow',
@@ -101,15 +128,61 @@ def detect_data_drift(**kwargs):
         joblib.dump(df_new, previous_data_path)
         log_to_db("train", "No se detectó drift, se procede a entrenar el modelo.")
         return "train_model_task"
+    
+def preprocess_data(df,**kwargs):
+    """Preprocesar datos de entrenamiento con eficiencia de memoria mejorada"""
+   
+    # Cargar desde archivo temporal
+    
+    y_train = df['price'].tolist()
+    X_train = df.drop(columns=['id', 'price', 'prev_sold_date'], errors='ignore')
+    
+    numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns
+    categorical_features = X_train.select_dtypes(include=['object']).columns
+    
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', StandardScaler(), numeric_features),
+            ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+        ])
+    
+    # Realizar fit_transform una sola vez
+    X_train_processed = preprocessor.fit_transform(X_train)
+    
+    # Guardar el preprocesador
+    local_path = '/tmp/preprocessor.joblib'
+    with open(local_path, 'wb') as f:
+        joblib.dump(preprocessor, f)
+
+    # Subir a MinIO
+    try:
+        s3_client = boto3.client(
+            's3',
+            endpoint_url=MLFLOW_S3_ENDPOINT_URL,
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+        )
+        print("✅ MinIO client initialized successfully.")
+
+        s3_client.upload_file(local_path, bucket_name, object_key)
+        print(f"✅ Preprocessor uploaded to MinIO at s3://{bucket_name}/{object_key}")
+
+    except Exception as e:
+        print(f"❌ Failed to upload preprocessor to MinIO: {e}")
+ 
+   
+    return X_train_processed,y_train
+    
+
+
 
 def train_model(**kwargs):
     hook = PostgresHook(postgres_conn_id='postgres_default')
     engine = hook.get_sqlalchemy_engine()
     query = f"SELECT * FROM {clean_schema}.{clean_table};"
     df = pd.read_sql(query, con=engine)
+    X,y = preprocess_data(df)
 
-    y = df['price']
-    X = df.drop(columns=['id', 'price', 'prev_sold_date'], errors='ignore')
     for col in X.select_dtypes(include='object').columns:
         X[col] = X[col].astype('category')
 
@@ -119,28 +192,89 @@ def train_model(**kwargs):
     df_train['price'] = y_train
     joblib.dump(df_train, previous_data_path)
     print(f"Datos de entrenamiento guardados en {previous_data_path}")
+    # Configurar MLflow
+    set_mlflow_tracking()  # Define esta función para setear MLFLOW_TRACKING_URI, etc.
+    client = MlflowClient()
+    model_name = 'LightGBMRegressor'
 
-    model = LGBMRegressor(objective='regression', n_estimators=50, random_state=42)
+    model = LGBMRegressor(
+        objective='regression',
+        n_estimators=50,
+        random_state=42,
+        max_depth=5,
+        subsample=0.7,
+        colsample_bytree=0.7,
+        n_jobs=1
+    )
+    with mlflow.start_run() as run:
+        run_id = run.info.run_id
+        print(f"Iniciando entrenamiento de {model_name} (run_id: {run_id})...")
 
-    mlflow.set_tracking_uri("http://mlflow.mlops-project.svc.cluster.local:5000")
-    mlflow.set_experiment("lightgbm_housing")
-
-    with mlflow.start_run():
-        model.fit(X_train, y_train, eval_set=[(X_val, y_val)])
+        model.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)
 
         y_pred = model.predict(X_val, num_iteration=model.best_iteration_)
         rmse = mean_squared_error(y_val, y_pred, squared=False)
         print(f"RMSE validación: {rmse:.4f}")
 
         mlflow.log_param("n_estimators", 50)
+        mlflow.log_param("max_depth", 5)
         mlflow.log_metric("rmse", rmse)
-        mlflow.lightgbm.log_model(model, artifact_path="model")
+        mlflow.lightgbm.log_model(model, artifact_path="model", registered_model_name=model_name)
 
-        log_to_db("train", "Modelo entrenado y registrado en MLflow.", rmse=rmse)
+        # Verificar si el nuevo modelo es mejor que el actual en producción
+        try:
+            versions = client.search_model_versions(f"name='{model_name}'")
+            production_versions = [v for v in versions if v.current_stage == "Production"]
+            best_production_rmse = None
 
-    print("Modelo guardado y logueado en MLflow.")
+            if production_versions:
+                prod_version = production_versions[0]
+                prod_run_id = prod_version.run_id
+                prod_metrics = client.get_run(prod_run_id).data.metrics
+                best_production_rmse = prod_metrics.get('rmse', None)
+
+            if best_production_rmse is None or rmse < best_production_rmse:
+                latest_version = max(int(v.version) for v in versions)
+                client.transition_model_version_stage(
+                    name=model_name,
+                    version=latest_version,
+                    stage="Production"
+                )
+                # Archivar versiones anteriores
+                for v in versions:
+                    if v.version != str(latest_version) and v.current_stage == "Production":
+                        client.transition_model_version_stage(
+                            name=model_name,
+                            version=v.version,
+                            stage="Archived"
+                        )
+                print(f"Modelo {model_name} v{latest_version} marcado como Producción")
+                log_to_db("stage", f"Modelo {model_name} v{latest_version} marcado como Producción (RMSE {rmse:.4f})")
+            else:
+                best_production_rmse = prod_metrics.get('rmse', None)
+                print(f"El nuevo modelo tiene un RMSE {rmse:.4f} mayor que el actual en producción ({best_production_rmse:.4f}). No se actualiza la producción.")
+                log_to_db("train", f"Modelo no actualizado a Producción. RMSE actual: {rmse:.4f}, RMSE en Producción: {best_production_rmse:.4f}", rmse=rmse)
+
+        except Exception as e:
+            print(f"Error al comparar o cambiar el estado del modelo: {e}")
+            log_to_db("train", f"Error en proceso de transición: {e}", rmse=rmse)
+
+        print(f"Modelo {model_name} entrenado y logueado en MLflow.")
+
+    return {
+        'best_model': model_name,
+        'rmse': rmse
+    }
+
 
 with dag:
+
+
+    set_mlflow_tracking_task = PythonOperator(
+        task_id='set_mlflow_tracking',
+        python_callable=set_mlflow_tracking,
+        dag=dag
+    )
 
     check_data_task = BranchPythonOperator(
         task_id='check_data_count',
@@ -166,4 +300,4 @@ with dag:
         trigger_rule='none_failed_min_one_success'
     )
 
-    check_data_task >> detect_data_drift_task >> [train_model_task, skip_training_task] >> end_task
+check_data_task >> detect_data_drift_task >> [set_mlflow_tracking_task >> train_model_task, skip_training_task] >> end_task
