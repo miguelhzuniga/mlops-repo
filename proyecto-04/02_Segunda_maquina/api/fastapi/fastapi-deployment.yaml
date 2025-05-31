@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fastapi-diabetes
+  name: fastapi-housing
   namespace: mlops-project
   labels:
-    app: fastapi-diabetes
+    app: fastapi-housing
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fastapi-diabetes
+      app: fastapi-housing
   template:
     metadata:
       labels:
-        app: fastapi-diabetes
+        app: fastapi-housing
     spec:
       containers:
-      - name: fastapi-diabetes
-        image: camilosvel/fastapi-diabetes:latest
+      - name: fastapi-housing
+        image: camilosvel/fastapi-housing:latest
         ports:
         - containerPort: 80
         env:
         - name: MLFLOW_S3_ENDPOINT_URL
-          value: "http://10.43.101.206:30382"
+          value: "http://10.43.101.202:30382"
         - name: AWS_ACCESS_KEY_ID
           value: "adminuser"
         - name: AWS_SECRET_ACCESS_KEY
           value: "securepassword123"
         - name: MLFLOW_TRACKING_URI
-          value: "http://10.43.101.206:30500"
+          value: "http://10.43.101.202:30500"
         resources:
           requests:
             memory: "512Mi"

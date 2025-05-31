@@ -1,0 +1,127 @@
+import gradio as gr
+import pandas as pd
+import mlflow
+import joblib
+import dill
+import numpy as np
+from datetime import datetime
+import os
+import tempfile
+import boto3
+import logging
+
+# Configuración MLflow/MinIO
+HOST_IP = "10.43.101.206"
+MLFLOW_S3_ENDPOINT_URL = f"http://{HOST_IP}:30382"
+os.environ["MLFLOW_S3_ENDPOINT_URL"] = MLFLOW_S3_ENDPOINT_URL
+os.environ["AWS_ACCESS_KEY_ID"] = "adminuser"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "securepassword123"
+mlflow.set_tracking_uri(f"http://{HOST_IP}:30500")
+BUCKET_NAME = "mlflow-artifacts"
+PREPROCESSOR_KEY = "preprocessors/preprocessor.joblib"
+
+preprocessor_cache = None
+model_cache = None
+
+NUMERIC_COLUMNS = ['bed', 'bath', 'acre_lot', 'house_size']
+CATEGORICAL_COLUMNS = ['brokered_by', 'status', 'street', 'city', 'state', 'zip_code']
+
+# Cargar preprocesador
+def load_preprocessor():
+    global preprocessor_cache
+    if preprocessor_cache:
+        return preprocessor_cache
+    s3_client = boto3.client(
+        's3',
+        endpoint_url=MLFLOW_S3_ENDPOINT_URL,
+        aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
+        aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"]
+    )
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        temp_path = tmp_file.name
+    s3_client.download_file(BUCKET_NAME, PREPROCESSOR_KEY, temp_path)
+    try:
+        preprocessor_cache = joblib.load(temp_path)
+    except:
+        with open(temp_path, 'rb') as f:
+            preprocessor_cache = dill.load(f)
+    os.unlink(temp_path)
+    return preprocessor_cache
+
+# Preprocesamiento
+def preprocess_input(input_data):
+    input_data['prev_sold_year'] = input_data['prev_sold_date'].apply(
+        lambda x: datetime.strptime(x, "%Y-%m-%d").year if pd.notna(x) and x != '' else 0
+    )
+    input_data = input_data.drop(columns=['prev_sold_date'])
+    for col in NUMERIC_COLUMNS:
+        input_data[col] = pd.to_numeric(input_data[col], errors='coerce').fillna(0)
+    for col in CATEGORICAL_COLUMNS + ['prev_sold_year']:
+        input_data[col] = input_data[col].astype(str).fillna('Unknown')
+    preprocessor = load_preprocessor()
+    return preprocessor.transform(input_data)
+
+# Cargar modelo
+def get_model():
+    global model_cache
+    if model_cache:
+        return model_cache
+    client = mlflow.tracking.MlflowClient()
+    models = client.search_registered_models()
+    for m in models:
+        for v in client.search_model_versions(f"name='{m.name}'"):
+            if v.current_stage == "Production":
+                model_cache = mlflow.pyfunc.load_model(f"models:/{m.name}/Production")
+                return model_cache
+    raise Exception("No hay modelos en producción en MLflow.")
+
+# Función de predicción
+def predict_house_price(brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date):
+    input_dict = {
+        "brokered_by": brokered_by,
+        "status": status,
+        "bed": bed,
+        "bath": bath,
+        "acre_lot": acre_lot,
+        "street": street,
+        "city": city,
+        "state": state,
+        "zip_code": zip_code,
+        "house_size": house_size,
+        "prev_sold_date": prev_sold_date
+    }
+    input_df = pd.DataFrame([input_dict])
+    X_processed = preprocess_input(input_df)
+    model = get_model()
+    prediction = model.predict(X_processed)
+    return f"El precio estimado de la casa es: ${prediction[0]:,.2f} USD"
+
+# Interfaz Gradio
+with gr.Blocks() as demo:
+    gr.Markdown("# 🏠 Predicción de Precios de Casas")
+    
+    with gr.Row():
+        brokered_by = gr.Textbox(label="Agencia/Corredor (ID o nombre)")
+        status = gr.Dropdown(label="Estado de la casa", choices=["for_sale", "ready_to_build"])
+        street = gr.Textbox(label="Calle (ID o nombre)")
+        city = gr.Textbox(label="Ciudad")
+        state = gr.Textbox(label="Estado")
+        zip_code = gr.Textbox(label="Código Postal")
+    
+    with gr.Row():
+        bed = gr.Number(label="Número de habitaciones", value=3)
+        bath = gr.Number(label="Número de baños", value=2)
+        acre_lot = gr.Number(label="Tamaño del terreno (acres)", value=0.25)
+        house_size = gr.Number(label="Área de la casa (sqft)", value=1500)
+        prev_sold_date = gr.Textbox(label="Fecha de venta anterior (YYYY-MM-DD)", value="2015-11-09")
+    
+    predict_button = gr.Button("Predecir Precio")
+    output = gr.HTML()
+    
+    predict_button.click(
+        predict_house_price,
+        inputs=[brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date],
+        outputs=output
+    )
+
+demo.launch(server_name="0.0.0.0", server_port=8501)

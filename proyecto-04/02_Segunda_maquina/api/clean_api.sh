@@ -4,12 +4,12 @@
 # Fecha: Mayo 2025
 
 echo "====================================================================="
-echo "Iniciando desmontaje de servicios del Predictor de Diabetes..."
+echo "Iniciando desmontaje de servicios del Predictor de housing..."
 echo "====================================================================="
 
 # Definir variables
 NAMESPACE="mlops-project"
-HOST_IP="10.43.101.206"
+HOST_IP="10.43.101.202"
 
 echo "Namespace Kubernetes: $NAMESPACE"
 echo
@@ -30,20 +30,20 @@ fi
 echo "Recursos actuales en el namespace $NAMESPACE:"
 echo "-----------------------------------"
 echo "Pods:"
-microk8s kubectl get pods -n $NAMESPACE | grep -E 'fastapi-diabetes|gradio-diabetes'
+microk8s kubectl get pods -n $NAMESPACE | grep -E 'fastapi-housing|gradio-housing'
 echo "Servicios:"
-microk8s kubectl get services -n $NAMESPACE | grep -E 'fastapi-diabetes|gradio-diabetes'
+microk8s kubectl get services -n $NAMESPACE | grep -E 'fastapi-housing|gradio-housing'
 echo "Deployments:"
-microk8s kubectl get deployments -n $NAMESPACE | grep -E 'fastapi-diabetes|gradio-diabetes'
+microk8s kubectl get deployments -n $NAMESPACE | grep -E 'fastapi-housing|gradio-housing'
 
 # 2. Eliminar los servicios de Gradio
 echo
 echo "Eliminando servicio Gradio..."
 echo "---------------------------------"
 # Intentar eliminar el deployment de Gradio
-if microk8s kubectl get deployment gradio-diabetes -n $NAMESPACE &>/dev/null; then
+if microk8s kubectl get deployment gradio-housing -n $NAMESPACE &>/dev/null; then
     echo "Eliminando deployment de Gradio..."
-    microk8s kubectl delete deployment gradio-diabetes -n $NAMESPACE
+    microk8s kubectl delete deployment gradio-housing -n $NAMESPACE
     
     if [ $? -eq 0 ]; then
         echo "Deployment de Gradio eliminado correctamente."
@@ -55,9 +55,9 @@ else
 fi
 
 # Intentar eliminar el servicio de Gradio
-if microk8s kubectl get service gradio-diabetes-service -n $NAMESPACE &>/dev/null; then
+if microk8s kubectl get service gradio-housing-service -n $NAMESPACE &>/dev/null; then
     echo "Eliminando servicio de Gradio..."
-    microk8s kubectl delete service gradio-diabetes-service -n $NAMESPACE
+    microk8s kubectl delete service gradio-housing-service -n $NAMESPACE
     
     if [ $? -eq 0 ]; then
         echo "Servicio de Gradio eliminado correctamente."
@@ -73,9 +73,9 @@ echo
 echo "Eliminando servicio FastAPI..."
 echo "---------------------------------"
 # Intentar eliminar el deployment de FastAPI
-if microk8s kubectl get deployment fastapi-diabetes -n $NAMESPACE &>/dev/null; then
+if microk8s kubectl get deployment fastapi-housing -n $NAMESPACE &>/dev/null; then
     echo "Eliminando deployment de FastAPI..."
-    microk8s kubectl delete deployment fastapi-diabetes -n $NAMESPACE
+    microk8s kubectl delete deployment fastapi-housing -n $NAMESPACE
     
     if [ $? -eq 0 ]; then
         echo "Deployment de FastAPI eliminado correctamente."
@@ -87,9 +87,9 @@ else
 fi
 
 # Intentar eliminar el servicio de FastAPI
-if microk8s kubectl get service fastapi-diabetes-service -n $NAMESPACE &>/dev/null; then
+if microk8s kubectl get service fastapi-housing-service -n $NAMESPACE &>/dev/null; then
     echo "Eliminando servicio de FastAPI..."
-    microk8s kubectl delete service fastapi-diabetes-service -n $NAMESPACE
+    microk8s kubectl delete service fastapi-housing-service -n $NAMESPACE
     
     if [ $? -eq 0 ]; then
         echo "Servicio de FastAPI eliminado correctamente."
@@ -109,13 +109,13 @@ echo "Esperando 10 segundos para que se completen las operaciones..."
 #sleep 10
 
 echo "Pods restantes relacionados con los servicios (no debería haber ninguno):"
-microk8s kubectl get pods -n $NAMESPACE | grep -E 'fastapi-diabetes|gradio-diabetes' || echo "No se encontraron pods."
+microk8s kubectl get pods -n $NAMESPACE | grep -E 'fastapi-housing|gradio-housing' || echo "No se encontraron pods."
 
 echo "Servicios restantes relacionados (no debería haber ninguno):"
-microk8s kubectl get services -n $NAMESPACE | grep -E 'fastapi-diabetes|gradio-diabetes' || echo "No se encontraron servicios."
+microk8s kubectl get services -n $NAMESPACE | grep -E 'fastapi-housing|gradio-housing' || echo "No se encontraron servicios."
 
 echo "Deployments restantes relacionados (no debería haber ninguno):"
-microk8s kubectl get deployments -n $NAMESPACE | grep -E 'fastapi-diabetes|gradio-diabetes' || echo "No se encontraron deployments."
+microk8s kubectl get deployments -n $NAMESPACE | grep -E 'fastapi-housing|gradio-housing' || echo "No se encontraron deployments."
 
 # 5. Opcionalmente, eliminar las imágenes Docker si ya no son necesarias
 for image in "${IMAGES_TO_DELETE[@]}"; do
