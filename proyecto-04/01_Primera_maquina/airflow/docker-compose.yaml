@@ -33,22 +33,6 @@ x-airflow-common:
     - "kubernetes:10.43.101.175"  
     
 services:
-  minio:
-    build: ./minio_image
-    container_name: Minio
-    restart: unless-stopped
-    environment:
-      - MINIO_ROOT_USER=admin
-      - MINIO_ROOT_PASSWORD=supersecret
-      - MINIO_BUCKET=mlflows3
-    ports:
-      - "9000:9000"  # MinIO S3 en localhost
-      - "9001:9001"  # Consola web en localhost
-    command: server /data --console-address ":9001"
-    volumes:
-      - ./minio:/data
-    networks:
-      - net_mlops
 
   pgadmin:
     image: dpage/pgadmin4
