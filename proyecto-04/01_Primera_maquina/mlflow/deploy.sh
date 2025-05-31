@@ -45,17 +45,17 @@ sudo microk8s kubectl wait --for=condition=complete job/minio-init -n mlops-proj
 
 # Construir imagen Docker personalizada airflow
 echo "Construyendo imagen Docker personalizada airflow..."
-docker build -t airflow-houses-temp -f airflow/Dockerfile airflow/
+sudo docker build -t airflow-houses-temp -f airflow/Dockerfile airflow/
 
 # Taggear la imagen para Docker Hub
-docker tag airflow-houses-temp camilosvel/airflow-houses:latest
+sudo docker tag airflow-houses-temp camilosvel/airflow-houses:latest
 
 # Construir imagen Docker personalizada mlflow
 echo "Construyendo imagen Docker personalizada mlflow..."
-docker build -t mlflow-houses-temp -f mlflow/Dockerfile.mlflow mlflow/
+sudo docker build -t mlflow-houses-temp -f mlflow/Dockerfile.mlflow mlflow/
 
-# Taggear la imagen para Docker Hub
-docker tag mlflow-houses-temp camilosvel/mlflow-houses:latest
+# Taggear la imagen para docker Hub
+sudo docker tag mlflow-houses-temp camilosvel/mlflow-houses:latest
 
 # Login en Docker Hub (una sola vez)
 echo "Iniciando sesión en Docker Hub..."
@@ -63,10 +63,10 @@ docker login
 
 # Push de imágenes
 echo "Publicando imagen airflow en Docker Hub..."
-docker push camilosvel/airflow-houses:latest
+sudo docker push camilosvel/airflow-houses:latest
 
 echo "Publicando imagen mlflow en Docker Hub..."
-docker push camilosvel/mlflow-houses:latest
+sudo docker push camilosvel/mlflow-houses:latest
 
 # Desplegar MLflow
 echo "Desplegando MLflow..."
