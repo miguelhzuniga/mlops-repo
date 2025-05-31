@@ -15,27 +15,27 @@ FASTAPI_DIR="./fastapi"
 GRADIO_DIR="./gradio"
 HOST_IP=$(hostname -I | awk '{print $1}')
 DOCKERHUB_USER="camilosvel"
-
+sudo docker login
 # Construir y subir la imagen FastAPI
 echo -e "${YELLOW}Construyendo imagen FastAPI...${NC}"
 sudo docker build -t api $FASTAPI_DIR
 echo -e "${YELLOW}Etiquetando imagen FastAPI...${NC}"
-sudo docker tag api $DOCKERHUB_USER/fastapi-diabetes:latest
+sudo docker tag api $DOCKERHUB_USER/fastapi-housing:latest
 echo -e "${YELLOW}Subiendo imagen FastAPI a Docker Hub...${NC}"
-sudo docker push $DOCKERHUB_USER/fastapi-diabetes:latest
+sudo docker push $DOCKERHUB_USER/fastapi-housing:latest
 
 # Construir y subir la imagen Gradio
 echo -e "${YELLOW}Construyendo imagen Gradio...${NC}"
 sudo docker build -t gradio $GRADIO_DIR
 echo -e "${YELLOW}Etiquetando imagen Gradio...${NC}"
-sudo docker tag gradio $DOCKERHUB_USER/gradio-diabetes:latest
+sudo docker tag gradio $DOCKERHUB_USER/gradio-housing:latest
 echo -e "${YELLOW}Subiendo imagen Gradio a Docker Hub...${NC}"
-sudo docker push $DOCKERHUB_USER/gradio-diabetes:latest
+sudo docker push $DOCKERHUB_USER/gradio-housing:latest
 
 # Limpiar despliegues anteriores
 echo -e "${YELLOW}Limpiando despliegues anteriores...${NC}"
-microk8s kubectl delete deployment fastapi-diabetes gradio-diabetes -n $NAMESPACE --ignore-not-found=true
-microk8s kubectl delete service fastapi-diabetes-service gradio-diabetes-service -n $NAMESPACE --ignore-not-found=true
+microk8s kubectl delete deployment fastapi-housing gradio-housing -n $NAMESPACE --ignore-not-found=true
+microk8s kubectl delete service fastapi-housing-service gradio-housing-service -n $NAMESPACE --ignore-not-found=true
 echo "Esperando 5 segundos para que los recursos se eliminen completamente..."
 sleep 5
 
@@ -64,8 +64,8 @@ microk8s kubectl get pods -n $NAMESPACE
 echo
 echo -e "${GREEN}NodePorts de los servicios:${NC}"
 echo "-----------------------------------"
-FASTAPI_NODEPORT=$(microk8s kubectl get service fastapi-diabetes-service -n $NAMESPACE -o jsonpath='{.spec.ports[0].nodePort}')
-GRADIO_NODEPORT=$(microk8s kubectl get service gradio-diabetes-service -n $NAMESPACE -o jsonpath='{.spec.ports[0].nodePort}')
+FASTAPI_NODEPORT=$(microk8s kubectl get service fastapi-housing-service -n $NAMESPACE -o jsonpath='{.spec.ports[0].nodePort}')
+GRADIO_NODEPORT=$(microk8s kubectl get service gradio-housing-service -n $NAMESPACE -o jsonpath='{.spec.ports[0].nodePort}')
 echo "FastAPI: http://$HOST_IP:$FASTAPI_NODEPORT"
 echo "Gradio: http://$HOST_IP:$GRADIO_NODEPORT"
 echo "====================================================================="
