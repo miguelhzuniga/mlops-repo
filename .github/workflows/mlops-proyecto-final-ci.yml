@@ -21,7 +21,6 @@ on:
 
 env:
   REGISTRY: docker.io
-  DOCKER_USERNAME: luisfrontuso10
 
 jobs:
   build-airflow:
@@ -45,7 +44,7 @@ jobs:
       id: meta-airflow
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.DOCKER_USERNAME }}/airflow-houses
+        images: ${{ secrets.DOCKER_USERNAME }}/airflow-houses
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -67,7 +66,7 @@ jobs:
     - name: Airflow image summary
       run: |
         echo "✅ Airflow image built and pushed successfully!"
-        echo "📦 Image: ${{ env.DOCKER_USERNAME }}/airflow-houses"
+        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
         echo "🏷️ Tags: ${{ steps.meta-airflow.outputs.tags }}"
 
   build-mlflow:
@@ -91,7 +90,7 @@ jobs:
       id: meta-mlflow
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.DOCKER_USERNAME }}/mlflow-houses
+        images: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -113,7 +112,7 @@ jobs:
     - name: MLflow image summary
       run: |
         echo "✅ MLflow image built and pushed successfully!"
-        echo "📦 Image: ${{ env.DOCKER_USERNAME }}/mlflow-houses"
+        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
         echo "🏷️ Tags: ${{ steps.meta-mlflow.outputs.tags }}"
 
   deployment-summary:
@@ -135,11 +134,11 @@ jobs:
           echo "✅ All images built successfully!"
           echo ""
           echo "Available images:"
-          echo "• luisfrontuso10/airflow-houses:${{ github.ref_name }}"
-          echo "• luisfrontuso10/mlflow-houses:${{ github.ref_name }}"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ github.ref_name }}"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ github.ref_name }}"
           if [[ "${{ github.ref_name }}" == "master" ]]; then
-            echo "• luisfrontuso10/airflow-houses:latest"
-            echo "• luisfrontuso10/mlflow-houses:latest"
+            echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:latest"
+            echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:latest"
           fi
           echo ""
           echo "Next steps:"
