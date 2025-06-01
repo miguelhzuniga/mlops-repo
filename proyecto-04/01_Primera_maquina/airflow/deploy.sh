@@ -51,12 +51,6 @@ set_env_vars() {
     fi
 }
 
-create_directories() {
-    print_info "Creating required directories..."
-    mkdir -p dags logs plugins data models api
-    print_success "Directories created"
-}
-
 pull_images() {
     print_info "Pulling latest images..."
     print_info "Pulling Airflow image: $DOCKER_USERNAME/airflow-houses:latest"

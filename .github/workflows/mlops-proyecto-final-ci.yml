@@ -65,9 +65,9 @@ jobs:
         
     - name: Airflow image summary
       run: |
-        echo "✅ Airflow image built and pushed successfully!"
-        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
-        echo "🏷️ Tags: ${{ steps.meta-airflow.outputs.tags }}"
+        echo " Airflow image built and pushed successfully!"
+        echo " Image: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
+        echo " Tags: ${{ steps.meta-airflow.outputs.tags }}"
 
   build-mlflow:
     name: Build MLflow Image
@@ -111,9 +111,9 @@ jobs:
         
     - name: MLflow image summary
       run: |
-        echo "✅ MLflow image built and pushed successfully!"
-        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
-        echo "🏷️ Tags: ${{ steps.meta-mlflow.outputs.tags }}"
+        echo " MLflow image built and pushed successfully!"
+        echo " Image: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
+        echo " Tags: ${{ steps.meta-mlflow.outputs.tags }}"
 
   deployment-summary:
     name: Deployment Summary
@@ -124,14 +124,14 @@ jobs:
     steps:
     - name: Deployment status
       run: |
-        echo "🚀 MLOps Images Build Summary"
+        echo " MLOps Images Build Summary"
         echo "================================"
         echo "Airflow Build: ${{ needs.build-airflow.result }}"
         echo "MLflow Build: ${{ needs.build-mlflow.result }}"
         echo "Branch: ${{ github.ref_name }}"
         echo ""
         if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" ]]; then
-          echo "✅ All images built successfully!"
+          echo " All images built successfully!"
           echo ""
           echo "Available images:"
           echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ github.ref_name }}"
@@ -145,6 +145,6 @@ jobs:
           echo "1. For Airflow: cd proyecto-04/01_Primera_maquina/airflow && ./deploy.sh pull && ./deploy.sh restart"
           echo "2. For MLflow: cd proyecto-04/01_Primera_maquina/mlflow && ./update-images.sh"
         else
-          echo "❌ Some builds failed. Check the logs above."
+          echo " Some builds failed. Check the logs above."
           exit 1
         fi
