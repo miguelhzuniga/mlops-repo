@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/miguelhzuniga/mlops-repo.git
+    targetRevision: HEAD
+    path: proyecto-04/03_Tercera_maquina/monitoring
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mlops-project
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
