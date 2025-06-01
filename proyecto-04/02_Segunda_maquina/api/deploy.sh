@@ -1,36 +1,23 @@
 #!/bin/bash
 
-# Colores para mejor visualización
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo "====================================================================="
-echo "Construyendo, etiquetando y desplegando servicios..."
+echo "Descargando y desplegando servicios desde Docker Hub..."
 echo "====================================================================="
 
-# Definir variables
 NAMESPACE="mlops-project"
 FASTAPI_DIR="./fastapi"
 GRADIO_DIR="./gradio"
 HOST_IP=$(hostname -I | awk '{print $1}')
-DOCKERHUB_USER="camilosvel"
-sudo docker login
-# Construir y subir la imagen FastAPI
-echo -e "${YELLOW}Construyendo imagen FastAPI...${NC}"
-sudo docker build -t api $FASTAPI_DIR
-echo -e "${YELLOW}Etiquetando imagen FastAPI...${NC}"
-sudo docker tag api $DOCKERHUB_USER/fastapi-housing:latest
-echo -e "${YELLOW}Subiendo imagen FastAPI a Docker Hub...${NC}"
-sudo docker push $DOCKERHUB_USER/fastapi-housing:latest
+DOCKERHUB_USER="luisfrontuso10"
 
-# Construir y subir la imagen Gradio
-echo -e "${YELLOW}Construyendo imagen Gradio...${NC}"
-sudo docker build -t gradio $GRADIO_DIR
-echo -e "${YELLOW}Etiquetando imagen Gradio...${NC}"
-sudo docker tag gradio $DOCKERHUB_USER/gradio-housing:latest
-echo -e "${YELLOW}Subiendo imagen Gradio a Docker Hub...${NC}"
-sudo docker push $DOCKERHUB_USER/gradio-housing:latest
+# Descargar imágenes más recientes
+echo -e "${YELLOW}Descargando imágenes de Docker Hub...${NC}"
+docker pull $DOCKERHUB_USER/fastapi-houses:latest
+docker pull $DOCKERHUB_USER/gradio-houses:latest
 
 # Limpiar despliegues anteriores
 echo -e "${YELLOW}Limpiando despliegues anteriores...${NC}"
@@ -38,14 +25,6 @@ microk8s kubectl delete deployment fastapi-housing gradio-housing -n $NAMESPACE 
 microk8s kubectl delete service fastapi-housing-service gradio-housing-service -n $NAMESPACE --ignore-not-found=true
 echo "Esperando 5 segundos para que los recursos se eliminen completamente..."
 sleep 5
-
-# Habilitar el registro de MicroK8s si no está habilitado
-echo "Asegurando que el registro local está habilitado..."
-microk8s enable registry
-
-# Verificar imágenes
-echo "Verificando imágenes en Docker..."
-docker images | grep -E 'fastapi|gradio'
 
 # Aplicar configuraciones
 echo -e "${YELLOW}Aplicando configuraciones Kubernetes...${NC}"
