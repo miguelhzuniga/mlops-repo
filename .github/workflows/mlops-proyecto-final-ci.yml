@@ -48,8 +48,8 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=sha,prefix={{branch}}-
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          type=sha,prefix={{date 'YYYYMMDD'}}-
           
     - name: Build and push Airflow image
       uses: docker/build-push-action@v5
@@ -94,8 +94,8 @@ jobs:
         tags: |
           type=ref,event=branch
           type=ref,event=pr
-          type=sha,prefix={{branch}}-
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          type=sha,prefix={{date 'YYYYMMDD'}}-
           
     - name: Build and push MLflow image
       uses: docker/build-push-action@v5
