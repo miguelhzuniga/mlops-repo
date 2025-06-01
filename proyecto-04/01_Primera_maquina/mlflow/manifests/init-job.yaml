@@ -12,10 +12,79 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
-          sleep 10;
-          mc config host add myminio http://minio:30900 adminuser securepassword123;
-          mc mb myminio/mlflow-artifacts --ignore-existing;
-          mc anonymous set download myminio/mlflow-artifacts;
-          echo "MinIO bucket created successfully";
+          echo " Iniciando configuración de MinIO..."
+          
+          # Esperar a que MinIO esté disponible
+          echo " Esperando a que MinIO esté disponible..."
+          for i in $(seq 1 60); do
+            if mc --version >/dev/null 2>&1; then
+              echo " Cliente mc está listo"
+              break
+            fi
+            echo " Esperando cliente mc... ($i/60)"
+            sleep 2
+          done
+          
+          # Intentar conectar a MinIO con reintentos
+          echo " Conectando a MinIO server..."
+          RETRIES=0
+          MAX_RETRIES=30
+          
+          while [ $RETRIES -lt $MAX_RETRIES ]; do
+            if mc alias set myminio http://minio:9000 adminuser securepassword123 >/dev/null 2>&1; then
+              echo " Conexión exitosa a MinIO"
+              break
+            else
+              RETRIES=$((RETRIES + 1))
+              echo " Conexión fallida, reintento $RETRIES/$MAX_RETRIES..."
+              sleep 10
+            fi
+          done
+          
+          if [ $RETRIES -eq $MAX_RETRIES ]; then
+            echo "Error: No se pudo conectar a MinIO después de $MAX_RETRIES intentos"
+            exit 1
+          fi
+          
+          # Verificar que la conexión funciona
+          echo " Verificando conectividad..."
+          mc admin info myminio >/dev/null 2>&1 || {
+            echo " MinIO no está completamente listo"
+            sleep 20
+          }
+          
+          # Crear bucket
+          echo " Creando bucket mlflow-artifacts..."
+          if mc mb myminio/mlflow-artifacts --ignore-existing; then
+            echo " Bucket creado exitosamente"
+          else
+            echo " Error creando bucket"
+            exit 1
+          fi
+          
+          # Configurar política pública
+          echo " Configurando política de acceso..."
+          if mc anonymous set download myminio/mlflow-artifacts; then
+            echo " Política configurada exitosamente"
+          else
+            echo "  Advertencia: No se pudo configurar política pública"
+          fi
+          
+          # Verificar creación
+          echo " Verificando buckets creados:"
+          mc ls myminio
+          
+          # Verificar en el sistema de archivos también
+          echo "Verificando en sistema de archivos..."
+          if mc ls myminio/mlflow-artifacts >/dev/null 2>&1; then
+            echo " Bucket verificado correctamente"
+          else
+            echo " Bucket no verificado"
+            exit 1
+          fi
+          
+          echo " MinIO bucket configurado exitosamente"
+          
       restartPolicy: Never
-  backoffLimit: 4
+  backoffLimit: 6
+  activeDeadlineSeconds: 600

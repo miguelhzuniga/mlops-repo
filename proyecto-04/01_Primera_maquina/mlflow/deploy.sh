@@ -36,11 +36,44 @@ echo "Esperando a que los pods de almacenamiento estén listos..."
 sudo microk8s kubectl wait --for=condition=ready pod -l app=postgres -n mlops-project --timeout=120s
 sudo microk8s kubectl wait --for=condition=ready pod -l app=minio -n mlops-project --timeout=120s
 
+# Verificar que MinIO esté realmente funcional
+echo "Verificando que MinIO esté realmente funcional..."
+for i in {1..30}; do
+  if sudo microk8s kubectl exec -n mlops-project deployment/minio -- mc --version >/dev/null 2>&1; then
+    echo "✅ MinIO está respondiendo correctamente"
+    break
+  else
+    echo "⏳ MinIO aún no está listo, esperando... ($i/30)"
+    sleep 10
+  fi
+  
+  if [ $i -eq 30 ]; then
+    echo "❌ MinIO no respondió después de 5 minutos"
+    exit 1
+  fi
+done
+
+# Espera adicional para asegurar que MinIO esté completamente inicializado
+echo "Esperando 30 segundos adicionales para inicialización completa de MinIO..."
+sleep 30
+
 # Inicializar bucket
 echo "Inicializando bucket MinIO para artefactos de MLflow..."
 sudo microk8s kubectl apply -f manifests/init-job.yaml
-sleep 5
-sudo microk8s kubectl wait --for=condition=complete job/minio-init -n mlops-project --timeout=60s
+
+# Esperar y verificar que el job se complete
+echo "Esperando a que el job de inicialización se complete..."
+sudo microk8s kubectl wait --for=condition=complete job/minio-init -n mlops-project --timeout=120s
+
+# Verificar que el bucket se creó realmente
+echo "Verificando que el bucket se creó correctamente..."
+if sudo microk8s kubectl exec -n mlops-project deployment/minio -- ls /data | grep -q mlflow-artifacts; then
+  echo "✅ Bucket mlflow-artifacts creado exitosamente"
+else
+  echo "⚠️  Bucket no detectado, creando manualmente..."
+  sudo microk8s kubectl exec -n mlops-project deployment/minio -- mkdir -p /data/mlflow-artifacts
+  echo "✅ Bucket creado manualmente"
+fi
 
 # Desplegar MLflow
 echo "Desplegando MLflow..."
@@ -48,14 +81,26 @@ sudo microk8s kubectl apply -f manifests/mlflow.yaml
 
 # Esperar a que MLflow esté listo
 echo "Esperando a que MLflow esté listo..."
-sudo microk8s kubectl wait --for=condition=ready pod -l app=mlflow -n mlops-project --timeout=120s
+sudo microk8s kubectl wait --for=condition=ready pod -l app=mlflow -n mlops-project --timeout=180s
+
+# Verificar que MLflow esté respondiendo
+echo "Verificando que MLflow esté funcional..."
+NODE_IP=$(microk8s kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}')
+for i in {1..20}; do
+  if curl -f http://$NODE_IP:30500/health >/dev/null 2>&1; then
+    echo "✅ MLflow está respondiendo correctamente"
+    break
+  else
+    echo "⏳ MLflow aún no está listo, esperando... ($i/20)"
+    sleep 15
+  fi
+done
 
 # Configurar Ingress
 echo "Configurando acceso mediante Ingress..."
 sudo microk8s kubectl apply -f manifests/ingress.yaml
 
 # Mostrar información de acceso
-NODE_IP=$(microk8s kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}')
 echo ""
 echo "¡Despliegue completado exitosamente!"
 echo "=============================================="
