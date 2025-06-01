@@ -1,141 +1,151 @@
-# name: MLOps Platform CI Pipeline
+name: Build and Push MLOps Images
 
-# on:
-#   push:
-#     branches: [ "*" ]  
-#     paths:
-#       - 'proyecto-04/01_Primera_maquina/**'
-#       - 'proyecto-04/02_Segunda_maquina/**'
-#       - '.github/workflows/**'
-#   pull_request:
-#     branches: [ master ]  
+on:
+  push:
+    branches: [ '*' ]
+    paths:
+      - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
+      - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
+      - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
+      - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
+      - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
+      - '.github/workflows/mlops-images.yml'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
+      - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
+      - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
+      - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
+      - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
 
-# permissions:
-#   contents: write  
+env:
+  REGISTRY: docker.io
+  DOCKER_USERNAME: luisfrontuso10
 
-# env:
-#   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-#   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-#   IMAGE_TAG: ${{ github.sha }}
+jobs:
+  build-airflow:
+    name: Build Airflow Image
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Extract Airflow metadata
+      id: meta-airflow
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_USERNAME }}/airflow-houses
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          
+    - name: Build and push Airflow image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./proyecto-04/01_Primera_maquina/airflow
+        file: ./proyecto-04/01_Primera_maquina/airflow/Dockerfile
+        push: true
+        tags: ${{ steps.meta-airflow.outputs.tags }}
+        labels: ${{ steps.meta-airflow.outputs.labels }}
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=airflow
+        cache-to: type=gha,mode=max,scope=airflow
+        
+    - name: Airflow image summary
+      run: |
+        echo "✅ Airflow image built and pushed successfully!"
+        echo "📦 Image: ${{ env.DOCKER_USERNAME }}/airflow-houses"
+        echo "🏷️ Tags: ${{ steps.meta-airflow.outputs.tags }}"
 
-# jobs:
-  
-#   build-and-push:
-#     runs-on: ubuntu-latest
-#     timeout-minutes: 20
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+  build-mlflow:
+    name: Build MLflow Image
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Extract MLflow metadata
+      id: meta-mlflow
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_USERNAME }}/mlflow-houses
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          
+    - name: Build and push MLflow image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./proyecto-04/01_Primera_maquina/mlflow
+        file: ./proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow
+        push: true
+        tags: ${{ steps.meta-mlflow.outputs.tags }}
+        labels: ${{ steps.meta-mlflow.outputs.labels }}
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=mlflow
+        cache-to: type=gha,mode=max,scope=mlflow
+        
+    - name: MLflow image summary
+      run: |
+        echo "✅ MLflow image built and pushed successfully!"
+        echo "📦 Image: ${{ env.DOCKER_USERNAME }}/mlflow-houses"
+        echo "🏷️ Tags: ${{ steps.meta-mlflow.outputs.tags }}"
 
-#       - name: Set up Docker Buildx
-#         uses: docker/setup-buildx-action@v3
-
-#       - name: Login to DockerHub
-#         uses: docker/login-action@v3
-#         with:
-#           username: ${{ env.DOCKER_USERNAME }}
-#           password: ${{ env.DOCKER_PASSWORD }}
-
-#       - name: Build and push FastAPI
-#         uses: docker/build-push-action@v5
-#         with:
-#           context: ./proyecto-04/02_Segunda_maquina/api/fastapi
-#           push: true
-#           tags: |
-#             ${{ env.DOCKER_USERNAME }}/mlops-fastapi:${{ env.IMAGE_TAG }}
-#             ${{ env.DOCKER_USERNAME }}/mlops-fastapi:latest
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
-
-#       - name: Build and push Gradio
-#         uses: docker/build-push-action@v5
-#         with:
-#           context: ./proyecto-04/02_Segunda_maquina/api/gradio
-#           push: true
-#           tags: |
-#             ${{ env.DOCKER_USERNAME }}/mlops-gradio:${{ env.IMAGE_TAG }}
-#             ${{ env.DOCKER_USERNAME }}/mlops-gradio:latest
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
-
-#       - name: Build and push Airflow
-#         uses: docker/build-push-action@v5
-#         with:
-#           context: ./proyecto-04/01_Primera_maquina/airflow
-#           push: true
-#           tags: |
-#             ${{ env.DOCKER_USERNAME }}/mlops-airflow:${{ env.IMAGE_TAG }}
-#             ${{ env.DOCKER_USERNAME }}/mlops-airflow:latest
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
-
-#       - name: Build and push MLflow
-#         uses: docker/build-push-action@v5
-#         with:
-#           context: ./proyecto-04/01_Primera_maquina/mlflow/docker
-#           file: ./proyecto-04/01_Primera_maquina/mlflow/docker/Dockerfile.mlflow
-#           push: true
-#           tags: |
-#             ${{ env.DOCKER_USERNAME }}/mlops-mlflow:${{ env.IMAGE_TAG }}
-#             ${{ env.DOCKER_USERNAME }}/mlops-mlflow:latest
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
-
-  
-#   update-manifests:
-#     needs: build-and-push
-#     runs-on: ubuntu-latest
-#     timeout-minutes: 5
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
-
-#       - name: Update FastAPI image tags
-#         run: |
-#           cd proyecto-04/02_Segunda_maquina/api/fastapi
-#           sed -i "s|image: .*/mlops-fastapi:.*|image: ${{ env.DOCKER_USERNAME }}/mlops-fastapi:${{ env.IMAGE_TAG }}|g" fastapi-deployment.yaml
-
-#       - name: Update Gradio image tags  
-#         run: |
-#           cd proyecto-04/02_Segunda_maquina/api/gradio
-#           sed -i "s|image: .*/mlops-gradio:.*|image: ${{ env.DOCKER_USERNAME }}/mlops-gradio:${{ env.IMAGE_TAG }}|g" gradio-deployment.yaml
-
-#       - name: Update MLflow image tags
-#         run: |
-#           cd proyecto-04/01_Primera_maquina/mlflow/manifests
-#           sed -i "s|image: .*/mlops-mlflow:.*|image: ${{ env.DOCKER_USERNAME }}/mlops-mlflow:${{ env.IMAGE_TAG }}|g" mlflow.yaml
-
-#       - name: Commit and push changes
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         run: |
-#           git config --global user.name "GitHub Actions"
-#           git config --global user.email "actions@github.com"
-#           git pull --rebase
-#           git add proyecto-04/01_Primera_maquina/mlflow/manifests proyecto-04/02_Segunda_maquina/api
-#           git commit -m "🚀 Update image tags to ${{ env.IMAGE_TAG }}" || echo "No changes to commit"
-#           git push
-
-  
-#   notify-ready:
-#     needs: update-manifests
-#     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Deployment Ready Notification
-#         run: |
-#           echo "✅ CI Pipeline completed successfully!"
-#           echo ""
-#           echo "📦 Images built and pushed:"
-#           echo "- ${{ env.DOCKER_USERNAME }}/mlops-fastapi:${{ env.IMAGE_TAG }}"
-#           echo "- ${{ env.DOCKER_USERNAME }}/mlops-gradio:${{ env.IMAGE_TAG }}"
-#           echo "- ${{ env.DOCKER_USERNAME }}/mlops-airflow:${{ env.IMAGE_TAG }}"
-#           echo "- ${{ env.DOCKER_USERNAME }}/mlops-mlflow:${{ env.IMAGE_TAG }}"
-#           echo ""
-#           echo "📝 Kubernetes manifests updated in Git"
-#           echo "🚀 Argo CD should now detect changes and deploy automatically"
-#           echo ""
-#           echo "🔍 Next steps:"
-#           echo "1. Check Argo CD UI for automatic sync"
-#           echo "2. Verify pods are updated with new images"
-#           echo "3. Test services are working correctly"
+  deployment-summary:
+    name: Deployment Summary
+    runs-on: ubuntu-latest
+    needs: [build-airflow, build-mlflow]
+    if: always()
+    
+    steps:
+    - name: Deployment status
+      run: |
+        echo "🚀 MLOps Images Build Summary"
+        echo "================================"
+        echo "Airflow Build: ${{ needs.build-airflow.result }}"
+        echo "MLflow Build: ${{ needs.build-mlflow.result }}"
+        echo "Branch: ${{ github.ref_name }}"
+        echo ""
+        if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" ]]; then
+          echo "✅ All images built successfully!"
+          echo ""
+          echo "Available images:"
+          echo "• luisfrontuso10/airflow-houses:${{ github.ref_name }}"
+          echo "• luisfrontuso10/mlflow-houses:${{ github.ref_name }}"
+          if [[ "${{ github.ref_name }}" == "master" ]]; then
+            echo "• luisfrontuso10/airflow-houses:latest"
+            echo "• luisfrontuso10/mlflow-houses:latest"
+          fi
+          echo ""
+          echo "Next steps:"
+          echo "1. For Airflow: cd proyecto-04/01_Primera_maquina/airflow && ./deploy.sh pull && ./deploy.sh restart"
+          echo "2. For MLflow: cd proyecto-04/01_Primera_maquina/mlflow && ./update-images.sh"
+        else
+          echo "❌ Some builds failed. Check the logs above."
+          exit 1
+        fi
