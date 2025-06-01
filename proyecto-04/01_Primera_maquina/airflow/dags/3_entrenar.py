@@ -134,8 +134,8 @@ def preprocess_data(df,**kwargs):
    
     # Cargar desde archivo temporal
     
-    y_train = df['price'].tolist()
-    X_train = df.drop(columns=['id', 'price', 'prev_sold_date'], errors='ignore')
+    y_train = df['price']
+    X_train = df.drop(columns=['id', 'price', 'prev_sold_date','price_per_sqft'], errors='ignore')
     
     numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns
     categorical_features = X_train.select_dtypes(include=['object']).columns
@@ -148,7 +148,6 @@ def preprocess_data(df,**kwargs):
     
     # Realizar fit_transform una sola vez
     X_train_processed = preprocessor.fit_transform(X_train)
-    
     # Guardar el preprocesador
     local_path = '/tmp/preprocessor.joblib'
     with open(local_path, 'wb') as f:
@@ -182,15 +181,9 @@ def train_model(**kwargs):
     query = f"SELECT * FROM {clean_schema}.{clean_table};"
     df = pd.read_sql(query, con=engine)
     X,y = preprocess_data(df)
-
-    for col in X.select_dtypes(include='object').columns:
-        X[col] = X[col].astype('category')
-
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    df_train = X_train.copy()
-    df_train['price'] = y_train
-    joblib.dump(df_train, previous_data_path)
+    joblib.dump(df, previous_data_path)
     print(f"Datos de entrenamiento guardados en {previous_data_path}")
     # Configurar MLflow
     set_mlflow_tracking()  # Define esta función para setear MLFLOW_TRACKING_URI, etc.
