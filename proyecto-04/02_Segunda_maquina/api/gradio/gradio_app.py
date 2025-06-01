@@ -101,12 +101,13 @@ with gr.Blocks() as demo:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
     
     with gr.Row():
-        brokered_by = gr.Textbox(label="Agencia/Corredor (ID o nombre)")
-        status = gr.Dropdown(label="Estado de la casa", choices=["for_sale", "ready_to_build"])
-        street = gr.Textbox(label="Calle (ID o nombre)")
-        city = gr.Textbox(label="Ciudad")
-        state = gr.Textbox(label="Estado")
-        zip_code = gr.Textbox(label="Código Postal")
+        brokered_by = gr.Textbox(label="Agencia/Corredor (ID o nombre)", value="101640.0")
+        status = gr.Dropdown(label="Estado de la casa", choices=["for_sale", "ready_to_build"], value="for_sale")
+        street = gr.Textbox(label="Calle (ID o nombre)", value="1758218.0")
+        city = gr.Textbox(label="Ciudad", value="East Windsor")
+        state = gr.Textbox(label="Estado", value="Connecticut")
+        zip_code = gr.Textbox(label="Código Postal", value="6016.0")
+
     
     with gr.Row():
         bed = gr.Number(label="Número de habitaciones", value=3)

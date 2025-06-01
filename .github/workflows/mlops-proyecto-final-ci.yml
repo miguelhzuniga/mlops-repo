@@ -9,6 +9,8 @@ on:
       - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
       - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
       - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
+      - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
+      - 'proyecto-04/02_Segunda_maquina/api/gradio/**'
       - '.github/workflows/mlops-images.yml'
   pull_request:
     branches: [ master ]
@@ -18,6 +20,8 @@ on:
       - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
       - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
       - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
+      - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
+      - 'proyecto-04/02_Segunda_maquina/api/gradio/**'
 
 env:
   REGISTRY: docker.io
@@ -111,14 +115,106 @@ jobs:
         
     - name: MLflow image summary
       run: |
-        echo " MLflow image built and pushed successfully!"
-        echo " Image: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
-        echo " Tags: ${{ steps.meta-mlflow.outputs.tags }}"
+        echo "✅ MLflow image built and pushed successfully!"
+        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
+        echo "🏷️ Tags: ${{ steps.meta-mlflow.outputs.tags }}"
+
+  build-fastapi:
+    name: Build FastAPI Image
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Extract FastAPI metadata
+      id: meta-fastapi
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ secrets.DOCKER_USERNAME }}/fastapi-houses
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          type=sha,prefix={{date 'YYYYMMDD'}}-
+          
+    - name: Build and push FastAPI image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./proyecto-04/02_Segunda_maquina/api/fastapi
+        file: ./proyecto-04/02_Segunda_maquina/api/fastapi/Dockerfile
+        push: true
+        tags: ${{ steps.meta-fastapi.outputs.tags }}
+        labels: ${{ steps.meta-fastapi.outputs.labels }}
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=fastapi
+        cache-to: type=gha,mode=max,scope=fastapi
+        
+    - name: FastAPI image summary
+      run: |
+        echo "✅ FastAPI image built and pushed successfully!"
+        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/fastapi-houses"
+        echo "🏷️ Tags: ${{ steps.meta-fastapi.outputs.tags }}"
+
+  build-gradio:
+    name: Build Gradio Image
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Extract Gradio metadata
+      id: meta-gradio
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ secrets.DOCKER_USERNAME }}/gradio-houses
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          type=sha,prefix={{date 'YYYYMMDD'}}-
+          
+    - name: Build and push Gradio image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./proyecto-04/02_Segunda_maquina/api/gradio
+        file: ./proyecto-04/02_Segunda_maquina/api/gradio/Dockerfile
+        push: true
+        tags: ${{ steps.meta-gradio.outputs.tags }}
+        labels: ${{ steps.meta-gradio.outputs.labels }}
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=gradio
+        cache-to: type=gha,mode=max,scope=gradio
+        
+    - name: Gradio image summary
+      run: |
+        echo " Gradio image built and pushed successfully!"
+        echo " Image: ${{ secrets.DOCKER_USERNAME }}/gradio-houses"
+        echo " Tags: ${{ steps.meta-gradio.outputs.tags }}"
 
   deployment-summary:
     name: Deployment Summary
     runs-on: ubuntu-latest
-    needs: [build-airflow, build-mlflow]
+    needs: [build-airflow, build-mlflow, build-fastapi, build-gradio]
     if: always()
     
     steps:
@@ -128,22 +224,29 @@ jobs:
         echo "================================"
         echo "Airflow Build: ${{ needs.build-airflow.result }}"
         echo "MLflow Build: ${{ needs.build-mlflow.result }}"
+        echo "FastAPI Build: ${{ needs.build-fastapi.result }}"
+        echo "Gradio Build: ${{ needs.build-gradio.result }}"
         echo "Branch: ${{ github.ref_name }}"
         echo ""
-        if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" ]]; then
+        if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
           echo " All images built successfully!"
           echo ""
           echo "Available images:"
           echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ github.ref_name }}"
           echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ github.ref_name }}"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ github.ref_name }}"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ github.ref_name }}"
           if [[ "${{ github.ref_name }}" == "master" ]]; then
             echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:latest"
             echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:latest"
+            echo "• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:latest"
+            echo "• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:latest"
           fi
           echo ""
           echo "Next steps:"
           echo "1. For Airflow: cd proyecto-04/01_Primera_maquina/airflow && ./deploy.sh pull && ./deploy.sh restart"
-          echo "2. For MLflow: cd proyecto-04/01_Primera_maquina/mlflow && ./update-images.sh"
+          echo "2. For MLflow: cd proyecto-04/01_Primera_maquina/mlflow && ./deploy.sh"
+          echo "3. For API Services: cd proyecto-04/02_Segunda_maquina/api && ./deploy.sh"
         else
           echo " Some builds failed. Check the logs above."
           exit 1
