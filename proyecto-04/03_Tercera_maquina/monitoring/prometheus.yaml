@@ -10,7 +10,10 @@ data:
     scrape_configs:
       - job_name: 'fastapi'
         static_configs:
-          - targets: ['10.43.101.202:30601']
+          - targets: ['fastapi-housing-service:80']
+      - job_name: 'gradio'
+        static_configs:
+          - targets: ['gradio-housing-service:8501']
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -41,7 +44,6 @@ spec:
         - name: config-volume
           configMap:
             name: prometheus-config
-
 ---
 apiVersion: v1
 kind: Service
