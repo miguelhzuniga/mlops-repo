@@ -1,5 +1,4 @@
 #!/bin/bash
-# deploy.sh - Script para desplegar MLflow en MicroK8s con build, tag y push de imágenes airflow y mlflow
 
 # Verificar si microk8s está instalado y listo
 if ! command -v microk8s >/dev/null 2>&1; then
@@ -26,11 +25,11 @@ fi
 
 # Crear namespace
 echo "Creando namespace..."
-sudo microk8s kubectl apply -f mlflow/manifests/namespace.yaml
+sudo microk8s kubectl apply -f manifests/namespace.yaml
 
 # Desplegar almacenamiento
 echo "Desplegando servicios de almacenamiento (PostgreSQL y MinIO)..."
-sudo microk8s kubectl apply -f mlflow/manifests/storage.yaml
+sudo microk8s kubectl apply -f manifests/storage.yaml
 
 # Esperar a que los pods estén listos
 echo "Esperando a que los pods de almacenamiento estén listos..."
@@ -39,33 +38,13 @@ sudo microk8s kubectl wait --for=condition=ready pod -l app=minio -n mlops-proje
 
 # Inicializar bucket
 echo "Inicializando bucket MinIO para artefactos de MLflow..."
-sudo microk8s kubectl apply -f mlflow/manifests/init-job.yaml
+sudo microk8s kubectl apply -f manifests/init-job.yaml
 sleep 5
 sudo microk8s kubectl wait --for=condition=complete job/minio-init -n mlops-project --timeout=60s
 
-# Construir imagen Docker personalizada airflow
-echo "Construyendo imagen Docker personalizada airflow..."
-docker build -f airflow/Dockerfile -t camilosvel/airflow-houses:latest .
-
-# Construir imagen Docker personalizada mlflow
-echo "Construyendo imagen Docker personalizada mlflow..."
-sudo  docker build -f mlflow/Dockerfile.mlflow -t camilosvel/mlflow-houses:latest .
-
-
-# Login en Docker Hub (una sola vez)
-echo "Iniciando sesión en Docker Hub..."
-docker login
-
-# Push de imágenes
-echo "Publicando imagen airflow en Docker Hub..."
-sudo docker push camilosvel/airflow-houses:latest
-
-echo "Publicando imagen mlflow en Docker Hub..."
-sudo docker push camilosvel/mlflow-houses:latest
-
 # Desplegar MLflow
 echo "Desplegando MLflow..."
-sudo microk8s kubectl apply -f mlflow/manifests/mlflow.yaml
+sudo microk8s kubectl apply -f manifests/mlflow.yaml
 
 # Esperar a que MLflow esté listo
 echo "Esperando a que MLflow esté listo..."
@@ -73,7 +52,7 @@ sudo microk8s kubectl wait --for=condition=ready pod -l app=mlflow -n mlops-proj
 
 # Configurar Ingress
 echo "Configurando acceso mediante Ingress..."
-sudo microk8s kubectl apply -f mlflow/manifests/ingress.yaml
+sudo microk8s kubectl apply -f manifests/ingress.yaml
 
 # Mostrar información de acceso
 NODE_IP=$(microk8s kubectl get nodes -o jsonpath='{.items[0].status.addresses[0].address}')
@@ -88,3 +67,6 @@ echo "  Contraseña: securepassword123"
 echo "=============================================="
 echo "Para verificar el estado de los pods:"
 echo "  microk8s kubectl get pods -n mlops-project"
+echo ""
+echo " Argo CD se encargará de las actualizaciones automáticas"
+echo " Para cambios: solo haz push al repositorio"
