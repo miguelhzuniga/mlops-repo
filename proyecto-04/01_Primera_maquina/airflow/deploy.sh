@@ -29,7 +29,7 @@ check_docker() {
         print_error "Docker is not running. Please start Docker first."
         exit 1
     fi
-    print_success "Docker is running"
+    print_success "Docker is running, please wait"
 }
 
 set_env_vars() {
