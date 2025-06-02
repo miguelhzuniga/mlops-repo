@@ -37,7 +37,7 @@ metrics_app = FastAPI(title="Prometheus Metrics for House Price Prediction")
 async def root(): return {"message": "Prometheus Metrics Server for House Price Prediction"}
 
 
-@app.get("/metrics")
+@metrics_app.get("/metrics")
 async def metrics():
     return Response(generate_latest(), media_type= CONTENT_TYPE_LATEST)
 
