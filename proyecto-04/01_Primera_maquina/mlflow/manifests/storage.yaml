@@ -36,7 +36,7 @@ spec:
         - name: POSTGRES_USER
           value: mlflow
         - name: POSTGRES_PASSWORD
-          value: mlflow123  # Usar secrets en producción
+          value: mlflow123  
         ports:
         - containerPort: 5432
         volumeMounts:
@@ -60,7 +60,6 @@ spec:
     targetPort: 5432
   type: NodePort
 ---
-# MinIO para artefactos
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
