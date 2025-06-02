@@ -1,12 +1,9 @@
-name: Build and Push MLOps Images
+name: Construir y Subir Imágenes MLOps
 
 on:
   push:
     branches: [ '*' ]
     paths:
-      - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
-      - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
-      - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
       - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
       - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
       - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
@@ -15,9 +12,6 @@ on:
   pull_request:
     branches: [ master ]
     paths:
-      - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
-      - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
-      - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
       - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
       - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
       - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
@@ -27,70 +21,26 @@ env:
   REGISTRY: docker.io
 
 jobs:
-  build-airflow:
-    name: Build Airflow Image
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-      
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        
-    - name: Extract Airflow metadata
-      id: meta-airflow
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ secrets.DOCKER_USERNAME }}/airflow-houses
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
-          type=sha,prefix={{date 'YYYYMMDD'}}-
-          
-    - name: Build and push Airflow image
-      uses: docker/build-push-action@v5
-      with:
-        context: ./proyecto-04/01_Primera_maquina/airflow
-        file: ./proyecto-04/01_Primera_maquina/airflow/Dockerfile
-        push: true
-        tags: ${{ steps.meta-airflow.outputs.tags }}
-        labels: ${{ steps.meta-airflow.outputs.labels }}
-        platforms: linux/amd64,linux/arm64
-        cache-from: type=gha,scope=airflow
-        cache-to: type=gha,mode=max,scope=airflow
-        
-    - name: Airflow image summary
-      run: |
-        echo " Airflow image built and pushed successfully!"
-        echo " Image: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
-        echo " Tags: ${{ steps.meta-airflow.outputs.tags }}"
-
   build-mlflow:
-    name: Build MLflow Image
+    name: Construir Imagen MLflow
     runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Checkout code
+    - name: Descargar código
       uses: actions/checkout@v4
       
-    - name: Set up Docker Buildx
+    - name: Configurar Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Log in to Docker Hub
+    - name: Iniciar sesión en Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extract MLflow metadata
+    - name: Extraer metadatos de MLflow
       id: meta-mlflow
       uses: docker/metadata-action@v5
       with:
@@ -101,7 +51,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Build and push MLflow image
+    - name: Construir y subir imagen MLflow
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/01_Primera_maquina/mlflow
@@ -113,30 +63,42 @@ jobs:
         cache-from: type=gha,scope=mlflow
         cache-to: type=gha,mode=max,scope=mlflow
         
-    - name: MLflow image summary
+    - name: Extraer tag de despliegue
+      id: extract-tag
       run: |
-        echo "✅ MLflow image built and pushed successfully!"
-        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
-        echo "🏷️ Tags: ${{ steps.meta-mlflow.outputs.tags }}"
+        if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
+          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+        else
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Resumen imagen MLflow
+      run: |
+        echo "✅ ¡Imagen MLflow construida y subida exitosamente!"
+        echo "📦 Imagen: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
+        echo "🏷️  Tags: ${{ steps.meta-mlflow.outputs.tags }}"
+        echo "🎯 Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
   build-fastapi:
-    name: Build FastAPI Image
+    name: Construir Imagen FastAPI
     runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Checkout code
+    - name: Descargar código
       uses: actions/checkout@v4
       
-    - name: Set up Docker Buildx
+    - name: Configurar Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Log in to Docker Hub
+    - name: Iniciar sesión en Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extract FastAPI metadata
+    - name: Extraer metadatos de FastAPI
       id: meta-fastapi
       uses: docker/metadata-action@v5
       with:
@@ -147,7 +109,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Build and push FastAPI image
+    - name: Construir y subir imagen FastAPI
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/02_Segunda_maquina/api/fastapi
@@ -159,30 +121,42 @@ jobs:
         cache-from: type=gha,scope=fastapi
         cache-to: type=gha,mode=max,scope=fastapi
         
-    - name: FastAPI image summary
+    - name: Extraer tag de despliegue
+      id: extract-tag
       run: |
-        echo "✅ FastAPI image built and pushed successfully!"
-        echo "📦 Image: ${{ secrets.DOCKER_USERNAME }}/fastapi-houses"
-        echo "🏷️ Tags: ${{ steps.meta-fastapi.outputs.tags }}"
+        if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
+          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+        else
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Resumen imagen FastAPI
+      run: |
+        echo "✅ ¡Imagen FastAPI construida y subida exitosamente!"
+        echo "📦 Imagen: ${{ secrets.DOCKER_USERNAME }}/fastapi-houses"
+        echo "🏷️  Tags: ${{ steps.meta-fastapi.outputs.tags }}"
+        echo "🎯 Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
   build-gradio:
-    name: Build Gradio Image
+    name: Construir Imagen Gradio
     runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Checkout code
+    - name: Descargar código
       uses: actions/checkout@v4
       
-    - name: Set up Docker Buildx
+    - name: Configurar Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Log in to Docker Hub
+    - name: Iniciar sesión en Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extract Gradio metadata
+    - name: Extraer metadatos de Gradio
       id: meta-gradio
       uses: docker/metadata-action@v5
       with:
@@ -193,7 +167,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Build and push Gradio image
+    - name: Construir y subir imagen Gradio
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/02_Segunda_maquina/api/gradio
@@ -205,49 +179,222 @@ jobs:
         cache-from: type=gha,scope=gradio
         cache-to: type=gha,mode=max,scope=gradio
         
-    - name: Gradio image summary
+    - name: Extraer tag de despliegue
+      id: extract-tag
       run: |
-        echo " Gradio image built and pushed successfully!"
-        echo " Image: ${{ secrets.DOCKER_USERNAME }}/gradio-houses"
-        echo " Tags: ${{ steps.meta-gradio.outputs.tags }}"
+        if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
+          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+        else
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Resumen imagen Gradio
+      run: |
+        echo "✅ ¡Imagen Gradio construida y subida exitosamente!"
+        echo "📦 Imagen: ${{ secrets.DOCKER_USERNAME }}/gradio-houses"
+        echo "🏷️  Tags: ${{ steps.meta-gradio.outputs.tags }}"
+        echo "🎯 Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
-  deployment-summary:
-    name: Deployment Summary
+  actualizar-manifiestos:
+    name: Actualizar Manifiestos de Kubernetes
     runs-on: ubuntu-latest
-    needs: [build-airflow, build-mlflow, build-fastapi, build-gradio]
+    needs: [build-mlflow, build-fastapi, build-gradio]
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    
+    steps:
+    - name: Descargar código
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+        
+    - name: Configurar Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        
+    - name: Actualizar tags de imágenes en manifiestos
+      run: |
+        # Usar el tag que generaron los builds
+        NEW_TAG="${{ needs.build-mlflow.outputs.image-tag }}"
+        echo "🔄 Actualizando manifiestos con tag: $NEW_TAG"
+        
+        # Función para actualizar archivos YAML
+        actualizar_archivos_yaml() {
+          local archivo=$1
+          local nombre_imagen=$2
+          local nuevo_tag=$3
+          
+          echo "📄 Procesando archivo: $archivo"
+          echo "🖼️  Imagen: $nombre_imagen"
+          echo "🏷️  Nuevo tag: $nuevo_tag"
+          
+          if [[ -f "$archivo" ]]; then
+            # Crear backup
+            cp "$archivo" "$archivo.bak"
+            
+            # Actualizar la imagen usando sed con una expresión más específica
+            sed -i -E "s|(image:.*${nombre_imagen}):.*|\1:${nuevo_tag}|g" "$archivo"
+            
+            # Verificar si hubo cambios
+            if ! cmp -s "$archivo" "$archivo.bak"; then
+              echo "✅ Actualizado: $archivo"
+              echo "🔍 Cambio realizado:"
+              grep "image:.*${nombre_imagen}" "$archivo" | head -1 || echo "No se encontró la línea de imagen"
+              rm "$archivo.bak"
+            else
+              echo "⏭️  Sin cambios: $archivo"
+              rm "$archivo.bak"
+            fi
+          else
+            echo "❌ Archivo no encontrado: $archivo"
+          fi
+        }
+        
+        echo "🚀 Iniciando actualización de manifiestos..."
+        
+        # Actualizar MLflow
+        echo ""
+        echo "📦 Actualizando MLflow..."
+        actualizar_archivos_yaml "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" "${{ secrets.DOCKER_USERNAME }}/mlflow-houses" "$NEW_TAG"
+        
+        # Actualizar FastAPI
+        echo ""
+        echo "📦 Actualizando FastAPI..."
+        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/fastapi-houses" "$NEW_TAG"
+        
+        # Actualizar Gradio
+        echo ""
+        echo "📦 Actualizando Gradio..."
+        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/gradio-houses" "$NEW_TAG"
+        
+        echo ""
+        echo "✅ ¡Actualización de manifiestos completada!"
+        
+    - name: Mostrar cambios
+      run: |
+        echo "📊 Estado de Git después de las actualizaciones:"
+        git status --porcelain
+        
+        if [[ -n $(git status --porcelain) ]]; then
+          echo ""
+          echo "📝 Archivos modificados:"
+          git diff --name-only
+          echo ""
+          echo "🔍 Cambios detallados:"
+          git diff --unified=2
+        else
+          echo "ℹ️  No se modificaron archivos de manifiestos"
+        fi
+        
+    - name: Confirmar y subir cambios
+      run: |
+        if [[ -n $(git status --porcelain) ]]; then
+          echo "💾 Confirmando cambios..."
+          git add proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml
+          git add proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
+          git add proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml
+          
+          git commit -m "🤖 Auto-actualización tags de imágenes a ${{ needs.build-mlflow.outputs.image-tag }}
+
+🏗️  Build: ${{ github.sha }}
+🌟 Imágenes actualizadas:
+• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}
+• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}
+• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }}
+
+📂 Archivos actualizados:
+• proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml
+• proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
+• proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml
+
+Disparado por: ${{ github.event.head_commit.message }}"
+          
+          echo "🚀 Subiendo cambios..."
+          git push
+          echo "✅ ¡Cambios subidos exitosamente!"
+        else
+          echo "ℹ️  No hay cambios para confirmar"
+        fi
+        
+    - name: Información de Argo CD
+      run: |
+        echo "🎯 ¡Manifiestos actualizados exitosamente!"
+        echo ""
+        echo "📋 Aplicaciones de Argo CD que se sincronizarán:"
+        echo "• mlflow-app (proyecto-04/01_Primera_maquina/mlflow/manifests)"
+        echo "• fastapi-app (proyecto-04/02_Segunda_maquina/api/fastapi)"
+        echo "• gradio-app (proyecto-04/02_Segunda_maquina/api/gradio)"
+        echo ""
+        echo "⏰ Argo CD detectará los cambios en ~3 minutos (intervalo de sincronización por defecto)"
+        echo "🔄 O puedes sincronizar manualmente desde la UI de Argo CD"
+        echo "🌐 UI de Argo CD: https://localhost:30443"
+
+  resumen-despliegue:
+    name: Resumen del Despliegue
+    runs-on: ubuntu-latest
+    needs: [build-mlflow, build-fastapi, build-gradio, actualizar-manifiestos]
     if: always()
     
     steps:
-    - name: Deployment status
+    - name: Estado del despliegue
       run: |
-        echo " MLOps Images Build Summary"
-        echo "================================"
-        echo "Airflow Build: ${{ needs.build-airflow.result }}"
-        echo "MLflow Build: ${{ needs.build-mlflow.result }}"
-        echo "FastAPI Build: ${{ needs.build-fastapi.result }}"
-        echo "Gradio Build: ${{ needs.build-gradio.result }}"
-        echo "Branch: ${{ github.ref_name }}"
+        echo "🚀 Resumen de Ejecución del Pipeline MLOps"
+        echo "=================================================="
         echo ""
-        if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
-          echo " All images built successfully!"
+        echo "📊 Resultados de Build:"
+        echo "• Build MLflow:         ${{ needs.build-mlflow.result }}"
+        echo "• Build FastAPI:        ${{ needs.build-fastapi.result }}"
+        echo "• Build Gradio:         ${{ needs.build-gradio.result }}"
+        echo "• Actualizar Manifiestos: ${{ needs.actualizar-manifiestos.result }}"
+        echo ""
+        echo "🌿 Rama: ${{ github.ref_name }}"
+        echo "📝 Commit: ${{ github.sha }}"
+        echo ""
+        echo "ℹ️  Nota: Airflow se despliega con Docker Compose (no incluido en automatización)"
+        echo ""
+        
+        if [[ "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
+          echo "✅ ¡Todas las imágenes construidas exitosamente!"
           echo ""
-          echo "Available images:"
-          echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ github.ref_name }}"
-          echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ github.ref_name }}"
-          echo "• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ github.ref_name }}"
-          echo "• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ github.ref_name }}"
+          echo "📦 Imágenes disponibles:"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }}"
+          
           if [[ "${{ github.ref_name }}" == "master" ]]; then
-            echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:latest"
-            echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:latest"
-            echo "• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:latest"
-            echo "• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:latest"
+            echo ""
+            echo "🎯 Despliegue en Producción (rama master):"
+            if [[ "${{ needs.actualizar-manifiestos.result }}" == "success" ]]; then
+              echo "✅ Manifiestos de Kubernetes actualizados automáticamente"
+              echo "🔄 Argo CD sincronizará las nuevas imágenes en ~3 minutos"
+              echo "🌐 Monitorear despliegue: https://localhost:30443"
+            elif [[ "${{ needs.actualizar-manifiestos.result }}" == "skipped" ]]; then
+              echo "⏭️  Actualización de manifiestos omitida (no es push a master)"
+            else
+              echo "❌ Actualización de manifiestos falló - intervención manual necesaria"
+            fi
+            echo ""
+            echo "📋 Comandos de despliegue manual (si es necesario):"
+            echo "sudo microk8s kubectl set image deployment/mlflow mlflow=${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }} -n mlops-project"
+            echo "sudo microk8s kubectl set image deployment/fastapi-housing fastapi-housing=${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }} -n mlops-project"
+            echo "sudo microk8s kubectl set image deployment/gradio-housing gradio-housing=${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }} -n mlops-project"
+          else
+            echo ""
+            echo "🧪 Rama de Desarrollo (${{ github.ref_name }}):"
+            echo "• Imágenes disponibles para pruebas"
+            echo "• Sin despliegue automático en producción"
+            echo "• Hacer merge a master para despliegue automático"
           fi
-          echo ""
-          echo "Next steps:"
-          echo "1. For Airflow: cd proyecto-04/01_Primera_maquina/airflow && ./deploy.sh pull && ./deploy.sh restart"
-          echo "2. For MLflow: cd proyecto-04/01_Primera_maquina/mlflow && ./deploy.sh"
-          echo "3. For API Services: cd proyecto-04/02_Segunda_maquina/api && ./deploy.sh"
         else
-          echo " Some builds failed. Check the logs above."
+          echo "❌ ¡Algunos builds fallaron!"
+          echo ""
+          echo "🔍 Componentes fallidos:"
+          [[ "${{ needs.build-mlflow.result }}" != "success" ]] && echo "• MLflow: ${{ needs.build-mlflow.result }}"
+          [[ "${{ needs.build-fastapi.result }}" != "success" ]] && echo "• FastAPI: ${{ needs.build-fastapi.result }}"
+          [[ "${{ needs.build-gradio.result }}" != "success" ]] && echo "• Gradio: ${{ needs.build-gradio.result }}"
+          [[ "${{ needs.actualizar-manifiestos.result }}" == "failure" ]] && echo "• Actualización de Manifiestos: ${{ needs.actualizar-manifiestos.result }}"
+          echo ""
+          echo "📖 Revisar los logs arriba para más detalles"
           exit 1
         fi
