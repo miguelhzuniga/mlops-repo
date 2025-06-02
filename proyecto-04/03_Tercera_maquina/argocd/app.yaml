@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlops-root-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/miguelhzuniga/mlops-repo.git
+    targetRevision: master
+    path: proyecto-04/03_Tercera_maquina/argocd/apps
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
