@@ -34,19 +34,19 @@ jobs:
       image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Descargar código
+    - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Configurar Docker Buildx
+    - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Iniciar sesión en Docker Hub
+    - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extraer metadatos de Airflow
+    - name: Extract metadata
       id: meta-airflow
       uses: docker/metadata-action@v5
       with:
@@ -57,7 +57,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Construir y subir imagen Airflow
+    - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/01_Primera_maquina/airflow
@@ -69,7 +69,7 @@ jobs:
         cache-from: type=gha,scope=airflow
         cache-to: type=gha,mode=max,scope=airflow
         
-    - name: Extraer tag de despliegue
+    - name: Extract tag
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
@@ -77,13 +77,6 @@ jobs:
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
-        
-    - name: Resumen imagen Airflow
-      run: |
-        echo "Imagen Airflow construida y subida exitosamente!"
-        echo "Imagen: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
-        echo "Tags: ${{ steps.meta-airflow.outputs.tags }}"
-        echo "Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
   build-mlflow:
     name: Construir Imagen MLflow
@@ -92,19 +85,19 @@ jobs:
       image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Descargar código
+    - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Configurar Docker Buildx
+    - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Iniciar sesión en Docker Hub
+    - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extraer metadatos de MLflow
+    - name: Extract metadata
       id: meta-mlflow
       uses: docker/metadata-action@v5
       with:
@@ -115,7 +108,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Construir y subir imagen MLflow
+    - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/01_Primera_maquina/mlflow
@@ -127,7 +120,7 @@ jobs:
         cache-from: type=gha,scope=mlflow
         cache-to: type=gha,mode=max,scope=mlflow
         
-    - name: Extraer tag de despliegue
+    - name: Extract tag
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
@@ -135,13 +128,6 @@ jobs:
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
-        
-    - name: Resumen imagen MLflow
-      run: |
-        echo "Imagen MLflow construida y subida exitosamente!"
-        echo "Imagen: ${{ secrets.DOCKER_USERNAME }}/mlflow-houses"
-        echo "Tags: ${{ steps.meta-mlflow.outputs.tags }}"
-        echo "Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
   build-fastapi:
     name: Construir Imagen FastAPI
@@ -150,19 +136,19 @@ jobs:
       image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Descargar código
+    - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Configurar Docker Buildx
+    - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Iniciar sesión en Docker Hub
+    - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extraer metadatos de FastAPI
+    - name: Extract metadata
       id: meta-fastapi
       uses: docker/metadata-action@v5
       with:
@@ -173,7 +159,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Construir y subir imagen FastAPI
+    - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/02_Segunda_maquina/api/fastapi
@@ -185,7 +171,7 @@ jobs:
         cache-from: type=gha,scope=fastapi
         cache-to: type=gha,mode=max,scope=fastapi
         
-    - name: Extraer tag de despliegue
+    - name: Extract tag
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
@@ -193,13 +179,6 @@ jobs:
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
-        
-    - name: Resumen imagen FastAPI
-      run: |
-        echo "Imagen FastAPI construida y subida exitosamente!"
-        echo "Imagen: ${{ secrets.DOCKER_USERNAME }}/fastapi-houses"
-        echo "Tags: ${{ steps.meta-fastapi.outputs.tags }}"
-        echo "Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
   build-gradio:
     name: Construir Imagen Gradio
@@ -208,19 +187,19 @@ jobs:
       image-tag: ${{ steps.extract-tag.outputs.tag }}
     
     steps:
-    - name: Descargar código
+    - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Configurar Docker Buildx
+    - name: Setup Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: Iniciar sesión en Docker Hub
+    - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Extraer metadatos de Gradio
+    - name: Extract metadata
       id: meta-gradio
       uses: docker/metadata-action@v5
       with:
@@ -231,7 +210,7 @@ jobs:
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
           type=sha,prefix={{date 'YYYYMMDD'}}-
           
-    - name: Construir y subir imagen Gradio
+    - name: Build and push
       uses: docker/build-push-action@v5
       with:
         context: ./proyecto-04/02_Segunda_maquina/api/gradio
@@ -243,7 +222,7 @@ jobs:
         cache-from: type=gha,scope=gradio
         cache-to: type=gha,mode=max,scope=gradio
         
-    - name: Extraer tag de despliegue
+    - name: Extract tag
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
@@ -251,124 +230,84 @@ jobs:
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
-        
-    - name: Resumen imagen Gradio
-      run: |
-        echo "Imagen Gradio construida y subida exitosamente!"
-        echo "Imagen: ${{ secrets.DOCKER_USERNAME }}/gradio-houses"
-        echo "Tags: ${{ steps.meta-gradio.outputs.tags }}"
-        echo "Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
 
-  actualizar-manifiestos:
-    name: Actualizar Manifiestos de Kubernetes
+  update-manifests:
+    name: Update Kubernetes Manifests
     runs-on: ubuntu-latest
     needs: [build-airflow, build-mlflow, build-fastapi, build-gradio]
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     
     steps:
-    - name: Descargar código
+    - name: Checkout
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
         
-    - name: Configurar Git
+    - name: Configure Git
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         
-    - name: Actualizar manifiestos
+    - name: Update image tags
       run: |
         MLFLOW_TAG="${{ needs.build-mlflow.outputs.image-tag }}"
         FASTAPI_TAG="${{ needs.build-fastapi.outputs.image-tag }}"
         GRADIO_TAG="${{ needs.build-gradio.outputs.image-tag }}"
         
-        echo "Actualizando manifiestos..."
-        echo "MLflow tag: $MLFLOW_TAG"
-        echo "FastAPI tag: $FASTAPI_TAG"
-        echo "Gradio tag: $GRADIO_TAG"
-        
-        # Actualizar MLflow
-        if [[ -f "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" ]]; then
-          sed -i -E "s|(image:.*${{ secrets.DOCKER_USERNAME }}/mlflow-houses):.*|\1:${MLFLOW_TAG}|g" "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml"
-          echo "MLflow manifest actualizado"
+        echo "Updating MLflow to tag: $MLFLOW_TAG"
+        if [ -f "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" ]; then
+          sed -i "s|${{ secrets.DOCKER_USERNAME }}/mlflow-houses:.*|${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${MLFLOW_TAG}|g" "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml"
         fi
         
-        # Actualizar FastAPI
-        if [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]]; then
-          sed -i -E "s|(image:.*${{ secrets.DOCKER_USERNAME }}/fastapi-houses):.*|\1:${FASTAPI_TAG}|g" "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"
-          echo "FastAPI manifest actualizado"
+        echo "Updating FastAPI to tag: $FASTAPI_TAG"
+        if [ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]; then
+          sed -i "s|${{ secrets.DOCKER_USERNAME }}/fastapi-houses:.*|${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${FASTAPI_TAG}|g" "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"
         fi
         
-        # Actualizar Gradio
-        if [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]]; then
-          sed -i -E "s|(image:.*${{ secrets.DOCKER_USERNAME }}/gradio-houses):.*|\1:${GRADIO_TAG}|g" "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
-          echo "Gradio manifest actualizado"
+        echo "Updating Gradio to tag: $GRADIO_TAG"
+        if [ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]; then
+          sed -i "s|${{ secrets.DOCKER_USERNAME }}/gradio-houses:.*|${{ secrets.DOCKER_USERNAME }}/gradio-houses:${GRADIO_TAG}|g" "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
         fi
         
-    - name: Commit y push cambios
+    - name: Commit and push
       run: |
-        git add -A
-        if [[ -n $(git status --porcelain) ]]; then
-          git commit -m "Auto-update image tags - Build ${{ github.sha }}"
-          git push
-          echo "Cambios commitados y pusheados"
+        git add .
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
         else
-          echo "No hay cambios para commitear"
+          git commit -m "Update image tags for build ${{ github.sha }}"
+          git push
+          echo "Changes committed and pushed"
         fi
-        
-    - name: Info Argo CD
-      run: |
-        echo "Manifiestos actualizados exitosamente"
-        echo "Aplicaciones Argo CD afectadas:"
-        echo "- mlflow-app"
-        echo "- fastapi-app" 
-        echo "- gradio-app"
-        echo "Argo CD sincronizara automaticamente en ~3 minutos"
 
-  resumen-despliegue:
-    name: Resumen del Despliegue
+  summary:
+    name: Deployment Summary
     runs-on: ubuntu-latest
-    needs: [build-airflow, build-mlflow, build-fastapi, build-gradio, actualizar-manifiestos]
+    needs: [build-airflow, build-mlflow, build-fastapi, build-gradio, update-manifests]
     if: always()
     
     steps:
-    - name: Estado del despliegue
+    - name: Print summary
       run: |
-        echo "=== RESUMEN PIPELINE MLOPS ==="
-        echo "Build Airflow: ${{ needs.build-airflow.result }}"
-        echo "Build MLflow: ${{ needs.build-mlflow.result }}"
-        echo "Build FastAPI: ${{ needs.build-fastapi.result }}"
-        echo "Build Gradio: ${{ needs.build-gradio.result }}"
-        echo "Update Manifests: ${{ needs.actualizar-manifiestos.result }}"
+        echo "=== MLOps Pipeline Summary ==="
+        echo "Airflow Build: ${{ needs.build-airflow.result }}"
+        echo "MLflow Build: ${{ needs.build-mlflow.result }}"
+        echo "FastAPI Build: ${{ needs.build-fastapi.result }}"
+        echo "Gradio Build: ${{ needs.build-gradio.result }}"
+        echo "Manifest Update: ${{ needs.update-manifests.result }}"
         echo ""
-        echo "Rama: ${{ github.ref_name }}"
+        echo "Branch: ${{ github.ref_name }}"
         echo "Commit: ${{ github.sha }}"
         echo ""
-        
         if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
-          echo "TODAS LAS IMAGENES CONSTRUIDAS EXITOSAMENTE"
-          echo ""
-          echo "Imagenes disponibles:"
+          echo "All images built successfully!"
+          echo "Available images:"
           echo "- ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ needs.build-airflow.outputs.image-tag }}"
           echo "- ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}"
           echo "- ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}"
           echo "- ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }}"
-          
-          if [[ "${{ github.ref_name }}" == "master" ]]; then
-            echo ""
-            echo "DESPLIEGUE EN PRODUCCION:"
-            if [[ "${{ needs.actualizar-manifiestos.result }}" == "success" ]]; then
-              echo "- Manifiestos K8s actualizados automaticamente"
-              echo "- Argo CD sincronizara en ~3 minutos"
-            else
-              echo "- ERROR: Actualizacion de manifiestos fallo"
-            fi
-          else
-            echo ""
-            echo "RAMA DE DESARROLLO - Sin despliegue automatico"
-          fi
         else
-          echo "ERROR: Algunos builds fallaron"
+          echo "Some builds failed!"
           exit 1
         fi
