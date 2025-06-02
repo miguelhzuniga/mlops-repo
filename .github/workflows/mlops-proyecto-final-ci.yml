@@ -2,7 +2,7 @@ name: Construir y Subir Imágenes MLOps
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ master ]
     paths:
       - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
       - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
