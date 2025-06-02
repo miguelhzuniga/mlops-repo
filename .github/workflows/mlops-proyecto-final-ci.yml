@@ -84,7 +84,6 @@ jobs:
         echo "Imagen: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
         echo "Tags: ${{ steps.meta-airflow.outputs.tags }}"
         echo "Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
-        echo "Nota: Airflow se despliega independientemente con Docker Compose"
 
   build-mlflow:
     name: Construir Imagen MLflow
@@ -278,151 +277,54 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         
-    - name: Actualizar tags de imágenes en manifiestos
+    - name: Actualizar manifiestos
       run: |
-        # Usar los tags que generaron los builds
         MLFLOW_TAG="${{ needs.build-mlflow.outputs.image-tag }}"
         FASTAPI_TAG="${{ needs.build-fastapi.outputs.image-tag }}"
         GRADIO_TAG="${{ needs.build-gradio.outputs.image-tag }}"
         
-        echo "Actualizando manifiestos con tags:"
-        echo "  MLflow: $MLFLOW_TAG"
-        echo "  FastAPI: $FASTAPI_TAG"
-        echo "  Gradio: $GRADIO_TAG"
-        
-        # Función para actualizar archivos YAML
-        actualizar_archivos_yaml() {
-          local archivo=$1
-          local nombre_imagen=$2
-          local nuevo_tag=$3
-          
-          echo ""
-          echo "Procesando archivo: $archivo"
-          echo "Imagen a buscar: $nombre_imagen"
-          echo "Nuevo tag: $nuevo_tag"
-          
-          if [[ -f "$archivo" ]]; then
-            # Crear backup
-            cp "$archivo" "$archivo.bak"
-            
-            # Buscar líneas con la imagen antes del cambio
-            echo "Líneas actuales que coinciden:"
-            grep -n "image:.*${nombre_imagen}" "$archivo" || echo "No se encontraron líneas con la imagen"
-            
-            # Actualizar la imagen usando sed con una expresión más específica
-            sed -i -E "s|(image:.*${nombre_imagen}):.*|\1:${nuevo_tag}|g" "$archivo"
-            
-            # Verificar si hubo cambios
-            if ! cmp -s "$archivo" "$archivo.bak"; then
-              echo "Actualizado: $archivo"
-              echo "Líneas después del cambio:"
-              grep -n "image:.*${nombre_imagen}" "$archivo" || echo "No se encontraron líneas después del cambio"
-              rm "$archivo.bak"
-              return 0
-            else
-              echo "Sin cambios: $archivo"
-              rm "$archivo.bak"
-              return 1
-            fi
-          else
-            echo "Archivo no encontrado: $archivo"
-            return 1
-          fi
-        }
-        
-        echo "Iniciando actualización de manifiestos..."
+        echo "Actualizando manifiestos..."
+        echo "MLflow tag: $MLFLOW_TAG"
+        echo "FastAPI tag: $FASTAPI_TAG"
+        echo "Gradio tag: $GRADIO_TAG"
         
         # Actualizar MLflow
-        echo ""
-        echo "=== ACTUALIZANDO MLFLOW ==="
-        actualizar_archivos_yaml "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" "${{ secrets.DOCKER_USERNAME }}/mlflow-houses" "$MLFLOW_TAG"
-        MLFLOW_UPDATED=$?
+        if [[ -f "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" ]]; then
+          sed -i -E "s|(image:.*${{ secrets.DOCKER_USERNAME }}/mlflow-houses):.*|\1:${MLFLOW_TAG}|g" "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml"
+          echo "MLflow manifest actualizado"
+        fi
         
         # Actualizar FastAPI
-        echo ""
-        echo "=== ACTUALIZANDO FASTAPI ==="
-        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/fastapi-houses" "$FASTAPI_TAG"
-        FASTAPI_UPDATED=$?
+        if [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]]; then
+          sed -i -E "s|(image:.*${{ secrets.DOCKER_USERNAME }}/fastapi-houses):.*|\1:${FASTAPI_TAG}|g" "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"
+          echo "FastAPI manifest actualizado"
+        fi
         
         # Actualizar Gradio
-        echo ""
-        echo "=== ACTUALIZANDO GRADIO ==="
-        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/gradio-houses" "$GRADIO_TAG"
-        GRADIO_UPDATED=$?
-        
-        echo ""
-        echo "Resumen de actualizaciones:"
-        [[ $MLFLOW_UPDATED -eq 0 ]] && echo "MLflow actualizado" || echo "MLflow no se actualizó"
-        [[ $FASTAPI_UPDATED -eq 0 ]] && echo "FastAPI actualizado" || echo "FastAPI no se actualizó"
-        [[ $GRADIO_UPDATED -eq 0 ]] && echo "Gradio actualizado" || echo "Gradio no se actualizó"
-        
-        echo ""
-        echo "Proceso de actualización completado!"
-        
-    - name: Mostrar cambios
-      run: |
-        echo "Estado de Git después de las actualizaciones:"
-        git status --porcelain
-        
-        if [[ -n $(git status --porcelain) ]]; then
-          echo ""
-          echo "Archivos modificados:"
-          git diff --name-only
-          echo ""
-          echo "Cambios detallados:"
-          git diff --unified=3
-        else
-          echo "No se modificaron archivos de manifiestos"
+        if [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]]; then
+          sed -i -E "s|(image:.*${{ secrets.DOCKER_USERNAME }}/gradio-houses):.*|\1:${GRADIO_TAG}|g" "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
+          echo "Gradio manifest actualizado"
         fi
         
-    - name: Confirmar y subir cambios
+    - name: Commit y push cambios
       run: |
+        git add -A
         if [[ -n $(git status --porcelain) ]]; then
-          echo "Confirmando cambios..."
-          
-          # Agregar solo los archivos que existen y han cambiado
-          [[ -f "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" ]] && git add "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml"
-          [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"  
-          [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
-          
-          # Crear mensaje de commit
-          git commit -m "Auto-actualización tags de imágenes
-          
-Build: ${{ github.sha }}
-Imágenes construidas:
-- ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ needs.build-airflow.outputs.image-tag }}
-- ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}
-- ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}
-- ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }}
-
-Manifiestos K8s actualizados:
-- proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml
-- proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
-- proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml
-
-Nota: Airflow se despliega con Docker Compose independientemente
-
-Disparado por: ${{ github.event.head_commit.message }}"
-          
-          echo "Subiendo cambios..."
+          git commit -m "Auto-update image tags - Build ${{ github.sha }}"
           git push
-          echo "Cambios subidos exitosamente!"
+          echo "Cambios commitados y pusheados"
         else
-          echo "No hay cambios para confirmar"
+          echo "No hay cambios para commitear"
         fi
         
-    - name: Información de Argo CD
+    - name: Info Argo CD
       run: |
-        echo "Manifiestos actualizados exitosamente!"
-        echo ""
-        echo "Aplicaciones de Argo CD que se sincronizarán:"
-        echo "- mlflow-app (proyecto-04/01_Primera_maquina/mlflow/manifests)"
-        echo "- fastapi-app (proyecto-04/02_Segunda_maquina/api/fastapi)"
-        echo "- gradio-app (proyecto-04/02_Segunda_maquina/api/gradio)"
-        echo ""
-        echo "Argo CD detectará los cambios en ~3 minutos (intervalo de sincronización por defecto)"
-        echo "O puedes sincronizar manualmente desde la UI de Argo CD"
-        echo "UI de Argo CD: https://localhost:30443"
+        echo "Manifiestos actualizados exitosamente"
+        echo "Aplicaciones Argo CD afectadas:"
+        echo "- mlflow-app"
+        echo "- fastapi-app" 
+        echo "- gradio-app"
+        echo "Argo CD sincronizara automaticamente en ~3 minutos"
 
   resumen-despliegue:
     name: Resumen del Despliegue
@@ -433,26 +335,21 @@ Disparado por: ${{ github.event.head_commit.message }}"
     steps:
     - name: Estado del despliegue
       run: |
-        echo "Resumen de Ejecución del Pipeline MLOps"
-        echo "=================================================="
-        echo ""
-        echo "Resultados de Build:"
-        echo "- Build Airflow:          ${{ needs.build-airflow.result }}"
-        echo "- Build MLflow:           ${{ needs.build-mlflow.result }}"
-        echo "- Build FastAPI:          ${{ needs.build-fastapi.result }}"
-        echo "- Build Gradio:           ${{ needs.build-gradio.result }}"
-        echo "- Actualizar Manifiestos: ${{ needs.actualizar-manifiestos.result }}"
+        echo "=== RESUMEN PIPELINE MLOPS ==="
+        echo "Build Airflow: ${{ needs.build-airflow.result }}"
+        echo "Build MLflow: ${{ needs.build-mlflow.result }}"
+        echo "Build FastAPI: ${{ needs.build-fastapi.result }}"
+        echo "Build Gradio: ${{ needs.build-gradio.result }}"
+        echo "Update Manifests: ${{ needs.actualizar-manifiestos.result }}"
         echo ""
         echo "Rama: ${{ github.ref_name }}"
         echo "Commit: ${{ github.sha }}"
         echo ""
-        echo "Nota: Airflow se despliega independientemente con Docker Compose"
-        echo ""
         
         if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
-          echo "Todas las imágenes construidas exitosamente!"
+          echo "TODAS LAS IMAGENES CONSTRUIDAS EXITOSAMENTE"
           echo ""
-          echo "Imágenes disponibles:"
+          echo "Imagenes disponibles:"
           echo "- ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ needs.build-airflow.outputs.image-tag }}"
           echo "- ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}"
           echo "- ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}"
@@ -460,39 +357,18 @@ Disparado por: ${{ github.event.head_commit.message }}"
           
           if [[ "${{ github.ref_name }}" == "master" ]]; then
             echo ""
-            echo "Despliegue en Producción (rama master):"
+            echo "DESPLIEGUE EN PRODUCCION:"
             if [[ "${{ needs.actualizar-manifiestos.result }}" == "success" ]]; then
-              echo "Manifiestos de Kubernetes actualizados automáticamente"
-              echo "Argo CD sincronizará las nuevas imágenes en ~3 minutos"
-              echo "Monitorear despliegue: https://localhost:30443"
-            elif [[ "${{ needs.actualizar-manifiestos.result }}" == "skipped" ]]; then
-              echo "Actualización de manifiestos omitida (no es push a master)"
+              echo "- Manifiestos K8s actualizados automaticamente"
+              echo "- Argo CD sincronizara en ~3 minutos"
             else
-              echo "Actualización de manifiestos falló - intervención manual necesaria"
+              echo "- ERROR: Actualizacion de manifiestos fallo"
             fi
-            echo ""
-            echo "Comandos de despliegue manual (si es necesario):"
-            echo "- Airflow (Docker Compose): cd proyecto-04/01_Primera_maquina/airflow && docker-compose pull && docker-compose up -d"
-            echo "- MLflow: sudo microk8s kubectl set image deployment/mlflow mlflow=${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }} -n mlops-project"
-            echo "- FastAPI: sudo microk8s kubectl set image deployment/fastapi-housing fastapi-housing=${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }} -n mlops-project"
-            echo "- Gradio: sudo microk8s kubectl set image deployment/gradio-housing gradio-housing=${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }} -n mlops-project"
           else
             echo ""
-            echo "Rama de Desarrollo (${{ github.ref_name }}):"
-            echo "- Imágenes disponibles para pruebas"
-            echo "- Sin despliegue automático en producción"
-            echo "- Hacer merge a master para despliegue automático"
+            echo "RAMA DE DESARROLLO - Sin despliegue automatico"
           fi
         else
-          echo "Algunos builds fallaron!"
-          echo ""
-          echo "Componentes fallidos:"
-          [[ "${{ needs.build-airflow.result }}" != "success" ]] && echo "- Airflow: ${{ needs.build-airflow.result }}"
-          [[ "${{ needs.build-mlflow.result }}" != "success" ]] && echo "- MLflow: ${{ needs.build-mlflow.result }}"
-          [[ "${{ needs.build-fastapi.result }}" != "success" ]] && echo "- FastAPI: ${{ needs.build-fastapi.result }}"
-          [[ "${{ needs.build-gradio.result }}" != "success" ]] && echo "- Gradio: ${{ needs.build-gradio.result }}"
-          [[ "${{ needs.actualizar-manifiestos.result }}" == "failure" ]] && echo "- Actualización de Manifiestos: ${{ needs.actualizar-manifiestos.result }}"
-          echo ""
-          echo "Revisar los logs arriba para más detalles"
+          echo "ERROR: Algunos builds fallaron"
           exit 1
         fi
