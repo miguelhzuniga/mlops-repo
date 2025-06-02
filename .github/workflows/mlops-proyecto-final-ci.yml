@@ -215,9 +215,15 @@ jobs:
         
     - name: Actualizar tags de imágenes en manifiestos
       run: |
-        # Usar el tag que generaron los builds
-        NEW_TAG="${{ needs.build-mlflow.outputs.image-tag }}"
-        echo "🔄 Actualizando manifiestos con tag: $NEW_TAG"
+        # Usar los tags que generaron los builds
+        MLFLOW_TAG="${{ needs.build-mlflow.outputs.image-tag }}"
+        FASTAPI_TAG="${{ needs.build-fastapi.outputs.image-tag }}"
+        GRADIO_TAG="${{ needs.build-gradio.outputs.image-tag }}"
+        
+        echo "🔄 Actualizando manifiestos con tags:"
+        echo "  MLflow: $MLFLOW_TAG"
+        echo "  FastAPI: $FASTAPI_TAG"
+        echo "  Gradio: $GRADIO_TAG"
         
         # Función para actualizar archivos YAML
         actualizar_archivos_yaml() {
@@ -225,13 +231,18 @@ jobs:
           local nombre_imagen=$2
           local nuevo_tag=$3
           
+          echo ""
           echo "📄 Procesando archivo: $archivo"
-          echo "🖼️  Imagen: $nombre_imagen"
+          echo "🖼️  Imagen a buscar: $nombre_imagen"
           echo "🏷️  Nuevo tag: $nuevo_tag"
           
           if [[ -f "$archivo" ]]; then
             # Crear backup
             cp "$archivo" "$archivo.bak"
+            
+            # Buscar líneas con la imagen antes del cambio
+            echo "🔍 Líneas actuales que coinciden:"
+            grep -n "image:.*${nombre_imagen}" "$archivo" || echo "No se encontraron líneas con la imagen"
             
             # Actualizar la imagen usando sed con una expresión más específica
             sed -i -E "s|(image:.*${nombre_imagen}):.*|\1:${nuevo_tag}|g" "$archivo"
@@ -239,15 +250,18 @@ jobs:
             # Verificar si hubo cambios
             if ! cmp -s "$archivo" "$archivo.bak"; then
               echo "✅ Actualizado: $archivo"
-              echo "🔍 Cambio realizado:"
-              grep "image:.*${nombre_imagen}" "$archivo" | head -1 || echo "No se encontró la línea de imagen"
+              echo "🎯 Líneas después del cambio:"
+              grep -n "image:.*${nombre_imagen}" "$archivo" || echo "No se encontraron líneas después del cambio"
               rm "$archivo.bak"
+              return 0
             else
               echo "⏭️  Sin cambios: $archivo"
               rm "$archivo.bak"
+              return 1
             fi
           else
             echo "❌ Archivo no encontrado: $archivo"
+            return 1
           fi
         }
         
@@ -255,21 +269,30 @@ jobs:
         
         # Actualizar MLflow
         echo ""
-        echo "📦 Actualizando MLflow..."
-        actualizar_archivos_yaml "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" "${{ secrets.DOCKER_USERNAME }}/mlflow-houses" "$NEW_TAG"
+        echo "📦 === ACTUALIZANDO MLFLOW ==="
+        actualizar_archivos_yaml "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" "${{ secrets.DOCKER_USERNAME }}/mlflow-houses" "$MLFLOW_TAG"
+        MLFLOW_UPDATED=$?
         
         # Actualizar FastAPI
         echo ""
-        echo "📦 Actualizando FastAPI..."
-        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/fastapi-houses" "$NEW_TAG"
+        echo "📦 === ACTUALIZANDO FASTAPI ==="
+        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/fastapi-houses" "$FASTAPI_TAG"
+        FASTAPI_UPDATED=$?
         
         # Actualizar Gradio
         echo ""
-        echo "📦 Actualizando Gradio..."
-        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/gradio-houses" "$NEW_TAG"
+        echo "📦 === ACTUALIZANDO GRADIO ==="
+        actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/gradio-houses" "$GRADIO_TAG"
+        GRADIO_UPDATED=$?
         
         echo ""
-        echo "✅ ¡Actualización de manifiestos completada!"
+        echo "📋 Resumen de actualizaciones:"
+        [[ $MLFLOW_UPDATED -eq 0 ]] && echo "✅ MLflow actualizado" || echo "❌ MLflow no se actualizó"
+        [[ $FASTAPI_UPDATED -eq 0 ]] && echo "✅ FastAPI actualizado" || echo "❌ FastAPI no se actualizó"
+        [[ $GRADIO_UPDATED -eq 0 ]] && echo "✅ Gradio actualizado" || echo "❌ Gradio no se actualizó"
+        
+        echo ""
+        echo "✅ ¡Proceso de actualización completado!"
         
     - name: Mostrar cambios
       run: |
@@ -282,7 +305,7 @@ jobs:
           git diff --name-only
           echo ""
           echo "🔍 Cambios detallados:"
-          git diff --unified=2
+          git diff --unified=3
         else
           echo "ℹ️  No se modificaron archivos de manifiestos"
         fi
@@ -291,11 +314,14 @@ jobs:
       run: |
         if [[ -n $(git status --porcelain) ]]; then
           echo "💾 Confirmando cambios..."
-          git add proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml
-          git add proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
-          git add proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml
           
-          git commit -m "🤖 Auto-actualización tags de imágenes a ${{ needs.build-mlflow.outputs.image-tag }}
+          # Agregar solo los archivos que existen y han cambiado
+          [[ -f "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" ]] && git add "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml"
+          [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"  
+          [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
+          
+          # Crear mensaje de commit multilinea usando here-doc
+          git commit -m "🤖 Auto-actualización tags de imágenes
 
 🏗️  Build: ${{ github.sha }}
 🌟 Imágenes actualizadas:
@@ -343,15 +369,15 @@ Disparado por: ${{ github.event.head_commit.message }}"
         echo "=================================================="
         echo ""
         echo "📊 Resultados de Build:"
-        echo "• Build MLflow:         ${{ needs.build-mlflow.result }}"
-        echo "• Build FastAPI:        ${{ needs.build-fastapi.result }}"
-        echo "• Build Gradio:         ${{ needs.build-gradio.result }}"
+        echo "• Build MLflow:           ${{ needs.build-mlflow.result }}"
+        echo "• Build FastAPI:          ${{ needs.build-fastapi.result }}"
+        echo "• Build Gradio:           ${{ needs.build-gradio.result }}"
         echo "• Actualizar Manifiestos: ${{ needs.actualizar-manifiestos.result }}"
         echo ""
         echo "🌿 Rama: ${{ github.ref_name }}"
         echo "📝 Commit: ${{ github.sha }}"
         echo ""
-        echo "ℹ️  Nota: Airflow se despliega con Docker Compose (no incluido en automatización)"
+        echo "ℹ️  Nota: Airflow se despliega independientemente con Docker Compose"
         echo ""
         
         if [[ "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
