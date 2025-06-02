@@ -56,11 +56,9 @@ loaded_models = {}
 current_model_name = None
 s3_client = boto3.client('s3', endpoint_url=MINIO_ENDPOINT, aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY)
 
-# 📋 Variables del dataset de casas
 NUMERIC_COLUMNS = ['bed', 'bath', 'acre_lot', 'house_size']
 CATEGORICAL_COLUMNS = ['brokered_by', 'status', 'street', 'city', 'state', 'zip_code']
 
-# 🔍 Logs de PostgreSQL: trainlogs.logs
 def get_logs(limit=100):
     try:
         conn = psycopg2.connect(
