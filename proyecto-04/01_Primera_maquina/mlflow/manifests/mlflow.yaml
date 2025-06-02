@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mlflow
-        image: luisfrontuso10/mlflow-houses:20250602-2421070
+        image: luisfrontuso10/mlflow-houses:20250602-da0ab3c
         ports:
         - containerPort: 5000
         env:
