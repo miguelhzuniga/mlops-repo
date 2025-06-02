@@ -385,9 +385,9 @@ jobs:
           [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"  
           [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
           
-          # Crear mensaje de commit simple
+          # Crear mensaje de commit
           git commit -m "Auto-actualización tags de imágenes
-
+          
 Build: ${{ github.sha }}
 Imágenes construidas:
 - ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ needs.build-airflow.outputs.image-tag }}
