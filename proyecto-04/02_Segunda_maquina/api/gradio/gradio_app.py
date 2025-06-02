@@ -67,12 +67,12 @@ def get_logs(limit=100):
         conn = psycopg2.connect(
             host="10.43.101.175",
             port=5432,
-            database="trainlogs",
+            database="airflow",
             user="airflow",
             password="airflow"
         )
         cur = conn.cursor()
-        cur.execute(f'SELECT * FROM logs ORDER BY id DESC LIMIT {limit};')
+        cur.execute(f'SELECT * FROM trainlogs.logs ORDER BY id DESC LIMIT {limit};')
         rows = cur.fetchall()
         columns = [desc[0] for desc in cur.description]
         data = [dict(zip(columns, row)) for row in rows]
