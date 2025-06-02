@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fastapi-housing
-  namespace: fastapi  
+  namespace: mlops-project  
   labels:
     app: fastapi-housing
 spec:
