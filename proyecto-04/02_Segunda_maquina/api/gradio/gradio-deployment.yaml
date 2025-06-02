@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: gradio-housing
-        image: luisfrontuso10/gradio-houses:20250602-d5af49f97c2c00cf18d68a0a51dc2798cfd6da59
+        image: luisfrontuso10/gradio-houses:20250602-92ab56d61f994ad5ee57aa1cbf14656a257c858d
         ports:
         - containerPort: 8501
         env:
