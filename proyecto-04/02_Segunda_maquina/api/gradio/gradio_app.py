@@ -10,7 +10,7 @@ import tempfile
 import boto3
 import logging
 
-# Configuración MLflow/MinIO
+
 HOST_IP = "10.43.101.206"
 MLFLOW_S3_ENDPOINT_URL = f"http://{HOST_IP}:30382"
 os.environ["MLFLOW_S3_ENDPOINT_URL"] = MLFLOW_S3_ENDPOINT_URL
