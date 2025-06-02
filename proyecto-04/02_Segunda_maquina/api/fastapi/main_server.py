@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
@@ -133,8 +133,8 @@ async def predict(features: HouseFeatures):
             raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/metrics")
-async def metrics():
-    return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
+def metrics():
+    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 @app.get("/health")
 async def health():
