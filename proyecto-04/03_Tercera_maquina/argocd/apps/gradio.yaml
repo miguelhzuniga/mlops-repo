@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring-app
+  name: gradio-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/miguelhzuniga/mlops-repo.git
-    targetRevision: HEAD
-    path: proyecto-04/03_Tercera_maquina/monitoring
+    targetRevision: master
+    path: proyecto-04/02_Segunda_maquina/api/gradio
   destination:
     server: https://kubernetes.default.svc
-    namespace: mlops-project
+    namespace: gradio
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
