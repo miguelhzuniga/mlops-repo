@@ -18,7 +18,7 @@ spec:
       containers:
       - name: fastapi-housing
 
-        image: luisfrontuso10/fastapi-houses:20250602-ea61763
+        image: luisfrontuso10/fastapi-houses:20250602-1f33fd2
         ports:
         - containerPort: 80
         env:
