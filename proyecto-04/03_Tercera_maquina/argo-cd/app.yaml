@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/miguelhzuniga/mlops-repo.git
     targetRevision: master
-    path: proyecto-04/03_Tercera_maquina/argocd/apps
+    path: proyecto-04/03_Tercera_maquina/argo-cd/apps
     directory:
       recurse: true
   destination:
