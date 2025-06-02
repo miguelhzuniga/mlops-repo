@@ -1,4 +1,3 @@
-# 📦 Importaciones principales
 import os
 import mlflow
 import pandas as pd
@@ -19,9 +18,8 @@ import uvicorn
 from fastapi import FastAPI, HTTPException
 from threading import Thread
 from datetime import datetime
-import psycopg2  # 📌 Para acceder a trainlogs.logs
+import psycopg2  
 
-# 📊 Configuración de métricas Prometheus
 REQUESTS = Counter('house_price_gradio_requests_total', 'Número total de solicitudes a la interfaz Gradio')
 PREDICTIONS = Counter('house_price_gradio_predictions_total', 'Número total de predicciones realizadas')
 PREDICTION_TIME = Histogram('house_price_gradio_prediction_time_seconds', 'Tiempo empleado en procesar solicitudes de predicción')
