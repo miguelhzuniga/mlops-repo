@@ -14,7 +14,6 @@ import dill
 import uvicorn
 from datetime import datetime
 
-# Configuración de FastAPI
 app = FastAPI(
     title="API de Predicción de Precios de Casas",
     description="Predice el precio de una casa usando MLflow y FastAPI",
@@ -28,7 +27,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Prometheus Metrics
 REQUESTS = Counter('house_api_requests_total', 'Número total de solicitudes')
 PREDICTIONS = Counter('house_api_predictions_total', 'Número total de predicciones')
 PREDICTION_TIME = Histogram('house_api_prediction_time_seconds', 'Tiempo de predicción')
