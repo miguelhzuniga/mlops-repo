@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Eliminando despliegue completo de recursos en mlops-project..."
+echo "Eliminando despliegue completo de recursos en mlops-project......"
 
 kubectl delete deployments --all -n mlops-project
 
