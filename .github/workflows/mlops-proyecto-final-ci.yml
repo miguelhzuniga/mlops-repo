@@ -280,7 +280,6 @@ jobs:
         
     - name: Actualizar tags de imágenes en manifiestos
       run: |
-        # Usar los tags que generaron los builds
         MLFLOW_TAG="${{ needs.build-mlflow.outputs.image-tag }}"
         FASTAPI_TAG="${{ needs.build-fastapi.outputs.image-tag }}"
         GRADIO_TAG="${{ needs.build-gradio.outputs.image-tag }}"
@@ -290,7 +289,6 @@ jobs:
         echo "  FastAPI: $FASTAPI_TAG"
         echo "  Gradio: $GRADIO_TAG"
         
-        # Función para actualizar archivos YAML
         actualizar_archivos_yaml() {
           local archivo=$1
           local nombre_imagen=$2
@@ -302,17 +300,11 @@ jobs:
           echo "Nuevo tag: $nuevo_tag"
           
           if [[ -f "$archivo" ]]; then
-            # Crear backup
             cp "$archivo" "$archivo.bak"
-            
-            # Buscar líneas con la imagen antes del cambio
             echo "Líneas actuales que coinciden:"
             grep -n "image:.*${nombre_imagen}" "$archivo" || echo "No se encontraron líneas con la imagen"
-            
-            # Actualizar la imagen usando sed con una expresión más específica
             sed -i -E "s|(image:.*${nombre_imagen}):.*|\1:${nuevo_tag}|g" "$archivo"
             
-            # Verificar si hubo cambios
             if ! cmp -s "$archivo" "$archivo.bak"; then
               echo "Actualizado: $archivo"
               echo "Líneas después del cambio:"
@@ -332,19 +324,16 @@ jobs:
         
         echo "Iniciando actualización de manifiestos..."
         
-        # Actualizar MLflow
         echo ""
         echo "=== ACTUALIZANDO MLFLOW ==="
         actualizar_archivos_yaml "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" "${{ secrets.DOCKER_USERNAME }}/mlflow-houses" "$MLFLOW_TAG"
         MLFLOW_UPDATED=$?
         
-        # Actualizar FastAPI
         echo ""
         echo "=== ACTUALIZANDO FASTAPI ==="
         actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/fastapi-houses" "$FASTAPI_TAG"
         FASTAPI_UPDATED=$?
         
-        # Actualizar Gradio
         echo ""
         echo "=== ACTUALIZANDO GRADIO ==="
         actualizar_archivos_yaml "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" "${{ secrets.DOCKER_USERNAME }}/gradio-houses" "$GRADIO_TAG"
@@ -380,12 +369,10 @@ jobs:
         if [[ -n $(git status --porcelain) ]]; then
           echo "Confirmando cambios..."
           
-          # Agregar solo los archivos que existen y han cambiado
           [[ -f "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml" ]] && git add "proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml"
           [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"  
           [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
           
-          # Crear mensaje de commit
           COMMIT_MSG="Auto-actualización tags de imágenes
 
 Build: ${{ github.sha }}
