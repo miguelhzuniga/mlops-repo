@@ -23,6 +23,12 @@ on:
       - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
       - 'proyecto-04/02_Segunda_maquina/api/gradio/**'
 
+# AGREGADO: Permisos necesarios para GitHub Actions
+permissions:
+  contents: write
+  packages: write
+  actions: read
+
 env:
   REGISTRY: docker.io
 
