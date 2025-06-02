@@ -10,7 +10,7 @@ if ! command -v microk8s >/dev/null 2>&1; then
 fi
 
 # Habilitar addons necesarios
-echo "Habilitando addons necesarios, por favor espere..."
+echo "Habilitando addons necesarios..."
 sudo microk8s enable dns storage helm3 ingress dashboard registry
 
 # Esperar a que los servicios estén listos
