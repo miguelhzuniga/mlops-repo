@@ -14,7 +14,7 @@ echo "Habilitando addons necesarios..."
 sudo microk8s enable dns storage helm3 ingress dashboard registry
 
 # Esperar a que los servicios estén listos
-echo "Esperando a que los servicios estén listos..."
+echo "Esperando a que los servicios estén listos......"
 sleep 10
 
 # Crear alias para kubectl si no existe
