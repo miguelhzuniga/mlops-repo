@@ -14,3 +14,4 @@ boto3==1.26.121
 lightgbm==3.3.2
 prometheus_client
 psycopg2
+shap

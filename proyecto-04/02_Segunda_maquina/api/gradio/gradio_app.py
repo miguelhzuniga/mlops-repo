@@ -140,32 +140,97 @@ def refresh_models():
     choices = [model.name for model in models]
     return gr.Dropdown(choices=choices, value=choices[0] if choices else None), f"{len(choices)} modelos disponibles."
 
-# 🎛️ Gradio App
+def get_shap_summary_plot():
+    try:
+        model_to_use = current_model_name
+        if model_to_use not in loaded_models:
+            return "No hay modelo cargado."
+        model = loaded_models[model_to_use]
+        preprocessor = load_preprocessor()
+        
+        # Genera un dataset de prueba con datos sintéticos
+        feature_names = NUMERIC_COLUMNS + CATEGORICAL_COLUMNS + ['prev_sold_year']
+        dummy_data = pd.DataFrame({
+            'brokered_by': ['101640.0']*50,
+            'status': ['for_sale']*50,
+            'bed': [3]*50,
+            'bath': [2]*50,
+            'acre_lot': [0.25]*50,
+            'street': ['1758218.0']*50,
+            'city': ['East Windsor']*50,
+            'state': ['Connecticut']*50,
+            'zip_code': ['6016.0']*50,
+            'house_size': [1500]*50,
+            'prev_sold_date': ['2015-11-09']*50
+        })
+        X_processed = preprocess_input(dummy_data)
+        
+        explainer = shap.Explainer(model.predict, X_processed)
+        shap_values = explainer(X_processed)
+        
+        fig, ax = plt.subplots(figsize=(10,6))
+        shap.summary_plot(shap_values, features=X_processed, show=False)
+        plt.tight_layout()
+        return fig
+    except Exception as e:
+        return f"Error al generar SHAP: {e}"
+      
+# 📋 Gradio App actualizada
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
-    model_dropdown = gr.Dropdown(label="Modelo a usar", choices=[])
-    refresh_btn = gr.Button("Actualizar modelos")
-    load_btn = gr.Button("Cargar modelo")
-    load_output = gr.HTML()
-    refresh_btn.click(refresh_models, outputs=[model_dropdown, load_output])
-    load_btn.click(load_model, inputs=model_dropdown, outputs=load_output)
-    gr.Markdown("### Ingrese los datos de la casa:")
-    with gr.Row():
-        brokered_by = gr.Textbox(label="Agencia/Corredor (ID o nombre)", value="101640.0")
-        status = gr.Dropdown(label="Estado de la casa", choices=["for_sale", "ready_to_build"], value="for_sale")
-        street = gr.Textbox(label="Calle (ID o nombre)", value="1758218.0")
-        city = gr.Textbox(label="Ciudad", value="East Windsor")
-        state = gr.Textbox(label="Estado", value="Connecticut")
-        zip_code = gr.Textbox(label="Código Postal", value="6016.0")
-    with gr.Row():
-        bed = gr.Number(label="Habitaciones", value=3)
-        bath = gr.Number(label="Baños", value=2)
-        acre_lot = gr.Number(label="Tamaño del terreno (acres)", value=0.25)
-        house_size = gr.Number(label="Área de la casa (sqft)", value=1500)
-        prev_sold_date = gr.Textbox(label="Fecha de venta anterior (YYYY-MM-DD)", value="2015-11-09")
-    predict_btn = gr.Button("Predecir precio")
-    pred_output = gr.HTML()
-    predict_btn.click(predict, inputs=[model_dropdown, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date], outputs=pred_output)
+    
+    # 🗂️ Pestañas
+    with gr.Tabs():
+        # 🔍 Pestaña de Predicción
+        with gr.TabItem("Predicción"):
+            model_dropdown = gr.Dropdown(label="Modelo a usar", choices=[])
+            refresh_btn = gr.Button("Actualizar modelos")
+            load_btn = gr.Button("Cargar modelo")
+            load_output = gr.HTML()
+            refresh_btn.click(refresh_models, outputs=[model_dropdown, load_output])
+            load_btn.click(load_model, inputs=model_dropdown, outputs=load_output)
+            gr.Markdown("### Ingrese los datos de la casa:")
+            with gr.Row():
+                brokered_by = gr.Textbox(label="Agencia/Corredor (ID o nombre)", value="101640.0")
+                status = gr.Dropdown(label="Estado de la casa", choices=["for_sale", "ready_to_build"], value="for_sale")
+                street = gr.Textbox(label="Calle (ID o nombre)", value="1758218.0")
+                city = gr.Textbox(label="Ciudad", value="East Windsor")
+                state = gr.Textbox(label="Estado", value="Connecticut")
+                zip_code = gr.Textbox(label="Código Postal", value="6016.0")
+            with gr.Row():
+                bed = gr.Number(label="Habitaciones", value=3)
+                bath = gr.Number(label="Baños", value=2)
+                acre_lot = gr.Number(label="Tamaño del terreno (acres)", value=0.25)
+                house_size = gr.Number(label="Área de la casa (sqft)", value=1500)
+                prev_sold_date = gr.Textbox(label="Fecha de venta anterior (YYYY-MM-DD)", value="2015-11-09")
+            predict_btn = gr.Button("Predecir precio")
+            pred_output = gr.HTML()
+            predict_btn.click(predict, inputs=[model_dropdown, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date], outputs=pred_output)
+        
+        # 📊 Pestaña de Logs
+        with gr.TabItem("Logs (trainlogs.logs)"):
+            gr.Markdown("### Últimos registros de la tabla `trainlogs.logs`")
+            fetch_logs_btn = gr.Button("Actualizar Logs")
+            logs_table = gr.Dataframe(headers=[], datatype="str")
+            
+            def fetch_logs_gradio():
+                data = get_logs()
+                if isinstance(data, dict) and "error" in data:
+                    return [[data["error"]]]
+                if not data:
+                    return [["No hay registros disponibles"]]
+                df = pd.DataFrame(data)
+                return df
+            
+            fetch_logs_btn.click(fetch_logs_gradio, outputs=logs_table)
+
+
+        # 🌟 Pestaña de Análisis SHAP
+        with gr.TabItem("Análisis SHAP"):
+            gr.Markdown("### Importancia de características (SHAP Summary Plot)")
+            shap_btn = gr.Button("Generar Análisis SHAP")
+            shap_plot = gr.Plot()
+            shap_btn.click(get_shap_summary_plot, outputs=shap_plot)
 
 # 🚀 Main
 if __name__ == "__main__":
