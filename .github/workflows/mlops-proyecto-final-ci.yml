@@ -403,11 +403,11 @@ jobs:
           [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"  
           [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
           
-          # Crear mensaje de commit simple sin heredoc
-          COMMIT_MSG="🤖 Auto-actualización tags de imágenes - Build: ${{ github.sha }}"
-          COMMIT_BODY="🌟 Imágenes actualizadas: airflow:${{ needs.build-airflow.outputs.image-tag }}, mlflow:${{ needs.build-mlflow.outputs.image-tag }}, fastapi:${{ needs.build-fastapi.outputs.image-tag }}, gradio:${{ needs.build-gradio.outputs.image-tag }}"
+          # Crear mensaje de commit simple sin emojis ni caracteres especiales
+          COMMIT_MSG="Auto-actualizacion tags de imagenes - Build: ${{ github.sha }}"
+          COMMIT_BODY="Imagenes actualizadas: airflow:${{ needs.build-airflow.outputs.image-tag }}, mlflow:${{ needs.build-mlflow.outputs.image-tag }}, fastapi:${{ needs.build-fastapi.outputs.image-tag }}, gradio:${{ needs.build-gradio.outputs.image-tag }}"
           
-          git commit -m "$COMMIT_MSG" -m "$COMMIT_BODY" -m "📂 Manifiestos K8s actualizados automáticamente por GitHub Actions"
+          git commit -m "$COMMIT_MSG" -m "$COMMIT_BODY"
           
           echo "🚀 Subiendo cambios..."
           git push
