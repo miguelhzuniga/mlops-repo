@@ -4,6 +4,9 @@ on:
   push:
     branches: [ '*' ]
     paths:
+      - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
+      - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
+      - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
       - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
       - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
       - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
@@ -12,6 +15,9 @@ on:
   pull_request:
     branches: [ master ]
     paths:
+      - 'proyecto-04/01_Primera_maquina/airflow/Dockerfile'
+      - 'proyecto-04/01_Primera_maquina/airflow/requirements.txt'
+      - 'proyecto-04/01_Primera_maquina/airflow/dags/**'
       - 'proyecto-04/01_Primera_maquina/mlflow/Dockerfile.mlflow'
       - 'proyecto-04/01_Primera_maquina/mlflow/manifests/**'
       - 'proyecto-04/02_Segunda_maquina/api/fastapi/**'
@@ -21,6 +27,65 @@ env:
   REGISTRY: docker.io
 
 jobs:
+  build-airflow:
+    name: Construir Imagen Airflow
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.extract-tag.outputs.tag }}
+    
+    steps:
+    - name: Descargar código
+      uses: actions/checkout@v4
+      
+    - name: Configurar Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Iniciar sesión en Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Extraer metadatos de Airflow
+      id: meta-airflow
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ secrets.DOCKER_USERNAME }}/airflow-houses
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+          type=sha,prefix={{date 'YYYYMMDD'}}-
+          
+    - name: Construir y subir imagen Airflow
+      uses: docker/build-push-action@v5
+      with:
+        context: ./proyecto-04/01_Primera_maquina/airflow
+        file: ./proyecto-04/01_Primera_maquina/airflow/Dockerfile
+        push: true
+        tags: ${{ steps.meta-airflow.outputs.tags }}
+        labels: ${{ steps.meta-airflow.outputs.labels }}
+        platforms: linux/amd64,linux/arm64
+        cache-from: type=gha,scope=airflow
+        cache-to: type=gha,mode=max,scope=airflow
+        
+    - name: Extraer tag de despliegue
+      id: extract-tag
+      run: |
+        if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
+          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+        else
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Resumen imagen Airflow
+      run: |
+        echo "✅ ¡Imagen Airflow construida y subida exitosamente!"
+        echo "📦 Imagen: ${{ secrets.DOCKER_USERNAME }}/airflow-houses"
+        echo "🏷️  Tags: ${{ steps.meta-airflow.outputs.tags }}"
+        echo "🎯 Tag de despliegue: ${{ steps.extract-tag.outputs.tag }}"
+        echo "ℹ️  Nota: Airflow se despliega independientemente con Docker Compose"
+
   build-mlflow:
     name: Construir Imagen MLflow
     runs-on: ubuntu-latest
@@ -198,7 +263,7 @@ jobs:
   actualizar-manifiestos:
     name: Actualizar Manifiestos de Kubernetes
     runs-on: ubuntu-latest
-    needs: [build-mlflow, build-fastapi, build-gradio]
+    needs: [build-airflow, build-mlflow, build-fastapi, build-gradio]
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     
     steps:
@@ -320,21 +385,27 @@ jobs:
           [[ -f "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml"  
           [[ -f "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml" ]] && git add "proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml"
           
-          # Crear mensaje de commit multilinea usando here-doc
-          git commit -m "🤖 Auto-actualización tags de imágenes
+          # Crear mensaje de commit usando cat heredoc para evitar problemas de YAML
+          git commit -m "$(cat << 'EOF'
+🤖 Auto-actualización tags de imágenes
 
-🏗️  Build: ${{ github.sha }}
-🌟 Imágenes actualizadas:
+🏗️ Build: ${{ github.sha }}
+🌟 Imágenes construidas:
+• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ needs.build-airflow.outputs.image-tag }}
 • ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}
 • ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}
 • ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }}
 
-📂 Archivos actualizados:
+📂 Manifiestos K8s actualizados:
 • proyecto-04/01_Primera_maquina/mlflow/manifests/mlflow.yaml
 • proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
 • proyecto-04/02_Segunda_maquina/api/gradio/gradio-deployment.yaml
 
-Disparado por: ${{ github.event.head_commit.message }}"
+ℹ️ Airflow se despliega con Docker Compose independientemente
+
+Disparado por: ${{ github.event.head_commit.message }}
+EOF
+)"
           
           echo "🚀 Subiendo cambios..."
           git push
@@ -359,7 +430,7 @@ Disparado por: ${{ github.event.head_commit.message }}"
   resumen-despliegue:
     name: Resumen del Despliegue
     runs-on: ubuntu-latest
-    needs: [build-mlflow, build-fastapi, build-gradio, actualizar-manifiestos]
+    needs: [build-airflow, build-mlflow, build-fastapi, build-gradio, actualizar-manifiestos]
     if: always()
     
     steps:
@@ -369,6 +440,7 @@ Disparado por: ${{ github.event.head_commit.message }}"
         echo "=================================================="
         echo ""
         echo "📊 Resultados de Build:"
+        echo "• Build Airflow:          ${{ needs.build-airflow.result }}"
         echo "• Build MLflow:           ${{ needs.build-mlflow.result }}"
         echo "• Build FastAPI:          ${{ needs.build-fastapi.result }}"
         echo "• Build Gradio:           ${{ needs.build-gradio.result }}"
@@ -380,10 +452,11 @@ Disparado por: ${{ github.event.head_commit.message }}"
         echo "ℹ️  Nota: Airflow se despliega independientemente con Docker Compose"
         echo ""
         
-        if [[ "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
+        if [[ "${{ needs.build-airflow.result }}" == "success" && "${{ needs.build-mlflow.result }}" == "success" && "${{ needs.build-fastapi.result }}" == "success" && "${{ needs.build-gradio.result }}" == "success" ]]; then
           echo "✅ ¡Todas las imágenes construidas exitosamente!"
           echo ""
           echo "📦 Imágenes disponibles:"
+          echo "• ${{ secrets.DOCKER_USERNAME }}/airflow-houses:${{ needs.build-airflow.outputs.image-tag }}"
           echo "• ${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }}"
           echo "• ${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }}"
           echo "• ${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }}"
@@ -402,9 +475,10 @@ Disparado por: ${{ github.event.head_commit.message }}"
             fi
             echo ""
             echo "📋 Comandos de despliegue manual (si es necesario):"
-            echo "sudo microk8s kubectl set image deployment/mlflow mlflow=${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }} -n mlops-project"
-            echo "sudo microk8s kubectl set image deployment/fastapi-housing fastapi-housing=${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }} -n mlops-project"
-            echo "sudo microk8s kubectl set image deployment/gradio-housing gradio-housing=${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }} -n mlops-project"
+            echo "• Airflow (Docker Compose): cd proyecto-04/01_Primera_maquina/airflow && docker-compose pull && docker-compose up -d"
+            echo "• MLflow: sudo microk8s kubectl set image deployment/mlflow mlflow=${{ secrets.DOCKER_USERNAME }}/mlflow-houses:${{ needs.build-mlflow.outputs.image-tag }} -n mlops-project"
+            echo "• FastAPI: sudo microk8s kubectl set image deployment/fastapi-housing fastapi-housing=${{ secrets.DOCKER_USERNAME }}/fastapi-houses:${{ needs.build-fastapi.outputs.image-tag }} -n mlops-project"
+            echo "• Gradio: sudo microk8s kubectl set image deployment/gradio-housing gradio-housing=${{ secrets.DOCKER_USERNAME }}/gradio-houses:${{ needs.build-gradio.outputs.image-tag }} -n mlops-project"
           else
             echo ""
             echo "🧪 Rama de Desarrollo (${{ github.ref_name }}):"
@@ -416,6 +490,7 @@ Disparado por: ${{ github.event.head_commit.message }}"
           echo "❌ ¡Algunos builds fallaron!"
           echo ""
           echo "🔍 Componentes fallidos:"
+          [[ "${{ needs.build-airflow.result }}" != "success" ]] && echo "• Airflow: ${{ needs.build-airflow.result }}"
           [[ "${{ needs.build-mlflow.result }}" != "success" ]] && echo "• MLflow: ${{ needs.build-mlflow.result }}"
           [[ "${{ needs.build-fastapi.result }}" != "success" ]] && echo "• FastAPI: ${{ needs.build-fastapi.result }}"
           [[ "${{ needs.build-gradio.result }}" != "success" ]] && echo "• Gradio: ${{ needs.build-gradio.result }}"
