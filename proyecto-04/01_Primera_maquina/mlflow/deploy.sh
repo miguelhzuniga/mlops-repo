@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Verificar si microk8s está instalado y listo
 if ! command -v microk8s >/dev/null 2>&1; then
   echo "MicroK8s no está instalado. Instalando..."
   sudo snap install microk8s --classic
@@ -9,34 +8,27 @@ if ! command -v microk8s >/dev/null 2>&1; then
   exit 1
 fi
 
-# Habilitar addons necesarios
 echo "Habilitando addons necesarios..."
 sudo microk8s enable dns storage helm3 ingress dashboard registry
 
-# Esperar a que los servicios estén listos
 echo "Esperando a que los servicios estén listos......"
 sleep 10
 
-# Crear alias para kubectl si no existe
 if ! command -v kubectl >/dev/null 2>&1; then
   echo "Creando alias para kubectl..."
   sudo snap alias microk8s.kubectl kubectl
 fi
 
-# Crear namespace
 echo "Creando namespace..."
 sudo microk8s kubectl apply -f manifests/namespace.yaml
 
-# Desplegar almacenamiento
 echo "Desplegando servicios de almacenamiento (PostgreSQL y MinIO)..."
 sudo microk8s kubectl apply -f manifests/storage.yaml
 
-# Esperar a que los pods estén listos
 echo "Esperando a que los pods de almacenamiento estén listos..."
 sudo microk8s kubectl wait --for=condition=ready pod -l app=postgres -n mlops-project --timeout=120s
 sudo microk8s kubectl wait --for=condition=ready pod -l app=minio -n mlops-project --timeout=120s
 
-# Verificar que MinIO esté realmente funcional
 echo "Verificando que MinIO esté realmente funcional..."
 for i in {1..30}; do
   if sudo microk8s kubectl exec -n mlops-project deployment/minio -- mc --version >/dev/null 2>&1; then
