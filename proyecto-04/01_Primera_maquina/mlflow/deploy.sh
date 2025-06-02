@@ -45,11 +45,9 @@ for i in {1..30}; do
   fi
 done
 
-# Espera adicional para asegurar que MinIO esté completamente inicializado
 echo "Esperando 30 segundos adicionales para inicialización completa de MinIO..."
 sleep 30
 
-# Inicializar bucket
 echo "Inicializando bucket MinIO para artefactos de MLflow..."
 sudo microk8s kubectl apply -f manifests/init-job.yaml
 
