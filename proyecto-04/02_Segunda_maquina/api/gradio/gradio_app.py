@@ -144,40 +144,123 @@ def refresh_models():
     return gr.Dropdown(choices=choices, value=choices[0] if choices else None), f"{len(choices)} modelos disponibles."
 
 def get_shap_summary_plot():
+    """Función que SIEMPRE devuelve una figura matplotlib (nunca strings)"""
+    
+    # Configurar matplotlib para entorno Docker
+    import matplotlib
+    matplotlib.use('Agg')  # Backend no-interactivo
+    import matplotlib.pyplot as plt
+    plt.ioff()  # Desactivar modo interactivo
+    
     try:
-        model_to_use = current_model_name
-        if model_to_use not in loaded_models:
-            return "No hay modelo cargado."
-        model = loaded_models[model_to_use]
-        preprocessor = load_preprocessor()
-        
-        # Genera un dataset de prueba con datos sintéticos
-        feature_names = NUMERIC_COLUMNS + CATEGORICAL_COLUMNS + ['prev_sold_year']
+        # Verificar si hay modelo cargado
+        if current_model_name not in loaded_models:
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.text(0.5, 0.5, 
+                   "❌ No hay modelo cargado\n\n" +
+                   "Por favor:\n" +
+                   "1. Ve a la pestaña 'Predicción'\n" +
+                   "2. Haz clic en 'Actualizar modelos'\n" +
+                   "3. Selecciona un modelo\n" +
+                   "4. Haz clic en 'Cargar modelo'", 
+                   ha='center', va='center', fontsize=14, 
+                   transform=ax.transAxes,
+                   bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue"))
+            ax.set_xlim(0, 1)
+            ax.set_ylim(0, 1)
+            ax.axis('off')
+            plt.title("Análisis SHAP - Estado", fontsize=16)
+            return fig
+
+        try:
+            import shap
+        except ImportError:
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.text(0.5, 0.5, 
+                "❌ SHAP no está disponible\n\n" +
+                "El análisis SHAP requiere la librería 'shap'\n" +
+                "Contacta al administrador para instalarla", 
+                ha='center', va='center', fontsize=14, 
+                transform=ax.transAxes,
+                bbox=dict(boxstyle="round,pad=0.5", facecolor="lightyellow"))
+            ax.axis('off')
+            plt.title("Análisis SHAP - Dependencia faltante", fontsize=16)
+            return fig
+                
+        model = loaded_models[current_model_name]
+        # Crear datos de prueba MUY pequeños para evitar problemas de memoria
         dummy_data = pd.DataFrame({
-            'brokered_by': ['101640.0']*50,
-            'status': ['for_sale']*50,
-            'bed': [3]*50,
-            'bath': [2]*50,
-            'acre_lot': [0.25]*50,
-            'street': ['1758218.0']*50,
-            'city': ['East Windsor']*50,
-            'state': ['Connecticut']*50,
-            'zip_code': ['6016.0']*50,
-            'house_size': [1500]*50,
-            'prev_sold_date': ['2015-11-09']*50
+            'brokered_by': ['101640.0'] * 3,  # Solo 3 filas
+            'status': ['for_sale'] * 3,
+            'bed': [3] * 3,
+            'bath': [2] * 3,
+            'acre_lot': [0.25] * 3,
+            'street': ['1758218.0'] * 3,
+            'city': ['East Windsor'] * 3,
+            'state': ['Connecticut'] * 3,
+            'zip_code': ['6016.0'] * 3,
+            'house_size': [1500] * 3,
+            'prev_sold_date': ['2015-11-09'] * 3
         })
-        X_processed = preprocess_input(dummy_data)
         
-        explainer = shap.Explainer(model.predict, X_processed)
-        shap_values = explainer(X_processed)
+        # Preprocesar datos
+        X_processed = preprocess_input(dummy_data.copy())
         
-        fig, ax = plt.subplots(figsize=(10,6))
-        shap.summary_plot(shap_values, features=X_processed, show=False)
+        # Verificar que la predicción funciona
+        test_pred = model.predict(X_processed)
+        # Crear explainer con background mínimo
+        def model_predict(X):
+            return model.predict(X)
+        
+        # Usar solo 2 muestras como background
+        background = X_processed[:2]
+        explainer = shap.Explainer(model_predict, background)
+        
+        # Calcular SHAP values para solo 2 muestras
+        shap_values = explainer(X_processed[:2])
+        
+        # Crear el plot
+        fig, ax = plt.subplots(figsize=(12, 8))
+        
+        # SHAP summary plot
+        shap.summary_plot(
+            shap_values.values, 
+            X_processed[:2],
+            feature_names=[f"Feature_{i}" for i in range(X_processed.shape[1])],
+            show=False,
+            max_display=15  # Limitar número de features mostradas
+        )
+        
+        plt.title(f"SHAP Summary Plot - {current_model_name}", fontsize=14)
         plt.tight_layout()
+        
         return fig
     except Exception as e:
-        return f"Error al generar SHAP: {e}"
-      
+        # En caso de cualquier error, crear figura con el mensaje
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        error_text = f"❌ Error en análisis SHAP:\n\n{str(e)}\n\n"
+        error_text += "Posibles soluciones:\n"
+        error_text += "• Verifica que el modelo esté cargado\n"
+        error_text += "• Intenta recargar el modelo\n"
+        error_text += "• Contacta soporte si persiste"
+        
+        ax.text(0.5, 0.5, error_text, 
+               ha='center', va='center', fontsize=12, 
+               transform=ax.transAxes,
+               bbox=dict(boxstyle="round,pad=0.5", facecolor="lightcoral"))
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        ax.axis('off')
+        plt.title("Análisis SHAP - Error", fontsize=16)
+        
+        # Log del error para debugging
+        print(f"SHAP Error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        
+        return fig
+    
 # 📋 Gradio App actualizada
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
