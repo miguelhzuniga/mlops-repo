@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gradio-housing
-  namespace: gradio  
+  namespace: mlops-project
   labels:
     app: gradio-housing
 spec:
@@ -22,13 +22,13 @@ spec:
         - containerPort: 8501
         env:
         - name: MLFLOW_S3_ENDPOINT_URL
-          value: "http://minio.mlflow.svc.cluster.local:9000"  
+          value: "http://10.43.101.175:30382"
         - name: AWS_ACCESS_KEY_ID
           value: "adminuser"
         - name: AWS_SECRET_ACCESS_KEY
           value: "securepassword123"
         - name: MLFLOW_TRACKING_URI
-          value: "http://mlflow.mlflow.svc.cluster.local:5000"  
+          value: "http://10.43.101.175:30500"
         resources:
           requests:
             memory: "512Mi"

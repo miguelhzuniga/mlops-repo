@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
@@ -14,6 +14,7 @@ import dill
 import uvicorn
 from datetime import datetime
 
+# Configuración de FastAPI
 app = FastAPI(
     title="API de Predicción de Precios de Casas",
     description="Predice el precio de una casa usando MLflow y FastAPI",
@@ -27,6 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Prometheus Metrics
 REQUESTS = Counter('house_api_requests_total', 'Número total de solicitudes')
 PREDICTIONS = Counter('house_api_predictions_total', 'Número total de predicciones')
 PREDICTION_TIME = Histogram('house_api_prediction_time_seconds', 'Tiempo de predicción')
@@ -133,8 +135,8 @@ async def predict(features: HouseFeatures):
             raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/metrics")
-def metrics():
-    return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
+async def metrics():
+    return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
 
 @app.get("/health")
 async def health():

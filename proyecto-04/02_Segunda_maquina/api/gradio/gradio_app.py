@@ -19,8 +19,28 @@ import uvicorn
 from fastapi import FastAPI, HTTPException
 from threading import Thread
 from datetime import datetime
-import psycopg2 
+import psycopg2  # 📌 Para acceder a trainlogs.logs
 
+# 📊 Configuración de métricas Prometheus
+REQUESTS = Counter('house_price_gradio_requests_total', 'Número total de solicitudes a la interfaz Gradio')
+PREDICTIONS = Counter('house_price_gradio_predictions_total', 'Número total de predicciones realizadas')
+PREDICTION_TIME = Histogram('house_price_gradio_prediction_time_seconds', 'Tiempo empleado en procesar solicitudes de predicción')
+MODEL_ERRORS = Counter('house_price_gradio_model_errors_total', 'Errores del modelo')
+PREPROCESSOR_ERRORS = Counter('house_price_gradio_preprocessor_errors_total', 'Errores al cargar o aplicar el preprocesador')
+MODEL_LOADS = Counter('house_price_gradio_model_loads_total', 'Número de veces que se cargó un modelo')
+REFRESH_CALLS = Counter('house_price_gradio_refresh_calls_total', 'Número de veces que se actualizó la lista de modelos')
+
+# 🎛️ FastAPI para Prometheus y Logs
+metrics_app = FastAPI(title="Prometheus Metrics for House Price Prediction")
+@metrics_app.get("/")
+async def root(): return {"message": "Prometheus Metrics Server for House Price Prediction"}
+
+@metrics_app.get("/metrics")
+async def metrics(): return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
+
+def run_metrics_server(): uvicorn.run(metrics_app, host="0.0.0.0", port=9090)
+
+# 🌐 Configuración MLflow/MinIO
 HOST_IP = "10.43.101.206"
 os.environ['MLFLOW_S3_ENDPOINT_URL'] = f"http://{HOST_IP}:30382"
 os.environ['AWS_ACCESS_KEY_ID'] = "adminuser"
