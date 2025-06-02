@@ -31,14 +31,14 @@ MODEL_LOADS = Counter('house_price_gradio_model_loads_total', 'Número de veces 
 REFRESH_CALLS = Counter('house_price_gradio_refresh_calls_total', 'Número de veces que se actualizó la lista de modelos')
 
 # 🎛️ FastAPI para Prometheus y Logs
-metrics_app = FastAPI(title="Prometheus Metrics for House Price Prediction")
-@metrics_app.get("/")
-async def root(): return {"message": "Prometheus Metrics Server for House Price Prediction"}
+# metrics_app = FastAPI(title="Prometheus Metrics for House Price Prediction")
+# @metrics_app.get("/")
+# async def root(): return {"message": "Prometheus Metrics Server for House Price Prediction"}
 
-@metrics_app.get("/metrics")
-async def metrics(): return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
+# @metrics_app.get("/metrics")
+# async def metrics(): return generate_latest(), {"Content-Type": CONTENT_TYPE_LATEST}
 
-def run_metrics_server(): uvicorn.run(metrics_app, host="0.0.0.0", port=9090)
+# def run_metrics_server(): uvicorn.run(metrics_app, host="0.0.0.0", port=9090)
 
 # 🌐 Configuración MLflow/MinIO
 HOST_IP = "10.43.101.206"
@@ -78,10 +78,10 @@ def get_logs(limit=100):
     except Exception as e:
         return {"error": str(e)}
 
-@metrics_app.get("/logs")
-async def logs():
-    data = get_logs()
-    return {"logs": data}
+# @metrics_app.get("/logs")
+# async def logs():
+#     data = get_logs()
+#     return {"logs": data}
 
 # 🎛️ Preprocesador y funciones clave
 def load_preprocessor():
