@@ -11,7 +11,7 @@ spec:
     path: proyecto-04/01_Primera_maquina/mlflow/manifests
   destination:
     server: https://kubernetes.default.svc
-    namespace: mlflow
+    namespace: mlops-project
   syncPolicy:
     automated:
       prune: true
