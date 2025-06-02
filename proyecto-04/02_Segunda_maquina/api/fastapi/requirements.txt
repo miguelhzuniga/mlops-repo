@@ -8,3 +8,4 @@ prometheus_client
 boto3
 pydantic
 dill==0.3.6
+lightgbm==3.3.2
