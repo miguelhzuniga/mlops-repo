@@ -61,7 +61,7 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
-          type=sha,prefix={{date 'YYYYMMDD'}}-
+          type=sha,prefix={{date 'YYYYMMDD'}}-,format=short
           
     - name: Construir y subir imagen Airflow
       uses: docker/build-push-action@v5
@@ -79,7 +79,8 @@ jobs:
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
-          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "tag=$(date '+%Y%m%d')-${SHORT_SHA}" >> $GITHUB_OUTPUT
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
@@ -119,7 +120,7 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
-          type=sha,prefix={{date 'YYYYMMDD'}}-
+          type=sha,prefix={{date 'YYYYMMDD'}}-,format=short
           
     - name: Construir y subir imagen MLflow
       uses: docker/build-push-action@v5
@@ -137,7 +138,8 @@ jobs:
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
-          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "tag=$(date '+%Y%m%d')-${SHORT_SHA}" >> $GITHUB_OUTPUT
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
@@ -177,7 +179,7 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
-          type=sha,prefix={{date 'YYYYMMDD'}}-
+          type=sha,prefix={{date 'YYYYMMDD'}}-,format=short
           
     - name: Construir y subir imagen FastAPI
       uses: docker/build-push-action@v5
@@ -195,7 +197,8 @@ jobs:
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
-          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "tag=$(date '+%Y%m%d')-${SHORT_SHA}" >> $GITHUB_OUTPUT
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
@@ -235,7 +238,7 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
-          type=sha,prefix={{date 'YYYYMMDD'}}-
+          type=sha,prefix={{date 'YYYYMMDD'}}-,format=short
           
     - name: Construir y subir imagen Gradio
       uses: docker/build-push-action@v5
@@ -253,7 +256,8 @@ jobs:
       id: extract-tag
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
-          echo "tag=$(date '+%Y%m%d')-${{ github.sha }}" >> $GITHUB_OUTPUT
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          echo "tag=$(date '+%Y%m%d')-${SHORT_SHA}" >> $GITHUB_OUTPUT
         else
           echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
