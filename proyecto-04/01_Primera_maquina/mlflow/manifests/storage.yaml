@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
-  namespace: mlops-project
+  namespace: mlflow
 spec:
   accessModes:
     - ReadWriteOnce
@@ -16,7 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: mlops-project
+  namespace: mlflow
 spec:
   replicas: 1
   selector:
@@ -51,7 +51,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  namespace: mlops-project
+  namespace: mlflow
 spec:
   selector:
     app: postgres
@@ -64,7 +64,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minio-pvc
-  namespace: mlops-project
+  namespace: mlflow
 spec:
   accessModes:
     - ReadWriteOnce
@@ -77,7 +77,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minio
-  namespace: mlops-project
+  namespace: mlflow
 spec:
   replicas: 1
   selector:
@@ -116,7 +116,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: minio
-  namespace: mlops-project
+  namespace: mlflow
 spec:
   selector:
     app: minio
