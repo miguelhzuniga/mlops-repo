@@ -388,93 +388,9 @@ def get_shap_summary_plot():
                transform=ax.transAxes, bbox=dict(boxstyle="round,pad=0.5", facecolor="lightcoral"))
         ax.axis('off')
         print(f"❌ Error: {str(e)}")
-        try:
-            return get_shap_hybrid_method(loaded_models[current_model_name])
-        except:
-            return fig
-
-# 🔄 MÉTODO HÍBRIDO MEJORADO (backup)
-def get_shap_hybrid_method(model):
-    """Método híbrido con nombres descriptivos"""
-    
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-    
-    print("🔄 Usando método híbrido con nombres descriptivos...")
-    
-    try:
-        base_data = {
-            'bed': 3, 'bath': 2, 'acre_lot': 0.25, 'house_size': 1500, 'prev_sold_year': 2020,
-            'brokered_by': '101640.0', 'status': 'for_sale', 'street': '1758218.0',
-            'city': 'East Windsor', 'state': 'Connecticut', 'zip_code': '6016.0',
-            'prev_sold_date': '2020-01-01'
-        }
-        
-        # Predicción base
-        base_df = pd.DataFrame([base_data])
-        base_processed = preprocess_input(base_df)
-        base_price = model.predict(base_processed)[0]
-        
-        # Variaciones con nombres descriptivos
-        variations = {
-            '🏠 Habitaciones (+1)': {'bed': 4},
-            '🚿 Baños (+1)': {'bath': 3},
-            '🌳 Terreno (+0.1 acres)': {'acre_lot': 0.35},
-            '📐 Tamaño casa (+500 sqft)': {'house_size': 2000},
-            '📅 Año más reciente (+3)': {'prev_sold_year': 2023},
-            '🏢 Estado premium': {'state': 'New York'},
-            '📍 Ciudad diferente': {'city': 'Hartford'}
-        }
-        
-        feature_impacts = {}
-        for feature_name, change in variations.items():
-            try:
-                mod_data = base_data.copy()
-                mod_data.update(change)
-                mod_df = pd.DataFrame([mod_data])
-                mod_processed = preprocess_input(mod_df)
-                impact = model.predict(mod_processed)[0] - base_price
-                feature_impacts[feature_name] = impact
-            except Exception as e:
-                print(f"⚠️ Error en variación {feature_name}: {e}")
-                continue
-        
-        # Crear visualización
-        fig, ax = plt.subplots(figsize=(12, 8))
-        
-        features = list(feature_impacts.keys())
-        impacts = list(feature_impacts.values())
-        colors = ['green' if x > 0 else 'red' for x in impacts]
-        
-        bars = ax.barh(features, impacts, color=colors, alpha=0.7)
-        ax.axvline(x=0, color='black', linestyle='-', alpha=0.5)
-        ax.set_xlabel('Impacto en precio (USD)')
-        ax.set_title(f'Análisis de Importancia por Característica\n{current_model_name} (Baseline: ${base_price:,.0f})')
-        
-        # Agregar valores en las barras
-        for bar, impact in zip(bars, impacts):
-            width = bar.get_width()
-            x_pos = width + (max(abs(min(impacts)), max(impacts)) * 0.02)
-            if width < 0:
-                x_pos = width - (max(abs(min(impacts)), max(impacts)) * 0.02)
-                ha = 'right'
-            else:
-                ha = 'left'
-            
-            ax.text(x_pos, bar.get_y() + bar.get_height()/2, 
-                   f'${impact:,.0f}', ha=ha, va='center', fontweight='bold')
-        
-        plt.tight_layout()
-        print("✅ Método híbrido con nombres completado")
+ 
         return fig
-        
 
-    except Exception as e:
-        fig, ax = plt.subplots(figsize=(8, 4))
-        ax.text(0.5, 0.5, f"Error: {str(e)[:100]}...", ha='center', va='center')
-        ax.axis('off')
-        return fig
 
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
