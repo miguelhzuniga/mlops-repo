@@ -18,7 +18,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: gradio-housing
-        image: luisfrontuso10/gradio-houses:20250603-3217c8f
+        image: luisfrontuso10/gradio-houses:20250603-e137774
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
