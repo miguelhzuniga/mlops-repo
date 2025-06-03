@@ -146,6 +146,7 @@ def refresh_models():
 
 # 🌳 VERSIÓN CON TREE EXPLAINER - Ultra rápido para LightGBM
 
+
 def get_shap_summary_plot():
     """SHAP analysis usando TreeExplainer optimizado para LightGBM"""
     
