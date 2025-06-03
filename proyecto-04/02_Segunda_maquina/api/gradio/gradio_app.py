@@ -422,8 +422,10 @@ def get_shap_summary_plot():
         
         #  CREAR TREE EXPLAINER Y CALCULAR SHAP
         print(" Creando TreeExplainer...")
-        explainer = shap.TreeExplainer(lightgbm_model)
-        
+        try:
+            explainer = shap.TreeExplainer(lightgbm_model)
+        except: 
+            explainer = shap.explainer(lightgbm_model)
         print(" Calculando SHAP values...")
         X_analysis = X_processed[:3]  # Solo 3 muestras
         shap_values = explainer.shap_values(X_analysis)
