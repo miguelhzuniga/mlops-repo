@@ -122,20 +122,86 @@ def load_model(model_name):
     current_model_name = model_name
     MODEL_LOADS.inc()
     return f"Modelo {model_name} cargado exitosamente."
+import psycopg2
+import pandas as pd
 
 def predict(model_name, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date):
     REQUESTS.inc()
     with PREDICTION_TIME.time():
         model_to_use = model_name if model_name else current_model_name
-        if model_to_use not in loaded_models: return f"El modelo {model_to_use} no está cargado."
-        input_dict = {'brokered_by': brokered_by, 'status': status, 'bed': bed, 'bath': bath, 'acre_lot': acre_lot,
-                      'street': street, 'city': city, 'state': state, 'zip_code': zip_code, 'house_size': house_size,
-                      'prev_sold_date': prev_sold_date}
+        if model_to_use not in loaded_models:
+            return f"El modelo {model_to_use} no está cargado."
+        
+        # Crear input_dict
+        input_dict = {
+            'brokered_by': brokered_by,
+            'status': status,
+            'bed': bed,
+            'bath': bath,
+            'acre_lot': acre_lot,
+            'street': street,
+            'city': city,
+            'state': state,
+            'zip_code': zip_code,
+            'house_size': house_size,
+            'prev_sold_date': prev_sold_date
+        }
+
+        # Preprocesar datos
         input_df = pd.DataFrame([input_dict])
         X_processed = preprocess_input(input_df)
-        prediction = loaded_models[model_to_use].predict(X_processed)
+
+        # Hacer predicción
+        prediction = loaded_models[model_to_use].predict(X_processed)[0]
+
+        # Calcular price_per_sqft
+        price_per_sqft = prediction / house_size if house_size else None
+
+        # Conectar a la base de datos PostgreSQL
+        try:
+            conn = psycopg2.connect(
+                host="10.43.101.175",
+                port=5432,
+                database="airflow",
+                user="airflow",
+                password="airflow"
+            )
+            cursor = conn.cursor()
+
+            # Insertar en rawdata.houses
+            insert_query = """
+                INSERT INTO rawdata.houses 
+                (id, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date, data_origin, price, price_per_sqft)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (
+                0,  # id en 0, el autoincremento lo manejará PostgreSQL si es necesario
+                brokered_by,
+                status,
+                bed,
+                bath,
+                acre_lot,
+                street,
+                city,
+                state,
+                zip_code,
+                house_size,
+                prev_sold_date,
+                'user',  # data_origin
+                prediction,
+                price_per_sqft
+            )
+
+            cursor.execute(insert_query, values)
+            conn.commit()
+            cursor.close()
+            conn.close()
+
+        except Exception as e:
+            return f"Error al insertar en la base de datos: {str(e)}"
+
         PREDICTIONS.inc()
-        return f"<h3>El precio estimado de la casa es: <strong>${prediction[0]:,.2f} USD</strong></h3>"
+        return f"<h3>El precio estimado de la casa es: <strong>${prediction:,.2f} USD</strong></h3>"
 
 def refresh_models():
     REFRESH_CALLS.inc()
