@@ -1,701 +1,1540 @@
-# Proyecto numero 3 de MLOps
-Este repositorio implementa una plataforma MLOps completa para el análisis, procesamiento, entrenamiento y despliegue de modelos predictivos enfocados en determinar la probabilidad de readmisión hospitalaria de pacientes diabéticos.
-La arquitectura del sistema está distribuida en múltiples máquinas virtuales que albergan componentes especializados:
+# Proyecto Final - Operaciones de Machine Learning
+## Sistema MLOps para Predicción de Precios de Bienes Raíces
 
-Maquina 01: Orquestación de datos (Airflow) y experimentación (MLflow + JupyterLab)
+### 🎯 Descripción General
 
-Maquina 02: Servicios de inferencia (FastAPI + Gradio) accesibles en los puertos 30601 y 30602
+Este proyecto implementa una plataforma MLOps empresarial completa para la predicción automatizada de precios de propiedades inmobiliarias. El sistema integra las mejores prácticas de DevOps, MLOps y observabilidad, proporcionando un flujo de trabajo automatizado desde la recolección de datos hasta el despliegue en producción con CI/CD completo.
 
-Maquina 03: Monitorización y observabilidad (Prometheus + Grafana)
+### 🏗️ Arquitectura del Sistema
 
-El sistema implementa un flujo de trabajo automatizado desde el procesamiento de datos hasta su división en lotes (batching), experimentación con múltiples modelos, registro y despliegue del mejor modelo en producción, todo sin necesidad de intervención manual durante las transiciones.
-La plataforma aprovecha tecnologías de contenedores y Kubernetes para garantizar escalabilidad, portabilidad y despliegue consistente en diferentes entornos.
+La solución está diseñada con una arquitectura distribuida de microservicios desplegada en tres máquinas virtuales especializadas:
 
-Video explicativo: https://youtu.be/83MP_AD714k
+- **🔄 Máquina 01 - Data & ML Pipeline**: Orquestación con Airflow y registro de experimentos con MLflow
+- **🚀 Máquina 02 - Servicios de Inferencia**: API REST (FastAPI) e interfaz de usuario (Gradio)
+- **📊 Máquina 03 - GitOps & Observabilidad**: Despliegue continuo (Argo CD) y monitorización (Prometheus + Grafana)
 
-### Estructura de proyecto
+
+### 📦 **Workflow: "Construir y Subir Imágenes MLOps"**
+
+El pipeline automatiza completamente el ciclo de vida del software con 6 etapas principales:
+
+#### **1. 🏗️ Builds Paralelos de Imágenes**
+```yaml
+jobs:
+  build-airflow:    # 🔄 Imagen Airflow
+  build-mlflow:     # 📊 Imagen MLflow  
+  build-fastapi:    # ⚡ Imagen FastAPI
+  build-gradio:     # 🎨 Imagen Gradio
 ```
-├── 01_Primera_maquina
-│   ├── airflow
+
+**Características**:
+- ✅ Builds paralelos para máxima eficiencia
+- 🏷️ Tagging automático por rama y SHA
+- 🌐 Multi-arquitectura (AMD64 + ARM64)
+- 📦 Caché optimizado GitHub Actions
+- 🐳 Push automático a Docker Hub
+
+#### **2. 🏷️ Sistema de Tagging Inteligente**
+```bash
+# Rama master (producción)
+Tag: YYYYMMDD-{short-sha}    # Ej: 20250603-a1b2c3d
+
+# Ramas de desarrollo  
+Tag: {branch-name}           # Ej: feature-new-model
+```
+
+#### **3. 📝 Actualización Automática de Manifiestos**
+```yaml
+actualizar-manifiestos:
+  needs: [build-airflow, build-mlflow, build-fastapi, build-gradio]
+  if: github.ref == 'refs/heads/master'
+```
+
+**Proceso**:
+1. 🔍 Detecta nuevos tags de imagen
+2. 📝 Actualiza manifiestos Kubernetes automáticamente
+3. 💾 Commit y push de cambios
+4. 🔄 Dispara sincronización de Argo CD
+
+#### **4. 🎯 Distribución por Máquina**
+
+| Máquina | Componente | Despliegue | Manifiesto |
+|---------|------------|------------|------------|
+| 01 | Airflow | Docker Compose | Manual |
+| 01 | MLflow | Argo CD | `mlflow/manifests/mlflow.yaml` |
+| 02 | FastAPI | Argo CD | `fastapi/fastapi-deployment.yaml` |
+| 02 | Gradio | Argo CD | `gradio/gradio-deployment.yaml` |
+
+#### **5. ⚡ Triggers del Pipeline**
+
+**Push a Master** (Producción):
+```yaml
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'proyecto-04/01_Primera_maquina/airflow/**'
+      - 'proyecto-04/01_Primera_maquina/mlflow/**'  
+      - 'proyecto-04/02_Segunda_maquina/api/**'
+```
+
+**Pull Requests** (Testing):
+```yaml
+on:
+  pull_request:
+    branches: [ master ]
+```
+
+#### **6. 📊 Monitorización y Reportes**
+```bash
+✅ Pipeline Status:
+• Build Airflow:          success
+• Build MLflow:           success  
+• Build FastAPI:          success
+• Build Gradio:           success
+• Actualizar Manifiestos: success
+
+📦 Imágenes en Docker Hub:
+• username/airflow-houses:20250603-a1b2c3d  (Ejemplo)
+• username/mlflow-houses:20250603-a1b2c3d   (Ejemplo)
+• username/fastapi-houses:20250603-a1b2c3d  (Ejemplo)
+• username/gradio-houses:20250603-a1b2c3d   (Ejemplo)
+```
+
+---
+
+## 🔐 Configuración de Secrets
+
+### **GitHub Secrets Requeridos**:
+```bash
+DOCKER_USERNAME= Usuario-dockerhub
+DOCKER_PASSWORD= Token-dockerhub
+GITHUB_TOKEN= Auto-generado
+```
+
+### **Permisos GitHub Actions**:
+```yaml
+permissions:
+  contents: write    # Para commits automáticos
+  packages: write    # Para Docker registry
+  actions: read      # Para workflows
+```
+
+---
+
+## 🚀 Flujo de Despliegue Completo
+
+### **1. 👨‍💻 Desarrollo**
+```bash
+# Developer pushea código
+git push origin feature-nueva-funcionalidad
+```
+
+### **2. 🔄 CI/CD Pipeline**
+![alt text](./Imagenes/image-2.png)
+
+### **3. 📦 GitOps con Argo CD**
+```bash
+# Argo CD detecta cambios (3 min)
+Sync Status: OutOfSync → Syncing → Healthy
+
+# Aplicaciones monitoreadas:
+• mlflow-app      (Máquina 01)
+• fastapi-app     (Máquina 02)  
+• gradio-app      (Máquina 02)
+```
+
+### **4. 🎯 Despliegue por Máquina**
+
+#### **Máquina 01 - Automático/Manual**:
+```bash
+# MLflow (Automático vía Argo CD)
+kubectl set image deployment/mlflow mlflow=user/mlflow-houses:new-tag
+
+# Airflow (Manual - Docker Compose)
+cd airflow && docker-compose pull && docker-compose up -d
+```
+
+#### **Máquina 02 - Automático**:
+```bash
+# FastAPI (Automático vía Argo CD)
+kubectl set image deployment/fastapi-housing fastapi=user/fastapi-houses:new-tag
+
+# Gradio (Automático vía Argo CD)  
+kubectl set image deployment/gradio-housing gradio=user/gradio-houses:new-tag
+```
+
+#### **Máquina 03 - Gestión**:
+```bash
+# Monitoreo en tiempo real
+Argo CD:    https://localhost:30443
+Grafana:    https://localhost:30000
+Prometheus: https://localhost:30090
+```
+
+---
+
+
+### 📊 Dataset y Fuente de Datos
+
+Los datos provienen de **Realtor.com**, el segundo sitio web de bienes raíces más visitado de Estados Unidos, con más de 100 millones de usuarios activos mensuales. La información se obtiene de una API externa que simula la llegada incremental de datos en un entorno productivo.
+
+#### Variables del Dataset
+
+| Variable | Tipo | Descripción |
+|----------|------|-------------|
+| `brokered_by` | Categórica | Agencia/corredor inmobiliario |
+| `status` | Categórica | Estado: lista para venta/construcción |
+| `price` | Numérica | Precio objetivo (variable a predecir) |
+| `bed` | Numérica | Número de habitaciones |
+| `bath` | Numérica | Número de baños |
+| `acre_lot` | Numérica | Tamaño del terreno en acres |
+| `street` | Categórica | Dirección (codificada) |
+| `city` | Categórica | Ciudad |
+| `state` | Categórica | Estado |
+| `zip_code` | Categórica | Código postal |
+| `house_size` | Numérica | Área habitable en pies cuadrados |
+| `prev_sold_date` | Temporal | Fecha de venta anterior |
+
+**🎯 Objetivo**: Predecir el precio de una propiedad basándose en sus características físicas y de ubicación.
+
+### 📁 Estructura del Proyecto
+
+```
+proyecto-04/
+├── 01_Primera_maquina/
+│   ├── airflow/
 │   │   ├── Dockerfile
-│   │   ├── dags
-│   │   │   ├── __pycache__
-│   │   │   │   ├── proceso_de_datos-dag.cpython-38.pyc
-│   │   │   │   └── proceso_mlflow-dag.cpython-38.pyc
-│   │   │   ├── proceso_de_datos-dag.py
-│   │   │   └── proceso_mlflow-dag.py
+│   │   ├── dags/
+│   │   │   ├── 0_borrar.py
+│   │   │   ├── 1_recopilar.py
+│   │   │   ├── 2_procesar.py
+│   │   │   ├── 3_entrenar.py
+│   │   │   └── entrenar modificado.txt
+│   │   ├── deploy.sh
 │   │   ├── docker-compose.yaml
-│   │   ├── logs
-│   │   ├── plugins
 │   │   └── requirements.txt
-│   ├── jupyterlab
-│   │   ├── Dockerfile
-│   │   ├── experimentos.ipynb
-│   │   └── requirements.txt
-│   └── mlflow
-│       ├── docker
-│       │   ├── Dockerfile
+│   └── mlflow/
+│       ├── Dockerfile.mlflow
+│       ├── cleanup.sh
+│       ├── deploy.sh
+│       ├── docker/
 │       │   └── Dockerfile.mlflow
-│       ├── manifests
-│       │   ├── ingress.yaml
-│       │   ├── init-job.yaml
-│       │   ├── mlflow.yaml
-│       │   ├── namespace.yaml
-│       │   └── storage.yaml
-│       └── scripts
-│           ├── cleanup.sh
-│           ├── deploy.sh
-│           └── docker
-│               └── Dockerfile.mlflow
-├── 02_Segunda_maquina
-│   └── api
+│       └── manifests/
+│           ├── ingress.yaml
+│           ├── init-job.yaml
+│           ├── mlflow.yaml
+│           ├── namespace.yaml
+│           └── storage.yaml
+├── 02_Segunda_maquina/
+│   └── api/
 │       ├── clean_api.sh
 │       ├── deploy.sh
-│       ├── fastapi
+│       ├── fastapi/
 │       │   ├── Dockerfile
 │       │   ├── fastapi-deployment.yaml
 │       │   ├── fastapi-service.yaml
 │       │   ├── main_server.py
 │       │   └── requirements.txt
-│       └── gradio
-│           ├── Dockerfile
-│           ├── gradio-deployment.yaml
-│           ├── gradio-service.yaml
-│           ├── gradio_app.py
-│           └── requirements.txt
-├── 03_Tercera_maquina
-│   ├── Dockerfile
+│       ├── gradio/
+│       │   ├── Dockerfile
+│       │   ├── gradio-deployment.yaml
+│       │   ├── gradio-service.yaml
+│       │   ├── gradio_app.py
+│       │   └── requirements.txt
+│       └── gradio modificacion.txt
+├── 03_Tercera_maquina/
+│   ├── argo-cd/
+│   │   ├── app.yaml
+│   │   ├── apps/
+│   │   │   ├── fastapi.yaml
+│   │   │   ├── gradio.yaml
+│   │   │   ├── mlflow.yaml
+│   │   │   └── monitoring.yaml
+│   │   └── install.yaml
 │   ├── cleanall.sh
+│   ├── deploy-argo.sh
 │   ├── deploy-monitoring.sh
-│   ├── locust
-│   │   └── locust.yaml
-│   ├── locustfile.py
-│   ├── manifests-local
-│   │   └── node-specific-deployment.yaml
-│   ├── monitoring
+│   ├── monitoring/
 │   │   ├── grafana.yaml
 │   │   └── prometheus.yaml
-│   ├── payload.json
-│   └── requirements.txt
-├── Imagenes_servicios
-│   ├── experimento_locust1.png
-│   ├── experimento_locust2.png
-│   ├── experimento_locust3.png
-│   ├── image-1.png
-│   ├── image-1_tercera_maquina.png
-│   ├── image-2.png
-│   ├── image-2_tercera_maquina.png
-│   ├── image-3.png
-│   ├── image-3_tercera_maquina.png
-│   ├── image-4.png
-│   ├── image-5.png
-│   ├── image-6.png
-│   ├── image-7.png
-│   ├── image.png
-│   └── image_tercera_maquina.png
+│   └── stop_port_forwards.sh
 └── README.md
 
-```
-![alt text](./Imagenes_servicios/maquinas.png)
-
-# **01_Primera_maquina**
-
-# Parte 1: Procesamiento de Datos con Airflow
-
-Esta máquina implementa la capa de procesamiento de datos, experimentación y registro de modelos para el sistema de predicción de readmisiones hospitalarias en pacientes diabéticos.
-Arquitectura y Componentes
-La máquina alberga tres componentes principales que operan de forma integrada:
-
-Apache Airflow: Orquesta el procesamiento de datos y entrenamiento automatizado
-
-JupyterLab: Proporciona un entorno interactivo para exploración de datos y experimentación
-
-MLflow: Gestiona el registro, versionado y transición a producción de modelos
-
-![alt text](./Imagenes_servicios/maquina1.png)
-
-### Estructura de Directorios
-```
-─ 01_Primera_maquina
-├── airflow
-│   ├── Dockerfile                               # Runtime: Python 3.8
-│   ├── dags
-│   │   ├── pycache
-│   │   │   ├── proceso_de_datos-dag.cpython-38.pyc
-│   │   │   └── proceso_mlflow-dag.cpython-38.pyc
-│   │   ├── proceso_de_datos-dag.py              # DAG de procesamiento ETL
-│   │   └── proceso_mlflow-dag.py                # DAG de entrenamiento ML
-│   ├── docker-compose.yaml                      # Configuración de servicios
-│   ├── logs                                     # Directorio de logs persistentes
-│   ├── plugins                                  # Plugins personalizados
-│   └── requirements.txt                         # Dependencias Python
-├── jupyterlab
-│   ├── Dockerfile                               # Runtime: Python 3.10
-│   ├── experimentos.ipynb                       # Notebook de experimentación
-│   └── requirements.txt                         # Dependencias Python
-└── mlflow
-├── docker
-│   ├── Dockerfile                           # Imagen base
-│   └── Dockerfile.mlflow                    # Configuración MLflow
-├── manifests
-│   ├── ingress.yaml                         # Configuración de acceso
-│   ├── init-job.yaml                        # Job de inicialización
-│   ├── mlflow.yaml                          # Despliegue del servidor
-│   ├── namespace.yaml                       # Namespace Kubernetes
-│   └── storage.yaml                         # Configuración de almacenamiento
-└── scripts
-├── cleanup.sh                           # Script de eliminación
-├── deploy.sh                            # Script de despliegue
-└── docker
-└── Dockerfile.mlflow                # Imagen MLflow
+# GitHub Actions (fuera de proyecto-04)
+.github/workflows/
+└── mlops-proyecto-final-ci.yml
 
 ```
+## 👨‍💻 Configuración del Cluster Microk8s
+Se implementó una configuración que distribuye la carga del proyecto entre tres máquinas mediante Kubernetes, utilizando MicroK8s en un único clúster. Estas máquinas comparten recursos de forma coordinada, lo que permite aprovechar de manera eficiente sus capacidades conjuntas. Como resultado, se obtiene lo siguiente:
 
-## Dags de Aiflow
-- `diabetes_data_processing`
-- `diabetes_ml_pipeline_optimized`
-
-Las actividades se ejecutan diariamente con una única diferencia: el proceso "diabetes_ml_pipeline_optimized" se iniciará 2 horas después de "diabetes_data_processing", garantizando así que los modelos tengan todos los datos necesarios disponibles en las bases de datos para su ejecución.
-
-![alt text](./Imagenes_servicios/image.png)
-
-## Descripción del DAG de Procesamiento
-
-El DAG `diabetes_data_processing` realiza las siguientes tareas:
-
-1. **Preparación**: Crea un directorio temporal para los archivos intermedios.
-2. **Descarga de datos**: Obtiene el conjunto de datos de diabetes desde la fuente.
-3. **Procesamiento**: Limpia y transforma los datos realizando:
-  - Manejo de valores faltantes
-  - Codificación de variables categóricas
-  - Tratamiento de valores atípicos
-  - Ingeniería de características
-4. **Almacenamiento de datos crudos**: Guarda los datos originales en PostgreSQL.
-5. **División y carga de datos**: Separa los datos en conjuntos de entrenamiento (70%), validación (15%) y prueba (15%), y los almacena en PostgreSQL. El conjunto de entrenamiento se divide en lotes de 15,000 registros.
-6. **Limpieza**: Elimina los archivos temporales utilizados durante el proceso.
-
-## Estructura de la Base de Datos
-
-Los datos se almacenan en PostgreSQL con la siguiente estructura:
-
-- **Datos crudos**: `raw_data.diabetes`
-- **Datos procesados**:
- - `clean_data.diabetes_train` (dividido en lotes)
- - `clean_data.diabetes_validation`
- - `clean_data.diabetes_test`
- - `clean_data.batch_info` (información sobre los lotes)
-
-**Nota:** Para realizar monitoreo o consulta a la base sin necesidad de realizar un script, se ha disponibilizado el servicio PGadmin para poder consultar cada las bases de raw.data y clean.data
-
-![alt text](./Imagenes_servicios/image-1.png)
+---
+![alt text](./Imagenes/kubernete.png)
+---
 
 
-## Experimentos con servicio Jupyterlab
+## 🔄 Máquina 01 - Data Pipeline & ML Operations
 
-Este componente es la sección de prueba por la exploración de datos y testeo de nuevos modelos.
+### Descripción
 
-Experimentos con servicio JupyterLab
-El servicio JupyterLab opera como laboratorio de experimentación y análisis de datos, proporcionando un entorno interactivo para científicos de datos e investigadores.
-Características técnicas
+Esta máquina forma el núcleo del pipeline de datos y experimentación, integrando **Apache Airflow** para orquestación y **MLflow** para gestión del ciclo de vida de modelos.
 
-Imagen base customizada: Construida sobre jupyter/base-notebook:python-3.10 con dependencias preinstaladas
-Endpoint accesible: Expuesto en puerto 8888 sin autenticación para facilitar integración
-Configuración optimizada: Memoria compartida con kernels para procesamiento eficiente
-Dependencias precargadas: MLflow, scikit-learn, LightGBM, pandas y librerías de visualización
+### Componentes Principales
 
-![alt text](./Imagenes_servicios/image-2.png)
-### **Flujo de experimentos implementados**
+## Apache Airflow - Orquestación (Puerto 8080)
 
-Exploración de datos: Análisis estadístico descriptivo de variables clínicas y demográficas
+![alt text](./Imagenes/airflow.png)
 
-Preprocesamiento: Pipeline personalizado con StandardScaler para variables numéricas y OneHotEncoder para categóricas
+Gestiona el flujo completo de datos mediante 4 DAGs especializados:
 
-Evaluación comparativa: Benchmark de modelos (LogisticRegression, DecisionTree) con tracking automatizado
+**1. `0_borrar.py` - Reset de Esquemas**
+- Elimina los esquemas `rawdata`, `cleandata` y `trainlogs` con CASCADE
+- Verifica esquemas disponibles antes de la eliminación
+- Garantiza un estado limpio para cada ejecución del pipeline
 
-Optimización de hiperparámetros: Grid search manual con registro MLflow de cada configuración
+**2. `1_recopilar.py` - Recolección de Datos**
+- Consulta la API externa (`http://10.43.101.108:80/data`)
+- Implementa lógica de reinicio automático cuando se agota la data disponible
+- Almacena datos crudos en PostgreSQL (`rawdata.houses`)
+- Retry logic robusto con manejo de errores y reintentos automáticos
 
-Interfaz de predicción: Función predict_readmission() para validar modelos con casos de prueba
+**3. `2_procesar.py` - Pipeline ETL**
+- Limpieza de datos: elimina registros con precio ≤ 0 o tamaño ≤ 0
+- Ingeniería de características: calcula `price_per_sqft`
+- Normalización de campos categóricos (status a minúsculas)
+- Almacenamiento en `cleandata.processed_houses`
 
-### **Integración con componentes MLOps**
+**4. `3_entrenar.py` - Entrenamiento ML con Drift Detection**
+- Validación automática de volumen mínimo de datos (20,000+ registros)
+- **Detección de data drift** usando Evidently (DataDriftPreset y TargetDriftPreset)
+- Entrenamiento condicional: solo si detecta drift o es primera ejecución
+- Benchmarking de algoritmos: **LightGBMRegressor** y **DecisionTreeRegressor**
+- Preprocessado automático con StandardScaler y OneHotEncoder
+- Registro en MLflow con promoción automática del mejor modelo a "Production"
+- Logging detallado en `trainlogs.logs` con métricas de rendimiento
 
-Conexión PostgreSQL: 
-postgresql://airflow:airflow@localhost:5432/airflow para acceso a datos procesados
+## MLflow - ML Lifecycle Management (Puerto 30500)
 
-Tracking MLflow: Configurado en http://10.43.101.175:30500 para registro de experimentos y modelos
-Almacenamiento S3: MinIO (http://10.43.101.175:30382) para persistencia de artefactos y preprocesadores
+![alt text](./Imagenes/mlflow1.png)
+---
+![alt text](./Imagenes/mlflow2.png)
+---
 
-Visualización integrada: Gráficos, matrices de confusión y métricas exportadas como artefactos MLflow
+**Arquitectura de Componentes:**
+- **Tracking Server**: MLflow v2.10.0 con 3 réplicas para alta disponibilidad
+- **Model Registry**: Versionado automático y gestión de transiciones de modelos
+- **Backend Store**: PostgreSQL (puerto interno) para metadatos de experimentos
+- **Artifact Store**: MinIO S3-compatible (API: 30382, Console: 30901) para modelos y artefactos
+---
+![alt text](./Imagenes/minio.png)
+---
 
-El notebook experimentos.ipynb funciona como plantilla reproducible para futuras iteraciones y pruebas de concepto, manteniendo consistencia con los pipelines productivos.
+**Infraestructura Kubernetes:**
+- **Namespace**: `mlops-project` dedicado para aislamiento
+- **Persistencia**: PVCs con `microk8s-hostpath` (PostgreSQL: 5Gi, MinIO: 10Gi)
+- **Networking**: Ingress para routing inteligente + NodePort para acceso directo
+- **Health Checks**: Liveness y readiness probes en `/health` endpoint
+- **Recursos**: Requests optimizados (512Mi RAM, 200m CPU) con límites escalables
 
-## **Registros de modelos y experimentos por MLFLOW**
+**Funcionalidades Implementadas:**
+- Tracking automático de hiperparámetros, métricas y artefactos
+- Gestión de stages: `None` → `Staging` → `Production` → `Archived`
+- Comparación visual de experimentos y linaje de modelos
+- Integración S3 nativa con bucket `mlflow-artifacts` preconfigurado
 
-## Estructura de archivos
+**Credenciales de Acceso:**
+- **MinIO Console**: `adminuser` / `securepassword123`
+- **MLflow**: Sin autenticación (acceso directo via NodePort)
 
+## Especificaciones Técnicas
+
+#### Infraestructura
+- **Airflow**: Docker Compose con Apache Airflow 2.10.5 (Python 3.8)
+- **MLflow**: Kubernetes con MLflow 2.10.0 + PostgreSQL backend
+- **Executor**: CeleryExecutor con Redis 7.2-bookworm como broker
+- **Base de Datos**: PostgreSQL 13 con schemas separados (`rawdata`, `cleandata`, `trainlogs`)
+- **Almacenamiento**: MinIO S3-compatible con PVCs (PostgreSQL: 5Gi, MinIO: 10Gi)
+- **Recursos**: 4GB RAM, 2 CPUs mínimo recomendado
+
+#### Arquitectura de Servicios
+- **Airflow Components**: Webserver, Scheduler, Worker, Triggerer + Init
+- **MLflow Components**: Tracking Server (3 réplicas), Model Registry, Artifact Store
+- **Monitoring**: **PgAdmin4** para gestión de base de datos
+---
+![alt text](./Imagenes/pgadmin.png)
+
+* Como se observa en la anterior imagen, la columna "data_origin" contiene la etiqueta que indica el origen de los datos. Si el dato se recolecto desde la API del profesor queda con la etiqueta "teacher", mientras que si se recolecta desde la interfaz de usuario de GRADIO, se guarda la etiqueta "user". Siempre que el usuario genere una nueva prediccion en gradio se agrega una nueva fila con la data correspondiente a esta para reentrenar el modelo. El modelo solo se reentrena si los datos contienen el 80% de datos con etiqueta "teacher". 
+
+
+---
+- **Storage**: Volúmenes persistentes para DAGs, logs, models, plugins
+
+#### Configuración de Red
+| Servicio | Puerto | Acceso | Credenciales |
+|----------|--------|--------|--------------|
+| Airflow Webserver | 8080 | `http://10.43.101.175:8080` | `airflow/airflow` |
+| MLflow Tracking | 30500 | `http://10.43.101.175:30500` | Sin autenticación |
+| PostgreSQL | 5432 | Interno (Docker/K8s network) | `airflow/airflow` |
+| PgAdmin | 5050 | `http://10.43.101.175:5050` | `admin@example.com/admin` |
+| MinIO Console | 30901 | `http://10.43.101.175:30901` | `adminuser/securepassword123` |
+| MinIO API | 30382 | `http://10.43.101.175:30382` | S3-compatible |
+| Redis | 6379 | Interno (Celery backend) | Sin autenticación |
+
+#### Variables de Entorno Clave
+```bash
+AIRFLOW__CORE__EXECUTOR=CeleryExecutor
+AIRFLOW__CORE__DEFAULT_TIMEZONE=America/Bogota
+MLFLOW_TRACKING_URI=http://10.43.101.175:30500
+MLFLOW_S3_ENDPOINT_URL=http://10.43.101.175:30382
+HOST_IP=10.43.101.175
 ```
-├── docker
-│   └── Dockerfile.mlflow     # Dockerfile personalizado para MLflow
-├── manifests                  # Archivos de configuración Kubernetes
-│   ├── ingress.yaml          # Configuración de ingress para acceso web
-│   ├── init-job.yaml         # Job para inicializar el bucket de MinIO
-│   ├── mlflow.yaml           # Despliegue de MLflow
-│   ├── namespace.yaml        # Namespace para el proyecto
-│   └── storage.yaml          # Configuración de PostgreSQL y MinIO
-└── scripts
-    ├── cleanup.sh            # Script para eliminar el despliegue
-    └── deploy.sh             # Script para desplegar la infraestructura
+
+### Instrucciones de Despliegue Inicial
+
+```bash
+# 1. Desplegar Airflow (Docker Compose)
+cd 01_Primera_maquina/airflow
+chmod +x deploy.sh
+./deploy.sh
+
+# 2. Desplegar MLflow (Kubernetes)
+cd ../mlflow
+chmod +x deploy.sh
+./deploy.sh
+
+# 3. Verificar despliegue
+docker-compose ps                    # Verificar Airflow
+kubectl get pods -n mlops-project   # Verificar MLflow
 ```
 
+---
 
-Registros de modelos y experimentos por MLflow
-MLflow opera como componente central de registro y gobernanza de modelos, desplegado en Kubernetes con endpoints específicos:
+## 🚀 Máquina 02 - Servicios de Inferencia
 
-- Tracking Server: Accesible en puerto 30500, proporciona interfaz web para visualización y comparación de experimentos
-- Backend PostgreSQL: Almacena metadatos, parámetros, métricas y linaje de modelos
-- Almacenamiento S3 (MinIO): Gestiona artefactos (modelos, preprocesadores, visualizaciones) en el bucket mlflow-artifacts
+Esta máquina implementa la capa de inferencia del sistema, proporcionando tanto una API REST para integración programática como una interfaz web interactiva para usuarios finales usando FastAPI y Gradio.
 
-Estructura de experimentos implementada
+## Arquitectura de Microservicios
 
-Experimento principal: diabetes_readmission_experiment contiene todas las ejecuciones de modelos
-Jerarquía de ejecuciones: Las ejecuciones anidadas permiten agrupar modelos y optimizaciones relacionadas
-Etiquetas de transición: (Production, Staging, Archived) facilitan el despliegue automático
+### FastAPI - Backend de Inferencia (Puerto 30601)
 
-![alt text](./Imagenes_servicios/image-3.png)
-![alt text](./Imagenes_servicios/image-4.png)
+---
+![alt text](./Imagenes/fastapi.png)
+---
 
-## REQUISITOS PARA LA IMPLEMENTACIÓN EN MAQUINA 1
+**Características Técnicas:**
+- **Imagen**: `luisfrontuso10/fastapi-houses:20250603-afef697` (Imagen que cambia conforme el proceso de CI/CD )
+- **Replicas**: 3 instancias para alta disponibilidad
+- **Conexión dinámica a MLflow**: Carga automática del modelo marcado como "Production"
+- **Preprocesamiento**: Carga automática del preprocesador desde MinIO S3
+- **Validación de datos**: Pydantic schemas con HouseFeatures model
+- **Instrumentación**: Métricas Prometheus integradas (requests, predictions, errors, timing)
 
-# > Librerias
+**Endpoints Principales:**
+```python
+GET  /                    # Información de la API
+POST /predict            # Predicción de precios
+GET  /health             # Health check (modelo + preprocesador)
+GET  /metrics            # Métricas Prometheus
+POST /test_preprocess    # Test de preprocesamiento
+```
 
-- Apache Airflow 2.5+
-- PostgreSQL 13+
-- Python 3.8+
-- Bibliotecas: pandas, numpy, scikit-learn, requests
+**Ejemplo de Request:**
+```json
+{
+  "brokered_by": "101640.0",
+  "status": "for_sale", 
+  "bed": 3,
+  "bath": 2,
+  "acre_lot": 0.25,
+  "street": "1758218.0",
+  "city": "East Windsor",
+  "state": "Connecticut", 
+  "zip_code": "6016.0",
+  "house_size": 1500,
+  "prev_sold_date": "2020-01-01"
+}
+```
 
-## > Especificaciones Técnicas
+### Gradio - Frontend Interactivo (Puerto 30602)
 
-### Apache Airflow (Puerto 8080)
+---
+## PANEL DE PREDICCIÓN
+![alt text](./Imagenes/gradio1.png)
+---
+## PANEL DE LOGS DE ENTRENAMIENTO
+![alt text](./Imagenes/gradio2.png)
+---
+## PANEL DE LOGS DE ANALISIS SHAP
+![alt text](./Imagenes/gradio3.png)
+---
 
-- **Contenedores**:
-  - Webserver (8080)
-  - Scheduler
-  - Worker
-  - Triggerer
-  - PostgreSQL (5432)
-  - Redis (6379)
-  - Inicializador
-  - CLI (debug)
-  - Flower (5555, opcional)
-  - PgAdmin (5050)
-  - Network-tools
+**Características Técnicas:**
+- **Imagen**: `luisfrontuso10/gradio-houses:20250603-afef697` (Imagen que cambia conforme el proceso de CI/CD )
+- **Replicas**: 3 instancias con load balancing
+- **Servidor de métricas**: FastAPI integrado en puerto 9090 para Prometheus
 
-- **DAGs implementados**:
-  - `diabetes_data_processing`: Procesa datos de readmisión hospitalaria (ejecución diaria + 1h)
-  - `diabetes_ml_pipeline_optimized`: Entrena y registra modelos de ML (ejecución semanal)
+**Funcionalidades Implementadas:**
 
-- **Optimizaciones de recursos disponibles**:
-  - Control de hilos para LightGBM (n_jobs=1)
-  - Muestreo de datos (10% para entrenamiento)
-  - Timeout de tareas configurable (3600s)
+**1. Pestaña de Predicción:**
+- Selector dinámico de modelos MLflow con refresh automático
+- Formularios organizados por categorías (ubicación, características, fechas)
+- Carga de modelos bajo demanda desde Model Registry
+- Resultados formateados con precio estimado en USD
 
-- **Conexiones externas**:
-  - MLflow: `http://10.43.101.175:30500`
-  - MinIO: `http://10.43.101.175:30382`
-  - Credenciales S3: adminuser/securepassword123
+**2. Pestaña de Logs (trainlogs.logs):**
+- Conexión directa a PostgreSQL para consultar logs de entrenamiento
+- Visualización de tabla con últimos registros de `trainlogs.logs`
+- Información de estado, mensajes y métricas RMSE
 
-### JupyterLab (Puerto 8888)
+**3. Análisis SHAP con Nombres Descriptivos:**
+- **TreeExplainer** para modelos LightGBM con extracción automática del modelo subyacente
+- **Mapeo inteligente** de características: `num__bed` → `Habitaciones`, `cat__status__for_sale` → `Estado: En venta`
+- **Top 15 características** más importantes con nombres legibles
+- **Método híbrido de backup** con análisis de sensibilidad por característica
+- Visualizaciones: Summary plots, Feature importance, Impact analysis
 
-- **Imagen base**: `jupyter/base-notebook:python-3.10`
-- **Notebooks**:
-  - `experimentos.ipynb`: Implementa exploración, preprocesamiento, modelado y evaluación
-- **Acceso**: Sin token/contraseña para facilitar integración
-- **Características**:
-  - Visualización con matplotlib/seaborn
-  - Integración con MLflow para registro de experimentos
-  - Conexión a PostgreSQL (`postgresql://airflow:airflow@localhost:5432/airflow`)
+## Flujo de Trabajo de Inferencia
+![alt text](./Imagenes/image.png)
 
-### MLflow (Puerto 30500)
+## Especificaciones Técnicas
 
-- **Despliegue**: Kubernetes (MicroK8s)
-- **Componentes**:
-  - Tracking Server (30500)
-  - PostgreSQL para metadatos
-  - MinIO para artefactos (30382, 30901)
-- **Almacenamiento**:
-  - Bucket: `mlflow-artifacts`
-  - Ruta de preprocesadores: `preprocessors/preprocessor.joblib`
-  - Modelos registrados: `diabetes_readmission_{model_name}`
+### Infraestructura Kubernetes
+- **Namespace**: `mlops-project`
+- **Deployment strategy**: Rolling updates con 3 réplicas por servicio
+- **Resource allocation**: 
+  - **Requests**: 512Mi RAM, 200m CPU por replica
+  - **Limits**: 1Gi RAM, 500m CPU por replica
+- **Health monitoring**: Liveness (60s) y readiness (30s) probes configurados
 
-## **Flujo de Trabajo**
+### Configuración de Red
+| Servicio | Puerto Interno | NodePort | Acceso |
+|----------|----------------|----------|--------|
+| FastAPI Backend | 80 | 30601 | `http://10.43.101.175:30601` |
+| Gradio Frontend | 8501 | 30602 | `http://10.43.101.175:30602` |
+| Prometheus Metrics | 9090 | - | Interno (scraping) |
 
-1. El DAG `diabetes_data_processing` ejecuta ETL del conjunto de datos:
+### Variables de Entorno
+```bash
+MLFLOW_TRACKING_URI=http://10.43.101.175:30500
+MLFLOW_S3_ENDPOINT_URL=http://10.43.101.175:30382
+AWS_ACCESS_KEY_ID=adminuser
+AWS_SECRET_ACCESS_KEY=securepassword123
+```
 
+## Características Avanzadas
 
-![alt text](./Imagenes_servicios/diabetes_data_processing.png)
+### Robustez y Confiabilidad
+- **Health checks**: Liveness y readiness probes configurados (60s/30s intervals)
+- **Resource management**: Requests (512Mi RAM, 200m CPU) y limits (1Gi RAM, 500m CPU)
+- **Caching inteligente**: Cache en memoria para modelos y preprocesadores
+- **Manejo de errores**: Try-catch con fallbacks para análisis SHAP
+- **Graceful shutdown**: Manejo adecuado de señales de terminación
 
-   - Descarga datos de pacientes diabéticos
-   - Procesa y limpia los datos
-   - Divide en conjuntos de entrenamiento, validación y test
-   - Particiona los datos de entrenamiento en lotes (batch_size=15000)
+### Conectividad y Configuración
+- **Variables de entorno**: MLflow URI, MinIO S3, credenciales AWS
+- **Conexión a servicios**: PostgreSQL para logs, MLflow para modelos, MinIO para artefactos
+- **CORS**: Configuración permisiva para desarrollo (`allow_origins=["*"]`)
+- **Serialización**: Soporte para joblib y dill para compatibilidad de artefactos
 
-2. JupyterLab permite a científicos de datos experimentar con:
-   - Exploración de distribuciones y características
-   - Preprocesamiento avanzado (normalización, codificación)
-   - Entrenamiento de modelos (LogisticRegression, DecisionTree)
-   - Optimización de hiperparámetros
-   - Análisis de métricas (precisión, recall, F1)
+### Monitorización y Observabilidad
+**Métricas Prometheus FastAPI:**
+- `house_api_requests_total` - Total de solicitudes
+- `house_api_predictions_total` - Total de predicciones exitosas
+- `house_api_prediction_time_seconds` - Tiempo de procesamiento
+- `house_api_model_errors_total` - Errores del modelo
 
-3. El DAG `diabetes_ml_pipeline_optimized` ejecuta automáticamente:
+**Métricas Prometheus Gradio:**
+- `house_price_gradio_requests_total` - Solicitudes a la interfaz
+- `house_price_gradio_predictions_total` - Predicciones desde UI
+- `house_price_gradio_model_loads_total` - Cargas de modelo
+- `house_price_gradio_refresh_calls_total` - Actualizaciones de modelos
 
-![alt text](./Imagenes_servicios/diabetes_ml_pipeline_optimized.png)
+### Interpretabilidad y Explicabilidad
 
-   - Carga incremental de lotes de datos
-   - Preprocesamiento consistente
-   - Entrenamiento de múltiples modelos (LightGBM, DecisionTree, LogisticRegression)
-   - Evaluación comparativa
-   - Registro del mejor modelo en MLflow
-   - Transición a etapa "Production" del modelo ganador
+**SHAP Analysis Engine:**
+```python
+# Mapeo inteligente de características
+important_patterns = {
+    'bed': 'Habitaciones',
+    'bath': 'Baños', 
+    'acre_lot': 'Terreno (acres)',
+    'house_size': 'Tamaño casa (sqft)',
+    'prev_sold_year': 'Año venta anterior',
+    'status__for_sale': 'Estado: En venta',
+    'state__Connecticut': 'Estado: Connecticut',
+    'city__East Windsor': 'Ciudad: East Windsor'
+}
+```
 
-## > Requisitos del Sistema
-
-- Docker y Docker Compose
-- Kubernetes (MicroK8s)
-- 4GB RAM mínimo recomendado
-- 2 CPUs mínimo recomendados
-- 10GB espacio en disco
-
-## > Configuración de Red
-
-| Servicio | Puerto | Protocolo | Descripción |
-|----------|--------|-----------|-------------|
-| Airflow Webserver | 8080 | HTTP | Interfaz de administración de DAGs |
-| PostgreSQL | 5432 | TCP | Base de datos para Airflow y datos procesados |
-| PgAdmin | 5050 | HTTP | Interfaz de administración de PostgreSQL |
-| Redis | 6379 | TCP | Backend para ejecutor Celery |
-| Flower | 5555 | HTTP | Monitoreo de tareas Celery (opcional) |
-| JupyterLab | 8888 | HTTP | Entorno de experimentación |
-| MLflow | 30500 | HTTP | Tracking server y registro de modelos |
-| MinIO API | 30382 | HTTP | API S3 para artefactos |
-| MinIO Console | 30901 | HTTP | Interfaz web de MinIO |
+**Análisis Híbrido de Backup:**
+- Análisis de sensibilidad por característica
+- Visualización de impacto en precio base
+- Comparación con diferentes configuraciones de propiedades
 
 ## Instrucciones de Despliegue
 
-1. **Airflow y JupyterLab**:
-   ```bash
-   cd 01_Primera_maquina/airflow
-   docker-compose up -d
-2. **Mlflow** 
+### Despliegue Automático Antes de CI/CD
 ```bash
-cd 01_Primera_maquina/mlflow/scripts
+cd prediction-api
+chmod +x deploy.sh
 ./deploy.sh
 ```
 
-
-### Instrucciones de Despliegue
-
-1. Asegúrese de tener MicroK8s instalado en su sistema:
-   ```bash
-   sudo snap install microk8s --classic
-   sudo usermod -a -G microk8s $USER
-   ```
-
-2. Ejecute el script de despliegue:
-   ```bash
-   chmod +x scripts/deploy.sh
-   ./scripts/deploy.sh
-   ```
-
-3. El script realizará las siguientes acciones:
-   - Habilitar los addons necesarios en MicroK8s
-   - Crear el namespace para el proyecto
-   - Desplegar PostgreSQL y MinIO
-   - Construir y publicar la imagen personalizada de MLflow
-   - Desplegar el servidor MLflow
-   - Configurar el acceso mediante Ingress
-
-4. Tras la ejecución, podrá acceder a:
-   - MLflow UI: http://<NODE_IP>:30500
-   - Consola de MinIO: http://<NODE_IP>:30901 (user: adminuser, password: securepassword123)
-
-5. Para eliminar el despliegue cuando ya no sea necesario:
-   ```bash
-   chmod +x scripts/cleanup.sh
-   ./scripts/cleanup.sh
-   ```
-
-# **02_Segunda_maquina**
-
-La carpeta `02_Segunda_maquina` contiene la implementación de la interfaz de inferencia y la API de predicción para el modelo de diabetes. Esta sección del proyecto implementa el servicio de inferencia que consume los modelos entrenados en MLflow.
-
-![alt text](./Imagenes_servicios/maquina2.png)
-
-### Estructura de archivos
-```
-└── api/
-├── clean_api.sh              # Script de desmontaje de recursos K8s
-├── deploy.sh                 # Automatización CI/CD para K8s
-├── fastapi/                  # Backend API REST
-│   ├── Dockerfile            # Runtime Python 3.9-slim
-│   ├── fastapi-deployment.yaml
-│   ├── fastapi-service.yaml  # NodePort: 30601
-│   ├── main_server.py        # Implementación del servicio
-│   └── requirements.txt      # Dependencias
-└── gradio/                   # Frontend interactivo
-├── Dockerfile            # Runtime Python 3.8.20
-├── gradio-deployment.yaml
-├── gradio-service.yaml   # NodePort: 30602
-├── gradio_app.py         # Implementación de UI
-└── requirements.txt      # Dependencias
-
-```
-
-### Características principales
-
-- **Conexión automática con MLflow**: Ambos servicios obtienen el modelo de producción de forma dinámica desde MLflow, sin necesidad de recodificar o recompilar al cambiar de modelo.
-
-- **Robustez en el procesamiento de datos**: Incluye manejo especial para valores atípicos, campos con comparadores (">200", "<30"), y normalización de nombres de campos para asegurar compatibilidad con el preprocesador original 
-
- **Nota:** Este proceso se realiza por la capacidad limita de las maquinas virtuales, en un entorno de producción con mayores recursos, se puede disponer de un entrenamiento mas profundo.
-
-- **Exposición de métricas para Prometheus**: Ambos servicios exponen endpoints `/metrics` para recolección de métricas como número de solicitudes, errores, tiempos de respuesta, etc.
-
-- **Contenedorización completa**: Todos los componentes están containerizados y configurados para despliegue en Kubernetes, facilitando la escalabilidad y gestión.
-
-- **Uso de Docker Hub:** Para el proceso de levantamiento de las imágenes de FastAPI, se opta por utilizar Docker Hub como repositorio centralizado. Esta elección permite almacenar y compartir las imágenes de forma eficiente, facilitando su despliegue en diferentes entornos y asegurando la consistencia en las versiones utilizadas. Además, al aprovechar Docker Hub, se simplifica la integración con herramientas de automatización y se mejora la colaboración entre equipos de desarrollo.
-
-### Flujo de trabajo
-
-1. El script `deploy.sh` construye las imágenes Docker para FastAPI y Gradio
-2. Las imágenes se etiquetan y suben a Docker Hub
-3. Los manifiestos de Kubernetes se aplican para crear los despliegues y servicios
-4. El servicio FastAPI (backend) proporciona una API REST para realizar predicciones
-5. La interfaz Gradio (frontend) ofrece una experiencia amigable para usuarios finales
-6. Ambos servicios consultan MLflow para obtener siempre el modelo marcado como "Production"
-
-### Endpoints y conectividad
-
-# **FastAPI (Backend)**: 
-`http://10.43.101.206:30601/docs`
-  - `/predict`: POST - Endpoint principal para inferencia
-  - `/health`: GET - Verificación de salud del servicio
-  - `/metrics`: GET - Exposición de métricas para 
-
-![alt text](./Imagenes_servicios/fastapi.png)
-
-# **GRADIO (front-end)**: 
-`http://10.43.101.206:30602`
-
-## información general gradio
-Información general.
-
-![alt text](./Imagenes_servicios/gradio_model.png)
-
-## Selección de modelos en producción
-Selección del modelo en estado de producción.
-
-![alt text](./Imagenes_servicios/select_model.png)
-## Panel de inferencia
-
-Consta de 3 pestañas (Información basica, medica y medicamentos) las cuales debe diligenciar el usuario para posterior dar al botón de "Realizar predicción"
-
-![alt text](./Imagenes_servicios/panel_de_inferencia.png)
-
-## Inferencia
-Muestra el resultado de la predicción por parte del modelo.
-
-![alt text](./Imagenes_servicios/image-7.png)
-
-- **Dependencias externas**:
-  - MLflow Server: `http://10.43.101.206:30500`
-  - MinIO S3: `http://10.43.101.206:30382`
-  - Credenciales S3: adminuser/securepassword123
-
-### Características técnicas de la API
-
-- **Orquestación K8s**: Ambos servicios utilizan Kubernetes para gestión de contenedores, definiendo límites de recursos (CPU: 500m, Memoria: 1Gi) y solicitudes (CPU: 200m, Memoria: 512Mi).
-
-- **Gestión dinámica de modelos**: Implementación de modelo Registry Pattern conectado a MLflow, permitiendo promoción/degradación de modelos sin redeployment.
-
-- **Instrumentación**: Integración con Prometheus mediante cliente nativo exponiendo métricas REQUESTS, PREDICTIONS, PREDICTION_TIME, MODEL_ERRORS y PREPROCESSOR_ERRORS.
-
-- **Procesamiento de datos**: Pipeline de transformación con soporte para manejo de valores atípicos, normalización de nombres de campos y conversión automática de tipos.
-
-- **Almacenamiento en caché**: Implementación de patrón Singleton para modelos y preprocesadores, minimizando latencia y consumo de recursos.
-
-**Nota:** La funcionalidad de recolección de datos de inferencia se encuentra temporalmente deshabilitada en el código (comentada). Esta decisión se tomó debido a que la arquitectura actual, con Airflow operando como servicio dentro de Docker Compose, introduce una latencia considerable en las conexiones a la base de datos, afectando negativamente la experiencia del usuario final. Si bien la implementación del flujo de trabajo se ha conservado, su ejecución ha sido desactivada por no ser crítica en la fase actual del proyecto.
-
-**Posibles causas**
---
-Es posible que esta latencia esté relacionada con diferencias en la configuración de los protocolos HTTPS y HTTP entre las máquinas involucradas, donde algunas permiten únicamente conexiones seguras (HTTPS) y otras solo conexiones inseguras (HTTP), generando incompatibilidades en la comunicación.
-
-Para mitigar esta limitación técnica, en un futuro proyecto se tomará la desición de migrar el despliegue de Airflow a un entorno Kubernetes, lo que permitiría una comunicación más eficiente y estable entre la API de inferencia y el esquema raw.data en PostgreSQL.
-
-# **03_Tercera_maquina**
-
-Esta máquina implementa la capa de monitorización y observabilidad para la plataforma MLOps, proporcionando capacidades de pruebas de carga, recolección de métricas en tiempo real y visualización de telemetría operacional.
-
-![alt text](./Imagenes_servicios/maquina3.png)
-
-
-## Estructura de directorios
-```
-─ 03_Tercera_maquina
-├── cleanall.sh                # Script de terminación de recursos K8s (namespace mlops-project)
-├── deploy-monitoring.sh       # Script CI/CD para K8s con detección de nodo
-├── locust/                    # Framework de pruebas de carga distribuidas
-│   ├── Dockerfile             # Extensión de imagen base locustio/locust
-│   ├── locustfile.py          # Implementación de casos de prueba sintéticos
-│   ├── locust.yaml            # Manifiesto K8s (NodePort: 31000, API Target: 10.43.101.202:30601)
-│   └── payload.json           # Payload de referencia para simulación de inferencia
-└── monitoring/
-├── prometheus.yaml        # Configuración scraper con job_name: 'fastapi' (NodePort: 31090)
-└── grafana.yaml           # Panel de visualización con datasource Prometheus (NodePort: 31300)
-
-```
-## Componentes de observabilidad
-
-- **Locust**: Implementa testing de carga distribuido con arquitectura master-worker, configurado para generar tráfico sintético hacia el endpoint de inferencia REST (`10.43.101.202:30601/predict`). La simulación replica patrones de tráfico de usuarios reales con distribuciones de espera entre 1-5 segundos y payload completo para evaluar la serialización/deserialización bajo carga.
-
-- **Prometheus**: Servicio de monitorización basado en time-series database que implementa pull-based metrics collection con intervalos de scraping de 15s. Configurado para recolectar métricas del endpoint `/metrics` expuesto por FastAPI (PORT 30601) con instrumentación personalizada para tracking de:
-  - `prediction_requests_total`: Contador acumulativo de solicitudes
-  - `prediction_latency_seconds`: Histograma con bucketing automático para análisis de percentiles
-  - `prediction_errors_total`: Contador segregado por código de error/excepción
-
-- **Grafana**: Plataforma de visualización implementada en modo stateless, preconfigurable mediante provisioning. Expone el puerto 31300 mediante NodePort y utiliza Prometheus como datasource principal. Soporta configuración declarativa de dashboards mediante ConfigMaps para facilitar GitOps.
-
-## Metricas operacionales claves
-
-El sistema de monitorización está instrumentado para capturar las siguientes métricas críticas:
-
-| Métrica | Tipo | Descripción | Rango esperado |
-|---------|------|-------------|----------------|
-| Latencia de predicción P95 | Histograma | Tiempo de respuesta del endpoint `/predict` (percentil 95) | <500ms |
-| Throughput | Contador | Solicitudes por segundo procesadas | 1-100 RPS |
-| Tasa de errores | Ratio | Porcentaje de solicitudes con código 4xx/5xx | <0.1% |
-| Utilización CPU | Gauge | Porcentaje de CPU utilizado por pod de inferencia | <80% |
-| Memoria utilizada | Gauge | Consumo de memoria del pod de inferencia | <1.5GiB |
-| Tiempo de carga de modelo | Histograma | Duración de carga inicial de modelos | <2s |
-
-## Despliegue y conexión
-
-El stack completo se despliega en el namespace `mlops-project` dentro del clúster MicroK8s y es accesible mediante NodePorts:
-
-- **Locust UI**: `http://10.43.101.202:31000` - Interfaz para pruebas de carga
-- **Prometheus**: `http://10.43.101.202:31090` - Plataforma de métricas con PromQL
-- **Grafana**: `http://10.43.101.202:31300` - Panel de visualización (admin/admin)
-
-Para iniciar el despliegue completo:
-
+### Verificación del Despliegue
 ```bash
+# Verificar pods
+microk8s kubectl get pods -n mlops-project | grep -E 'fastapi|gradio'
+
+# Verificar servicios
+microk8s kubectl get services -n mlops-project | grep -E 'fastapi|gradio'
+
+# Verificar logs
+microk8s kubectl logs -f deployment/fastapi-housing -n mlops-project
+microk8s kubectl logs -f deployment/gradio-housing -n mlops-project
+```
+
+### Acceso a Servicios
+```bash
+echo "FastAPI Backend: http://10.43.101.175:30601"
+echo "FastAPI Docs: http://10.43.101.175:30601/docs"
+echo "Gradio UI: http://10.43.101.175:30602"
+echo "Health Check: http://10.43.101.175:30601/health"
+echo "Metrics: http://10.43.101.175:30601/metrics"
+```
+
+### Cleanup y Mantenimiento
+```bash
+# Eliminar servicios
+chmod +x clean_api.sh
+./clean_api.sh
+
+# Restart servicios
+microk8s kubectl rollout restart deployment/fastapi-housing -n mlops-project
+microk8s kubectl rollout restart deployment/gradio-housing -n mlops-project
+```
+
+## Dependencias y Requisitos
+
+### FastAPI Requirements
+```txt
+fastapi==0.110.0
+uvicorn==0.27.0.post1
+mlflow==2.3.0
+numpy==1.21.0
+pandas==1.3.3
+scikit-learn==1.0.2
+prometheus_client
+boto3
+pydantic
+dill==0.3.6
+lightgbm==3.3.2
+```
+
+### Gradio Requirements
+```txt
+fastapi==0.95.0
+uvicorn==0.27.0.post1
+mlflow==2.10.0
+numpy==1.22.0
+pandas==1.5.3
+scikit-learn==1.0.2
+scipy==1.10.1
+lightgbm==3.3.2
+shap==0.44.0
+matplotlib==3.7.1
+gradio==3.50.2
+requests==2.28.2
+boto3==1.26.121
+dill==0.3.6
+joblib==1.2.0
+psycopg2-binary==2.9.9
+prometheus_client==0.14.1
+```
+
+## Estructura de Archivos
+
+```
+prediction-api/
+├── fastapi/
+│   ├── Dockerfile
+│   ├── main_server.py
+│   ├── requirements.txt
+│   ├── fastapi-deployment.yaml
+│   └── fastapi-service.yaml
+├── gradio/
+│   ├── Dockerfile
+│   ├── gradio_app.py
+│   ├── requirements.txt
+│   ├── gradio-deployment.yaml
+│   └── gradio-service.yaml
+├── deploy.sh
+└── clean_api.sh
+```
+
+## 📊 Máquina 03 - GitOps & Observabilidad
+
+## Descripción
+Esta máquina implementa las capacidades de despliegue continuo y observabilidad del sistema, utilizando **Argo CD** para GitOps y un stack completo de monitorización con **Prometheus** y **Grafana**.
+
+## Argo CD - Despliegue Continuo GitOps
+![alt text](./Imagenes/argocd.png)
+---
+
+
+### Configuración de Acceso
+- **NodePort HTTP**: Puerto 30080 (`http://localhost:30080`)
+- **NodePort HTTPS**: Puerto 30443 (`https://localhost:30443`)  
+- **Port-forwarding**: Puerto 8081 (`https://localhost:8081`)
+- **Credenciales**: `admin` / `<contraseña-generada-automáticamente>`
+
+### Arquitectura "App of Apps"
+El sistema utiliza el patrón "App of Apps" para gestión centralizada:
+
+```yaml
+# mlops-root-app - Aplicación Raíz
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlops-root-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/miguelhzuniga/mlops-repo.git
+    targetRevision: master
+    path: proyecto-04/03_Tercera_maquina/argo-cd/apps
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true      # Elimina recursos obsoletos
+      selfHeal: true   # Auto-corrección de drift
+```
+
+### Aplicaciones Gestionadas
+| Aplicación | Ruta del Repositorio | Namespace | Descripción |
+|------------|---------------------|-----------|-------------|
+| `mlflow-app` | `proyecto-04/01_Primera_maquina/mlflow/manifests` | `mlops-project` | MLflow Tracking Server |
+| `fastapi-app` | `proyecto-04/02_Segunda_maquina/api/fastapi` | `mlops-project` | API de inferencia |
+| `gradio-app` | `proyecto-04/02_Segunda_maquina/api/gradio` | `mlops-project` | Interfaz web interactiva |
+| `monitoring-app` | `proyecto-04/03_Tercera_maquina/monitoring` | `mlops-project` | Stack de observabilidad |
+
+### Características GitOps
+- **Declarativo**: Estado deseado definido en Git
+- **Observabilidad**: Monitoreo continuo de drift
+- **Automatización**: Sincronización automática con `prune` y `selfHeal`
+- **Rollback**: Reversión automática en caso de fallos
+- **Multi-aplicación**: Gestión centralizada de todo el stack MLOps
+
+## Stack de Observabilidad
+
+### Prometheus - Recolección de Métricas (Puerto 31090)
+![alt text](./Imagenes/prometheus.png)
+---
+
+**Configuración de Scraping:**
+```yaml
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: 'fastapi'
+    static_configs:
+      - targets: ['10.43.101.202:30601']
+  - job_name: 'gradio'
+    static_configs:
+      - targets: ['10.43.101.202:30601']
+```
+
+### Grafana - Visualización (Puerto 31300)
+![alt text](./Imagenes/grafana.png)
+---
+
+- **Credenciales**: `admin` / `admin`
+- **Configuración**: Deployment básico con ConfigMap
+
+**Dashboards Potenciales:**
+
+**1. MLOps Overview Dashboard:**
+- Rate de predicciones por minuto/hora
+- Latencia de API (percentiles P50, P95, P99)
+- Tasa de errores y disponibilidad
+- Cargas de modelos y refreshes
+
+**2. Model Performance Dashboard:**
+- Distribución de predicciones
+- Análisis SHAP ejecutados
+- Comparación entre modelos
+- Logs de entrenamiento (trainlogs.logs)
+
+**3. Infrastructure Dashboard:**
+- Estado de pods FastAPI y Gradio (3 réplicas cada uno)
+- Utilización de recursos (CPU: 200m-500m, RAM: 512Mi-1Gi)
+- Health checks y readiness probes
+- Estado de servicios MLflow y MinIO
+
+## Configuración de Red y Puertos
+
+| Servicio | Puerto Interno | NodePort | Acceso |
+|----------|----------------|----------|--------|
+| Argo CD HTTP | 8080 | 30080 | `http://localhost:30080` |
+| Argo CD HTTPS | 8080 | 30443 | `https://localhost:30443` |
+| Prometheus | 9090 | 31090 | `http://<NODE_IP>:31090` |
+| Grafana | 3000 | 31300 | `http://<NODE_IP>:31300` |
+
+## Instrucciones de Despliegue
+
+### Despliegue de Argo CD
+```bash
+cd 03_Tercera_maquina
+
+# Desplegar Argo CD con configuración automática
+chmod +x deploy-argo.sh
+sudo ./deploy-argo.sh
+
+# El script preguntará el método de acceso preferido:
+# 1) NodePort (recomendado)
+# 2) Port-forwarding 
+# 3) Ambos
+```
+
+### Configuración de la Aplicación Raíz
+```bash
+# Aplicar la aplicación raíz (App of Apps)
+sudo microk8s kubectl apply -f argo-cd/app.yaml
+
+# Verificar aplicaciones
+sudo microk8s kubectl get applications -n argocd
+```
+
+### Despliegue del Stack de Monitorización
+```bash
+# Desplegar Prometheus y Grafana
 chmod +x deploy-monitoring.sh
 sudo ./deploy-monitoring.sh
+
+# Verificar despliegue
+sudo microk8s kubectl get pods -n mlops-project | grep -E 'prometheus|grafana'
 ```
 
-## Para desmontar todos los recursos:
-
-
+### Verificación del Despliegue Completo
 ```bash
-chmod +x cleanall.sh
+# Estado de todas las aplicaciones Argo CD
+sudo microk8s kubectl get applications -n argocd
+
+# Estado de pods en mlops-project
+sudo microk8s kubectl get pods -n mlops-project
+
+# Estado de servicios
+sudo microk8s kubectl get services -n mlops-project
+
+# Logs de Argo CD
+sudo microk8s kubectl logs -f deployment/argocd-server -n argocd
+```
+
+## Gestión y Mantenimiento
+
+### Scripts de Utilidad
+
+**Stop Port Forwards:**
+```bash
+# Detener todos los port-forwards activos
+./stop_port_forwards.sh
+```
+
+**Cleanup Completo:**
+```bash
+# Eliminar Prometheus y Grafana
 sudo ./cleanall.sh
 ```
-## **Integración end-to-end en el ecosistema MLOps**
 
-Este componente de monitorización completa el ciclo MLOps proporcionando observabilidad integral:
+### Comandos de Troubleshooting
 
-- Validación de modelos bajo carga: Cuantificación del degradado de rendimiento del modelo en función del throughput
+**Verificar sincronización de Argo CD:**
+```bash
+# Estado de sync de todas las apps
+sudo microk8s kubectl get applications -n argocd -o wide
 
-- Detección de data drift: Instrumentación para capturar anomalías estadísticas en distribuciones de entrada
+# Detalles de una aplicación específica
+sudo microk8s kubectl describe application fastapi-app -n argocd
+```
 
-- Dimensionamiento de recursos: Métricas para optimización de límites/solicitudes de CPU/memoria en pods de FastAPI
+**Forzar sincronización:**
+```bash
+# Sincronizar manualmente una aplicación
+argocd app sync fastapi-app
+```
 
-- Circuit-breaking proactivo: Capacidad de establecer umbrales de alerta para degradación de servicio
+**Verificar métricas:**
+```bash
+# Test de endpoints de métricas
+curl http://<NODE_IP>:30601/metrics  # FastAPI
+curl http://<NODE_IP>:31090/targets  # Prometheus targets
+```
 
-- Dashboards operacionales: Visualización consolidada de métricas técnicas y de negocio (precision/recall)
+## Estructura de Archivos
 
-- La integración con el sistema de experimentación MLflow (maquina 1) y el servicio de inferencia FastAPI (maquina 2) cierra el ciclo de feedback para mejora continua de los modelos.
+```
+03_Tercera_maquina/
+├── argo-cd/
+│   ├── app.yaml                   # Aplicación raíz (App of Apps)
+│   ├── install.yaml               # Imagen oficial de Argo CD    
+│   └── apps/
+│       ├── fastapi.yaml           # App Argo CD para FastAPI
+│       ├── gradio.yaml            # App Argo CD para Gradio
+│       ├── mlflow.yaml            # App Argo CD para MLflow
+│       └── monitoring.yaml        # App Argo CD para monitorización
+├── monitoring/
+│   ├── prometheus.yaml            # Deployment + ConfigMap Prometheus
+│   └── grafana.yaml              # Deployment + Service Grafana
+├── deploy-argo.sh                # Script instalación Argo CD
+├── deploy-monitoring.sh          # Script instalación monitoring
+├── cleanall.sh                   # Script limpieza
+└── stop_port_forwards.sh         # Script stop port-forwards
+```
 
-# **Visualización del monitoreo**
-# Prometheus
-![alt text](./Imagenes_servicios/image_tercera_maquina.png)
-# Locust UI
-![alt text](./Imagenes_servicios/image-1_tercera_maquina.png)
+## Flujo GitOps
+
+![alt text](./Imagenes/image-1.png)
+
+## Características Avanzadas
+
+### Configuración de Repository
+- **Repository URL**: `https://github.com/miguelhzuniga/mlops-repo.git`
+- **Target Revision**: `master`
+- **Auto-sync**: Habilitado con `prune` y `selfHeal`
+- **Directory Recursion**: Habilitado para apps anidadas
+
+### Políticas de Sincronización
+- **Prune**: Elimina recursos no declarados en Git
+- **Self Heal**: Revierte cambios manuales no autorizados
+- **Automated Sync**: Sincronización automática al detectar cambios
+
+### Observabilidad Integrada
+- **Target Discovery**: Prometheus configura targets automáticamente
+- **Service Monitoring**: Health checks de todos los componentes
+- **Resource Monitoring**: CPU, memoria y network de pods
+- **Application Metrics**: Métricas custom de FastAPI y Gradio
+
+
+
+## 🔄 CI/CD Pipeline Completo
+
+### GitHub Actions - Continuous Integration
+
+El sistema implementa un pipeline de CI/CD completamente automatizado que gestiona desde la construcción de imágenes hasta el despliegue en producción.
+
 ---
-![alt text](./Imagenes_servicios/image-2_tercera_maquina.png)
-
-## Experimentos Locust UI
-# Exp1
-![alt text](./Imagenes_servicios/experimento_locust1.png)
-# Exp2
-![alt text](./Imagenes_servicios/experimento_locust2.png)
-# Exp3
-![alt text](./Imagenes_servicios/experimento_locust3.png)
+![alt text](./Imagenes/git_action.png)
 ---
-![alt text](./Imagenes_servicios/metricas_locust.png)
+![alt text](./Imagenes/git_action2.png)
 ---
-# Grafana
-![alt text](./Imagenes_servicios/image-3_tercera_maquina.png)
+![alt text](./Imagenes/git_action3.png)
+---
+#### Workflow Principal: `mlops-images.yml`
 
-# Conclusión del monitoreo
-Locust UI: Nos permitió identificar que la arquitectura actual soporta un máximo de 50 usuarios simultáneos, incrementando 5 usuarios por segundo. Este límite se determina porque el tiempo máximo de respuesta para las predicciones alcanza los 4.9 segundos, lo cual consideramos aceptable dentro de un umbral de hasta 5 segundos. Superar este número de usuarios generaría tiempos de respuesta mayores al límite establecido.
+**Triggers Configurados:**
+```yaml
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'proyecto-04/01_Primera_maquina/**'
+      - 'proyecto-04/02_Segunda_maquina/**'
+  pull_request:
+    branches: [ master ]
+```
 
-**Importante:** Es importante tener en cuenta las limitaciones de este servicio. Si se requiere un uso de recursos superior a la capacidad de la máquina asignada, no se deben solicitar recursos adicionales de otras máquinas, ya que esto podría provocar la inestabilidad o caída del clúster de Kubernetes.
+#### Jobs del Pipeline
 
-Prometheus & Grafana: Estas herramientas nos permitieron recolectar métricas específicas de nuestras APIs, como la cantidad de predicciones realizadas y el tiempo de ejecución de cada una. Esta información resulta muy útil y puede visualizarse de manera clara y atractiva a través de los dashboards de Grafana.
+**1. Build Jobs (Paralelos):**
+- `build-airflow`: Construye imagen personalizada de Airflow
+- `build-mlflow`: Construye imagen personalizada de MLflow
+- `build-fastapi`: Construye imagen del API de inferencia
+- `build-Gradio`: Construye imagen de la interfaz de usuario
 
-# Conclusión General del Proyecto MLOps en Kubernetes
-Este proyecto implementa una plataforma MLOps completa y robusta utilizando Kubernetes como base de orquestación para gestionar el ciclo de vida de modelos predictivos enfocados en la readmisión hospitalaria de pacientes diabéticos.
+**2. Deploy Jobs (Secuenciales):**
+- `actualizar-manifiestos`: Actualiza automáticamente manifiestos K8s
+- `resumen-despliegue`: Genera reporte completo del pipeline
 
-Arquitectura Distribuida y Componentes Clave
-La arquitectura está estratégicamente distribuida en tres máquinas virtuales, cada una con responsabilidades específicas y claramente definidas:
+#### Características Técnicas del Pipeline
 
-- Máquina 1 (Procesamiento y Experimentación): Implementa Airflow para orquestación de datos, JupyterLab para experimentación y MLflow para registro de modelos, creando una base sólida para el desarrollo y preparación de modelos.
+**Multi-arquitectura:** Soporte nativo para `linux/amd64` y `linux/arm64`
+```dockerfile
+platforms: linux/amd64,linux/arm64
+```
 
-- Máquina 2 (Servicios de Inferencia): Proporciona una API REST (FastAPI) y una interfaz de usuario (Gradio) para realizar predicciones en tiempo real, con capacidad de cargar dinámicamente el mejor modelo desde MLflow.
+**Caché Inteligente:** Optimización de builds con GitHub Actions cache
+```yaml
+cache-from: type=gha,scope=fastapi
+cache-to: type=gha,mode=max,scope=fastapi
+```
 
-- Máquina 3 (Monitorización): Despliega Prometheus, Grafana y Locust para recolectar métricas, visualizar rendimiento y realizar pruebas de carga, cerrando el ciclo de retroalimentación para la mejora continua.
+**Versionado Automático:** Tags únicos basados en timestamp + commit SHA
+```bash
+# Formato: YYYYMMDD-{short-sha}
+# Ejemplo: 20250603-a1b2c3d
+```
 
-Para finalizar Kubernetes se destaca como una plataforma que proporciona una notable agilidad en la interconexión de servicios y optimiza el aprovechamiento de recursos computacionales distribuidos en múltiples máquinas. Sin embargo, es fundamental establecer límites de recursos específicos para cada servicio, ya que en ausencia de estas restricciones, podemos enfrentar escenarios de "competencia por recursos" cuando la demanda de los servicios se intensifica.
+#### Actualización Automática de Manifiestos
 
-## **"Competencias por recursos"**  
-Al implementar nuestros servicios en Kubernetes, hemos constatado que, sin la configuración de límites apropiados, los distintos componentes compiten activamente por los recursos disponibles durante periodos de alta demanda. En nuestro proyecto específico, identificamos que MLFLOW, las APIs y su monitoreo representan los servicios con mayor consumo de recursos.
-Es importante destacar que Airflow, aunque no está integrado en nuestro clúster de Kubernetes, también presenta un consumo significativo de recursos, variando en función del volumen de datos en la base original y de la complejidad computacional de los modelos durante sus fases de entrenamiento.
+El pipeline incluye un job especializado que:
+
+1. **Detecta manifiestos**: Identifica archivos YAML de Kubernetes a actualizar
+2. **Actualiza imágenes**: Modifica solo las líneas de imagen con nuevos tags
+3. **Valida cambios**: Verifica que las actualizaciones fueron correctas
+4. **Commit automático**: Sube cambios con mensaje descriptivo
+5. **Trigger Argo CD**: Los cambios disparan sincronización automática
+
+```bash
+# Ejemplo de actualización automática
+sed -i -E "s|(image:.*fastapi-houses):.*|\1:20250603-a1b2c3d|g" \
+  proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
+```
+
+### Integración GitHub Actions + Argo CD
+
+#### Flujo End-to-End
+
+![alt text](./Imagenes/image-4.png)
+
+#### Configuración de Secrets
+
+**GitHub Repository Secrets:**
+```bash
+DOCKER_USERNAME= Usuario_dockerhub
+DOCKER_PASSWORD= Personal_access_token
+GITHUB_TOKEN=ghp_xxx  # Auto-generado por GitHub
+```
+
+#### Ejemplo de Ejecución Exitosa
+
+```bash
+🚀 Resumen de Ejecución del Pipeline MLOps
+==================================================
+
+📊 Resultados de Build:
+• Build Airflow:          ✅ success
+• Build MLflow:           ✅ success
+• Build FastAPI:          ✅ success
+• Build Gradio:        ✅ success
+• Actualizar Manifiestos: ✅ success
+
+📦 Imágenes Docker Publicadas:
+• miguelhzuniga/airflow-houses:20250603-a1b2c3d
+• miguelhzuniga/mlflow-houses:20250603-a1b2c3d
+• miguelhzuniga/fastapi-houses:20250603-a1b2c3d
+• miguelhzuniga/Gradio-houses:20250603-a1b2c3d
+
+🎯 Despliegue Automático:
+✅ Manifiestos K8s actualizados
+🔄 Argo CD sincronizando en ~3 minutos
+```
+---
+![alt text](./Imagenes/git_action4.png)
+---
+
+## 🌐 Configuración de Red y Acceso
+
+### Mapa de Servicios y Puertos
+
+| Servicio | Puerto | URL | Protocolo | Estado |
+|----------|--------|-----|-----------|---------|
+| **Airflow WebUI** | 8080 | `http://10.43.101.175:8080` | HTTP | Docker Compose |
+| **MLflow Tracking** | 30500 | `http://10.43.101.175:30500` | HTTP | Kubernetes |
+| **FastAPI Docs** | 30601 | `http://10.43.101.202:30601/docs` | HTTP | Kubernetes |
+| **Gradio UI** | 30602 | `http://10.43.101.202:30602` | HTTP | Kubernetes |
+| **Argo CD Dashboard** | 30080 | `http://10.43.101.206:30080` | HTTP | Kubernetes |
+| **Prometheus UI** | 31090 | `http://10.43.101.206:31090` | HTTP | Kubernetes |
+| **Grafana Dashboards** | 31300 | `http://10.43.101.206:31300` | HTTP | Kubernetes |
+| **MinIO Console** | 30901 | `http://10.43.101.175:30901` | HTTP | Kubernetes |
+| **PgAdmin** | 5050 | `http://10.43.101.175:5050` | HTTP | Docker Compose |
+
+### Credenciales de Acceso
+
+| Servicio | Usuario | Contraseña | Notas |
+|----------|---------|------------|-------|
+| Airflow | `admin` | `admin` | Configurado en docker-compose |
+| Argo CD | `admin` | `Generada por el despliegue` | Configuración inicial |
+| Grafana | `admin` | `admin` | Dashboards preconfigurados |
+| MinIO | `adminuser` | `securepassword123` | S3-compatible storage |
+| PgAdmin | `admin@admin.com` | `admin` | PostgreSQL management |
+
+### Comunicación Entre Servicios
+![alt text](./Imagenes/image-3.png)
 
 
 
+## 📋 Guía de Despliegue Completo
 
-# Fortalezas Técnicas
-El proyecto demuestra varias fortalezas técnicas significativas:
+### Pre-requisitos del Sistema
 
-- Automatización completa: Desde el procesamiento de datos hasta el despliegue en producción, minimizando la intervención manual y reduciendo errores.
+```bash
+# Verificar versiones mínimas
+kubectl version --client    # v1.20+
+docker version             # v20.10+
+microk8s version           # v1.20+
 
-- Containerización y orquestación: El uso de Docker y Kubernetes garantiza despliegues consistentes, portabilidad y escalabilidad.
+# Recursos mínimos recomendados
+# CPU: 8 cores
+# RAM: 16GB
+# Storage: 100GB
+# Network: 1Gbps
+```
 
-- Registro y versión de modelos: MLflow proporciona trazabilidad completa de experimentos, parámetros y métricas, facilitando la reproducibilidad y comparación.
+### Instalación Paso a Paso
 
-- Despliegue dinámico: La implementación del patrón Registry permite promocionar o degradar modelos sin necesidad de redespliegue.
+#### 1. Preparación del Entorno
 
-- Observabilidad integral: La instrumentación con Prometheus permite monitorizar tanto aspectos técnicos (latencia, throughput) como de negocio (precisión del modelo).
+```bash
+# Clonar repositorio
+git clone https://github.com/miguelhzuniga/mlops-repo.git
+cd mlops-repo/proyecto-04
 
-# Capacidades Operacionales
-Las pruebas de carga con Locust revelaron que la arquitectura actual soporta eficientemente hasta 50 usuarios concurrentes con tiempos de respuesta menores a 5 segundos, estableciendo un límite claro para el dimensionamiento de recursos.
-La integración entre las tres máquinas crea un ciclo completo de MLOps que abarca desde el procesamiento de datos hasta la monitorización en producción, permitiendo:
+# Configurar MicroK8s
+sudo snap install microk8s --classic
+sudo usermod -a -G microk8s $USER
+newgrp microk8s
 
-# Detección de data drift
-- Optimización de recursos computacionales
-- Visualización consolidada de métricas operativas
-- Evaluación de modelos bajo condiciones de carga real
+# Habilitar addons necesarios
+microk8s enable dns dashboard storage ingress
+```
 
-# Consideraciones Futuras
-Para entornos con mayores exigencias, sería recomendable:
+#### 2. Despliegue Máquina 1 (Data Pipeline)
 
-- Migrar Airflow de Docker Compose a Kubernetes para mejorar la comunicación con la API de inferencia
-- Implementar autoescalado basado en métricas para adaptarse a picos de demanda
-- Habilitar la recolección de datos de inferencia para monitorizar el desempeño del modelo a largo plazo
+```bash
+cd 01_Primera_maquina
 
-Esta implementación demuestra efectivamente cómo Kubernetes puede proporcionar la infraestructura necesaria para desplegar flujos de trabajo de machine learning completos, desde el desarrollo hasta la producción, con observabilidad y escalabilidad incorporadas.
+# Desplegar Airflow
+cd airflow
+chmod +x deploy.sh
+./deploy.sh
 
-# Autores:
-- **Luis Frontuso**
-- **Miguel Zuñiga**
-- **Camilo Serrano**
------
+# Verificar Airflow
+docker-compose ps
+echo "Airflow UI: http://localhost:8080"
+
+# Desplegar MLflow
+cd ../mlflow
+chmod +x deploy.sh
+./deploy.sh
+
+# Verificar MLflow
+kubectl get pods -n mlops-project
+echo "MLflow UI: http://localhost:30500"
+```
+#### 3. Despliegue Máquina 2 (Data Pipeline)
+
+```bash
+cd 02_Primera_maquina
+
+# Desplegar FastApi & Gradio
+cd api
+chmod +x deploy.sh
+./deploy.sh
+```
+#### 4. Configurar GitHub Actions
+
+```bash
+# En GitHub Repository Settings > Secrets:
+# 1. Ir a Settings > Secrets and variables > Actions
+# 2. Crear secrets:
+DOCKER_USERNAME=Usuario_dockerhub
+DOCKER_PASSWORD=Token_dockerhub
+
+# 3. Verificar workflow
+git push origin master (Tambien se puede hacer push a una rama y merge a master/main)
+# Monitorear en: GitHub > Actions tab
+```
+
+#### 5. Despliegue Máquina 3 (GitOps)
+
+```bash
+cd 03_Tercera_maquina
+
+# Instalar Argo CD
+chmod +x deploy-argo.sh
+./deploy-argo.sh
+
+# Configurar aplicación raíz
+kubectl apply -f argo-cd/app.yaml
+
+# Desplegar monitoring
+chmod +x deploy-monitoring.sh
+./deploy-monitoring.sh
+
+# Verificar instalación
+kubectl get applications -n argocd
+echo "Argo CD UI: http://localhost:30080"
+```
+
+#### 5. Verificación Final
+
+```bash
+# Estado general del sistema
+kubectl get pods --all-namespaces
+kubectl get services --all-namespaces
+
+# Verificar aplicaciones en Argo CD
+kubectl get applications -n argocd
+
+# Test de conectividad
+curl http://localhost:30601/health
+curl http://localhost:30500/health
+```
+
+### Verificación de Servicios
+
+#### Health Check Script
+
+```bash
+#!/bin/bash
+echo "🔍 Verificando estado de servicios MLOps..."
+
+services=(
+    "http://localhost:8080|Airflow"
+    "http://localhost:30500|MLflow"
+    "http://localhost:30601/health|FastAPI"
+    "http://localhost:30602|Gradio"
+    "http://localhost:30080|Argo CD"
+    "http://localhost:31090|Prometheus"
+    "http://localhost:31300|Grafana"
+)
+
+for service in "${services[@]}"; do
+    url=$(echo $service | cut -d'|' -f1)
+    name=$(echo $service | cut -d'|' -f2)
+    
+    if curl -s --max-time 5 $url > /dev/null; then
+        echo "✅ $name: OK"
+    else
+        echo "❌ $name: FAIL"
+    fi
+done
+```
+
+---
+
+## 🛠️ Troubleshooting y Mantenimiento
+
+### Problemas Comunes y Soluciones
+
+#### GitHub Actions
+
+**❌ Error: "Failed to push to DockerHub"**
+```bash
+# Verificar configuración de secrets
+# GitHub > Settings > Secrets and variables > Actions
+DOCKER_USERNAME=tu_usuario  # Sin errores tipográficos
+DOCKER_PASSWORD=tu_token    # Usar PAT, no password regular
+
+# Verificar permisos del token en DockerHub
+# DockerHub > Account Settings > Security > New Access Token
+# Scope: Read, Write, Delete
+```
+
+**❌ Error: "Manifest update failed"**
+```bash
+# Verificar que manifiestos existen
+find . -name "*-deployment.yaml" -type f
+
+# Verificar formato de imagen en YAML
+grep -n "image:" proyecto-04/02_Segunda_maquina/api/fastapi/fastapi-deployment.yaml
+# Formato correcto: image: usuario/imagen:tag
+```
+
+#### Argo CD
+
+**❌ Application "OutOfSync"**
+```bash
+# Sincronización manual forzada
+argocd app sync mlops-root-app --force
+
+# Ver diferencias específicas
+argocd app diff fastapi-app
+
+# Refresh y re-sync
+argocd app get fastapi-app --refresh
+argocd app sync fastapi-app
+```
+
+**❌ Application "Degraded"**
+```bash
+# Verificar pods
+kubectl get pods -n mlops-project
+kubectl describe pod <pod-name> -n mlops-project
+
+# Ver logs de aplicación
+kubectl logs deployment/fastapi-housing -n mlops-project --tail=50
+
+# Verificar recursos
+kubectl top pods -n mlops-project
+```
+
+#### MLflow
+
+**❌ Error: "Connection to MinIO failed"**
+```bash
+# Verificar pods MinIO
+kubectl get pods -n mlops-project | grep minio
+
+# Test de conectividad
+kubectl exec -it deployment/mlflow -n mlops-project -- \
+  python -c "
+import boto3
+s3 = boto3.client('s3', endpoint_url='http://minio:9000')
+print(s3.list_buckets())
+"
+```
+
+#### FastAPI
+
+**❌ Error: "Model loading failed"**
+```bash
+# Verificar conexión a MLflow
+kubectl logs deployment/fastapi-housing -n mlops-project | grep -i mlflow
+
+# Test manual de carga de modelo
+kubectl exec -it deployment/fastapi-housing -n mlops-project -- \
+  python -c "
+import mlflow
+mlflow.set_tracking_uri('http://mlflow:5000')
+client = mlflow.tracking.MlflowClient()
+print(client.search_registered_models())
+"
+```
+
+### Comandos de Diagnóstico
+
+#### Sistema General
+```bash
+# Estado del cluster
+kubectl cluster-info
+kubectl get nodes -o wide
+
+# Uso de recursos
+kubectl top nodes
+kubectl top pods --all-namespaces
+
+# Events del sistema
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+# Logs de sistema
+journalctl -u snap.microk8s.daemon -f
+```
+
+#### Aplicaciones Específicas
+```bash
+# Airflow
+docker-compose logs airflow-webserver --tail=50
+docker-compose logs airflow-scheduler --tail=50
+
+# MLflow
+kubectl logs deployment/mlflow -n mlops-project --tail=50
+
+# FastAPI
+kubectl logs deployment/fastapi-housing -n mlops-project --tail=50
+
+# Argo CD
+kubectl logs deployment/argocd-application-controller -n argocd --tail=50
+```
+
+### Mejores Prácticas Operacionales
+
+#### Desarrollo
+- ✅ Usar feature branches para nuevas funcionalidades
+- ✅ Implementar tests unitarios antes de push
+- ✅ Revisar logs de GitHub Actions antes de merge
+- ✅ Mantener Dockerfiles optimizados (multi-stage, .dockerignore)
+
+#### Producción
+- ✅ Monitorear dashboards de Grafana diariamente
+- ✅ Configurar alertas para métricas críticas
+- ✅ Realizar backups regulares de PostgreSQL y MinIO
+- ✅ Rotar secrets y tokens mensualmente
+- ✅ Mantener documentación de runbooks actualizada
+
+#### Seguridad
+- ✅ Usar Kubernetes secrets para datos sensibles
+- ✅ Implementar Network Policies para aislar servicios
+- ✅ Configurar RBAC granular en Argo CD
+- ✅ Auditar accesos a sistemas regularmente
+- ✅ Mantener imágenes actualizadas con patches de seguridad
+
+---
+
+## 📈 Métricas y Observabilidad
+
+### KPIs del Sistema
+
+#### Métricas de Rendimiento
+| Métrica | Target | Alerta | Descripción |
+|---------|--------|--------|-------------|
+| API Latency P95 | < 1s | > 2s | Tiempo de respuesta predicciones |
+| API Throughput | 50-100 RPS | < 10 RPS | Solicitudes por segundo |
+| Error Rate | < 0.1% | > 1% | Porcentaje de errores HTTP |
+| Model Accuracy | R² > 0.85 | R² < 0.8 | Precisión del modelo activo |
+| Uptime | > 99.9% | < 99% | Disponibilidad del servicio |
+
+#### Métricas de Negocio
+- **Predicciones diarias**: Volumen de inferencias
+- **Accuracy trend**: Evolución de precisión del modelo
+- **Feature importance**: Importancia de variables en predicciones
+- **Data drift**: Cambios en distribución de datos de entrada
+- **Model retraining frequency**: Frecuencia de nuevos entrenamientos
+
+### Dashboards de Grafana
+
+#### 1. MLOps Operations Dashboard
+- Métricas de pipeline de datos (Airflow)
+- Estado de experimentos MLflow
+- Performance de modelos en producción
+- Alertas activas del sistema
+
+#### 2. API Performance Dashboard
+- Latencia y throughput de FastAPI
+- Distribución de códigos de respuesta HTTP
+- Uso de recursos (CPU, memoria)
+- Geographic distribution de requests
+
+#### 3. Business Intelligence Dashboard
+- Trends de precios predichos vs reales
+- Análisis de características más influyentes
+- ROI de predicciones automatizadas
+- User engagement con Gradio
+
+---
+
+## 🎓 Guía de Uso para Usuarios Finales
+
+### Para Data Scientists
+
+#### Experimentación con MLflow
+```python
+import mlflow
+import mlflow.sklearn
+from sklearn.ensemble import RandomForestRegressor
+
+# Configurar tracking
+mlflow.set_tracking_uri("http://10.43.101.206:30500")
+mlflow.set_experiment("realtor_price_prediction")
+
+with mlflow.start_run():
+    # Entrenar modelo
+    model = RandomForestRegressor(n_estimators=100)
+    model.fit(X_train, y_train)
+    
+    # Log parámetros y métricas
+    mlflow.log_param("n_estimators", 100)
+    mlflow.log_metric("rmse", rmse)
+    mlflow.log_metric("r2", r2)
+    
+    # Registrar modelo
+    mlflow.sklearn.log_model(model, "model")
+```
+
+#### Promoción de Modelos
+```python
+from mlflow.tracking import MlflowClient
+
+client = MlflowClient()
+
+# Encontrar mejor modelo
+best_run = client.search_runs(
+    experiment_ids=["1"],
+    order_by=["metrics.rmse ASC"],
+    max_results=1
+)[0]
+
+# Registrar como nuevo modelo
+mlflow.register_model(
+    f"runs:/{best_run.info.run_id}/model",
+    "realtor_price_model"
+)
+
+# Promover a producción
+client.transition_model_version_stage(
+    name="realtor_price_model",
+    version=1,
+    stage="Production"
+)
+```
+
+### Para DevOps Engineers
+
+#### Despliegue de Nueva Versión
+```bash
+# 1. Actualizar código y push
+git add .
+git commit -m "feat: improved model accuracy"
+git push origin master
+
+# 2. Monitorear GitHub Actions
+gh run watch
+
+# 3. Verificar sincronización Argo CD
+argocd app get fastapi-app
+argocd app sync fastapi-app
+
+# 4. Validar deployment
+kubectl rollout status deployment/fastapi-housing -n mlops-project
+curl http://localhost:30601/health
+```
+
+#### Rollback de Emergencia
+```bash
+# Rollback vía Argo CD
+argocd app rollback fastapi-app --revision 2
+
+# O rollback directo en Kubernetes
+kubectl rollout undo deployment/fastapi-housing -n mlops-project
+
+# Verificar estado
+kubectl get pods -n mlops-project
+```
+
+### Para Business Users
+
+#### Uso de Gradio Interface
+
+1. **Acceder a la aplicación**: `http://10.43.101.202:30602`
+
+2. **Ingresar datos de propiedad**:
+   - Información básica: habitaciones, baños, tamaño
+   - Ubicación: ciudad, estado, código postal
+   - Características: tamaño del lote, fecha venta anterior
+
+3. **Interpretar resultados**:
+   - Precio estimado con intervalo de confianza
+   - SHAP explanation de factores influyentes
+   - Comparación con propiedades similares
+
+4. **Monitorear rendimiento**:
+   - Dashboard de métricas de modelo
+   - Histórico de predicciones
+   - Trends de mercado inmobiliario
+
+---
+
+
+### Tecnologías Utilizadas
+
+- **Apache Airflow**: [https://airflow.apache.org/docs/](https://airflow.apache.org/docs/)
+- **MLflow**: [https://mlflow.org/docs/latest/](https://mlflow.org/docs/latest/)
+- **FastAPI**: [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)
+- **Gradio**: [https://docs.Gradio.io/](https://docs.Gradio.io/)
+- **Argo CD**: [https://argo-cd.readthedocs.io/](https://argo-cd.readthedocs.io/)
+- **Prometheus**: [https://prometheus.io/docs/](https://prometheus.io/docs/)
+- **Grafana**: [https://grafana.com/docs/](https://grafana.com/docs/)
+- **Kubernetes**: [https://kubernetes.io/docs/](https://kubernetes.io/docs/)
+
+
+## 👥 Equipo de Desarrollo
+
+- **Luis Frontuso** 
+- **Miguel Zuñiga** 
+- **Camilo Serrano** 
+
