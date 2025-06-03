@@ -118,11 +118,8 @@ def load_model(model_name):
     if model_name in loaded_models: current_model_name = model_name; return f"Modelo {model_name} ya cargado."
     client = mlflow.tracking.MlflowClient()
     model_uri = f"models:/{model_name}/Production"
-    if current_model_name.startswith("LightGBM"):
-        loaded_models[model_name] = mlflow.lightgbm.load_model(model_uri)
-    else:
-        loaded_models[model_name] = mlflow.pyfunc.load_model(model_uri)
-    
+    loaded_models[model_name] = mlflow.pyfunc.load_model(model_uri)
+   
     current_model_name = model_name
     MODEL_LOADS.inc()
     return f"Modelo {model_name} cargado exitosamente."
