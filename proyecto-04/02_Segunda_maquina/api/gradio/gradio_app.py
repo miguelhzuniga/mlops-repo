@@ -143,125 +143,186 @@ def refresh_models():
     models = mlflow.tracking.MlflowClient().search_registered_models()
     choices = [model.name for model in models]
     return gr.Dropdown(choices=choices, value=choices[0] if choices else None), f"{len(choices)} modelos disponibles."
+# 🔧 REEMPLAZA EXACTAMENTE tu función get_shap_summary_plot() con esta:
 
 def get_shap_summary_plot():
-    """Función que SIEMPRE devuelve una figura matplotlib (nunca strings)"""
+    """SHAP analysis usando solo características numéricas para evitar problemas de dimensionalidad"""
     
-    # Configurar matplotlib para entorno Docker
     import matplotlib
-    matplotlib.use('Agg')  # Backend no-interactivo
+    matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    plt.ioff()  # Desactivar modo interactivo
+    plt.ioff()
     
     try:
-        # Verificar si hay modelo cargado
+        # ✅ Verificar modelo cargado
         if current_model_name not in loaded_models:
             fig, ax = plt.subplots(figsize=(10, 6))
             ax.text(0.5, 0.5, 
-                   "❌ No hay modelo cargado\n\n" +
-                   "Por favor:\n" +
-                   "1. Ve a la pestaña 'Predicción'\n" +
-                   "2. Haz clic en 'Actualizar modelos'\n" +
-                   "3. Selecciona un modelo\n" +
-                   "4. Haz clic en 'Cargar modelo'", 
+                   "❌ No hay modelo cargado\n\nPor favor:\n1. Ve a 'Predicción'\n2. Actualiza modelos\n3. Carga un modelo", 
                    ha='center', va='center', fontsize=14, 
                    transform=ax.transAxes,
                    bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue"))
-            ax.set_xlim(0, 1)
-            ax.set_ylim(0, 1)
             ax.axis('off')
             plt.title("Análisis SHAP - Estado", fontsize=16)
             return fig
-
+        
+        # ✅ Verificar SHAP disponible
         try:
             import shap
+            print("✅ SHAP importado correctamente")
         except ImportError:
             fig, ax = plt.subplots(figsize=(10, 6))
             ax.text(0.5, 0.5, 
-                "❌ SHAP no está disponible\n\n" +
-                "El análisis SHAP requiere la librería 'shap'\n" +
-                "Contacta al administrador para instalarla", 
-                ha='center', va='center', fontsize=14, 
-                transform=ax.transAxes,
-                bbox=dict(boxstyle="round,pad=0.5", facecolor="lightyellow"))
+                   "❌ SHAP no está disponible\n\nContacta al administrador\npara instalar: pip install shap", 
+                   ha='center', va='center', fontsize=14, 
+                   transform=ax.transAxes,
+                   bbox=dict(boxstyle="round,pad=0.5", facecolor="lightyellow"))
             ax.axis('off')
             plt.title("Análisis SHAP - Dependencia faltante", fontsize=16)
             return fig
-                
+        
         model = loaded_models[current_model_name]
-        # Crear datos de prueba MUY pequeños para evitar problemas de memoria
-        dummy_data = pd.DataFrame({
-            'brokered_by': ['101640.0'] * 3,  # Solo 3 filas
-            'status': ['for_sale'] * 3,
-            'bed': [3] * 3,
-            'bath': [2] * 3,
-            'acre_lot': [0.25] * 3,
-            'street': ['1758218.0'] * 3,
-            'city': ['East Windsor'] * 3,
-            'state': ['Connecticut'] * 3,
-            'zip_code': ['6016.0'] * 3,
-            'house_size': [1500] * 3,
-            'prev_sold_date': ['2015-11-09'] * 3
+        print(f"📊 Iniciando análisis SHAP para modelo: {current_model_name}")
+        
+        # ✅ ESTRATEGIA NUEVA: Solo usar características numéricas + año
+        # Esto evita completamente el problema de dimensionalidad
+        
+        # Crear dataset variado con solo características numéricas
+        numeric_features = ['bed', 'bath', 'acre_lot', 'house_size', 'prev_sold_year']
+        
+        # Datos de ejemplo diversos para SHAP
+        shap_samples = pd.DataFrame({
+            'bed': [2, 3, 4, 5, 2, 3, 4, 1],
+            'bath': [1, 2, 3, 3, 1, 2, 2, 1], 
+            'acre_lot': [0.15, 0.25, 0.35, 0.45, 0.20, 0.30, 0.40, 0.10],
+            'house_size': [1000, 1500, 2000, 2500, 1200, 1800, 2200, 800],
+            'prev_sold_year': [2020, 2019, 2018, 2017, 2021, 2016, 2015, 2022]
         })
         
-        # Preprocesar datos
-        X_processed = preprocess_input(dummy_data.copy())
+        print(f"📊 Dataset SHAP shape: {shap_samples.shape}")
         
-        # Verificar que la predicción funciona
-        test_pred = model.predict(X_processed)
-        # Crear explainer con background mínimo
-        def model_predict(X):
-            return model.predict(X)
+        # ✅ Función wrapper que convierte características numéricas a predicción completa
+        def numeric_to_prediction(X_numeric):
+            """
+            Convierte características numéricas a predicción completa del modelo
+            X_numeric: array con [bed, bath, acre_lot, house_size, prev_sold_year]
+            """
+            predictions = []
+            
+            for i in range(X_numeric.shape[0]):
+                # Crear un registro completo con valores por defecto para categóricas
+                full_record = {
+                    # Características numéricas del SHAP
+                    'bed': X_numeric[i, 0],
+                    'bath': X_numeric[i, 1],
+                    'acre_lot': X_numeric[i, 2], 
+                    'house_size': X_numeric[i, 3],
+                    'prev_sold_year': int(X_numeric[i, 4]),
+                    
+                    # Valores representativos para categóricas (no afectan SHAP)
+                    'brokered_by': '101640.0',
+                    'status': 'for_sale', 
+                    'street': '1758218.0',
+                    'city': 'East Windsor',
+                    'state': 'Connecticut',
+                    'zip_code': '6016.0',
+                    'prev_sold_date': f"{int(X_numeric[i, 4])}-01-01"
+                }
+                
+                # Convertir a DataFrame y procesar
+                df = pd.DataFrame([full_record])
+                processed = preprocess_input(df)
+                pred = model.predict(processed)
+                predictions.append(pred[0])
+            
+            return np.array(predictions)
         
-        # Usar solo 2 muestras como background
-        background = X_processed[:2]
-        explainer = shap.Explainer(model_predict, background)
+        # ✅ Preparar datos para SHAP
+        X_numeric = shap_samples[numeric_features].values
+        print(f"📊 Características numéricas preparadas: {X_numeric.shape}")
         
-        # Calcular SHAP values para solo 2 muestras
-        shap_values = explainer(X_processed[:2])
+        # Verificar que las predicciones funcionan
+        test_predictions = numeric_to_prediction(X_numeric[:2])
+        print(f"✅ Test predictions exitoso: {test_predictions}")
         
-        # Crear el plot
+        # ✅ Crear SHAP explainer
+        # Usar background pequeño para eficiencia
+        background_indices = [0, 2, 4]  # 3 muestras representativas
+        background = X_numeric[background_indices]
+        
+        print("📊 Creando SHAP explainer...")
+        explainer = shap.Explainer(numeric_to_prediction, background)
+        
+        # ✅ Calcular SHAP values para un subset de muestras
+        analysis_indices = [0, 1, 3, 5]  # 4 muestras para análisis
+        X_analysis = X_numeric[analysis_indices]
+        
+        print("📊 Calculando SHAP values...")
+        shap_values = explainer(X_analysis)
+        print(f"✅ SHAP values calculados: {shap_values.values.shape}")
+        
+        # ✅ Crear visualización
         fig, ax = plt.subplots(figsize=(12, 8))
+        
+        # Nombres descriptivos para las características
+        feature_names = [
+            'Habitaciones',
+            'Baños', 
+            'Terreno (acres)',
+            'Tamaño casa (sqft)',
+            'Año venta anterior'
+        ]
         
         # SHAP summary plot
         shap.summary_plot(
             shap_values.values, 
-            X_processed[:2],
-            feature_names=[f"Feature_{i}" for i in range(X_processed.shape[1])],
+            X_analysis,
+            feature_names=feature_names,
             show=False,
-            max_display=15  # Limitar número de features mostradas
+            max_display=len(feature_names)
         )
         
-        plt.title(f"SHAP Summary Plot - {current_model_name}", fontsize=14)
+        plt.title(f"SHAP - Importancia de Características\nModelo: {current_model_name}", 
+                 fontsize=14, pad=20)
+        plt.xlabel("Impacto en el precio de la casa", fontsize=12)
         plt.tight_layout()
         
+        print("✅ SHAP plot generado exitosamente")
         return fig
+        
     except Exception as e:
-        # En caso de cualquier error, crear figura con el mensaje
-        fig, ax = plt.subplots(figsize=(10, 6))
+        # Mostrar error específico en una figura
+        fig, ax = plt.subplots(figsize=(12, 8))
         
-        error_text = f"❌ Error en análisis SHAP:\n\n{str(e)}\n\n"
-        error_text += "Posibles soluciones:\n"
-        error_text += "• Verifica que el modelo esté cargado\n"
-        error_text += "• Intenta recargar el modelo\n"
-        error_text += "• Contacta soporte si persiste"
+        error_msg = str(e)
+        if "shape" in error_msg.lower():
+            error_text = f"❌ Error de dimensionalidad:\n\n{error_msg[:300]}...\n\n"
+            error_text += "🔧 Soluciones intentadas:\n"
+            error_text += "• Usar solo características numéricas\n"
+            error_text += "• Reducir samples de análisis\n"
+            error_text += "• Background simplificado\n\n"
+            error_text += "💡 Contacta soporte para optimización adicional"
+        else:
+            error_text = f"❌ Error en análisis SHAP:\n\n{error_msg[:400]}...\n\n"
+            error_text += "Verifica:\n• Modelo cargado correctamente\n• Datos de entrada válidos"
         
-        ax.text(0.5, 0.5, error_text, 
-               ha='center', va='center', fontsize=12, 
+        ax.text(0.05, 0.95, error_text, 
+               ha='left', va='top', fontsize=10, 
                transform=ax.transAxes,
-               bbox=dict(boxstyle="round,pad=0.5", facecolor="lightcoral"))
+               bbox=dict(boxstyle="round,pad=0.5", facecolor="lightcoral"),
+               wrap=True)
         ax.set_xlim(0, 1)
         ax.set_ylim(0, 1)
         ax.axis('off')
         plt.title("Análisis SHAP - Error", fontsize=16)
         
-        # Log del error para debugging
-        print(f"SHAP Error: {str(e)}")
+        # Log para debugging
+        print(f"❌ SHAP Error: {str(e)}")
         import traceback
         traceback.print_exc()
         
         return fig
-    
+        
 # 📋 Gradio App actualizada
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
