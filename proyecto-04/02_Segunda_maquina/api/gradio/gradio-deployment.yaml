@@ -6,8 +6,7 @@ metadata:
   labels:
     app: gradio-housing
 spec:
-  replicas: 1
-  progressDeadlineSeconds: 900
+  replicas: 3
   selector:
     matchLabels:
       app: gradio-housing

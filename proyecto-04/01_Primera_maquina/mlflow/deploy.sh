@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! command -v microk8s >/dev/null 2>&1; then
-  echo "MicroK8s no está instalado. Instalando..."
+  echo "MicroK8s no está instalado. Instalando."
   sudo snap install microk8s --classic
   sudo usermod -a -G microk8s $USER
   echo "Por favor, cierre la sesión y vuelva a iniciarla para que los cambios surtan efecto."
