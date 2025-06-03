@@ -143,12 +143,10 @@ def refresh_models():
     choices = [model.name for model in models]
     return gr.Dropdown(choices=choices, value=choices[0] if choices else None), f"{len(choices)} modelos disponibles."
 
-
-# 🌳 VERSIÓN CON TREE EXPLAINER - Ultra rápido para LightGBM
-
+# 🏷️ VERSIÓN CON NOMBRES DE CARACTERÍSTICAS DESCRIPTIVOS
 
 def get_shap_summary_plot():
-    """SHAP analysis usando TreeExplainer optimizado para LightGBM"""
+    """SHAP TreeExplainer con nombres de características identificables"""
     
     import matplotlib
     matplotlib.use('Agg')
@@ -176,60 +174,132 @@ def get_shap_summary_plot():
             return fig
         
         model = loaded_models[current_model_name]
-        print(f"🌳 Iniciando TreeExplainer para: {current_model_name}")
+        print(f"🏷️ Iniciando SHAP con nombres de características para: {current_model_name}")
         
-        # 🌳 PASO CRÍTICO: Extraer el modelo LightGBM real del wrapper MLflow
-        print("🔍 Identificando tipo de modelo...")
+        # 🏷️ FUNCIÓN PARA OBTENER NOMBRES DE CARACTERÍSTICAS
+        def get_feature_names_from_preprocessor():
+            """Intenta obtener nombres reales del preprocesador"""
+            try:
+                preprocessor = load_preprocessor()
+                
+                if hasattr(preprocessor, 'get_feature_names_out'):
+                    # Scikit-learn moderno
+                    feature_names = preprocessor.get_feature_names_out()
+                    return [str(name) for name in feature_names]
+                elif hasattr(preprocessor, 'get_feature_names'):
+                    # Scikit-learn antiguo
+                    feature_names = preprocessor.get_feature_names()
+                    return [str(name) for name in feature_names]
+                else:
+                    # Método manual para ColumnTransformer
+                    return get_feature_names_manual(preprocessor)
+            except Exception as e:
+                print(f"⚠️ Error obteniendo nombres del preprocesador: {e}")
+                return None
         
+        def get_feature_names_manual(preprocessor):
+            """Extrae nombres manualmente del ColumnTransformer"""
+            try:
+                feature_names = []
+                
+                if hasattr(preprocessor, 'transformers_'):
+                    for name, transformer, features in preprocessor.transformers_:
+                        if name == 'num':  # Transformador numérico
+                            # Características numéricas mantienen sus nombres
+                            feature_names.extend([f"num__{feat}" for feat in features])
+                        elif name == 'cat':  # Transformador categórico  
+                            # OneHotEncoder crea múltiples columnas por categoría
+                            if hasattr(transformer, 'categories_'):
+                                for i, feature in enumerate(features):
+                                    categories = transformer.categories_[i]
+                                    for category in categories:
+                                        feature_names.append(f"cat__{feature}__{category}")
+                
+                return feature_names
+            except Exception as e:
+                print(f"⚠️ Error en extracción manual: {e}")
+                return None
+        
+        # 🏷️ CREAR MAPEO DE CARACTERÍSTICAS IMPORTANTES
+        def create_feature_mapping(feature_names, shap_values):
+            """Crea mapeo de nombres más descriptivos para las características importantes"""
+            
+            # Características que sabemos que son importantes
+            important_patterns = {
+                # Numéricas
+                'bed': 'Habitaciones',
+                'bath': 'Baños', 
+                'acre_lot': 'Terreno (acres)',
+                'house_size': 'Tamaño casa (sqft)',
+                'prev_sold_year': 'Año venta anterior',
+                
+                # Categóricas comunes
+                'status__for_sale': 'Estado: En venta',
+                'status__ready_to_build': 'Estado: Listo construir',
+                'state__Connecticut': 'Estado: Connecticut',
+                'state__New York': 'Estado: Nueva York',
+                'city__East Windsor': 'Ciudad: East Windsor',
+                'brokered_by': 'Agencia inmobiliaria'
+            }
+            
+            # Calcular importancia de cada característica
+            feature_importance = np.abs(shap_values).mean(axis=0)
+            
+            # Obtener índices de características más importantes
+            top_indices = np.argsort(feature_importance)[-20:]  # Top 20
+            
+            mapped_names = []
+            for idx in top_indices:
+                original_name = feature_names[idx] if feature_names and idx < len(feature_names) else f"Feature_{idx}"
+                
+                # Buscar nombre más descriptivo
+                descriptive_name = original_name
+                for pattern, desc_name in important_patterns.items():
+                    if pattern in original_name:
+                        descriptive_name = desc_name
+                        break
+                
+                # Si no encontramos mapeo, crear uno basado en el nombre original
+                if descriptive_name == original_name and feature_names:
+                    if 'num__' in original_name:
+                        descriptive_name = original_name.replace('num__', '').replace('_', ' ').title()
+                    elif 'cat__' in original_name:
+                        parts = original_name.replace('cat__', '').split('__')
+                        if len(parts) >= 2:
+                            descriptive_name = f"{parts[0].title()}: {parts[1]}"
+                        else:
+                            descriptive_name = parts[0].title()
+                
+                mapped_names.append((idx, descriptive_name, feature_importance[idx]))
+            
+            # Ordenar por importancia (mayor a menor)
+            mapped_names.sort(key=lambda x: x[2], reverse=True)
+            
+            return mapped_names
+        
+        # 🌳 Extraer modelo LightGBM y preparar datos (igual que antes)
         lightgbm_model = None
         try:
-            # Método 1: Si es un wrapper de MLflow
             if hasattr(model, '_model_impl'):
                 if hasattr(model._model_impl, 'lgb_model'):
                     lightgbm_model = model._model_impl.lgb_model
-                    print("✅ Modelo LightGBM extraído de MLflow wrapper (método 1)")
                 elif hasattr(model._model_impl, '_model'):
                     lightgbm_model = model._model_impl._model
-                    print("✅ Modelo LightGBM extraído de MLflow wrapper (método 2)")
             
-            # Método 2: Acceso directo a sklearn wrapper
-            if lightgbm_model is None and hasattr(model, 'predict'):
-                # Intentar crear datos de prueba para verificar si funciona con TreeExplainer
-                test_data = [[3, 2, 0.25, 1500, 2020]]
-                
-                # Verificar si podemos usar TreeExplainer directamente
+            if lightgbm_model is None:
                 try:
                     temp_explainer = shap.TreeExplainer(model)
                     lightgbm_model = model
                     print("✅ Modelo compatible directamente con TreeExplainer")
-                except Exception as e:
-                    print(f"⚠️ TreeExplainer directo falló: {e}")
-            
-            # Método 3: Buscar en atributos del modelo
-            if lightgbm_model is None:
-                for attr in ['_model', 'model_', 'booster_', '_booster']:
-                    if hasattr(model, attr):
-                        potential_model = getattr(model, attr)
-                        try:
-                            temp_explainer = shap.TreeExplainer(potential_model)
-                            lightgbm_model = potential_model
-                            print(f"✅ Modelo LightGBM encontrado en atributo: {attr}")
-                            break
-                        except:
-                            continue
-            
+                except:
+                    pass
         except Exception as e:
-            print(f"⚠️ Error extrayendo modelo LightGBM: {e}")
+            print(f"⚠️ Error extrayendo modelo: {e}")
         
-        # Si no encontramos el modelo LightGBM, usar método alternativo
         if lightgbm_model is None:
-            print("⚠️ No se pudo extraer modelo LightGBM, usando método híbrido...")
             return get_shap_hybrid_method(model)
         
-        print(f"🌳 Usando TreeExplainer con modelo tipo: {type(lightgbm_model)}")
-        
-        # 🌳 Preparar datos de muestra para TreeExplainer
-        # TreeExplainer necesita datos en formato que entienda el modelo
+        # Preparar datos de muestra
         shap_samples = pd.DataFrame({
             'bed': [2, 3, 4, 5, 2],
             'bath': [1, 2, 3, 3, 1], 
@@ -238,162 +308,123 @@ def get_shap_summary_plot():
             'prev_sold_year': [2020, 2019, 2018, 2017, 2021]
         })
         
-        print(f"🌳 Dataset preparado: {shap_samples.shape}")
-        
-        # 🌳 IMPORTANTE: Necesitamos preparar los datos en el formato que espera el modelo
-        # TreeExplainer trabaja directamente con el modelo, así que necesitamos datos preprocesados
-        
-        # Crear datos completos para el preprocesamiento
+        # Crear datos completos y preprocesar
         full_samples = []
         for _, row in shap_samples.iterrows():
             full_record = {
-                'bed': row['bed'],
-                'bath': row['bath'],
-                'acre_lot': row['acre_lot'],
-                'house_size': row['house_size'],
-                'prev_sold_year': int(row['prev_sold_year']),
-                # Valores fijos para categóricas
-                'brokered_by': '101640.0',
-                'status': 'for_sale',
-                'street': '1758218.0', 
-                'city': 'East Windsor',
-                'state': 'Connecticut',
-                'zip_code': '6016.0',
+                'bed': row['bed'], 'bath': row['bath'], 'acre_lot': row['acre_lot'],
+                'house_size': row['house_size'], 'prev_sold_year': int(row['prev_sold_year']),
+                'brokered_by': '101640.0', 'status': 'for_sale', 'street': '1758218.0',
+                'city': 'East Windsor', 'state': 'Connecticut', 'zip_code': '6016.0',
                 'prev_sold_date': f"{int(row['prev_sold_year'])}-01-01"
             }
             full_samples.append(full_record)
         
-        # Preprocesar todos los datos
         full_df = pd.DataFrame(full_samples)
         X_processed = preprocess_input(full_df)
         
-        print(f"🌳 Datos preprocesados: {X_processed.shape}")
-        
-        # Verificar si es sparse matrix y convertir si es necesario
         if hasattr(X_processed, 'toarray'):
             X_processed = X_processed.toarray()
-            print("🌳 Convertido de sparse a dense matrix")
         
-        # 🌳 CREAR TREE EXPLAINER - ¡Súper rápido!
+        print(f"🏷️ Datos preprocesados: {X_processed.shape}")
+        
+        # 🏷️ OBTENER NOMBRES DE CARACTERÍSTICAS
+        print("🏷️ Obteniendo nombres de características...")
+        feature_names = get_feature_names_from_preprocessor()
+        
+        if feature_names:
+            print(f"✅ {len(feature_names)} nombres de características obtenidos")
+        else:
+            print("⚠️ No se pudieron obtener nombres, usando genéricos")
+        
+        # 🌳 CREAR TREE EXPLAINER Y CALCULAR SHAP
         print("🌳 Creando TreeExplainer...")
-        import time
-        start_time = time.time()
+        explainer = shap.TreeExplainer(lightgbm_model)
+        
+        print("🌳 Calculando SHAP values...")
+        X_analysis = X_processed[:3]  # Solo 3 muestras
+        shap_values = explainer.shap_values(X_analysis)
+        
+        if isinstance(shap_values, list):
+            shap_values = shap_values[0]
+        
+        print(f"✅ SHAP values calculados: {shap_values.shape}")
+        
+        # 🏷️ CREAR MAPEO DE CARACTERÍSTICAS Y SELECCIONAR TOP
+        mapped_features = create_feature_mapping(feature_names, shap_values)
+        
+        # Seleccionar top 15 características más importantes
+        top_features = mapped_features[:15]
+        top_indices = [item[0] for item in top_features]
+        top_names = [item[1] for item in top_features]
+        
+        print(f"🏷️ Top características identificadas:")
+        for i, (_, name, importance) in enumerate(top_features[:5]):
+            print(f"  {i+1}. {name} (importancia: {importance:.4f})")
+        
+        # 🏷️ CREAR VISUALIZACIÓN CON NOMBRES DESCRIPTIVOS
+        fig, ax = plt.subplots(figsize=(12, 10))
+        
+        # Usar solo las características top para el plot
+        shap_values_top = shap_values[:, top_indices]
+        X_analysis_top = X_analysis[:, top_indices]
         
         try:
-            explainer = shap.TreeExplainer(lightgbm_model)
-            explainer_time = time.time() - start_time
-            print(f"✅ TreeExplainer creado en {explainer_time:.2f} segundos")
-        except Exception as e:
-            print(f"❌ Error creando TreeExplainer: {e}")
-            # Fallback al método híbrido
-            return get_shap_hybrid_method(model)
-        
-        # 🌳 CALCULAR SHAP VALUES - Debería ser súper rápido ahora
-        print("🌳 Calculando SHAP values con TreeExplainer...")
-        calc_start = time.time()
-        
-        # Usar solo las primeras 3 muestras para velocidad
-        X_analysis = X_processed[:3]
-        
-        try:
-            shap_values = explainer.shap_values(X_analysis)
+            shap.summary_plot(
+                shap_values_top,
+                X_analysis_top,
+                feature_names=top_names,
+                show=False,
+                max_display=15
+            )
             
-            # Verificar si shap_values es una lista (multi-output) o array
-            if isinstance(shap_values, list):
-                shap_values = shap_values[0]  # Usar el primer output para regresión
-            
-            calc_time = time.time() - calc_start
-            print(f"✅ SHAP values calculados en {calc_time:.2f} segundos: {shap_values.shape}")
-            
-        except Exception as e:
-            print(f"❌ Error calculando SHAP values: {e}")
-            return get_shap_hybrid_method(model)
-        
-        # 🌳 CREAR VISUALIZACIÓN
-        fig, ax = plt.subplots(figsize=(12, 8))
-        
-        # Para TreeExplainer, necesitamos usar el formato correcto
-        try:
-            # Intentar obtener nombres de características si están disponibles
-            if X_processed.shape[1] <= 20:
-                # Si tenemos pocas características, usar nombres descriptivos
-                feature_names = [f"Feature_{i}" for i in range(X_processed.shape[1])]
-            else:
-                # Si tenemos muchas, usar las más importantes
-                feature_importance = np.abs(shap_values).mean(axis=0)
-                top_indices = np.argsort(feature_importance)[-10:]  # Top 10
-                shap_values_subset = shap_values[:, top_indices]
-                X_subset = X_analysis[:, top_indices]
-                feature_names = [f"Feature_{i}" for i in top_indices]
-                
-                # Usar subset para el plot
-                shap.summary_plot(
-                    shap_values_subset,
-                    X_subset,
-                    feature_names=feature_names,
-                    show=False,
-                    max_display=10
-                )
-            
-            if X_processed.shape[1] <= 20:
-                shap.summary_plot(
-                    shap_values,
-                    X_analysis,
-                    feature_names=feature_names,
-                    show=False,
-                    max_display=min(15, X_processed.shape[1])
-                )
+            plt.title(f"SHAP - Características Más Importantes\n{current_model_name} (Top 15 de {X_processed.shape[1]} características)", 
+                     fontsize=14, pad=20)
             
         except Exception as plot_error:
             print(f"⚠️ Error en summary_plot: {plot_error}")
-            # Plot manual simple
-            feature_importance = np.abs(shap_values).mean(axis=0)
-            top_10_idx = np.argsort(feature_importance)[-10:]
+            # Plot alternativo
+            feature_importance = np.abs(shap_values_top).mean(axis=0)
             
-            plt.barh(range(len(top_10_idx)), feature_importance[top_10_idx])
-            plt.yticks(range(len(top_10_idx)), [f"Feature_{i}" for i in top_10_idx])
+            plt.barh(range(len(top_names)), feature_importance)
+            plt.yticks(range(len(top_names)), top_names)
             plt.xlabel("Importancia promedio |SHAP|")
+            plt.title(f"Importancia de Características - {current_model_name}")
         
-        total_time = time.time() - start_time
-        plt.title(f"TreeExplainer SHAP - {current_model_name}\n⚡ Calculado en {total_time:.1f}s", 
-                 fontsize=14)
         plt.tight_layout()
         
-        print(f"✅ TreeExplainer completado en {total_time:.1f}s total")
+        print("✅ SHAP con nombres descriptivos completado")
         return fig
         
     except Exception as e:
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        error_text = f"❌ Error TreeExplainer:\n\n{str(e)[:300]}...\n\n"
-        error_text += "🔧 Intentando método híbrido como fallback..."
+        error_text = f"❌ Error en SHAP con nombres:\n\n{str(e)[:200]}...\n\n"
+        error_text += "🔄 Intentando método de backup..."
         
         ax.text(0.5, 0.5, error_text, ha='center', va='center', fontsize=10, 
                transform=ax.transAxes,
                bbox=dict(boxstyle="round,pad=0.5", facecolor="lightcoral"))
         ax.axis('off')
-        plt.title("TreeExplainer - Fallback", fontsize=14)
         
-        print(f"❌ TreeExplainer error: {str(e)}")
+        print(f"❌ Error: {str(e)}")
         
-        # Intentar método híbrido como backup
         try:
             return get_shap_hybrid_method(loaded_models[current_model_name])
         except:
             return fig
 
-# 🔄 MÉTODO HÍBRIDO DE BACKUP
+# 🔄 MÉTODO HÍBRIDO MEJORADO (backup)
 def get_shap_hybrid_method(model):
-    """Método híbrido rápido si TreeExplainer falla"""
+    """Método híbrido con nombres descriptivos"""
     
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     
-    print("🔄 Usando método híbrido de backup...")
+    print("🔄 Usando método híbrido con nombres descriptivos...")
     
     try:
-        # Análisis de importancia mediante permutación rápida
         base_data = {
             'bed': 3, 'bath': 2, 'acre_lot': 0.25, 'house_size': 1500, 'prev_sold_year': 2020,
             'brokered_by': '101640.0', 'status': 'for_sale', 'street': '1758218.0',
@@ -406,27 +437,32 @@ def get_shap_hybrid_method(model):
         base_processed = preprocess_input(base_df)
         base_price = model.predict(base_processed)[0]
         
-        # Medir impacto de cada característica numérica
-        feature_impacts = {}
-        
+        # Variaciones con nombres descriptivos
         variations = {
-            'Habitaciones (+1)': {'bed': 4},
-            'Baños (+1)': {'bath': 3},
-            'Terreno (+0.1 acres)': {'acre_lot': 0.35},
-            'Tamaño (+500 sqft)': {'house_size': 2000},
-            'Año más reciente': {'prev_sold_year': 2023}
+            '🏠 Habitaciones (+1)': {'bed': 4},
+            '🚿 Baños (+1)': {'bath': 3},
+            '🌳 Terreno (+0.1 acres)': {'acre_lot': 0.35},
+            '📐 Tamaño casa (+500 sqft)': {'house_size': 2000},
+            '📅 Año más reciente (+3)': {'prev_sold_year': 2023},
+            '🏢 Estado premium': {'state': 'New York'},
+            '📍 Ciudad diferente': {'city': 'Hartford'}
         }
         
+        feature_impacts = {}
         for feature_name, change in variations.items():
-            mod_data = base_data.copy()
-            mod_data.update(change)
-            mod_df = pd.DataFrame([mod_data])
-            mod_processed = preprocess_input(mod_df)
-            impact = model.predict(mod_processed)[0] - base_price
-            feature_impacts[feature_name] = impact
+            try:
+                mod_data = base_data.copy()
+                mod_data.update(change)
+                mod_df = pd.DataFrame([mod_data])
+                mod_processed = preprocess_input(mod_df)
+                impact = model.predict(mod_processed)[0] - base_price
+                feature_impacts[feature_name] = impact
+            except Exception as e:
+                print(f"⚠️ Error en variación {feature_name}: {e}")
+                continue
         
         # Crear visualización
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(12, 8))
         
         features = list(feature_impacts.keys())
         impacts = list(feature_impacts.values())
@@ -435,25 +471,32 @@ def get_shap_hybrid_method(model):
         bars = ax.barh(features, impacts, color=colors, alpha=0.7)
         ax.axvline(x=0, color='black', linestyle='-', alpha=0.5)
         ax.set_xlabel('Impacto en precio (USD)')
-        ax.set_title(f'Análisis de Importancia Híbrido - {current_model_name}\n(Baseline: ${base_price:,.0f})')
+        ax.set_title(f'Análisis de Importancia por Característica\n{current_model_name} (Baseline: ${base_price:,.0f})')
         
-        # Valores en barras
+        # Agregar valores en las barras
         for bar, impact in zip(bars, impacts):
             width = bar.get_width()
-            ax.text(width + (max(impacts) * 0.01), bar.get_y() + bar.get_height()/2, 
-                   f'${impact:,.0f}', ha='left', va='center', fontweight='bold')
+            x_pos = width + (max(abs(min(impacts)), max(impacts)) * 0.02)
+            if width < 0:
+                x_pos = width - (max(abs(min(impacts)), max(impacts)) * 0.02)
+                ha = 'right'
+            else:
+                ha = 'left'
+            
+            ax.text(x_pos, bar.get_y() + bar.get_height()/2, 
+                   f'${impact:,.0f}', ha=ha, va='center', fontweight='bold')
         
         plt.tight_layout()
-        print("✅ Método híbrido completado")
+        print("✅ Método híbrido con nombres completado")
         return fig
         
     except Exception as e:
         fig, ax = plt.subplots(figsize=(8, 4))
-        ax.text(0.5, 0.5, f"Error en método híbrido: {str(e)[:100]}...", 
-               ha='center', va='center')
+        ax.text(0.5, 0.5, f"Error: {str(e)[:100]}...", ha='center', va='center')
         ax.axis('off')
         return fig
-        
+
+
 # 📋 Gradio App actualizada
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
