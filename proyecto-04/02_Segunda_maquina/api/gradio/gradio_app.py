@@ -171,11 +171,10 @@ def predict(model_name, brokered_by, status, bed, bath, acre_lot, street, city, 
             # Insertar en rawdata.houses
             insert_query = """
                 INSERT INTO rawdata.houses 
-                (id, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date, data_origin, price)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                (brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date, data_origin, price)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             values = (
-                0,  # id en 0, el autoincremento lo manejará PostgreSQL si es necesario
                 brokered_by,
                 status,
                 bed,
@@ -204,9 +203,27 @@ def predict(model_name, brokered_by, status, bed, bath, acre_lot, street, city, 
 
 def refresh_models():
     REFRESH_CALLS.inc()
-    models = mlflow.tracking.MlflowClient().search_registered_models()
-    choices = [model.name for model in models]
-    return gr.Dropdown(choices=choices, value=choices[0] if choices else None), f"{len(choices)} modelos disponibles."
+    client = mlflow.tracking.MlflowClient()
+
+    # Buscar modelos registrados
+    models = client.search_registered_models()
+
+    # Filtrar modelos con alguna versión en Production
+    production_models = []
+    for model in models:
+        # Buscar versiones de este modelo
+        for version in model.latest_versions:
+            if version.current_stage == 'Production':
+                production_models.append(model.name)
+                break  # Si al menos una versión está en Production, incluimos el modelo
+
+    # Eliminar duplicados si hay (por seguridad)
+    production_models = list(set(production_models))
+
+    return gr.Dropdown(
+        choices=production_models, 
+        value=production_models[0] if production_models else None
+    ), f"{len(production_models)} modelos en Production disponibles."
 
 # ✅ Actualización: soporte para DecisionTreeRegressor y LightGBM
 def get_shap_summary_plot():
@@ -298,6 +315,7 @@ def get_shap_summary_plot():
             mapped_names.sort(key=lambda x: x[2], reverse=True)
             return mapped_names
 
+        # Crear datos de muestra
         shap_samples = pd.DataFrame({
             'bed': [2, 3, 4, 5, 2],
             'bath': [1, 2, 3, 3, 1],
