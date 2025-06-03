@@ -21,7 +21,7 @@ from datetime import datetime
 import psycopg2  # 📌 Para acceder a trainlogs.logs
 import shap
 import matplotlib.pyplot as plt
-
+import mlflow.lightgbm
 
 REQUESTS = Counter('house_price_gradio_requests_total', 'Número total de solicitudes a la interfaz Gradio')
 PREDICTIONS = Counter('house_price_gradio_predictions_total', 'Número total de predicciones realizadas')
@@ -118,12 +118,15 @@ def load_model(model_name):
     if model_name in loaded_models: current_model_name = model_name; return f"Modelo {model_name} ya cargado."
     client = mlflow.tracking.MlflowClient()
     model_uri = f"models:/{model_name}/Production"
-    loaded_models[model_name] = mlflow.pyfunc.load_model(model_uri)
+    if current_model_name.startswith("LightGBM"):
+        loaded_models[model_name] = mlflow.lightgbm.load_model(model_uri)
+    else:
+        loaded_models[model_name] = mlflow.pyfunc.load_model(model_uri)
+    
     current_model_name = model_name
     MODEL_LOADS.inc()
     return f"Modelo {model_name} cargado exitosamente."
-import psycopg2
-import pandas as pd
+
 
 def predict(model_name, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date):
     REQUESTS.inc()
