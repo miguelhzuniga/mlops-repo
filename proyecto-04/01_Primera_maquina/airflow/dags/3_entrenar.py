@@ -12,6 +12,8 @@ import joblib
 import os
 import mlflow
 import mlflow.lightgbm
+from sklearn.tree import DecisionTreeRegressor
+
 from mlflow.tracking import MlflowClient
 import boto3
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
@@ -122,37 +124,52 @@ def detect_data_drift(**kwargs):
     target_drift_score = result['metrics'][1]['result'].get('drift_score', 0.0)
 
     if drift_flag or target_drift_score > 0.05:
-        log_to_db("skip", f"Drift detectado: dataset_drift={drift_flag}, target_drift_score={target_drift_score:.4f}")
-        return "skip_training_task"
+        log_to_db("skip", f"Drift detectado, se reentrenara modelo: dataset_drift={drift_flag}")
+        return "train_model_task"
     else:
         joblib.dump(df_new, previous_data_path)
-        log_to_db("train", "No se detectó drift, se procede a entrenar el modelo.")
-        return "train_model_task"
+        log_to_db("train", "No se detectó drift, no se procede a entrenar el modelo.")
+        return "skip_training_task"
     
-def preprocess_data(df,**kwargs):
-    """Preprocesar datos de entrenamiento con eficiencia de memoria mejorada"""
-   
-    # Cargar desde archivo temporal
-    
+def preprocess_data(df, **kwargs):
+    """Preprocesar datos de entrenamiento con nombres de columnas descriptivos"""
+    # Objetivo (target)
     y_train = df['price']
-    X_train = df.drop(columns=['id', 'price', 'prev_sold_date','price_per_sqft'], errors='ignore')
     
-    numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns
-    categorical_features = X_train.select_dtypes(include=['object']).columns
+    # Features
+    X_train = df.drop(columns=['id', 'price', 'prev_sold_date', 'price_per_sqft'], errors='ignore')
     
+    numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
+    categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
+    
+    # Crear ColumnTransformer
     preprocessor = ColumnTransformer(
         transformers=[
             ('num', StandardScaler(), numeric_features),
             ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
-        ])
+        ]
+    )
     
-    # Realizar fit_transform una sola vez
+    # Ajustar y transformar
     X_train_processed = preprocessor.fit_transform(X_train)
-    # Guardar el preprocesador
+    
+    # Obtener nombres de columnas procesadas
+    if hasattr(preprocessor, 'get_feature_names_out'):
+        feature_names = preprocessor.get_feature_names_out()
+    else:
+        feature_names = [f'feature_{i}' for i in range(X_train_processed.shape[1])]
+    
+    # Convertir a DataFrame para mantener nombres
+    if hasattr(X_train_processed, 'toarray'):  # Si es sparse
+        X_train_processed = X_train_processed.toarray()
+    
+    X_train_processed = pd.DataFrame(X_train_processed, columns=feature_names, index=X_train.index)
+    
+    # Guardar el preprocesador localmente
     local_path = '/tmp/preprocessor.joblib'
     with open(local_path, 'wb') as f:
         joblib.dump(preprocessor, f)
-
+    
     # Subir a MinIO
     try:
         s3_client = boto3.client(
@@ -162,101 +179,116 @@ def preprocess_data(df,**kwargs):
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY
         )
         print("✅ MinIO client initialized successfully.")
-
         s3_client.upload_file(local_path, bucket_name, object_key)
         print(f"✅ Preprocessor uploaded to MinIO at s3://{bucket_name}/{object_key}")
-
     except Exception as e:
         print(f"❌ Failed to upload preprocessor to MinIO: {e}")
- 
-   
-    return X_train_processed,y_train
     
+    return X_train_processed, y_train
 
-
-
+    
 def train_model(**kwargs):
     hook = PostgresHook(postgres_conn_id='postgres_default')
     engine = hook.get_sqlalchemy_engine()
     query = f"SELECT * FROM {clean_schema}.{clean_table};"
     df = pd.read_sql(query, con=engine)
-    X,y = preprocess_data(df)
+    X, y = preprocess_data(df)
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
     joblib.dump(df, previous_data_path)
     print(f"Datos de entrenamiento guardados en {previous_data_path}")
+
     # Configurar MLflow
-    set_mlflow_tracking()  # Define esta función para setear MLFLOW_TRACKING_URI, etc.
+    set_mlflow_tracking()
     client = MlflowClient()
-    model_name = 'LightGBMRegressor'
 
-    model = LGBMRegressor(
-        objective='regression',
-        n_estimators=50,
-        random_state=42,
-        max_depth=5,
-        subsample=0.7,
-        colsample_bytree=0.7,
-        n_jobs=1
-    )
-    with mlflow.start_run() as run:
-        run_id = run.info.run_id
-        print(f"Iniciando entrenamiento de {model_name} (run_id: {run_id})...")
+    # Modelos a entrenar
+    modelos = {
+        'LightGBMRegressor': LGBMRegressor(
+            objective='regression',
+            n_estimators=10,
+            random_state=42,
+            max_depth=5,
+            subsample=0.7,
+            colsample_bytree=0.7,
+            n_jobs=1
+        ),
+        'DecisionTreeRegressor': DecisionTreeRegressor(
+            max_depth=5,
+            random_state=42
+        )
+    }
 
-        model.fit(X_train, y_train, eval_set=[(X_val, y_val)], verbose=False)
+    resultados = {}
 
-        y_pred = model.predict(X_val, num_iteration=model.best_iteration_)
-        rmse = mean_squared_error(y_val, y_pred, squared=False)
-        print(f"RMSE validación: {rmse:.4f}")
+    # Entrenamiento de modelos
+    for model_name, model in modelos.items():
+        with mlflow.start_run() as run:
+            run_id = run.info.run_id
+            print(f"\nIniciando entrenamiento de {model_name} (run_id: {run_id})...")
 
-        mlflow.log_param("n_estimators", 50)
-        mlflow.log_param("max_depth", 5)
-        mlflow.log_metric("rmse", rmse)
-        mlflow.lightgbm.log_model(model, artifact_path="model", registered_model_name=model_name)
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_val)
+            rmse = mean_squared_error(y_val, y_pred, squared=False)
+            print(f"RMSE validación: {rmse:.4f}")
 
-        # Verificar si el nuevo modelo es mejor que el actual en producción
-        try:
-            versions = client.search_model_versions(f"name='{model_name}'")
-            production_versions = [v for v in versions if v.current_stage == "Production"]
-            best_production_rmse = None
+            if model_name == 'LightGBMRegressor':
+                mlflow.log_param("n_estimators", 10)
+                mlflow.log_param("max_depth", 5)
+            elif model_name == 'DecisionTreeRegressor':
+                mlflow.log_param("max_depth", 5)
 
-            if production_versions:
-                prod_version = production_versions[0]
-                prod_run_id = prod_version.run_id
-                prod_metrics = client.get_run(prod_run_id).data.metrics
-                best_production_rmse = prod_metrics.get('rmse', None)
+            mlflow.log_metric("rmse", rmse)
 
-            if best_production_rmse is None or rmse < best_production_rmse:
-                latest_version = max(int(v.version) for v in versions)
-                client.transition_model_version_stage(
-                    name=model_name,
-                    version=latest_version,
-                    stage="Production"
-                )
-                # Archivar versiones anteriores
-                for v in versions:
-                    if v.version != str(latest_version) and v.current_stage == "Production":
+            if model_name == 'LightGBMRegressor':
+                mlflow.lightgbm.log_model(model, artifact_path="model", registered_model_name=model_name)
+            else:
+                mlflow.sklearn.log_model(model, artifact_path="model", registered_model_name=model_name)
+
+            resultados[model_name] = {
+                'rmse': rmse,
+                'run_id': run_id
+            }
+
+    # Encontrar el mejor modelo de esta ejecución
+    mejor_modelo = min(resultados.items(), key=lambda x: x[1]['rmse'])
+    mejor_modelo_nombre = mejor_modelo[0]
+    mejor_run_id = mejor_modelo[1]['run_id']
+    mejor_rmse = mejor_modelo[1]['rmse']
+
+    # Pasar a Production
+    try:
+        versions = client.search_model_versions(f"name='{mejor_modelo_nombre}'")
+        latest_version = max(int(v.version) for v in versions)
+
+        client.transition_model_version_stage(
+            name=mejor_modelo_nombre,
+            version=latest_version,
+            stage="Production"
+        )
+
+        # Archivar los demás modelos (opcional)
+        for nombre, data in resultados.items():
+            if nombre != mejor_modelo_nombre:
+                other_versions = client.search_model_versions(f"name='{nombre}'")
+                for v in other_versions:
+                    if v.current_stage != "Archived":
                         client.transition_model_version_stage(
-                            name=model_name,
+                            name=nombre,
                             version=v.version,
                             stage="Archived"
                         )
-                print(f"Modelo {model_name} v{latest_version} marcado como Producción")
-                log_to_db("stage", f"Modelo {model_name} v{latest_version} marcado como Producción (RMSE {rmse:.4f})")
-            else:
-                best_production_rmse = prod_metrics.get('rmse', None)
-                print(f"El nuevo modelo tiene un RMSE {rmse:.4f} mayor que el actual en producción ({best_production_rmse:.4f}). No se actualiza la producción.")
-                log_to_db("train", f"Modelo no actualizado a Producción. RMSE actual: {rmse:.4f}, RMSE en Producción: {best_production_rmse:.4f}", rmse=rmse)
 
-        except Exception as e:
-            print(f"Error al comparar o cambiar el estado del modelo: {e}")
-            log_to_db("train", f"Error en proceso de transición: {e}", rmse=rmse)
+        print(f"\n✅ Modelo {mejor_modelo_nombre} v{latest_version} marcado como Production (RMSE: {mejor_rmse:.4f})")
+        log_to_db("stage", f"Modelo {mejor_modelo_nombre} v{latest_version} marcado como Production (RMSE {mejor_rmse:.4f})", rmse=mejor_rmse)
 
-        print(f"Modelo {model_name} entrenado y logueado en MLflow.")
+    except Exception as e:
+        print(f"Error al marcar el modelo como Production: {e}")
+        log_to_db("train", f"Error en proceso de transición a Production: {e}", rmse=mejor_rmse)
 
     return {
-        'best_model': model_name,
-        'rmse': rmse
+        'mejor_modelo': mejor_modelo_nombre,
+        'rmse': mejor_rmse
     }
 
 

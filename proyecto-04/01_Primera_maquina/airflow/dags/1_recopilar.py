@@ -49,7 +49,8 @@ CREATE TABLE IF NOT EXISTS {database_name}.{table_name} (
     state VARCHAR(50) NOT NULL,
     zip_code VARCHAR(20) NOT NULL,
     house_size INT NOT NULL,
-    prev_sold_date DATE
+    prev_sold_date DATE,
+    data_origin VARCHAR(20) NOT NULL
 );
 
 -- Crear esquema y tabla de logs
@@ -115,6 +116,7 @@ def load_data(**kwargs):
     df["acre_lot"] = pd.to_numeric(df["acre_lot"], errors='coerce')
     df["house_size"] = pd.to_numeric(df["house_size"], errors='coerce').fillna(0).astype(int)
     df["prev_sold_date"] = pd.to_datetime(df["prev_sold_date"], errors='coerce')
+    df["data_origin"] = 'teacher'
 
     postgres_hook = PostgresHook(postgres_conn_id='postgres_default')
     engine = postgres_hook.get_sqlalchemy_engine()

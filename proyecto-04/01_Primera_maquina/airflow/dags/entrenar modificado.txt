@@ -1,0 +1,55 @@
+def preprocess_data(df, **kwargs):
+    """Preprocesar datos de entrenamiento con nombres de columnas descriptivos"""
+    
+    # Objetivo (target)
+    y_train = df['price']
+    
+    # Features
+    X_train = df.drop(columns=['id', 'price', 'prev_sold_date', 'price_per_sqft'], errors='ignore')
+    
+    numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
+    categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
+    
+    # Crear ColumnTransformer
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', StandardScaler(), numeric_features),
+            ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+        ]
+    )
+    
+    # Ajustar y transformar
+    X_train_processed = preprocessor.fit_transform(X_train)
+    
+    # Obtener nombres de columnas procesadas
+    if hasattr(preprocessor, 'get_feature_names_out'):
+        feature_names = preprocessor.get_feature_names_out()
+    else:
+        feature_names = [f'feature_{i}' for i in range(X_train_processed.shape[1])]
+    
+    # Convertir a DataFrame para mantener nombres
+    if hasattr(X_train_processed, 'toarray'):  # Si es sparse
+        X_train_processed = X_train_processed.toarray()
+    
+    X_train_processed = pd.DataFrame(X_train_processed, columns=feature_names, index=X_train.index)
+    
+    # Guardar el preprocesador localmente
+    local_path = '/tmp/preprocessor.joblib'
+    with open(local_path, 'wb') as f:
+        joblib.dump(preprocessor, f)
+    
+    # Subir a MinIO
+    try:
+        s3_client = boto3.client(
+            's3',
+            endpoint_url=MLFLOW_S3_ENDPOINT_URL,
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+        )
+        print("✅ MinIO client initialized successfully.")
+        s3_client.upload_file(local_path, bucket_name, object_key)
+        print(f"✅ Preprocessor uploaded to MinIO at s3://{bucket_name}/{object_key}")
+    except Exception as e:
+        print(f"❌ Failed to upload preprocessor to MinIO: {e}")
+    
+    return X_train_processed, y_train
