@@ -137,7 +137,7 @@ def preprocess_data(df, **kwargs):
     y_train = df['price']
     
     # Features
-    X_train = df.drop(columns=['id', 'price', 'prev_sold_date', 'price_per_sqft'], errors='ignore')
+    X_train = df.drop(columns=['id', 'price', 'prev_sold_date', 'price_per_sqft','data_origin'], errors='ignore')
     
     numeric_features = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
     categorical_features = X_train.select_dtypes(include=['object']).columns.tolist()
@@ -192,6 +192,20 @@ def train_model(**kwargs):
     engine = hook.get_sqlalchemy_engine()
     query = f"SELECT * FROM {clean_schema}.{clean_table};"
     df = pd.read_sql(query, con=engine)
+    df = df[:5000]
+    # Calcular el porcentaje de 'teacher' en la columna 'data_origin'
+    porcentaje_teacher = (df['data_origin'] == 'teacher').mean() * 100
+
+    # Imprimir el porcentaje
+    print(f"Porcentaje de 'teacher' en la columna 'data_origin': {porcentaje_teacher:.2f}%")
+
+    # Hacer la condición: ¿Es mayor al 80%?
+    if porcentaje_teacher > 80:
+        print("Más del 80% de los datos son 'teacher'")
+    else:
+        print("Menos del 80% de los datos son 'teacher'")
+        return "skip_training_task"
+    
     X, y = preprocess_data(df)
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -206,15 +220,12 @@ def train_model(**kwargs):
     modelos = {
         'LightGBMRegressor': LGBMRegressor(
             objective='regression',
-            n_estimators=10,
+            n_estimators=5,
             random_state=42,
-            max_depth=5,
-            subsample=0.7,
-            colsample_bytree=0.7,
-            n_jobs=1
+            max_depth=3,
         ),
         'DecisionTreeRegressor': DecisionTreeRegressor(
-            max_depth=5,
+            max_depth=3,
             random_state=42
         )
     }

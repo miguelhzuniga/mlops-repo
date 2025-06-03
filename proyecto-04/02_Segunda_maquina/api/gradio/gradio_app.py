@@ -298,7 +298,6 @@ def get_shap_summary_plot():
             mapped_names.sort(key=lambda x: x[2], reverse=True)
             return mapped_names
 
-        # Crear datos de muestra
         shap_samples = pd.DataFrame({
             'bed': [2, 3, 4, 5, 2],
             'bath': [1, 2, 3, 3, 1],
