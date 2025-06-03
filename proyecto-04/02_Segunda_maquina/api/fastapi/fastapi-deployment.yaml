@@ -7,6 +7,7 @@ metadata:
     app: fastapi-housing
 spec:
   replicas: 1
+  progressDeadlineSeconds: 900
   selector:
     matchLabels:
       app: fastapi-housing
@@ -15,12 +16,31 @@ spec:
       labels:
         app: fastapi-housing
     spec:
+      restartPolicy: Always
       containers:
       - name: fastapi-housing
-
         image: luisfrontuso10/fastapi-houses:20250603-ce0baf1
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          timeoutSeconds: 10
+          failureThreshold: 10
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 10
+          successThreshold: 1
         env:
         - name: MLFLOW_S3_ENDPOINT_URL
           value: "http://10.43.101.175:30382"

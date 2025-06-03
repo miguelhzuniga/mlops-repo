@@ -5,6 +5,7 @@ metadata:
   namespace: mlops-project  
 spec:
   replicas: 3
+  progressDeadlineSeconds: 900
   selector:
     matchLabels:
       app: mlflow
@@ -13,11 +14,31 @@ spec:
       labels:
         app: mlflow
     spec:
+      restartPolicy: Always
       containers:
       - name: mlflow
         image: luisfrontuso10/mlflow-houses:20250603-ce0baf1
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 120
+          periodSeconds: 60
+          timeoutSeconds: 15
+          failureThreshold: 10
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 15
+          failureThreshold: 10
+          successThreshold: 1
         env:
         - name: MLFLOW_S3_ENDPOINT_URL
           value: http://minio.mlops-project.svc.cluster.local:9000
@@ -29,17 +50,22 @@ spec:
         - sh
         - -c
         - |
-          # Esperar a que los servicios estén disponibles
           echo "Esperando 20 segundos para que los servicios estén listos..."
           sleep 20
           
-          # Iniciar MLflow
           echo "Iniciando MLflow server..."
           mlflow server \
             --backend-store-uri postgresql://mlflow:mlflow123@postgres.mlops-project.svc.cluster.local:5432/mlflow \
             --default-artifact-root s3://mlflow-artifacts/ \
             --host 0.0.0.0 \
             --port 5000
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
