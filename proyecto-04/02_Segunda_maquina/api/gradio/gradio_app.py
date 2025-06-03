@@ -330,7 +330,6 @@ with gr.Blocks() as app:
             gr.Markdown("### Últimos registros de la tabla `trainlogs.logs`")
             fetch_logs_btn = gr.Button("Actualizar Logs")
             
-            # ✅ CORREGIDO: Sin headers vacíos
             logs_table = gr.Dataframe()
             
             def fetch_logs_gradio():
@@ -340,21 +339,18 @@ with gr.Blocks() as app:
                 if not data:
                     return pd.DataFrame([{"Mensaje": "No hay registros disponibles"}])
                 
-                # Convertir la lista de diccionarios directamente a DataFrame
                 df = pd.DataFrame(data)
                 return df
             
             fetch_logs_btn.click(fetch_logs_gradio, outputs=logs_table)
 
 
-        # 🌟 Pestaña de Análisis SHAP
         with gr.TabItem("Análisis SHAP"):
             gr.Markdown("### Importancia de características (SHAP Summary Plot)")
             shap_btn = gr.Button("Generar Análisis SHAP")
             shap_plot = gr.Plot()
             shap_btn.click(get_shap_summary_plot, outputs=shap_plot)
 
-# 🚀 Main
 if __name__ == "__main__":
     Thread(target=run_metrics_server, daemon=True).start()
     app.launch(server_name="0.0.0.0", server_port=8501)
