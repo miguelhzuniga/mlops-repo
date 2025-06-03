@@ -18,7 +18,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: fastapi-housing
-        image: luisfrontuso10/fastapi-houses:20250603-da75c83
+        image: luisfrontuso10/fastapi-houses:20250603-62daf04
         imagePullPolicy: Always
         ports:
         - containerPort: 80
