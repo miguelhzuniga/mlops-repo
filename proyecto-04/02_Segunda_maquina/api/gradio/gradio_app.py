@@ -171,8 +171,8 @@ def predict(model_name, brokered_by, status, bed, bath, acre_lot, street, city, 
             # Insertar en rawdata.houses
             insert_query = """
                 INSERT INTO rawdata.houses 
-                (id, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date, data_origin, price, price_per_sqft)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                (id, brokered_by, status, bed, bath, acre_lot, street, city, state, zip_code, house_size, prev_sold_date, data_origin, price)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             values = (
                 0,  # id en 0, el autoincremento lo manejará PostgreSQL si es necesario
@@ -188,8 +188,7 @@ def predict(model_name, brokered_by, status, bed, bath, acre_lot, street, city, 
                 house_size,
                 prev_sold_date,
                 'user',  # data_origin
-                prediction,
-                price_per_sqft
+                prediction
             )
 
             cursor.execute(insert_query, values)
