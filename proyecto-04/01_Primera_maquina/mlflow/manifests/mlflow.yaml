@@ -16,7 +16,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: mlflow
-        image: luisfrontuso10/mlflow-houses:20250603-e137774
+        image: luisfrontuso10/mlflow-houses:20250603-c491034
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
