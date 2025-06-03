@@ -490,20 +490,17 @@ def get_shap_hybrid_method(model):
         print("✅ Método híbrido con nombres completado")
         return fig
         
+
     except Exception as e:
         fig, ax = plt.subplots(figsize=(8, 4))
         ax.text(0.5, 0.5, f"Error: {str(e)[:100]}...", ha='center', va='center')
         ax.axis('off')
         return fig
 
-
-# 📋 Gradio App actualizada
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
     
-    # 🗂️ Pestañas
     with gr.Tabs():
-        # 🔍 Pestaña de Predicción
         with gr.TabItem("Predicción"):
             model_dropdown = gr.Dropdown(label="Modelo a usar", choices=[])
             refresh_btn = gr.Button("Actualizar modelos")
