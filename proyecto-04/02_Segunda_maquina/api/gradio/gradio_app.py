@@ -291,13 +291,10 @@ def get_shap_summary_plot():
         print(f"❌ Error SHAP: {str(e)}")
         return fig
         
-# 📋 Gradio App actualizada
 with gr.Blocks() as app:
     gr.Markdown("# 🏠 Predicción de Precios de Casas")
     
-    # 🗂️ Pestañas
     with gr.Tabs():
-        # 🔍 Pestaña de Predicción
         with gr.TabItem("Predicción"):
             model_dropdown = gr.Dropdown(label="Modelo a usar", choices=[])
             refresh_btn = gr.Button("Actualizar modelos")
