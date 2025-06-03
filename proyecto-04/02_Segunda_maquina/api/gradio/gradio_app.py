@@ -290,9 +290,6 @@ def get_shap_summary_plot():
         
         print(f"❌ Error SHAP: {str(e)}")
         return fig
-
-
-
         
 # 📋 Gradio App actualizada
 with gr.Blocks() as app:
