@@ -1,6 +1,12 @@
 # Proyecto Final - Operaciones de Machine Learning
 ## Sistema MLOps para Predicción de Precios de Bienes Raíces
 
+### Video del proyecto
+
+A continuación puede acceder al video explicativo del proyecto:
+
+[Proyecto final MLOPS](https://youtu.be/gQF0ej60K2c)
+
 ### 🎯 Descripción General
 
 Este proyecto implementa una plataforma MLOps empresarial completa para la predicción automatizada de precios de propiedades inmobiliarias. El sistema integra las mejores prácticas de DevOps, MLOps y observabilidad, proporcionando un flujo de trabajo automatizado desde la recolección de datos hasta el despliegue en producción con CI/CD completo.
